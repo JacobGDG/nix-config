@@ -11,6 +11,7 @@
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.zsh
     outputs.homeManagerModules.git
+    outputs.homeManagerModules.tmux
   ];
 
   nixpkgs = {
