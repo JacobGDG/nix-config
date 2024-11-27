@@ -7,9 +7,12 @@
         x = 10;
         y=10;
       };
-    
+      scrolling = {
+        history = 10000;
+      };
       shell = {
         program = "zsh";
+        args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
       };
       font = {
         normal = {
