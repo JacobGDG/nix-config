@@ -49,6 +49,7 @@
   home = {
     packages = with pkgs; [
       htop
+      just
       tldr
       gh
       git

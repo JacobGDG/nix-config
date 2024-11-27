@@ -1,1 +1,0 @@
-sudo nixos-rebuild build --flake .#nixos-laptop --show-trace
