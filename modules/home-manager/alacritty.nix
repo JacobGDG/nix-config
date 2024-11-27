@@ -1,8 +1,12 @@
+{ inputs, ... }:
 {
   programs.alacritty = {
     enable = true;
     settings = {
       env.TERM = "xterm-256color";
+
+      import = [ "${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml" ];
+
       window.padding = {
         x = 10;
         y=10;
