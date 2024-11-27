@@ -52,6 +52,7 @@
     packages = with pkgs; [
       htop
       tldr
+      gh
       git
       (nerdfonts.override { fonts = ["JetBrainsMono" "Inconsolata"]; })
     ];
