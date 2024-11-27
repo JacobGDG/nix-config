@@ -8,8 +8,8 @@
       import = [ "${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml" ];
 
       window.padding = {
-        x = 10;
-        y=10;
+        x=1;
+        y=1;
       };
       scrolling = {
         history = 10000;
