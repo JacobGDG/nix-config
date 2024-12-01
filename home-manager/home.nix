@@ -56,13 +56,6 @@
       (nerdfonts.override { fonts = ["JetBrainsMono" "Inconsolata"]; })
     ];
 
-    file = {
-      ".config/nvim" = {
-        source = ../config/nvim;
-	recursive = true;
-      };
-    };
-
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
   };
