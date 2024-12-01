@@ -5,7 +5,14 @@
     settings = {
       env.TERM = "xterm-256color";
 
-      import = [ "${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml" ];
+      general.import = [ "${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml" ];
+
+      terminal = {
+        shell = {
+          program = "zsh";
+          args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
+        };
+      };
 
       window.padding = {
         x=1;
@@ -13,10 +20,6 @@
       };
       scrolling = {
         history = 10000;
-      };
-      shell = {
-        program = "zsh";
-        args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
       };
       font = {
         normal = {
