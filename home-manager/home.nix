@@ -6,10 +6,14 @@
 }: {
   # You can import other home-manager modules here
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    
     outputs.homeManagerModules.alacritty
-    outputs.homeManagerModules.zsh
     outputs.homeManagerModules.git
+    outputs.homeManagerModules.ripgrep
     outputs.homeManagerModules.tmux
+    outputs.homeManagerModules.vim
+    outputs.homeManagerModules.zsh
   ];
 
   nixpkgs = {
@@ -36,14 +40,6 @@
 
   programs = {
     home-manager.enable = true;
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-      viAlias = true;
-
-      defaultEditor = true;
-    };
   };
 
   home = {
