@@ -9,6 +9,7 @@
     inputs.nixvim.homeManagerModules.nixvim
     
     outputs.homeManagerModules.alacritty
+    outputs.homeManagerModules.btop
     outputs.homeManagerModules.git
     outputs.homeManagerModules.ripgrep
     outputs.homeManagerModules.tmux
