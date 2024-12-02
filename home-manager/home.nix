@@ -13,7 +13,7 @@
     outputs.homeManagerModules.git
     outputs.homeManagerModules.ripgrep
     outputs.homeManagerModules.tmux
-    outputs.homeManagerModules.nixvim
+    outputs.homeManagerModules.neovim
     outputs.homeManagerModules.zsh
   ];
 

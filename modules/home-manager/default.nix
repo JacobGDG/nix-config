@@ -4,7 +4,7 @@
   btop = import ./btop.nix;
   zsh = import ./zsh.nix;
   git = import ./git.nix;
-  nixvim = import ./nixvim.nix;
+  neovim = import ./neovim.nix;
   ripgrep = import ./ripgrep.nix;
   tmux = import ./tmux.nix;
 }
