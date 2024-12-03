@@ -9,8 +9,8 @@
 
       terminal = {
         shell = {
-          program = "zsh";
-          args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
+          program = "/bin/zsh";
+          # args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
         };
       };
 
@@ -23,20 +23,19 @@
       };
       font = {
         normal = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Menlo";
           style = "Regular";
         };
         bold = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Menlo";
           style = "Bold";
         };
         italic = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Menlo";
           style = "Italic";
         };
-        size = 8;
+        size = 10;
       };
-  
     };
   };
 }
