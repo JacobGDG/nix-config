@@ -2,10 +2,8 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.6",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-ui-select.nvim"
-    },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
     config = function()
       require('telescope').setup {
         defaults = {
@@ -13,30 +11,13 @@ return {
             "vcr_cassettes"
           }
         },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-              -- even more opts
-            }
-
-            -- pseudo code / specification for writing custom displays, like the one
-            -- for "codeactions"
-            -- specific_opts = {
-            --   [kind] = {
-            --     make_indexed = function(items) -> indexed_items, width,
-            --     make_displayer = function(widths) -> displayer
-            --     make_display = function(displayer) -> function(e)
-            --     make_ordinal = function(e) -> string
-            --   },
-            --   -- for example to disable the custom builtin "codeactions" display
-            --      do the following
-            --   codeactions = false,
-            -- }
+        pickers = {
+          colorscheme = {
+            enable_preview = true
           }
-        }
+        },
       }
       require("telescope").load_extension("yank_history")
-      require("telescope").load_extension("ui-select")
     end,
     keys = {
       {
@@ -56,6 +37,14 @@ return {
         desc = "Find string",
       },
       {
+        'z=',
+        function()
+          require('telescope.builtin').spell_suggest()
+        end,
+        mode = { 'n' },
+        desc = "Fix spelling",
+      },
+      {
         '<leader>b',
         function()
           require('telescope.builtin').buffers()
@@ -71,7 +60,14 @@ return {
         mode = { 'n' },
         desc = "Get help!",
       },
-      { "<leader>k",   ":Legendary keymaps<CR>", mode = "n", desc = "Find keymaps" },
+      {
+        '<leader>k',
+        function()
+          require('telescope.builtin').keymaps()
+        end,
+        mode = { 'n' },
+        desc = "Get keymaps!",
+      },
     }
   },
 
