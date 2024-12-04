@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "My NixOS and home-manager flake.";
 
   inputs = {
     # Nixpkgs
@@ -51,6 +51,14 @@
         modules = [
           ./home-manager/home.nix
           ./home-manager/macbook.nix
+        ];
+      };
+      nixos-laptop = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home-manager/home.nix
+          ./home-manager/nixos.nix
         ];
       };
     };

@@ -118,10 +118,10 @@
       useDefaultShell = true;
     };
   };
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users.jake = import ../home-manager/home.nix;
-  };
+  # home-manager = {
+  #   extraSpecialArgs = { inherit inputs outputs; };
+  #   users.jake = import ../home-manager/home.nix;
+  # };
 
   services.openssh = {
     enable = true;

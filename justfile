@@ -12,10 +12,18 @@ update:
 check:
   nix flake check
 
+# NIXOS: Build and use new home-manager config
+hm-nix:
+  home-manager switch --flake .#nixos-laptop
+
+# MACOS: Build and use new home-manager config
+hm-mac:
+  home-manager switch --flake .#macbook
+
 # rebuild nixos but don't switch to it
-build:
+os-build:
   sudo nixos-rebuild build --flake .#nixos-laptop --show-trace
 
 # rebuild nixos and use it
-switch:
+os-switch:
   sudo nixos-rebuild switch --flake .#nixos-laptop --show-trace

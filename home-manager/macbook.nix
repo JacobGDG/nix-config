@@ -1,7 +1,7 @@
 {
-  inputs,
-  outputs,
-  pkgs,
+  # inputs,
+  # outputs,
+  # pkgs,
   ...
 }: {
   home = {
