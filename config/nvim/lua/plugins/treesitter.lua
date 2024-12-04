@@ -32,6 +32,7 @@ return {
           "vim",
           "vimdoc",
           "yaml",
+          "just",
         }
       })
 
