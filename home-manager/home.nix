@@ -14,6 +14,7 @@
     outputs.homeManagerModules.ripgrep
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.zoxide
     outputs.homeManagerModules.zsh
   ];
 
@@ -50,6 +51,7 @@
       tldr
       gh
       git
+      fzf
       (nerdfonts.override { fonts = ["JetBrainsMono" "Inconsolata"]; })
     ];
 

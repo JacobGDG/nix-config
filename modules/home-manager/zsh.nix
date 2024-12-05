@@ -9,6 +9,9 @@
     history = {
       size = 10000;
     };
+    shellAliases = {
+      "cd" = "z";
+    };
 
     initExtra = "source ~/.config/zsh/.p10k.zsh";
     initExtraFirst = "

@@ -7,4 +7,5 @@
   neovim = import ./neovim.nix;
   ripgrep = import ./ripgrep.nix;
   tmux = import ./tmux.nix;
+  zoxide = import ./zoxide.nix;
 }
