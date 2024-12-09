@@ -10,7 +10,7 @@
       {
         name = "NixConfig 🔧";
         path = "~/src/nix-config/";
-        startup_command = "tmuxifier load-window vimsplit & tmux kill-window -t 1";
+        startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
       }
     ];
   };
