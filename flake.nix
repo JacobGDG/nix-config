@@ -25,6 +25,11 @@
     nixvim,
     ...
   } @ inputs: let
+    platformConfig = import ./platforms;
+
+    workMacConfigs = platformConfig.workMac;
+    nixOSLenovoConfigs = platformConfig.nixOSLenovo;
+    
     inherit (self) outputs;
   in {
     homeManagerModules = import ./modules/home-manager/default.nix { inherit inputs; };
@@ -39,20 +44,28 @@
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      macbook = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+      workMac = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = workMacConfigs.system;
+        };
+        extraSpecialArgs = {
+          platformConfig = workMacConfigs;
+          inherit inputs outputs;
+        };
         modules = [
           ./home-manager/home.nix
-          ./home-manager/macbook.nix
         ];
       };
-      nixos-laptop = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
+      nixOSLenovo = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = nixOSLenovoConfigs.system;
+        };
+        extraSpecialArgs = {
+          platformConfig = nixOSLenovoConfigs;
+          inherit inputs outputs;
+        };
         modules = [
           ./home-manager/home.nix
-          ./home-manager/nixos.nix
         ];
       };
     };

@@ -14,11 +14,11 @@ check:
 
 # NIXOS: Build and use new home-manager config
 hm-nix:
-  home-manager switch --flake .#nixos-laptop
+  home-manager switch --flake .#nixOSLenovo
 
 # MACOS: Build and use new home-manager config
 hm-mac:
-  home-manager switch --flake .#macbook
+  home-manager switch --flake .#workMac
 
 # rebuild nixos but don't switch to it
 os-build:
