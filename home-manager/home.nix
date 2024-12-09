@@ -7,9 +7,9 @@
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.btop
     outputs.homeManagerModules.git
+    outputs.homeManagerModules.neovim
     outputs.homeManagerModules.ripgrep
     outputs.homeManagerModules.tmux
-    outputs.homeManagerModules.neovim
     outputs.homeManagerModules.zoxide
     outputs.homeManagerModules.zsh
   ];
@@ -26,13 +26,13 @@
     username = platformConfig.username;
 
     packages = with pkgs; [
+      (nerdfonts.override { fonts = ["JetBrainsMono" "Inconsolata"]; })
+      fzf
+      gh
+      git
       htop
       just
       tldr
-      gh
-      git
-      fzf
-      (nerdfonts.override { fonts = ["JetBrainsMono" "Inconsolata"]; })
     ];
   };
 
