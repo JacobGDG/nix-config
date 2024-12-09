@@ -33,7 +33,7 @@
       htop
       just
       tldr
+      yazi
     ];
   };
-
 }

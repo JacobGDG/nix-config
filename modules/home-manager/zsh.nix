@@ -11,7 +11,7 @@
     };
     shellAliases = {
       "cd" = "z";
-      "la" = "ls -lah";
+      "la" = "ls -lAh";
       "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
     };
 
