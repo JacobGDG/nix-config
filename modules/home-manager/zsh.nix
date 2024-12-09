@@ -11,6 +11,8 @@
     };
     shellAliases = {
       "cd" = "z";
+      "la" = "ls -lah";
+      "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
     };
 
     initExtra = "source ~/.config/zsh/.p10k.zsh";

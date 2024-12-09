@@ -30,7 +30,9 @@
       set -g status-left-length 90
       set -g status-right-length 90
       set -g status-justify centre
-  
+
+      set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
       # -----------------------------------------------------------------------------
       # Key bindings
       # -----------------------------------------------------------------------------
@@ -57,7 +59,8 @@
       unbind h
       bind-key h split-window -c "#{pane_current_path}"
 
-      bind-key "k" run-shell "sesh connect \"$(
+      unbind s
+      bind-key "s" run-shell "sesh connect \"$(
         sesh list --icons | fzf-tmux -p 55%,60% \
         --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
         --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
@@ -70,6 +73,5 @@
         --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
       )\""
     '';
-
   };
 }
