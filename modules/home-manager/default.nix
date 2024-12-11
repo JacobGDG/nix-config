@@ -4,6 +4,7 @@
   btop = import ./btop.nix;
   git = import ./git.nix;
   neovim = import ./neovim.nix;
+  plasma = import ./plasma.nix;
   ripgrep = import ./ripgrep.nix;
   tmux = import ./tmux.nix;
   zoxide = import ./zoxide.nix;

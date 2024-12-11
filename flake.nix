@@ -2,13 +2,16 @@
   description = "My NixOS and home-manager flake.";
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     alacritty-themes = {
@@ -21,6 +24,7 @@
     self,
     nixpkgs,
     home-manager,
+    plasma-manager,
     alacritty-themes,
     nixvim,
     ...
@@ -65,6 +69,8 @@
           inherit inputs outputs;
         };
         modules = [
+          inputs.plasma-manager.homeManagerModules.plasma-manager
+            
           ./home-manager/home.nix
         ];
       };
