@@ -6,10 +6,12 @@
     
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.btop
+    outputs.homeManagerModules.cava
     outputs.homeManagerModules.git
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.plasma # TODO: Make optional if plasma installed
     outputs.homeManagerModules.ripgrep
+    outputs.homeManagerModules.spotify-player
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.zoxide
     outputs.homeManagerModules.zsh

@@ -19,4 +19,13 @@ in {
       select_pane 1
     '';
   };
+  xdg.configFile."tmux/layouts/music.window.sh" = {
+    text = ''
+      new_window "Music"
+      run_cmd "spotify_player"
+      split_v 20
+      run_cmd "cava"
+      select_pane 1
+    '';
+  };
 }
