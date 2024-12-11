@@ -12,6 +12,8 @@
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
+
+    outputs.nixosModules.steam
   ];
 
   nixpkgs = {

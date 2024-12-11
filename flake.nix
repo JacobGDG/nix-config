@@ -37,6 +37,7 @@
     inherit (self) outputs;
   in {
     homeManagerModules = import ./modules/home-manager/default.nix { inherit inputs; };
+    nixosModules = import ./modules/nixos/default.nix;
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
