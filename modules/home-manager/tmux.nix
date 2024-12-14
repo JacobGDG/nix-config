@@ -1,25 +1,5 @@
-{ pkgs, lib, ... }:
-let
-  tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "powerline";
-    version = "3.0.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "erikw";
-      repo = "tmux-powerline";
-      rev = "2480e5531e0027e49a90eaf540f973e624443937";
-      hash = "sha256-25uG7OI8OHkdZ3GrTxG1ETNeDtW1K+sHu2DfJtVHVbk=";
-    };
-    rtpFilePath = "main.tmux";
-    meta = {
-      homepage = "https://github.com/erikw/tmux-powerline";
-      description = "Empowering your tmux (status bar) experience!";
-      longDescription = "A tmux plugin giving you a hackable status bar consisting of dynamic & beautiful looking powerline segments, written purely in bash.";
-      license = lib.licenses.bsd3;
-      platforms = lib.platforms.unix;
-      maintainers = with lib.maintainers; [ thomasjm ];
-    };
-  };
-in {
+{ pkgs, ... }:
+{
   imports = [
     ./sesh.nix
     ./tmuxifier.nix
@@ -39,7 +19,6 @@ in {
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
     plugins = with pkgs; [
       tmuxPlugins.gruvbox
-      tmux-powerline
     ];
 
     extraConfig = ''

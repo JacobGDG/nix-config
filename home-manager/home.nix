@@ -37,6 +37,7 @@
       just
       tldr
       yazi
+      xclip
     ];
   };
 }
