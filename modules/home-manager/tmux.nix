@@ -22,10 +22,10 @@
     ];
 
     extraConfig = ''
-      #set -ag terminal-overrides ",xterm-256color:RGB"
-      #set-option -sa terminal-features ',alacritty:RGB'
-      #set-option -ga terminal-features ",alacritty:usstyle"
-  
+      set -ag terminal-overrides ",xterm-256color:RGB"
+      set-option -sa terminal-features ',alacritty:RGB'
+      set-option -ga terminal-features ",alacritty:usstyle"
+
       # Undercurl
       set -g default-terminal "tmux-256color"
   
@@ -34,9 +34,6 @@
   
       # Remove Vim mode delays
       set -g focus-events on
-      # set -g status-left-length 90
-      # set -g status-right-length 90
-      # set -g status-justify centre
 
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
