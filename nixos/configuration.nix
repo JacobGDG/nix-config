@@ -114,7 +114,7 @@
     jake = {
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = ["networkmanager" "wheel"];
 
       shell = pkgs.zsh;
       useDefaultShell = true;

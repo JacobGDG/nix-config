@@ -1,22 +1,21 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   programs.alacritty = {
     enable = true;
     settings = {
       env.TERM = "xterm-256color";
 
-      general.import = [ "${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml" ];
+      general.import = ["${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml"];
 
       terminal = {
         shell = {
           program = "/home/jake/.nix-profile/bin/zsh";
-          args = [ "-l" "-c" "tmux attach || tmux new -s home" ];
+          args = ["-l" "-c" "tmux attach || tmux new -s home"];
         };
       };
 
       window.padding = {
-        x=1;
-        y=1;
+        x = 1;
+        y = 1;
       };
       scrolling = {
         history = 10000;

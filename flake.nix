@@ -33,11 +33,27 @@
 
     workMacConfigs = platformConfig.workMac;
     nixOSLenovoConfigs = platformConfig.nixOSLenovo;
-    
+
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = [
+      "x86_64-linux"
+      "aarch64-darwin"
+    ];
+    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
+
     inherit (self) outputs;
   in {
-    homeManagerModules = import ./modules/home-manager/default.nix { inherit inputs; };
+    homeManagerModules = import ./modules/home-manager/default.nix {inherit inputs;};
     nixosModules = import ./modules/nixos/default.nix;
+
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -71,7 +87,7 @@
         };
         modules = [
           inputs.plasma-manager.homeManagerModules.plasma-manager
-            
+
           ./home-manager/home.nix
         ];
       };

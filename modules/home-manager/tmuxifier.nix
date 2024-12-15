@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   layoutDir = "tmux/layouts";
 in {
   home = {
-    packages = [ pkgs.tmuxifier ];
+    packages = [pkgs.tmuxifier];
 
     sessionVariables = {
       TMUXIFIER_LAYOUT_PATH = "\$HOME/.config/${layoutDir}";

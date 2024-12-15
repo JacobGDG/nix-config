@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -35,13 +34,13 @@
       setopt hist_find_no_dups
     ";
 
-    plugins = [   
-      {      
+    plugins = [
+      {
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
-      {      
+      {
         name = "fzf-tab";
         src = pkgs.zsh-fzf-tab;
         file = "share/zsh-fzf-tab/fzf-tab.plugin.zsh";

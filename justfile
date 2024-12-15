@@ -26,3 +26,6 @@ os:
 [macos]
 hm:
   home-manager switch --flake .#workMac
+
+format:
+  nix fmt

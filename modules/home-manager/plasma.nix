@@ -1,6 +1,5 @@
 # https://github.com/nix-community/plasma-manager?tab=readme-ov-file#manage-kde-plasma-with-home-manager
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.plasma = {
     enable = true;
     overrideConfig = true; # Override manual changes
@@ -14,11 +13,10 @@
       # iconTheme = "Breeze_Dark"; TODO: Fix this referench
     };
 
-
     input.keyboard = {
       layouts = [
         # search setxkbmap options
-        { layout = "gb"; }
+        {layout = "gb";}
       ];
       options = [
         "caps:ctrl_modifier"

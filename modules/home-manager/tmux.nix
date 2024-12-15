@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./sesh.nix
     ./tmuxifier.nix
@@ -28,10 +27,10 @@
 
       # Undercurl
       set -g default-terminal "tmux-256color"
-  
+
       set -sg escape-time 10
       set -g focus-events on
-  
+
       # Remove Vim mode delays
       set -g focus-events on
 
@@ -49,16 +48,16 @@
 
       # after ^, reenable crtl-l (clear console) now just needs <prefix> beforehand
       bind C-l send-keys 'C-l'
-  
+
       # Unbind default keys
       unbind C-b
       unbind '"'
       unbind %
-  
+
       # vertical splits with g
       unbind g
       bind-key g split-window -h -c "#{pane_current_path}"
-      
+
       # horizontal splits with h
       unbind h
       bind-key h split-window -c "#{pane_current_path}"

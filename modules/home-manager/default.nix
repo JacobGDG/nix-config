@@ -1,6 +1,5 @@
-{ inputs, ... }:
-{
-  alacritty = import ./alacritty.nix { inherit inputs; };
+{inputs, ...}: {
+  alacritty = import ./alacritty.nix {inherit inputs;};
   btop = import ./btop.nix;
   git = import ./git.nix;
   neovim = import ./neovim.nix;

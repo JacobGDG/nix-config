@@ -1,9 +1,14 @@
-{ inputs, outputs, pkgs, platformConfig, ... }:
 {
+  inputs,
+  outputs,
+  pkgs,
+  platformConfig,
+  ...
+}: {
   # You can import other home-manager modules here
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    
+
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.btop
     outputs.homeManagerModules.cava
@@ -29,7 +34,7 @@
     username = platformConfig.username;
 
     packages = with pkgs; [
-      (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
       fzf
       gh
       git
