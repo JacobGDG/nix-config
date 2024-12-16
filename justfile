@@ -27,5 +27,10 @@ os:
 hm:
   home-manager switch --flake .#workMac
 
+# Delete old generations
+clean:
+  sudo nix-collect-garbage -d
+
+# Clean nix code
 format:
   nix fmt

@@ -68,6 +68,12 @@ return {
         mode = { 'n' },
         desc = "Get keymaps!",
       },
+      {
+        '<leader>y',
+        "<CMD>Telescope yaml_schema<CR>",
+        mode = { 'n' },
+        desc = "Set YAML Schame",
+      },
     }
   },
 
