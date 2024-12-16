@@ -8,7 +8,6 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/nvim-cmp',
       'nvim-tree/nvim-web-devicons',
-      'b0o/schemastore.nvim',
     },
     init = function()
       -- Reserve a space in the gutter
