@@ -1,5 +1,9 @@
 return {
   'kwkarlwang/bufresize.nvim',
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
 
   {
     "nvim-lualine/lualine.nvim",

@@ -8,6 +8,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/nvim-cmp',
       'nvim-tree/nvim-web-devicons',
+      'b0o/schemastore.nvim',
     },
     init = function()
       -- Reserve a space in the gutter
@@ -77,6 +78,7 @@ return {
       { "<C-b>",     vim.diagnostic.goto_prev,    desc = "Goto Next Diagnostic" },
       { "<leader>r", vim.lsp.buf.rename,          desc = "Rename" },
       { "<leader>a", vim.lsp.buf.code_action,     mode = { "n", "v" },              desc = "Goto Next Diagnostic" },
+      { "<leader>y", function() require('additional-schemas').init() end ,     mode = { "n" },              desc = "Set yamlls comment" },
     },
   },
   -- TRY the below at somepoint
