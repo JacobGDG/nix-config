@@ -8,7 +8,7 @@
 
       terminal = {
         shell = {
-          program = "/home/jake/.nix-profile/bin/zsh";
+          program = "zsh";
           args = ["-l" "-c" "tmux attach || tmux new -s home"];
         };
       };
@@ -22,18 +22,18 @@
       };
       font = {
         normal = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Fira Code";
           style = "Regular";
         };
         bold = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Fira Code";
           style = "Bold";
         };
         italic = {
-          family = "JetBrains Mono Nerd Font";
+          family = "Fira Code";
           style = "Italic";
         };
-        size = 9;
+        size = 10;
       };
     };
   };

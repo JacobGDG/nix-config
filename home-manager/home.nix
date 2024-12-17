@@ -3,6 +3,7 @@
   outputs,
   pkgs,
   platformConfig,
+  lib,
   ...
 }: {
   # You can import other home-manager modules here
@@ -14,13 +15,14 @@
     outputs.homeManagerModules.cava
     outputs.homeManagerModules.git
     outputs.homeManagerModules.neovim
-    outputs.homeManagerModules.plasma # TODO: Make optional if plasma installed
     outputs.homeManagerModules.ripgrep
-    outputs.homeManagerModules.spotify-player
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.zoxide
     outputs.homeManagerModules.zsh
-  ];
+  ] ++ lib.optionals (platformConfig.isNixOS) [
+      outputs.homeManagerModules.plasma
+      outputs.homeManagerModules.spotify-player
+    ];
 
   nixpkgs.config.allowUnfree = platformConfig.allowUnfree;
   systemd.user.startServices = "sd-switch";
@@ -33,8 +35,12 @@
     homeDirectory = platformConfig.homeDirectory;
     username = platformConfig.username;
 
+    sessionPath = [
+      "/opt/homebrew/bin/brew"
+    ];
+
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      fira-code
       fzf
       gh
       git

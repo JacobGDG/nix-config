@@ -50,6 +50,7 @@
 
     inherit (self) outputs;
   in {
+    inherit lib;
     homeManagerModules = import ./modules/home-manager/default.nix {inherit inputs;};
     nixosModules = import ./modules/nixos/default.nix;
 
@@ -57,7 +58,7 @@
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      nixos-laptop = nixpkgs.lib.nixosSystem {
+      nixos-laptop = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/configuration.nix];
       };
@@ -65,7 +66,7 @@
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      workMac = home-manager.lib.homeManagerConfiguration {
+      workMac = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = workMacConfigs.system;
         };
@@ -77,7 +78,7 @@
           ./home-manager/home.nix
         ];
       };
-      nixOSLenovo = home-manager.lib.homeManagerConfiguration {
+      nixOSLenovo = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = nixOSLenovoConfigs.system;
         };

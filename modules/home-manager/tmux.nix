@@ -21,9 +21,12 @@
     ];
 
     extraConfig = ''
-      set -ag terminal-overrides ",xterm-256color:RGB"
-      set-option -sa terminal-features ',alacritty:RGB'
-      set-option -ga terminal-features ",alacritty:usstyle"
+      set -gu default-command
+      set -g default-shell "$SHELL"
+
+      # set -ag terminal-overrides ",xterm-256color:RGB"
+      # set-option -sa terminal-features ',alacritty:RGB'
+      # set-option -ga terminal-features ",alacritty:usstyle"
 
       # Undercurl
       set -g default-terminal "tmux-256color"
