@@ -22,18 +22,18 @@
       };
       font = {
         normal = {
-          family = "Fira Code";
+          family = "JetBrains Mono Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "Fira Code";
+          family = "JetBrains Mono Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "Fira Code";
+          family = "JetBrains Mono Nerd Font";
           style = "Italic";
         };
-        size = 10;
+        size = 8;
       };
     };
   };

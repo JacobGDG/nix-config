@@ -40,7 +40,7 @@
     ];
 
     packages = with pkgs; [
-      fira-code
+      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
       fzf
       gh
       git
@@ -51,4 +51,5 @@
       xclip
     ];
   };
+  fonts.fontconfig.enable = true;
 }
