@@ -7,20 +7,21 @@
   ...
 }: {
   # You can import other home-manager modules here
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-
-    outputs.homeManagerModules.alacritty
-    outputs.homeManagerModules.btop
-    outputs.homeManagerModules.cava
-    outputs.homeManagerModules.git
-    outputs.homeManagerModules.neovim
-    outputs.homeManagerModules.ripgrep
-    outputs.homeManagerModules.tmux
-    outputs.homeManagerModules.zoxide
-    outputs.homeManagerModules.zsh
-  ] ++ lib.optionals (platformConfig.isNixOS) [
+  imports =
+    [
+      outputs.homeManagerModules.alacritty
+      outputs.homeManagerModules.btop
+      outputs.homeManagerModules.cava
+      outputs.homeManagerModules.git
+      outputs.homeManagerModules.neovim
+      outputs.homeManagerModules.ripgrep
+      outputs.homeManagerModules.tmux
+      outputs.homeManagerModules.zoxide
+      outputs.homeManagerModules.zsh
+    ]
+    ++ lib.optionals (platformConfig.isNixOS) [
       outputs.homeManagerModules.plasma
+      outputs.homeManagerModules.thunderbird
       outputs.homeManagerModules.spotify-player
     ];
 
@@ -40,7 +41,7 @@
     ];
 
     packages = with pkgs; [
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
+      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
       fzf
       gh
       git

@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  platformConfig,
   ...
 }: {
   # You can import other NixOS modules here
@@ -58,7 +59,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "jake-laptop-nixos"; # Define your hostname.
+  networking.hostName = platformConfig.hostName; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -111,7 +112,7 @@
   programs.zsh.enable = true;
 
   users.users = {
-    jake = {
+    "${platformConfig.username}" = {
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
       extraGroups = ["networkmanager" "wheel"];
@@ -120,10 +121,6 @@
       useDefaultShell = true;
     };
   };
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs outputs; };
-  #   users.jake = import ../home-manager/home.nix;
-  # };
 
   services.openssh = {
     enable = true;

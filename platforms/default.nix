@@ -1,8 +1,8 @@
 rec {
-  base = {
+  base = rec {
     allowUnfree = true;
     username = "jake";
-    homeDirectory = "/home/jake";
+    homeDirectory = "/home/${username}";
     isNixOS = false;
     isDarwin = false;
   };
@@ -11,6 +11,7 @@ rec {
     // {
       system = "x86_64-linux";
       isNixOS = true;
+      hostName = "jake-laptop-nixos";
     };
   workMac =
     base

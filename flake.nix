@@ -18,6 +18,15 @@
       url = "github:alacritty/alacritty-theme/master";
       flake = false;
     };
+
+    agenix = {
+      url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mysecrets = {
+      url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -26,7 +35,7 @@
     home-manager,
     plasma-manager,
     alacritty-themes,
-    nixvim,
+    agenix,
     ...
   } @ inputs: let
     platformConfig = import ./platforms;
@@ -59,8 +68,16 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       nixos-laptop = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./nixos/configuration.nix];
+        specialArgs = {
+          platformConfig = nixOSLenovoConfigs;
+          inherit inputs outputs;
+        };
+        modules = [
+          agenix.nixosModules.default
+
+          ./nixos/configuration.nix
+          ./secrets/nixOSLenovo.nix
+        ];
       };
     };
 
@@ -87,7 +104,7 @@
           inherit inputs outputs;
         };
         modules = [
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          plasma-manager.homeManagerModules.plasma-manager
 
           ./home-manager/home.nix
         ];
