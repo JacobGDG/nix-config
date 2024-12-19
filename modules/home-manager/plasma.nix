@@ -4,6 +4,8 @@
     enable = true;
     overrideConfig = true; # Override manual changes
 
+    session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       cursor = {
