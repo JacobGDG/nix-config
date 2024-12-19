@@ -23,9 +23,9 @@ in {
   ];
 
   age.secrets = {
-    testsecret =
+    "home_wg_config.conf" =
       {
-        file = "${inputs.mysecrets}/testsecret.age";
+        file = "${inputs.mysecrets}/home_wg_config.conf.age";
       }
       // high_security;
   };

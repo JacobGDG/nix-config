@@ -50,6 +50,8 @@
       tldr
       yazi
       xclip
+    ] ++ lib.optionals (platformConfig.isNixOS) [
+      wireguard-tools
     ];
   };
   fonts.fontconfig.enable = true;
