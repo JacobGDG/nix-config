@@ -1,5 +1,6 @@
 {inputs, ...}: {
   alacritty = import ./alacritty.nix {inherit inputs;};
+  kubernetes = import ./kubernetes.nix;
   btop = import ./btop.nix;
   cava = import ./cava.nix;
   git = import ./git.nix;

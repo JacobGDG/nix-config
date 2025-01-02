@@ -5,6 +5,7 @@ rec {
     homeDirectory = "/home/${username}";
     isNixOS = false;
     isDarwin = false;
+    workloads = [];
   };
   nixOSLenovo =
     base
@@ -20,5 +21,9 @@ rec {
       username = "jakegreenwood";
       homeDirectory = "/Users/jakegreenwood";
       isDarwin = true;
+      workloads = [
+        "kubernetes"
+        "terraform"
+      ];
     };
 }

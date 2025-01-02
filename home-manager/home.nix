@@ -23,6 +23,8 @@
       outputs.homeManagerModules.plasma
       outputs.homeManagerModules.thunderbird
       outputs.homeManagerModules.spotify-player
+    ] ++ lib.optionals (builtins.elem "kubernetes" platformConfig.workloads) [
+      outputs.homeManagerModules.kubernetes
     ];
 
   nixpkgs.config.allowUnfree = platformConfig.allowUnfree;
@@ -52,6 +54,10 @@
       xclip
     ] ++ lib.optionals (platformConfig.isNixOS) [
       wireguard-tools
+    ] ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [
+      opentofu
+      tflint
+      checkov
     ];
   };
   fonts.fontconfig.enable = true;
