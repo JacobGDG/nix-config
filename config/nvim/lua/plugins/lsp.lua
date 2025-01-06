@@ -81,26 +81,6 @@ return {
       { "<leader>y", function() require('additional-schemas').init() end ,     mode = { "n" },              desc = "Set yamlls comment" },
     },
   },
-  -- TRY the below at somepoint
-  -- {
-  --   "someone-stole-my-name/yaml-companion.nvim",
-  --   dependencies = {
-  --       { "neovim/nvim-lspconfig" },
-  --       { "nvim-lua/plenary.nvim" },
-  --       { "nvim-telescope/telescope.nvim" },
-  --   },
-  --   config = function()
-  --     require("telescope").load_extension("yaml_schema")
-  --   end,
-  --   keys = {
-  --     {
-  --       '<leader>y',
-  --       "<CMD>Telescope yaml_schema<CR>",
-  --       mode = { 'n' },
-  --       desc = "Set YAML Schame",
-  --     },
-  --   }
-  -- },
 
   -- Autocompletion
   {

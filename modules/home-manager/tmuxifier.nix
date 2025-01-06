@@ -13,7 +13,7 @@ in {
     text = ''
       window_root $PWD
       new_window "Editor"
-      run_cmd "nvim -c \"Telescope find_files\""
+      run_cmd "nvim -c \"FzfLua files\""
       split_v 20
       select_pane 1
     '';
