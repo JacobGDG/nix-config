@@ -50,8 +50,9 @@
       htop
       just
       tldr
-      yazi
+      watch
       xclip
+      yazi
     ] ++ lib.optionals (platformConfig.isNixOS) [
       wireguard-tools
     ] ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [

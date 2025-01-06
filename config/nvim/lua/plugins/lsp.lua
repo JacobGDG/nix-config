@@ -47,6 +47,7 @@ return {
           yaml = {
             schemas = {
               kubernetes = "*.yaml",
+              ["https://json.schemastore.org/any.json"] = "values.{yml,yaml}", -- TODO this doesnt work
               ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
               ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
               ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
