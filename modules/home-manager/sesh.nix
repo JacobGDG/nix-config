@@ -17,6 +17,11 @@
         startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
       }
       {
+        name = "Tomato 🍅";
+        path = "~";
+        startup_command = "tomato";
+      }
+      {
         name = "FileManager 📥";
         path = "~";
         startup_command = "yazi";
