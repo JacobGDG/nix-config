@@ -55,6 +55,7 @@
       xclip
       yazi
     ] ++ lib.optionals (platformConfig.isNixOS) [
+      devenv
       wireguard-tools
     ] ++ lib.optionals (platformConfig.isDarwin) [
     ] ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [

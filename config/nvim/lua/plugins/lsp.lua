@@ -22,6 +22,7 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       lspconfig.nil_ls.setup { capabilities = capabilities }
+      lspconfig.rust_analyzer.setup { capabilities = capabilities }
       lspconfig.lua_ls.setup {
         capabilities = capabilities,
         settings = {
