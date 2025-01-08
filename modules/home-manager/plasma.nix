@@ -1,5 +1,5 @@
 # https://github.com/nix-community/plasma-manager?tab=readme-ov-file#manage-kde-plasma-with-home-manager
-{pkgs, ...}: {
+{
   programs.plasma = {
     enable = true;
     overrideConfig = true; # Override manual changes
@@ -13,6 +13,7 @@
         size = 20;
       };
       # iconTheme = "Breeze_Dark"; TODO: Fix this referench
+      wallpaper = ../../wallpapers/haystacks.jpg;
     };
 
     input.keyboard = {
