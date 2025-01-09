@@ -18,15 +18,12 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
     plugins = with pkgs; [
       tmuxPlugins.gruvbox
+      tmuxPlugins.fingers
     ];
 
     extraConfig = ''
       set -gu default-command
       set -g default-shell "$SHELL"
-
-      # set -ag terminal-overrides ",xterm-256color:RGB"
-      # set-option -sa terminal-features ',alacritty:RGB'
-      # set-option -ga terminal-features ",alacritty:usstyle"
 
       # Undercurl
       set -g default-terminal "tmux-256color"
@@ -65,6 +62,9 @@
       unbind h
       bind-key h split-window -c "#{pane_current_path}"
 
+      # source tmus
+      bind-key r source ~/.config/tmux/tmux.conf
+
       unbind s
       bind-key "s" run-shell "sesh connect \"$(
         sesh list --icons | fzf-tmux -p 55%,60% \
@@ -81,6 +81,9 @@
       )\""
 
       set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] #(tomato -t)  %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h"
+
+      # fingers
+      set -g @fingers-key Space
     '';
   };
 }
