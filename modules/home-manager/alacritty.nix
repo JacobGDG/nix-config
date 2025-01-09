@@ -4,7 +4,7 @@
     settings = {
       env.TERM = "xterm-256color";
 
-      general.import = ["${inputs.alacritty-themes}/themes/gruvbox_material_medium_dark.toml"];
+      general.import = ["${inputs.alacritty-themes}/themes/gruvbox_dark.toml"];
 
       terminal = {
         shell = {
