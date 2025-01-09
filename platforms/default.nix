@@ -22,6 +22,7 @@ rec {
       homeDirectory = "/Users/jakegreenwood";
       isDarwin = true;
       workloads = [
+        "docker"
         "kubernetes"
         "terraform"
       ];
