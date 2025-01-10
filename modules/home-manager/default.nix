@@ -10,6 +10,7 @@
   spotify-player = import ./spotify-player.nix;
   thunderbird = import ./thunderbird.nix;
   tmux = import ./tmux.nix;
+  yazi = import ./yazi.nix;
   zoxide = import ./zoxide.nix;
   zsh = import ./zsh.nix;
 }

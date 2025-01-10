@@ -24,7 +24,7 @@
       {
         name = "FileManager 📥";
         path = "~";
-        startup_command = "yazi";
+        startup_command = "yy";
       }
     ];
   };

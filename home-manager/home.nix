@@ -16,6 +16,7 @@
       outputs.homeManagerModules.neovim
       outputs.homeManagerModules.ripgrep
       outputs.homeManagerModules.tmux
+      outputs.homeManagerModules.yazi
       outputs.homeManagerModules.zoxide
       outputs.homeManagerModules.zsh
     ]
@@ -53,7 +54,6 @@
       tomato-c
       watch
       xclip
-      yazi
     ] ++ lib.optionals (platformConfig.isNixOS) [
       devenv
       wireguard-tools
