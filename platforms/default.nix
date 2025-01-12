@@ -13,6 +13,9 @@ rec {
       system = "x86_64-linux";
       isNixOS = true;
       hostName = "jake-laptop-nixos";
+      workloads = [
+        "libroffice"
+      ];
     };
   workMac =
     base

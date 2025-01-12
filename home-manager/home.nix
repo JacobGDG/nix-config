@@ -65,6 +65,10 @@
     ] ++ lib.optionals (builtins.elem "docker" platformConfig.workloads) [
       # docker is not trivial to install, this is bare minimum to get what I need at work done for now
       docker-credential-helpers
+    ] ++ lib.optionals (builtins.elem "libroffice" platformConfig.workloads) [
+      libreoffice-qt
+      hunspell
+      hunspellDicts.en_GB-large
     ];
   };
   fonts.fontconfig.enable = true;
