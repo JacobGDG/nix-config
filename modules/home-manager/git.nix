@@ -21,7 +21,7 @@
       co = "checkout";
       cm = "commit --verbose";
 
-      rbm = "pull origin master --rebase";
+      rbm = "pull origin main --rebase";
       cm-temp = "commit -m 'temp commit'";
 
       # default branch
