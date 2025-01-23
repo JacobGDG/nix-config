@@ -15,7 +15,7 @@ in {
       new_window "Editor"
       run_cmd "nvim -c \"FzfLua files\""
       split_v 20
-      select_pane 1
+      run_cmd "git fetch"
     '';
   };
   xdg.configFile."tmux/layouts/music.window.sh" = {
