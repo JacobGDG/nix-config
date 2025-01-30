@@ -7,6 +7,7 @@
     kubectl
     k9s
     kubectx
+    kustomize
   ];
 
   programs.zsh.shellAliases = {
