@@ -27,6 +27,8 @@
       url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
       flake = false;
     };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {
@@ -36,6 +38,7 @@
     plasma-manager,
     alacritty-themes,
     agenix,
+    mac-app-util,
     ...
   } @ inputs: let
     platformConfig = import ./platforms;
@@ -92,6 +95,7 @@
           inherit inputs outputs;
         };
         modules = [
+          mac-app-util.homeManagerModules.default
           ./home-manager/home.nix
         ];
       };
