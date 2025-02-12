@@ -54,6 +54,7 @@
       tomato-c
       watch
       xclip
+      dig
     ] ++ lib.optionals (platformConfig.isNixOS) [
       devenv
       wireguard-tools
