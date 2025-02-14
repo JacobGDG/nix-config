@@ -40,7 +40,7 @@ return {
             'filename',
             path = 1,
           },
-          'fancy_macro'
+          'fancy_macro',
         },
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'location', 'progress'},
@@ -60,7 +60,15 @@ return {
         lualine_z = {}
       },
       tabline = {},
-      winbar = {},
+      winbar = {
+        lualine_c = {
+          {
+            "navic",
+            color_correction = nil,
+            navic_opts = nil
+          }
+        },
+      },
       inactive_winbar = {},
       extensions = { 'oil' },
     }
@@ -72,5 +80,16 @@ return {
     ---@module "ibl"
     ---@type ibl.config
     opts = {},
+  },
+  {
+    "SmiteshP/nvim-navic",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+    opts = {
+      icons = {
+        Module        = "",
+      },
+    },
   }
 }

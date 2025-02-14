@@ -8,6 +8,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/nvim-cmp',
       'nvim-tree/nvim-web-devicons',
+      "SmiteshP/nvim-navic",
     },
     init = function()
       -- Reserve a space in the gutter
@@ -18,6 +19,7 @@ return {
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
       local lspconfig = require('lspconfig')
+      local navic = require("nvim-navic")
       local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -42,7 +44,7 @@ return {
           },
         },
       }
-      lspconfig.yamlls.setup{
+      lspconfig.yamlls.setup {
         capabilities = capabilities,
         settings = {
           yaml = {
@@ -63,7 +65,10 @@ return {
               ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
             },
           }
-        }
+        },
+        on_attach = function(client, bufnr)
+          navic.attach(client, bufnr)
+        end
       }
     end,
     keys = {
