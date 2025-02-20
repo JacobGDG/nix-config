@@ -9,7 +9,10 @@ return {
       require('oil').setup {
         skip_confirm_for_simple_edits = true,
         view_options = {
-          show_hidden = true
+          show_hidden = true,
+          is_always_hidden = function(name)
+            return name == ".."
+          end,
         },
 
         use_default_keymaps = false,
@@ -76,4 +79,6 @@ return {
       { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put before applying a filter" },
     },
   },
+
+  "tpope/vim-abolish",
 }
