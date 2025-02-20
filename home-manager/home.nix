@@ -48,6 +48,7 @@
       fzf
       gh
       git
+      pre-commit
       htop
       just
       tldr
