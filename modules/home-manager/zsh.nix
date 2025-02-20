@@ -11,8 +11,9 @@
     shellAliases = {
       "cd" = "z";
       "la" = "ls -lAh";
-      "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
       "pbcopy" = "xclip -selection clipboard";
+      "vim" = "nvim";
+      "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
     };
 
     initExtraFirst = "
