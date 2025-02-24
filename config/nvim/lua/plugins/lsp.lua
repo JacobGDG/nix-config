@@ -107,7 +107,14 @@ return {
         sources = {
           { name = "nvim_lsp", },      -- from language server
           { name = 'luasnip', },
-          { name = "buffer", },        -- nvim-cmp source for buffer words
+          {
+            name = 'buffer',
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+              end
+            }
+          },
           { name = "path", },          -- nvim-cmp source for path
         },
         mapping = cmp.mapping.preset.insert({
