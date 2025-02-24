@@ -45,17 +45,18 @@
 
     packages = with pkgs; [
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      dig
       fzf
       gh
       git
-      pre-commit
       htop
       just
+      obsidian
+      pre-commit
       tldr
       tomato-c
       watch
       xclip
-      dig
     ] ++ lib.optionals (platformConfig.isNixOS) [
       devenv
       wireguard-tools
