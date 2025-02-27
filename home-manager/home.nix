@@ -73,6 +73,9 @@
       libreoffice-qt
       hunspell
       hunspellDicts.en_GB-large
+    ] ++ lib.optionals (builtins.elem "genealogy" platformConfig.workloads) [
+      gramps
+      graphviz
     ];
   };
   fonts.fontconfig.enable = true;

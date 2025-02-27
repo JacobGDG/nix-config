@@ -15,6 +15,7 @@ rec {
       hostName = "jake-laptop-nixos";
       workloads = [
         "libroffice"
+        "genealogy"
       ];
     };
   workMac =
