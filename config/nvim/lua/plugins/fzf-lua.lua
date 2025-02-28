@@ -38,6 +38,14 @@ return {
         mode = { 'n' },
         desc = "Fix spelling",
       },
+      {
+        '<leader>b', -- for buffers
+        function()
+          require('fzf-lua').buffers()
+        end,
+        mode = { 'n' },
+        desc = "Find string",
+      },
     }
   },
 }
