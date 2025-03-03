@@ -73,14 +73,6 @@ return {
       extensions = { 'oil' },
     }
   },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
-  },
   {
     "SmiteshP/nvim-navic",
     dependencies = {
