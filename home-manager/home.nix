@@ -60,6 +60,7 @@
     ] ++ lib.optionals (platformConfig.isNixOS) [
       devenv
       wireguard-tools
+      blender
     ] ++ lib.optionals (platformConfig.isDarwin) [
     ] ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [
       opentofu
@@ -69,6 +70,8 @@
     ] ++ lib.optionals (builtins.elem "docker" platformConfig.workloads) [
       # docker is not trivial to install, this is bare minimum to get what I need at work done for now
       docker-credential-helpers
+    ] ++ lib.optionals (builtins.elem "raspberry-pi" platformConfig.workloads) [
+        rpi-imager
     ] ++ lib.optionals (builtins.elem "libroffice" platformConfig.workloads) [
       libreoffice-qt
       hunspell

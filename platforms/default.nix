@@ -16,6 +16,7 @@ rec {
       workloads = [
         "libroffice"
         "genealogy"
+        "raspberry-pi"
       ];
     };
   workMac =
