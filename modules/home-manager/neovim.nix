@@ -20,6 +20,7 @@
     lua-language-server
     nil # nix LSP
     yaml-language-server
+    ruff # python
   ];
 
   xdg.configFile."nvim/init.lua".enable = false; # avoid clash

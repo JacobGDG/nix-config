@@ -70,6 +70,7 @@ return {
           navic.attach(client, bufnr)
         end
       }
+      lspconfig.ruff.setup{}
     end,
     keys = {
       { "K",         vim.lsp.buf.hover,           desc = "LSP Hover" },
