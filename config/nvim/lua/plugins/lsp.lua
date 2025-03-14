@@ -98,6 +98,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
+      "zbirenbaum/copilot.lua",
     },
     config = function()
       local cmp = require('cmp')
@@ -106,7 +107,8 @@ return {
       cmp.setup({
         map_complete = true;
         sources = {
-          { name = "nvim_lsp", },      -- from language server
+          { name = "copilot"},
+          { name = "nvim_lsp", },
           { name = 'luasnip', },
           {
             name = 'buffer',
@@ -153,4 +155,24 @@ return {
       })
     end
   },
+
+  -- "AI"
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    }
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = {
+      "zbirenbaum/copilot.lua"
+    },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
 }

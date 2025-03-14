@@ -7,7 +7,10 @@ return {
 
       configs.setup({
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = {
+          enable = false,
+          disable = { "python" }, -- https://github.com/nvim-treesitter/nvim-treesitter/issues/7385
+        },
         with_sync = true,
         ensure_installed = {
           "bash",
