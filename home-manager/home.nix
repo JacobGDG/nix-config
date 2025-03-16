@@ -61,6 +61,7 @@
       devenv
       wireguard-tools
       blender
+      vlc
     ] ++ lib.optionals (platformConfig.isDarwin) [
     ] ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [
       opentofu
