@@ -47,6 +47,8 @@
       unhide = "update-index --no-assume-unchanged";
       unhide-all = "update-index --really-refresh";
 
+      pr = "!gh pr view --web";
+
       # print aliases
       alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /";
     };
