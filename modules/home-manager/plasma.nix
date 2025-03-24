@@ -40,5 +40,77 @@
       key = "Meta+K"; # run some Kommands
       command = "alacritty";
     };
+
+    panels = [
+      {
+        location = "bottom";
+        height = 30;
+        widgets = [
+          {
+            kickoff = {
+              sortAlphabetically = true;
+              icon = "nix-snowflake-white";
+            };
+          }
+          {
+            pager = {
+              general = {
+                showWindowOutlines = true;
+                showApplicationIconsOnWindowOutlines = true;
+                showOnlyCurrentScreen = true;
+                navigationWrapsAround = true;
+                displayedText = "desktopNumber";
+                selectingCurrentVirtualDesktop = "doNothing";
+              };
+            };
+          }
+          {
+            iconTasks = {
+              launchers = [
+                "applications:firefox.desktop"
+                "applications:systemsettings.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:Alacritty.desktop"
+                "applications:steam.desktop"
+              ];
+              behavior = {
+                showTasks = {
+                  onlyInCurrentScreen = true;
+                  onlyInCurrentDesktop = true;
+                  onlyInCurrentActivity = true;
+                };
+              };
+            };
+          }
+          "org.kde.plasma.marginsseparator"
+          {
+            systemTray.items = {
+              shown = [
+                "org.kde.plasma.battery"
+              ];
+              configs = {
+                battery.showPercentage = true;
+              };
+            };
+          }
+          {
+            digitalClock = {
+              time = {
+                showSeconds = "never";
+                format = "24h";
+              };
+              calendar = {
+                firstDayOfWeek = "monday";
+                showWeekNumbers = true;
+                plugins = [ "holidaysevents" "astronomicalevents" ];
+              };
+            };
+          }
+          "org.kde.plasma.showdesktop"
+        ];
+        hiding = "none";
+        floating = false;
+      }
+    ];
   };
 }
