@@ -24,6 +24,8 @@
       options = [
         "caps:ctrl_modifier"
       ];
+      repeatRate = 40.0;
+      repeatDelay = 200;
     };
 
     fonts = {
