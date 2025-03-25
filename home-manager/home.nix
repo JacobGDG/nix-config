@@ -55,6 +55,7 @@
       pre-commit
       tldr
       tomato-c
+      tree
       watch
       xclip
     ] ++ lib.optionals (platformConfig.isNixOS) [
