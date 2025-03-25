@@ -25,7 +25,7 @@ os:
 # Build and use new home-manager config
 [macos]
 hm:
-  home-manager switch --flake .#workMac
+  home-manager switch --flake .#workMac --extra-experimental-features nix-command --extra-experimental-features flakes
 
 # Delete old generations
 clean:
