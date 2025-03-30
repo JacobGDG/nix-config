@@ -18,7 +18,7 @@
 
     # LSPs
     lua-language-server
-    nil # nix LSP
+    nil # nix
     yaml-language-server
     ruff # python
   ];
