@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -11,9 +11,10 @@
     shellAliases = {
       "cd" = "z";
       "la" = "ls -lAh";
-      "pbcopy" = "xclip -selection clipboard";
       "vim" = "nvim";
       "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
+    } // lib.mkIf pkgs.stdenv.isLinux {
+      "pbcopy" = "xclip -selection clipboard"; # darwin has pbcopy
     };
 
     initExtraFirst = "

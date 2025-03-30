@@ -41,7 +41,8 @@
     homeDirectory = platformConfig.homeDirectory;
     username = platformConfig.username;
 
-    sessionPath = [
+    # Sometimes (rarely), just use brew, it works
+    sessionPath = lib.optionals pkgs.stdenv.isDarwin [
       "/opt/homebrew/bin/brew"
     ];
 
