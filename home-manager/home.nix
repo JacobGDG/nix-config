@@ -24,6 +24,8 @@
       outputs.homeManagerModules.plasma
       outputs.homeManagerModules.thunderbird
       outputs.homeManagerModules.spotify-player
+    ] ++ lib.optionals (builtins.elem "wireguard" platformConfig.workloads) [
+      outputs.homeManagerModules.wireguard
     ] ++ lib.optionals (builtins.elem "kubernetes" platformConfig.workloads) [
       outputs.homeManagerModules.kubernetes
     ];
@@ -60,7 +62,6 @@
       xclip
     ] ++ lib.optionals (platformConfig.isNixOS) [
       devenv
-      wireguard-tools
       blender
       vlc
     ] ++ lib.optionals (platformConfig.isDarwin) [

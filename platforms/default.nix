@@ -17,6 +17,7 @@ rec {
         "libroffice"
         "genealogy"
         "raspberry-pi"
+        "wireguard"
       ];
     };
   workMac =
