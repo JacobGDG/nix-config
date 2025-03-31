@@ -51,14 +51,7 @@
       "x86_64-linux"
       "aarch64-darwin"
     ];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-    );
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
     inherit (self) outputs;
   in {
@@ -66,7 +59,7 @@
     homeManagerModules = import ./modules/home-manager/default.nix {inherit inputs;};
     nixosModules = import ./modules/nixos/default.nix;
 
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
