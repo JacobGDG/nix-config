@@ -20,9 +20,11 @@ return {
           "jsdoc",
           "json",
           "jsonc",
+          "just",
           "lua",
           "luadoc",
           "luap",
+          "make",
           "markdown",
           "markdown_inline",
           "python",
@@ -35,7 +37,6 @@ return {
           "vim",
           "vimdoc",
           "yaml",
-          "just",
         }
       })
 
