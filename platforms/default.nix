@@ -18,6 +18,9 @@ rec {
         "genealogy"
         "raspberry-pi"
         "wireguard"
+        "kubernetes"
+        "talos"
+        "sops"
       ];
     };
   workMac =

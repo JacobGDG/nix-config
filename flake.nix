@@ -28,6 +28,11 @@
       flake = false;
     };
 
+    talhelper = {
+      url = "github:budimanjojo/talhelper/6461aee3a37f6075e089535fe58cc3f36b244174";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
@@ -82,6 +87,9 @@
       workMac = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = workMacConfigs.system;
+          overlays = [
+            inputs.talhelper.overlays.default
+          ];
         };
         extraSpecialArgs = {
           platformConfig = workMacConfigs;
@@ -95,6 +103,9 @@
       nixOSLenovo = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = nixOSLenovoConfigs.system;
+          overlays = [
+            inputs.talhelper.overlays.default
+          ];
         };
         extraSpecialArgs = {
           platformConfig = nixOSLenovoConfigs;
@@ -102,7 +113,6 @@
         };
         modules = [
           plasma-manager.homeManagerModules.plasma-manager
-
           ./home-manager/home.nix
         ];
       };
