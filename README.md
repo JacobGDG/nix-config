@@ -20,21 +20,22 @@ that fun. I have been able to experiment much more with Linux in general without
 worrying about breaking something beyond (my ability to) repair.
 
 # Modules
-* `platforms/`
-    * Config for individual devices. Usernames, system etc. Also manage which
-      workloads are provisioned etc
+* `hosts/`
+    * Location for most of my home-manager setup. In future I hope to expand
+      this to also include nixos
 * `secrets/`
     * Secret declration per system, including OS permissions on the files
       created. Secret values are stored, encrypted, in a seperate and private
       repo
 * `nixos/`
     * NixOS configuration. Currently only for a single device
-* `home-manager/`
-    * Home Manager config, where _most_ dotfiles and packages are managed
 * `modules/home-manager/`
     * Primary location for more complex home-manager package config
 * `modules/nixos/`
     * Primary location for more complex NixOS package config
+* `mylib/`
+    * Helper functions, purposefully kept seperate from nixos or home-manager
+      lib
 * `config/`
     * I like Lua and I like how Neovim is configured with Lua, this is my
       solution. It isn't fully declarative doesnt allow Nix rollbacks etc, but

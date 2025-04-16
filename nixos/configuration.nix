@@ -4,7 +4,7 @@
   lib,
   config,
   pkgs,
-  platformConfig,
+  hostConfig,
   ...
 }: {
   # You can import other NixOS modules here
@@ -59,7 +59,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = platformConfig.hostName; # Define your hostname.
+  networking.hostName = hostConfig.hostName; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -112,7 +112,7 @@
   programs.zsh.enable = true;
 
   users.users = {
-    "${platformConfig.username}" = {
+    "${hostConfig.username}" = {
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
       extraGroups = ["networkmanager" "wheel"];

@@ -43,10 +43,7 @@
     mac-app-util,
     ...
   } @ inputs: let
-    platformConfig = import ./platforms;
-
-    workMacConfigs = platformConfig.workMac;
-    nixOSLenovoConfigs = platformConfig.nixOSLenovo;
+    mylib = import ./mylib {inherit lib;};
 
     lib = nixpkgs.lib // home-manager.lib;
     systems = [
@@ -58,7 +55,6 @@
     inherit (self) outputs;
   in {
     inherit lib;
-    homeManagerModules = import ./modules/home-manager/default.nix {inherit inputs;};
     nixosModules = import ./modules/nixos/default.nix;
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
@@ -67,7 +63,10 @@
     nixosConfigurations = {
       nixos-laptop = lib.nixosSystem {
         specialArgs = {
-          platformConfig = nixOSLenovoConfigs;
+          hostConfig = {
+            username = "jake";
+            hostName = "jake-laptop-nixos";
+          };
           inherit inputs outputs;
         };
         modules = [
@@ -83,36 +82,42 @@
     homeConfigurations = {
       workMac = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
-          system = workMacConfigs.system;
+          system = "aarch64-darwin";
+          overlays = [
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = prev.system;
+              };
+            })
+          ];
         };
         extraSpecialArgs = {
-          platformConfig = workMacConfigs;
-          pkgs-unstable = import nixpkgs-unstable {
-            system = workMacConfigs.system;
-            config.allowUnfree = workMacConfigs.allowUnfree;
-          };
+          mylib = mylib;
           inherit inputs outputs;
         };
         modules = [
           mac-app-util.homeManagerModules.default
-          ./home-manager/home.nix
+          ./hosts/work-mac.nix
         ];
       };
       nixOSLenovo = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
-          system = nixOSLenovoConfigs.system;
+          system = "x86_64-linux";
+          overlays = [
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = prev.system;
+              };
+            })
+          ];
         };
         extraSpecialArgs = {
-          platformConfig = nixOSLenovoConfigs;
-          pkgs-unstable = import nixpkgs-unstable {
-            system = nixOSLenovoConfigs.system;
-            config.allowUnfree = nixOSLenovoConfigs.allowUnfree;
-          };
+          mylib = mylib;
           inherit inputs outputs;
         };
         modules = [
           plasma-manager.homeManagerModules.plasma-manager
-          ./home-manager/home.nix
+          ./hosts/jake-laptop-nixos.nix
         ];
       };
     };
