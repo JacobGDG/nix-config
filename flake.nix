@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -28,17 +29,13 @@
       flake = false;
     };
 
-    talhelper = {
-      url = "github:budimanjojo/talhelper/6461aee3a37f6075e089535fe58cc3f36b244174";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     plasma-manager,
     alacritty-themes,
@@ -87,12 +84,13 @@
       workMac = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = workMacConfigs.system;
-          overlays = [
-            inputs.talhelper.overlays.default
-          ];
         };
         extraSpecialArgs = {
           platformConfig = workMacConfigs;
+          pkgs-unstable = import nixpkgs-unstable {
+            system = workMacConfigs.system;
+            config.allowUnfree = workMacConfigs.allowUnfree;
+          };
           inherit inputs outputs;
         };
         modules = [
@@ -103,12 +101,13 @@
       nixOSLenovo = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = nixOSLenovoConfigs.system;
-          overlays = [
-            inputs.talhelper.overlays.default
-          ];
         };
         extraSpecialArgs = {
           platformConfig = nixOSLenovoConfigs;
+          pkgs-unstable = import nixpkgs-unstable {
+            system = nixOSLenovoConfigs.system;
+            config.allowUnfree = nixOSLenovoConfigs.allowUnfree;
+          };
           inherit inputs outputs;
         };
         modules = [

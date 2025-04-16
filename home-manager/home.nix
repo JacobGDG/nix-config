@@ -2,6 +2,7 @@
   inputs,
   outputs,
   pkgs,
+  pkgs-unstable,
   platformConfig,
   lib,
   ...
@@ -52,60 +53,60 @@
       "/opt/homebrew/bin/brew"
     ];
 
-    packages = with pkgs;
-      [
-        (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
-        dig
-        fzf
-        gh
-        git
-        htop
-        just
-        obsidian
-        pre-commit
-        tldr
-        tomato-c
-        tree
-        watch
-        xclip
-      ]
-      ++ lib.optionals (platformConfig.isNixOS) [
-        devenv
-        blender
-        vlc
-      ]
-      ++ lib.optionals (platformConfig.isDarwin) [
-      ]
-      ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [
-        opentofu
-        tflint
-        checkov
-        terraform
-      ]
-      ++ lib.optionals (builtins.elem "docker" platformConfig.workloads) [
-        # docker is not trivial to install, this is bare minimum to get what I need at work done for now
-        docker-credential-helpers
-      ]
-      ++ lib.optionals (builtins.elem "raspberry-pi" platformConfig.workloads) [
-        rpi-imager
-      ]
-      ++ lib.optionals (builtins.elem "libroffice" platformConfig.workloads) [
-        libreoffice-qt
-        hunspell
-        hunspellDicts.en_GB-large
-      ]
-      ++ lib.optionals (builtins.elem "genealogy" platformConfig.workloads) [
-        gramps
-        graphviz
-      ]
+    packages =
+      (with pkgs;
+        [
+          (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+          dig
+          fzf
+          gh
+          git
+          htop
+          just
+          obsidian
+          pre-commit
+          tldr
+          tomato-c
+          tree
+          watch
+          xclip
+        ]
+        ++ lib.optionals (platformConfig.isNixOS) [
+          devenv
+          blender
+          vlc
+        ]
+        ++ lib.optionals (platformConfig.isDarwin) [
+        ]
+        ++ lib.optionals (builtins.elem "terraform" platformConfig.workloads) [
+          opentofu
+          tflint
+          checkov
+          terraform
+        ]
+        ++ lib.optionals (builtins.elem "docker" platformConfig.workloads) [
+          # docker is not trivial to install, this is bare minimum to get what I need at work done for now
+          docker-credential-helpers
+        ]
+        ++ lib.optionals (builtins.elem "raspberry-pi" platformConfig.workloads) [
+          rpi-imager
+        ]
+        ++ lib.optionals (builtins.elem "libroffice" platformConfig.workloads) [
+          libreoffice-qt
+          hunspell
+          hunspellDicts.en_GB-large
+        ]
+        ++ lib.optionals (builtins.elem "genealogy" platformConfig.workloads) [
+          gramps
+          graphviz
+        ]
+        ++ lib.optionals (builtins.elem "sops" platformConfig.workloads) [
+          sops
+          age
+          ssh-to-age
+        ])
       ++ lib.optionals (builtins.elem "talos" platformConfig.workloads) [
-        talosctl
-        talhelper
-      ]
-      ++ lib.optionals (builtins.elem "sops" platformConfig.workloads) [
-        sops
-        age
-        ssh-to-age
+        pkgs-unstable.talosctl
       ];
   };
   fonts.fontconfig.enable = true;
