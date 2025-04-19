@@ -20,7 +20,7 @@ hm:
 # rebuild nixos and use it
 [linux]
 os:
-  sudo nixos-rebuild switch --flake .#nixos-laptop --show-trace
+  sudo nixos-rebuild switch --flake .#jake-laptop-nixos --show-trace
 
 # Build and use new home-manager config
 [macos]

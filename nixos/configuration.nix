@@ -1,10 +1,10 @@
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
   hostConfig,
+  mylib,
   ...
 }: {
   # You can import other NixOS modules here
@@ -14,7 +14,8 @@
 
     inputs.home-manager.nixosModules.home-manager
 
-    outputs.nixosModules.steam
+    # ../modules/nixos/hyprland.nix
+    ../modules/nixos/steam.nix
   ];
 
   nixpkgs = {
@@ -84,10 +85,11 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure console keymap
@@ -106,10 +108,10 @@
     pulse.enable = true;
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  programs.zsh.enable = true;
+  programs = {
+    firefox.enable = true;
+    zsh.enable = true;
+  };
 
   users.users = {
     "${hostConfig.username}" = {

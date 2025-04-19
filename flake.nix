@@ -33,14 +33,15 @@
   };
 
   outputs = {
-    self,
+    agenix,
+    alacritty-themes,
+    home-manager,
+    hyprland,
+    mac-app-util,
     nixpkgs,
     nixpkgs-unstable,
-    home-manager,
     plasma-manager,
-    alacritty-themes,
-    agenix,
-    mac-app-util,
+    self,
     ...
   } @ inputs: let
     mylib = import ./mylib {inherit lib;};
@@ -55,13 +56,11 @@
     inherit (self) outputs;
   in {
     inherit lib;
-    nixosModules = import ./modules/nixos/default.nix;
-
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      nixos-laptop = lib.nixosSystem {
+      jake-laptop-nixos = lib.nixosSystem {
         specialArgs = {
           hostConfig = {
             username = "jake";
@@ -73,7 +72,7 @@
           agenix.nixosModules.default
 
           ./nixos/configuration.nix
-          ./secrets/nixOSLenovo.nix
+          ./secrets/jake-laptop-nixos.nix
         ];
       };
     };

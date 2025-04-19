@@ -1,7 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
-  lib,
   mylib,
   ...
 }: {
@@ -28,6 +26,7 @@
       vlc
       rpi-imager
       unstable.talosctl
+      kitty
     ];
   };
 }

@@ -53,6 +53,8 @@
       unbind C-b
       unbind '"'
       unbind %
+      # auto launch tmux creates a blank screen here. often pressed with split zoom
+      unbind C-z
 
       # vertical splits with g
       unbind g
