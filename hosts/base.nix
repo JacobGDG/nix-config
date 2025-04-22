@@ -5,8 +5,6 @@
 }: {
   imports = map mylib.homeManagerModules [
     "alacritty.nix"
-    "libreoffice.nix"
-    "genealogy.nix"
     "btop.nix"
     "cava.nix"
     "git.nix"
