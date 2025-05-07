@@ -8,7 +8,7 @@
       ./base.nix
     ]
     ++ (map mylib.homeManagerModules [
-      "hyprland.nix"
+      "hyprland"
       "libreoffice.nix"
       "genealogy.nix"
       "thunderbird.nix"

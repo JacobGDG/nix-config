@@ -3,14 +3,29 @@
     enable = true;
     systemd.enable = true;
 
+    style = ''
+      * {
+        border: none;
+        border-radius: 0;
+        font-family: JetBrainsMono NF;
+      }
+      window#waybar {
+        background: #16191C;
+        color: #AAB2BF;
+      }
+      #workspaces button {
+        padding: 0 5px;
+      }
+    '';
+
     settings = [
       {
         height = 30;
         layer = "top";
         position = "top";
-        tray = {spacing = 10;};
-        modules-center = ["sway/window"];
-        modules-left = ["sway/workspaces" "sway/mode"];
+        spacing = 10;
+        modules-center = ["hyprland/window"];
+        modules-left = ["hyprland/workspaces"];
         modules-right = [
           "pulseaudio"
           "network"
@@ -66,7 +81,6 @@
           format-source-muted = "";
           on-click = "pavucontrol";
         };
-        "sway/mode" = {format = ''<span style="italic">{}</span>'';};
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";

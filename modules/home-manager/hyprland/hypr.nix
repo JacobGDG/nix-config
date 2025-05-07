@@ -1,13 +1,24 @@
-{pkgs, ...}: {
-  imports = [
-    ./waybar.nix
-  ];
-
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     anyrun # launcher
     networkmanager
     dunst # notification
+    hyprpaper # wallpaper
   ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 16;
+  };
+
+  fonts.fontconfig.enable = true;
 
   programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
@@ -44,8 +55,8 @@
       );
     exec-once = [
       "$terminal"
-      "waybar"
       "dunst"
+      "hyprpaper"
     ];
     input = {
       kb_options = "ctrl:nocaps";
@@ -57,5 +68,14 @@
     monitor = [
       "eDP-1, 1920x1080@60, 0x0, 1"
     ];
+    general = {
+      gaps_out = 10;
+    };
+  };
+
+  home.file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
+    text = ''
+      wallpaper="${../../../wallpapers/haystacks.jpg}"
+    '';
   };
 }
