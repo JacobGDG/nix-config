@@ -14,24 +14,13 @@
 
     inputs.home-manager.nixosModules.home-manager
 
-    # ../modules/nixos/hyprland.nix
+    ../modules/nixos/hyprland.nix
+    # ../modules/nixos/plasma.nix
     ../modules/nixos/steam.nix
   ];
 
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # Configure your nixpkgs instance
+    overlays = [];
     config = {
       allowUnfree = true;
     };
@@ -82,15 +71,6 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
   # Configure console keymap
   console.keyMap = "uk";
