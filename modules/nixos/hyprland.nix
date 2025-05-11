@@ -1,10 +1,16 @@
 {
   inputs,
   pkgs,
+  hostConfig,
   ...
 }: {
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+
+  # Allow hyprlock to perform auth
+  security.pam.services.hyprlock = {};
+
+  programs.hyprlock.enable = true;
 
   programs.hyprland = {
     enable = true;

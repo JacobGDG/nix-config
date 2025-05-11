@@ -5,10 +5,13 @@
 }: {
   home.packages = with pkgs; [
     anyrun # launcher
-    networkmanager
+    hypridle
     dunst # notification
     hyprpaper # wallpaper
+    networkmanager
     networkmanagerapplet
+    pavucontrol
+    pulseaudio
   ];
 
   home.pointerCursor = {
@@ -16,7 +19,7 @@
     # x11.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
-    size = 16;
+    size = 14;
   };
 
   fonts.fontconfig.enable = true;
@@ -71,11 +74,13 @@
       "$terminal"
       "dunst"
       "hyprpaper"
+      "hypridle"
       "nm-applet"
     ];
     input = {
       kb_options = "ctrl:nocaps";
       kb_layout = "gb";
+      kb_model = "pc104";
       follow_mouse = 2;
       mouse_refocus = false;
 
@@ -97,6 +102,35 @@
     text = ''
       preload=${../../../wallpapers/haystacks.jpg}
       wallpaper=,${../../../wallpapers/haystacks.jpg}
+    '';
+  };
+
+  home.file."${config.xdg.configHome}/hypr/hypridle.conf" = {
+    text = ''
+      general {
+          lock_cmd = pidof hyprlock || hyprlock
+          before_sleep_cmd = pidof hyprlock || hyprlock
+          after_sleep_cmd = hyprctl dispatch dpms on
+      }
+
+      # Lock the screen
+      listener {
+          timeout = 300
+          on-timeout = pidof hyprlock || hyprlock
+      }
+
+      # Turn off screen
+      listener {
+          timeout = 420
+          on-timeout = hyprctl dispatch dpms off
+          on-resume = hyprctl dispatch dpms on
+      }
+
+      # Suspend the system
+      listener {
+          timeout = 600
+          on-timeout = systemctl suspend
+      }
     '';
   };
 }
