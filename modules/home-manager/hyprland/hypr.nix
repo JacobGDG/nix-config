@@ -8,6 +8,7 @@
     networkmanager
     dunst # notification
     hyprpaper # wallpaper
+    networkmanagerapplet
   ];
 
   home.pointerCursor = {
@@ -35,10 +36,23 @@
     "$launcher" = "anyrun";
     bind =
       [
-        "$mod, F, exec, $browser"
-        "$mod, K, exec, $terminal"
+        "$mod ALT, F, exec, $browser"
+        "$mod ALT, K, exec, $terminal"
         "$mod, SPACE, exec, $launcher"
         ", Print, exec, grimblast copy area"
+
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, L, movewindow, r"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, J, movewindow, d"
+        "$mod, Q, killactive"
+
+        "$mod, H, movefocus, l"
+        "$mod, L, movefocus, r"
+        "$mod, K, movefocus, u"
+        "$mod, J, movefocus, d"
+
+        "$mod, F, fullscreen"
       ]
       ++ (
         # workspaces
@@ -57,10 +71,16 @@
       "$terminal"
       "dunst"
       "hyprpaper"
+      "nm-applet"
     ];
     input = {
       kb_options = "ctrl:nocaps";
       kb_layout = "gb";
+      follow_mouse = 2;
+      mouse_refocus = false;
+
+      repeat_delay = 200;
+      repeat_rate = 40;
     };
     gestures = {
       workspace_swipe = true;
@@ -75,7 +95,8 @@
 
   home.file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
     text = ''
-      wallpaper="${../../../wallpapers/haystacks.jpg}"
+      preload=${../../../wallpapers/haystacks.jpg}
+      wallpaper=,${../../../wallpapers/haystacks.jpg}
     '';
   };
 }
