@@ -6,7 +6,7 @@
         label = "shutdown";
         action = "systemctl poweroff";
         text = "Shutdown";
-        shortcut = "s";
+        keybind = "s";
       }
       {
         label = "lock";
@@ -29,7 +29,6 @@
         label = "logout";
         action = "sleep 1 && hyprctl dispatch exit";
         text = "Logout";
-        keybind = "l";
       }
     ];
   };
