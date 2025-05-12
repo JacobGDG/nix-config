@@ -28,73 +28,75 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    xwayland = {
-      enable = true;
-    };
-  };
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    "$terminal" = "alacritty";
-    "$browser" = "firefox";
-    "$launcher" = "anyrun";
-    bind =
-      [
-        "$mod ALT, F, exec, $browser"
-        "$mod ALT, K, exec, $terminal"
-        "$mod, SPACE, exec, $launcher"
-        ", Print, exec, grimblast copy area"
+    xwayland.enable = true;
 
-        "$mod SHIFT, H, movewindow, l"
-        "$mod SHIFT, L, movewindow, r"
-        "$mod SHIFT, K, movewindow, u"
-        "$mod SHIFT, J, movewindow, d"
-        "$mod, Q, killactive"
+    settings = {
+      "$mod" = "SUPER";
+      "$terminal" = "alacritty";
+      "$browser" = "firefox";
+      "$launcher" = "anyrun";
+      bind =
+        [
+          "$mod ALT, F, exec, $browser"
+          "$mod ALT, K, exec, $terminal"
+          "$mod, SPACE, exec, $launcher"
+          ", Print, exec, grimblast copy area"
 
-        "$mod, H, movefocus, l"
-        "$mod, L, movefocus, r"
-        "$mod, K, movefocus, u"
-        "$mod, J, movefocus, d"
+          "$mod SHIFT, H, movewindow, l"
+          "$mod SHIFT, L, movewindow, r"
+          "$mod SHIFT, K, movewindow, u"
+          "$mod SHIFT, J, movewindow, d"
+          "$mod, Q, killactive"
 
-        "$mod, F, fullscreen"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (
-            i: let
-              ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          9)
-      );
-    exec-once = [
-      "$terminal"
-      "dunst"
-      "hyprpaper"
-      "hypridle"
-      "nm-applet"
-    ];
-    input = {
-      kb_options = "ctrl:nocaps";
-      kb_layout = "gb";
-      kb_model = "pc104";
-      follow_mouse = 2;
-      mouse_refocus = false;
+          "$mod, H, movefocus, l"
+          "$mod, L, movefocus, r"
+          "$mod, K, movefocus, u"
+          "$mod, J, movefocus, d"
 
-      repeat_delay = 200;
-      repeat_rate = 40;
-    };
-    gestures = {
-      workspace_swipe = true;
-    };
-    monitor = [
-      "eDP-1, 1920x1080@60, 0x0, 1"
-    ];
-    general = {
-      gaps_out = 10;
+          "$mod, F, fullscreen"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            9)
+        );
+      bindm = [
+        "$mod, mouse:272, movewindow"
+      ];
+      exec-once = [
+        "$terminal"
+        "dunst"
+        "hyprpaper"
+        "hypridle"
+        "nm-applet"
+      ];
+      input = {
+        kb_options = "ctrl:nocaps";
+        kb_layout = "gb";
+        kb_model = "pc104";
+        follow_mouse = 2;
+        mouse_refocus = false;
+
+        repeat_delay = 200;
+        repeat_rate = 40;
+      };
+      gestures = {
+        workspace_swipe = true;
+      };
+      monitor = [
+        "eDP-1, 1920x1080@60, 0x0, 1"
+      ];
+      general = {
+        gaps_out = 10;
+      };
     };
   };
 
