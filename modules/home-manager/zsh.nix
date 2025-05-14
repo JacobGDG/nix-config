@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -8,14 +12,16 @@
     history = {
       size = 10000;
     };
-    shellAliases = {
-      "cd" = "z";
-      "la" = "ls -lAh";
-      "vim" = "nvim";
-      "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
-    } // lib.mkIf pkgs.stdenv.isLinux {
-      "pbcopy" = "xclip -selection clipboard"; # darwin has pbcopy
-    };
+    shellAliases =
+      {
+        "cd" = "z";
+        "la" = "ls -lAh";
+        "vim" = "nvim";
+        "zadd" = "ls -d */ | xargs -I {} zoxide add {}";
+      }
+      // lib.mkIf pkgs.stdenv.isLinux {
+        "pbcopy" = "xclip -selection clipboard"; # darwin has pbcopy
+      };
 
     initExtraFirst = "
       if [[ -r \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
@@ -34,6 +40,10 @@
       setopt hist_save_no_dups
       setopt hist_ignore_dups
       setopt hist_find_no_dups
+
+      if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
+        tmux attach || exec tmux new-session && exit;
+      fi
     ";
 
     plugins = [

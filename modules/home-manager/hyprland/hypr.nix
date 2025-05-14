@@ -24,7 +24,6 @@
 
   fonts.fontconfig.enable = true;
 
-  programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -32,7 +31,7 @@
 
     settings = {
       "$mod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "kitty";
       "$browser" = "firefox";
       "$launcher" = "anyrun";
       bind =

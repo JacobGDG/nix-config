@@ -4,17 +4,17 @@
   ...
 }: {
   imports = map mylib.homeManagerModules [
-    "alacritty.nix"
     "btop.nix"
     "cava.nix"
     "git.nix"
+    "kitty.nix"
+    "kubernetes.nix"
     "neovim.nix"
     "ripgrep.nix"
     "tmux.nix"
     "yazi.nix"
     "zoxide.nix"
     "zsh.nix"
-    "kubernetes.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;

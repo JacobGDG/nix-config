@@ -17,6 +17,7 @@
     ../modules/nixos/hyprland.nix
     # ../modules/nixos/plasma.nix
     ../modules/nixos/steam.nix
+    ../modules/nixos/firefox.nix
   ];
 
   nixpkgs = {
@@ -89,7 +90,6 @@
   };
 
   programs = {
-    firefox.enable = true;
     zsh.enable = true;
   };
 

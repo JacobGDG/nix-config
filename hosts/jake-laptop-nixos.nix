@@ -8,12 +8,13 @@
       ./base.nix
     ]
     ++ (map mylib.homeManagerModules [
+      "genealogy.nix"
       "hyprland"
       "libreoffice.nix"
-      "genealogy.nix"
-      "thunderbird.nix"
       "spotify-player.nix"
+      "thunderbird.nix"
       "wireguard.nix"
+      "firefox.nix"
     ]);
 
   home = {
