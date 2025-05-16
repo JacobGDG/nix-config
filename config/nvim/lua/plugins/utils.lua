@@ -19,6 +19,7 @@ return {
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
+          ["<leader>v"] = { "actions.select", opts = { vertical = true } },
           ["-"] = "actions.parent",
           ["_"] = "actions.open_cwd",
           ["g."] = "actions.toggle_hidden",
