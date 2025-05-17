@@ -5,5 +5,7 @@
     ./hyprbars.nix
     ./waybar.nix
     ./wlogout.nix
+    ./media-control.nix
+    ./dunst.nix
   ];
 }

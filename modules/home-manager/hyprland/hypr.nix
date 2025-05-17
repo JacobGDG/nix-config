@@ -6,12 +6,13 @@
   home.packages = with pkgs; [
     anyrun # launcher
     hypridle
-    dunst # notification
     hyprpaper # wallpaper
     networkmanager
     networkmanagerapplet
     pavucontrol
     pulseaudio
+    libnotify # notify-send
+    brightnessctl
   ];
 
   home.pointerCursor = {
@@ -69,6 +70,16 @@
         );
       bindm = [
         "$mod, mouse:272, movewindow"
+      ];
+      # l -> do stuff even when locked
+      # e -> repeats when key is held
+      bindle = [
+        ", XF86AudioRaiseVolume, exec, media-control volume_up"
+        ", XF86AudioLowerVolume, exec, media-control volume_down"
+        ", XF86AudioMute, exec, media-control volume_mute"
+        ", XF86AudioMicMute, exec, media-control mic_mute"
+        ", XF86MonBrightnessUp, exec, media-control brightness_up"
+        ", XF86MonBrightnessDown, exec, media-control brightness_down"
       ];
       exec-once = [
         "$terminal"
