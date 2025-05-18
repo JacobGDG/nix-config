@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./sesh.nix
     ./tmuxifier.nix
@@ -86,6 +90,9 @@
 
       # fingers
       set -g @fingers-key Space
+
+      # colourscheme
+      set-window-option -g mode-style "fg=#${config.colorScheme.palette.base05},bg=#${config.colorScheme.palette.base02}"
     '';
   };
 }

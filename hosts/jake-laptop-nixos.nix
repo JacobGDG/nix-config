@@ -1,11 +1,13 @@
 {
   pkgs,
   mylib,
+  inputs,
   ...
 }: {
   imports =
     [
       ./base.nix
+      inputs.nix-colors.homeManagerModules.default
     ]
     ++ (map mylib.homeManagerModules [
       "genealogy.nix"
@@ -16,6 +18,8 @@
       "wireguard.nix"
       "firefox.nix"
     ]);
+
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   home = {
     username = "jake";

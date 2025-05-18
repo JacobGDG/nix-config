@@ -106,6 +106,12 @@
       ];
       general = {
         gaps_out = 10;
+        "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
+        "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
+      };
+
+      decoration = {
+        rounding = 5;
       };
     };
   };

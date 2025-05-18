@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
 
     alacritty-themes = {
       url = "github:alacritty/alacritty-theme/master";
@@ -36,6 +37,7 @@
     agenix,
     alacritty-themes,
     home-manager,
+    nix-colors,
     hyprland,
     mac-app-util,
     nixpkgs,

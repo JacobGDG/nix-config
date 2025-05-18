@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -7,27 +7,27 @@
     style = ''
       * {
         border: none;
-        border-radius: 6px;
+        border-radius: 5px;
         font-family: JetBrainsMono NF;
         font-size: 12px;
         min-height: 0;
       }
 
       window#waybar {
-        background: rgba(29, 32, 33, 1.0);
-        color: #ebdbb2;
+        background: #${config.colorScheme.palette.base00};
+        color: #${config.colorScheme.palette.base05};
       }
 
       tooltip {
-        background: #282828;
+        background: #${config.colorScheme.palette.base00};
         border-radius: 10px;
         border-width: 2px;
         border-style: solid;
-        border-color: #1d2021;
+        border-color: #${config.colorScheme.palette.base01};
       }
       #workspaces button {
         padding: 0 0.6em;
-        color: #504945;
+        color: #${config.colorScheme.palette.base05};
         border-radius: 6px;
         margin-right: 2px;
         margin-left: 2px;
@@ -35,66 +35,57 @@
         margin-bottom: 2px;
       }
 
+      #workspaces button:hover,
       #workspaces button.active {
-        color: #ebdbb2;
-        background: #4e635b;
+        color: #${config.colorScheme.palette.base05};
+        background: #${config.colorScheme.palette.base0D};
       }
 
       #workspaces button.focused {
-        color: #ebdbb2;
-        background: #4e635b;
+        color: #${config.colorScheme.palette.base05};
+        background: #${config.colorScheme.palette.base01};
       }
 
       #workspaces button.urgent {
-        color: #1d2021;
-        background: #fb4934;
+        color: #${config.colorScheme.palette.base00};
+        background: #${config.colorScheme.palette.base08};
       }
 
-      #workspaces button:hover {
-        background: #4e635b;
-        color: #ebdbb2;
-      }
-
-      #custom-power,
       #date,
       #clock,
       #pulseaudio,
       #workspaces,
       #cpu,
       #memory,
+      #custom-power,
       #network {
-        color: #ebdbb2;
-        background: #32302f;
+        color: #${config.colorScheme.palette.base05};
+        background: #${config.colorScheme.palette.base01};
       }
 
       #pulseaudio {
         margin-right: 6px;
-        color: #ebdbb2;
-      }
-
-      #custom-power {
-        color: #fb4934;
-        background: #32302f;
       }
 
       #clock {
-        color: #ebdbb2;
         margin-right: 6px;
       }
 
-      #cpu.critical,
-      #memory.critical {
-          background-color: #ddc7a1;
-          border: 2px solid #c7ab7a;
-          color: #c14a4a;
+      #custom-power {
+        color: #${config.colorScheme.palette.base08};
       }
 
+      #cpu.critical,
+      #memory.critical,
       #battery.warning,
       #battery.critical,
       #battery.urgent {
-          background-color: #ddc7a1;
-          border: 2px solid #c7ab7a;
-          color: #c14a4a;
+          background-color: #${config.colorScheme.palette.base02};
+          border: 2px solid #${config.colorScheme.palette.base08};
+          color: #${config.colorScheme.palette.base08};
+      }
+
+      #battery.critical {
       }
     '';
 
@@ -104,7 +95,7 @@
         layer = "top";
         position = "top";
         spacing = 10;
-        modules-center = ["hyprland/window"];
+        modules-center = [];
         modules-left = ["hyprland/workspaces"];
         modules-right = [
           "pulseaudio"
@@ -116,10 +107,10 @@
           "custom/power"
         ];
         battery = {
-          format = "{capacity}% {icon} ";
-          format-alt = "{time} {icon} ";
+          format = "{capacity}% {icon}";
+          format-alt = "{time} {icon}";
           format-charging = "{capacity}% 󱐋 ";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [" " " " " " " " " "];
           format-plugged = "{capacity}%  ";
           states = {
             critical = 15;
