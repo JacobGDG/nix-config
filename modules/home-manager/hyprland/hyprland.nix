@@ -4,20 +4,18 @@
   ...
 }: {
   home.packages = with pkgs; [
-    anyrun # launcher
+    brightnessctl
     hypridle
     hyprpaper # wallpaper
+    libnotify # notify-send
     networkmanager
     networkmanagerapplet
     pavucontrol
     pulseaudio
-    libnotify # notify-send
-    brightnessctl
   ];
 
   home.pointerCursor = {
     gtk.enable = true;
-    # x11.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 14;
@@ -34,7 +32,7 @@
       "$mod" = "SUPER";
       "$terminal" = "kitty";
       "$browser" = "firefox";
-      "$launcher" = "anyrun";
+      "$launcher" = "wofi --show drun";
       bind =
         [
           "$mod ALT, F, exec, $browser"
@@ -105,7 +103,8 @@
         "eDP-1, 1920x1080@60, 0x0, 1"
       ];
       general = {
-        gaps_out = 10;
+        gaps_out = 5;
+        gaps_in = 3;
         "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
         "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
       };

@@ -128,6 +128,7 @@
         memory = {format = " {}%  ";};
         network = {
           interval = 1;
+          tooltip = false;
           format-alt = " {ifname}: {ipaddr}/{cidr}";
           format-disconnected = "Disconnected ⚠";
           format-ethernet = " {ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
