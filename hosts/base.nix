@@ -1,9 +1,12 @@
 {
   pkgs,
   mylib,
+  inputs,
   ...
 }: {
-  imports = map mylib.homeManagerModules [
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+  ] ++ map mylib.homeManagerModules [
     "btop.nix"
     "cava.nix"
     "git.nix"
@@ -16,6 +19,8 @@
     "zoxide.nix"
     "zsh.nix"
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   nixpkgs.config.allowUnfree = true;
   systemd.user.startServices = "sd-switch";
