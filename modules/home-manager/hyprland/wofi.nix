@@ -19,6 +19,7 @@
         executable = true;
       };
     })
+    pkgs.xdg-terminal-exec # Opening terminal apps from wofi
   ];
 
   xdg.desktopEntries = {
@@ -44,7 +45,7 @@
       key_down = "Ctrl-j";
       key_expand = "Tab";
 
-      term = "kitty";
+      term = "${pkgs.kitty}/bin/kitty";
       allow_markup = true;
       show = "drun";
       prompt = "Apps";
