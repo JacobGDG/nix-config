@@ -8,7 +8,7 @@
       * {
         border: none;
         border-radius: 5px;
-        font-family: JetBrainsMono NF;
+        font-family: JetBrainsMono;
         font-size: 12px;
         min-height: 0;
       }

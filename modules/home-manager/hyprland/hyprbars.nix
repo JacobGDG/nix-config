@@ -11,7 +11,7 @@
       "plugin:hyprbars" = {
         # example config
         bar_height = 20;
-        bar_text_font = "JetBrainsMono NF";
+        bar_text_font = "JetBrainsMono";
         bar_text_size = 10;
         bar_part_of_window = true;
         bar_precedence_over_border = true;

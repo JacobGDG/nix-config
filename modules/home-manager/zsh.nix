@@ -23,28 +23,31 @@
         "pbcopy" = "xclip -selection clipboard"; # darwin has pbcopy
       };
 
-    initExtraFirst = "
-      if [[ -r \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
-        source \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\"
-      fi
-    ";
-    initExtra = "
-      source ~/.config/zsh/.p10k.zsh
+    initContent = let
+      zshConfigEarlyInit = lib.mkBefore "
+                    if [[ -r \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
+                      source \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\"
+                    fi
+                  ";
+      zshConfig = lib.mkOrder 1000 "
+                    source ~/.config/zsh/.p10k.zsh
 
-      bindkey '^R' history-incremental-search-backward
+                    bindkey '^R' history-incremental-search-backward
 
-      setopt appendhistory
-      setopt sharehistory
-      setopt hist_ignore_space
-      setopt hist_ignore_all_dups
-      setopt hist_save_no_dups
-      setopt hist_ignore_dups
-      setopt hist_find_no_dups
+                    setopt appendhistory
+                    setopt sharehistory
+                    setopt hist_ignore_space
+                    setopt hist_ignore_all_dups
+                    setopt hist_save_no_dups
+                    setopt hist_ignore_dups
+                    setopt hist_find_no_dups
 
-      if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
-        tmux attach || exec tmux new-session && exit;
-      fi
-    ";
+                    if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
+                      tmux attach || exec tmux new-session && exit;
+                    fi
+                  ";
+    in
+      lib.mkMerge [zshConfigEarlyInit zshConfig];
 
     plugins = [
       {

@@ -4,21 +4,23 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.nix-colors.homeManagerModules.default
-  ] ++ map mylib.homeManagerModules [
-    "btop.nix"
-    "cava.nix"
-    "git.nix"
-    "kitty.nix"
-    "kubernetes.nix"
-    "neovim.nix"
-    "ripgrep.nix"
-    "tmux.nix"
-    "yazi.nix"
-    "zoxide.nix"
-    "zsh.nix"
-  ];
+  imports =
+    [
+      inputs.nix-colors.homeManagerModules.default
+    ]
+    ++ map mylib.homeManagerModules [
+      "btop.nix"
+      "cava.nix"
+      "git.nix"
+      "kitty.nix"
+      "kubernetes.nix"
+      "neovim.nix"
+      "ripgrep.nix"
+      "tmux.nix"
+      "yazi.nix"
+      "zoxide.nix"
+      "zsh.nix"
+    ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
@@ -36,7 +38,7 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      nerd-fonts.jetbrains-mono
       dig
       fzf
       gh
