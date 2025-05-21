@@ -24,5 +24,5 @@
   ];
 
   xdg.configFile."nvim/init.lua".enable = false; # avoid clash
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/nix-config/config/nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
 }
