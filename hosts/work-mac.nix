@@ -2,10 +2,12 @@
   pkgs,
   lib,
   mylib,
+  inputs,
   ...
 }: {
   imports =
     [
+      inputs.mac-app-util.homeManagerModules.default
       ./base.nix
     ]
     ++ (map mylib.homeManagerModules [

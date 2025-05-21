@@ -84,7 +84,6 @@
           inherit inputs outputs;
         };
         modules = [
-          mac-app-util.homeManagerModules.default
           ./hosts/work-mac.nix
         ];
       };
