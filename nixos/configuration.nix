@@ -15,7 +15,6 @@
     inputs.home-manager.nixosModules.home-manager
 
     ../modules/nixos/hyprland.nix
-    # ../modules/nixos/plasma.nix
     ../modules/nixos/steam.nix
     ../modules/nixos/firefox.nix
   ];

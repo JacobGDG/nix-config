@@ -9,17 +9,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     nix-colors.url = "github:misterio77/nix-colors";
-
-    alacritty-themes = {
-      url = "github:alacritty/alacritty-theme/master";
-      flake = false;
-    };
 
     agenix = {
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
@@ -35,13 +25,11 @@
 
   outputs = {
     agenix,
-    alacritty-themes,
     home-manager,
     nix-colors,
     mac-app-util,
     nixpkgs,
     nixpkgs-unstable,
-    plasma-manager,
     self,
     ...
   } @ inputs: let
@@ -116,7 +104,6 @@
           inherit inputs outputs;
         };
         modules = [
-          plasma-manager.homeManagerModules.plasma-manager
           ./hosts/jake-laptop-nixos.nix
         ];
       };
