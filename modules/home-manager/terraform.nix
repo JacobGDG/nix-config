@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    opentofu
+    tenv # tofu version manager
     tflint
     checkov
-    terraform
   ];
 }
