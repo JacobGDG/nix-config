@@ -24,6 +24,7 @@
 
     packages = with pkgs; [
       docker-credential-helpers
+      step-cli # certificate information
     ];
   };
 }
