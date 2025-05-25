@@ -7,6 +7,7 @@
       sleep_when_low=240 # in seconds
       sleep_normal=120 # in seconds
       battery_capacity_file=/sys/class/power_supply/BAT1/capacity
+      charging_status_file=/sys/class/power_supply/BAT1/status
 
       if [ ! -f $battery_capacity_file ]; then
         notify-send -t $notification_timeout "
@@ -19,7 +20,8 @@
 
       while true; do
         battery=$(cat $battery_capacity_file)
-        if [ "$battery" -le "20" ]; then
+        status=$(cat $charging_status_file)
+        if [ "$battery" -le "20" ] && [ "$status" = "Discharging" ]; then
           notify-send -t $notification_timeout -u critical "  Low battery: $battery%"
           sleep $sleep_when_low
         else
