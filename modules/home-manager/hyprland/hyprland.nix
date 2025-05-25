@@ -85,6 +85,7 @@
         "hyprpaper"
         "hypridle"
         "nm-applet"
+        "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
       ];
       input = {
         kb_options = "ctrl:nocaps";
