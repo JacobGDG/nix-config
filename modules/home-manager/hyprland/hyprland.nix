@@ -12,6 +12,7 @@
     networkmanagerapplet
     pavucontrol
     pulseaudio
+    kdePackages.dolphin
   ];
 
   home.pointerCursor = {
