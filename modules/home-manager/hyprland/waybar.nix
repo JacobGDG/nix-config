@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -160,5 +165,27 @@
         };
       }
     ];
+  };
+
+  systemd.user.services = lib.mkForce {
+    waybar = {
+      Install = {
+        WantedBy = ["graphical-session.target"];
+      };
+
+      Unit = {
+        Description = "Waybar Service started thru UWSM";
+        Documentation = ["man:waybar(1)"];
+        After = ["graphical-session.target"];
+      };
+
+      Service = {
+        Type = "exec";
+        ExecStart = "${pkgs.waybar}/bin/waybar";
+        ExecCondition = "${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
+        Restart = "on-failure";
+        Slice = "background-graphical.slice";
+      };
+    };
   };
 }

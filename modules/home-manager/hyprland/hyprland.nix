@@ -26,8 +26,12 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
     xwayland.enable = true;
+    systemd = {
+      # disable the systemd integration, as it conflicts with uwsm.
+      enable = false;
+      variables = ["--all"];
+    };
 
     settings = {
       "$mod" = "SUPER";
@@ -88,8 +92,7 @@
         "hyprpaper"
         "hypridle"
         "nm-applet"
-        "waybar"
-        "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
+        # "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
       ];
       input = {
         kb_options = "ctrl:nocaps";

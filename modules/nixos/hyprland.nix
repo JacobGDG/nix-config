@@ -7,19 +7,35 @@
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # ly
-  services.displayManager.ly = {
-    enable = true;
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland = {
+        enable = true;
+      };
+    };
   };
 
   # Allow hyprlock to perform auth
   security.pam.services.hyprlock = {};
 
-  programs.hyprlock.enable = true;
+  programs = {
+    hyprlock.enable = true;
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/Hyprland";
+        };
+      };
+    };
+
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
 }
