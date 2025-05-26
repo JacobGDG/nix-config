@@ -75,10 +75,12 @@
       bindle = [
         ", XF86AudioRaiseVolume, exec, media-control volume_up"
         ", XF86AudioLowerVolume, exec, media-control volume_down"
-        ", XF86AudioMute, exec, media-control volume_mute"
-        ", XF86AudioMicMute, exec, media-control mic_mute"
         ", XF86MonBrightnessUp, exec, media-control brightness_up"
         ", XF86MonBrightnessDown, exec, media-control brightness_down"
+      ];
+      bindl = [
+        ", XF86AudioMute, exec, media-control volume_mute"
+        ", XF86AudioMicMute, exec, media-control mic_mute"
       ];
       exec-once = [
         "$terminal"
@@ -86,6 +88,7 @@
         "hyprpaper"
         "hypridle"
         "nm-applet"
+        "waybar"
         "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
       ];
       input = {
