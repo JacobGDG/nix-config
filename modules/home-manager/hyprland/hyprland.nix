@@ -13,6 +13,7 @@
     pavucontrol
     pulseaudio
     kdePackages.dolphin
+    playerctl
   ];
 
   home.pointerCursor = {
