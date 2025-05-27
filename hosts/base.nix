@@ -20,6 +20,7 @@
       "yazi.nix"
       "zoxide.nix"
       "zsh.nix"
+      "scripts"
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
