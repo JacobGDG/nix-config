@@ -56,14 +56,15 @@
         background: #${config.colorScheme.palette.base08};
       }
 
-      #date,
+      #battery,
       #clock,
-      #pulseaudio,
-      #workspaces,
       #cpu,
-      #memory,
       #custom-power,
-      #network {
+      #date,
+      #memory,
+      #network,
+      #pulseaudio,
+      #workspaces {
         color: #${config.colorScheme.palette.base05};
         background: #${config.colorScheme.palette.base01};
       }
@@ -82,7 +83,6 @@
 
       #cpu.critical,
       #memory.critical,
-      #battery.warning,
       #battery.critical,
       #battery.urgent {
           background-color: #${config.colorScheme.palette.base02};
@@ -90,7 +90,15 @@
           color: #${config.colorScheme.palette.base08};
       }
 
-      #battery.critical {
+      #battery.warning {
+        border: 2px solid #${config.colorScheme.palette.base09};
+        color: #${config.colorScheme.palette.base09};
+      }
+
+      #battery.charging.critical,
+      #battery.charging.warning {
+        border: 2px solid #${config.colorScheme.palette.base0B};
+        color: #${config.colorScheme.palette.base0B};
       }
     '';
 
@@ -112,14 +120,14 @@
           "custom/power"
         ];
         battery = {
-          format = "{capacity}% {icon}";
+          format = " {capacity}% {icon}";
           format-alt = "{time} {icon}";
-          format-charging = "{capacity}% 󱐋 ";
+          format-charging = "{capacity}% 󰂄";
           format-icons = [" " " " " " " " " "];
           format-plugged = "{capacity}%  ";
           states = {
-            critical = 15;
-            warning = 30;
+            critical = 10;
+            warning = 20;
           };
         };
         clock = {
