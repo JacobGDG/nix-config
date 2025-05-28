@@ -120,11 +120,11 @@
           "custom/power"
         ];
         battery = {
-          format = " {capacity}% {icon}";
-          format-alt = "{time} {icon}";
-          format-charging = "{capacity}% 󰂄";
-          format-icons = [" " " " " " " " " "];
-          format-plugged = "{capacity}%  ";
+          format = " {capacity}% {icon} ";
+          format-alt = " {time} {icon} ";
+          format-charging = " {capacity}% 󱟠 ";
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂂" "󰁹"];
+          format-plugged = " {capacity}%  ";
           states = {
             critical = 10;
             warning = 20;
@@ -149,21 +149,21 @@
           format-wifi = " {essid} ({signalStrength}%)  ";
         };
         pulseaudio = {
-          format = " {volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
+          format = " {volume}% {icon} | {format_source}";
+          format-bluetooth = "{volume}% {icon} | {format_source}";
+          format-bluetooth-muted = " {icon} | {format_source}";
+          format-muted = " 󰖁 | {format_source}";
           format-icons = {
             car = " ";
             default = [" " " " " "];
-            handsfree = "";
             headphones = " ";
-            headset = " ";
             phone = " ";
             portable = " ";
+            "alsa_output.pci-0000_04_00.6.HiFi__Speaker__sink" = "󰌢 ";
+            "bluez_output.88_C9_E8_24_52_61.1" = "󱡏 ";
           };
-          format-muted = " {format_source}";
-          format-source = "{volume}%  ";
-          format-source-muted = "";
+          format-source = " ";
+          format-source-muted = " ";
           on-click = "pavucontrol";
         };
         "custom/power" = {
