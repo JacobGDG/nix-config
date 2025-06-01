@@ -15,10 +15,10 @@
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mysecrets = {
-      url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
-      flake = false;
-    };
+   # mysecrets = {
+   #   url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
+   #   flake = false;
+   # };
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -118,6 +118,25 @@
         };
         modules = [
           ./hosts/jake-laptop-nixos.nix
+        ];
+      };
+      erebor = lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = prev.system;
+              };
+            })
+          ];
+        };
+        extraSpecialArgs = {
+          mylib = mylib;
+          inherit inputs outputs;
+        };
+        modules = [
+          ./hosts/erebor.nix
         ];
       };
     };

@@ -17,10 +17,18 @@ check:
 hm:
   home-manager switch --flake .#nixOSLenovo
 
+[linux]
+erebor-hm:
+  home-manager switch --flake .#erebor
+
 # rebuild nixos and use it
 [linux]
 os:
   sudo nixos-rebuild switch --flake .#jake-laptop-nixos --show-trace
+
+[linux]
+erebor-os:
+  sudo nixos-rebuild switch --flake .#erebor --show-trace
 
 # Build and use new home-manager config
 [macos]
