@@ -89,6 +89,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  services.udisks2.enable = true; # for removable media
 
   programs = {
     zsh.enable = true;

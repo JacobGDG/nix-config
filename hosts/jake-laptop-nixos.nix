@@ -15,6 +15,7 @@
       "thunderbird.nix"
       "wireguard.nix"
       "firefox.nix"
+      "udiskie.nix"
     ]);
 
   home = {
