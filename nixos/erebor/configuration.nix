@@ -9,9 +9,6 @@
 }: {
   # You can import other NixOS modules here
   imports = [
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
-
     inputs.home-manager.nixosModules.home-manager
 
     ../modules/nixos/hyprland.nix

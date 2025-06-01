@@ -60,8 +60,22 @@
         modules = [
           agenix.nixosModules.default
 
-          ./nixos/configuration.nix
-          ./secrets/jake-laptop-nixos.nix
+          ./nixos/jake-laptop-nixos
+        ];
+      };
+      erebor = lib.nixosSystem {
+        specialArgs = {
+          hostConfig = {
+            username = "jake";
+            hostName = "erebor";
+          };
+          inherit inputs outputs;
+        };
+        modules = [
+          agenix.nixosModules.default
+
+          ./nixos/erebor
+          # ./secrets/erebor
         ];
       };
     };
