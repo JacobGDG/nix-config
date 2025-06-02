@@ -9,7 +9,6 @@
       inputs.nix-colors.homeManagerModules.default
     ]
     ++ map mylib.homeManagerModules [
-      "btop.nix"
       "cava.nix"
       "git.nix"
       "kitty.nix"

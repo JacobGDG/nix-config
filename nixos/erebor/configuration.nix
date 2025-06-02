@@ -14,6 +14,7 @@
     ../../modules/nixos/hyprland.nix
     ../../modules/nixos/steam.nix
     ../../modules/nixos/firefox.nix
+    ../../modules/nixos/bluetooth.nix
   ];
 
   nixpkgs = {

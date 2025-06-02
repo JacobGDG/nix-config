@@ -109,7 +109,8 @@
         workspace_swipe = true;
       };
       monitor = [
-        "eDP-1, 1920x1080@60, 0x0, 1"
+        "eDP-1, 1920x1080@60, 0x0, 1" # Laptop screen
+        "HDMI-A-2, 2560x1440@60, 0x0, 1" # Erebor/Desktop screen
       ];
       general = {
         gaps_out = 5;
@@ -117,6 +118,9 @@
         "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
         "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
       };
+      windowrule = [
+        "idleinhibit fullscreen, class:.*"
+      ];
 
       decoration = {
         rounding = 5;

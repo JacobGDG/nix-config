@@ -109,7 +109,10 @@
         position = "top";
         spacing = 10;
         modules-center = [];
-        modules-left = ["hyprland/workspaces"];
+        modules-left = [
+          "hyprland/workspaces"
+          "idle_inhibitor"
+        ];
         modules-right = [
           "pulseaudio"
           "network"
@@ -135,7 +138,7 @@
           tooltip-format = "{:%Y-%m-%d | %H:%M}";
         };
         cpu = {
-          format = " {usage}%   ";
+          format = " {usage}%    ";
           tooltip = false;
         };
         memory = {format = " {}%  ";};
@@ -144,7 +147,7 @@
           tooltip = false;
           format-alt = " {ifname}: {ipaddr}/{cidr}";
           format-disconnected = "Disconnected ⚠";
-          format-ethernet = " {ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
           format-linked = " {ifname} (No IP) ";
           format-wifi = " {essid} ({signalStrength}%)  ";
         };
@@ -170,6 +173,13 @@
           format = " ⏻ ";
           tooltip = false;
           on-click = "wlogout --protocol layer-shell";
+        };
+        idle_inhibitor= {
+          format = "{icon}";
+          format-icons = {
+              activated = " ";
+              deactivated = " ";
+          };
         };
       }
     ];

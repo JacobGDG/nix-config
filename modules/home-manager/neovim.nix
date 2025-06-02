@@ -18,11 +18,17 @@
 
     # LSPs
     lua-language-server
-    nil # nix
+    copilot-language-server-fhs
     yaml-language-server
+    nil # nix
     ruff # python
   ];
 
   xdg.configFile."nvim/init.lua".enable = false; # avoid clash
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
+  xdg.configFile."nvim" = {
+    enable = true;
+    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
+    target = "nvim";
+  };
 }

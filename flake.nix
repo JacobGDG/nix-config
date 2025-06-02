@@ -101,7 +101,7 @@
           ./hosts/work-mac.nix
         ];
       };
-      nixOSLenovo = lib.homeManagerConfiguration {
+      jake-laptop-nixos--jake = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [
@@ -120,7 +120,7 @@
           ./hosts/jake-laptop-nixos.nix
         ];
       };
-      erebor = lib.homeManagerConfiguration {
+      erebor--jake = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [

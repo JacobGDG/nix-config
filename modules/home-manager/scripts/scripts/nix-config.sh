@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+function get_host_name {
+  if [ -f /etc/hostname ]; then
+    cat /etc/hostname
+  else
+    echo "unknown"
+  fi
+}
+
+function help {
+  echo "Usage: setup [command]"
+  echo "Commands:"
+  echo "  os       - Rebuild the NixOS configuration for the current host"
+  echo "  hm       - Rebuild the Home Manager configuration for the current user"
+  echo "  update   - Update the flake"
+  echo "  check    - Check the flake without building"
+  echo "  clean    - Clean up old generations"
+  echo "  help     - Show this help message"
+}
+
+function run_command {
+  local command="$1"
+  shift
+  case "$command" in
+    os)
+      echo "Rebuilding NixOS configuration for host: $(get_host_name)"
+      sudo nixos-rebuild switch --flake .#$(get_host_name) --show-trace
+    ;;
+    hm)
+      echo "Rebuilding Home Manager configuration for user: $(whoami) on host: $(get_host_name)"
+      home-manager switch --flake .#$(get_host_name)--$(whoami)
+    ;;
+    update)
+      echo "Updating flake..."
+      nix flake update
+    ;;
+    check)
+      echo "Checking flake..."
+      nix flake check
+    ;;
+    clean)
+      echo "Cleaning up old generations..."
+      sudo nix-collect-garbage -d
+    ;;
+    *)
+      echo "Unknown command: $command"
+      help
+      exit 1
+    ;;
+      esac
+    }
+
+if [[ $# -eq 0 || $1 == "help" ]]; then
+  help
+  exit 0
+fi
+
+run_command "$@"
