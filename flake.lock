@@ -238,6 +238,23 @@
         "type": "github"
       }
     },
+    "mysecrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744531733,
+        "narHash": "sha256-YUB3bYmgb4hOQBwEAac2IgfhfNcoFZQ/C8rM6sJycnc=",
+        "ref": "refs/heads/main",
+        "rev": "b6510c1d65db090f9ae8f2d99289e0f04e06240b",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/nix-secrets.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/nix-secrets.git"
+      }
+    },
     "nix-colors": {
       "inputs": {
         "base16-schemes": "base16-schemes",
@@ -325,6 +342,7 @@
         "agenix": "agenix",
         "home-manager": "home-manager_2",
         "mac-app-util": "mac-app-util",
+        "mysecrets": "mysecrets",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable"

@@ -15,10 +15,10 @@
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-   # mysecrets = {
-   #   url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
-   #   flake = false;
-   # };
+    mysecrets = {
+      url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
+      flake = false;
+    };
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -26,6 +26,7 @@
   outputs = {
     agenix,
     home-manager,
+    mysecrets,
     nix-colors,
     mac-app-util,
     nixpkgs,
