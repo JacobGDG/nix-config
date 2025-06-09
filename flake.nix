@@ -83,7 +83,7 @@
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      workMac = lib.homeManagerConfiguration {
+      "MacBook-Pro.local--jakegreenwood" = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           overlays = [

@@ -17,6 +17,8 @@
       "udiskie.nix"
     ]);
 
+  systemd.user.startServices = "sd-switch";
+
   home = {
     username = "jake";
     homeDirectory = "/home/jake";

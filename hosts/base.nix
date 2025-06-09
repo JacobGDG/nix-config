@@ -25,7 +25,6 @@
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   nixpkgs.config.allowUnfree = true;
-  systemd.user.startServices = "sd-switch";
 
   programs.home-manager.enable = true;
   programs.direnv = {

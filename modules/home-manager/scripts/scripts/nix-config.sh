@@ -2,6 +2,9 @@
 function get_host_name {
   if [ -f /etc/hostname ]; then
     cat /etc/hostname
+  # with hostname command
+  elif command -v hostname &> /dev/null; then
+    hostname
   else
     echo "unknown"
   fi
@@ -28,7 +31,7 @@ function run_command {
     ;;
     hm)
       echo "Rebuilding Home Manager configuration for user: $(whoami) on host: $(get_host_name)"
-      home-manager switch --flake .#$(get_host_name)--$(whoami)
+      home-manager switch --flake .#$(get_host_name)--$(whoami) --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
     ;;
     update)
       echo "Updating flake..."
