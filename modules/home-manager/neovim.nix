@@ -18,7 +18,7 @@
 
     # LSPs
     lua-language-server
-    copilot-language-server-fhs
+    # copilot-language-server-fhs
     yaml-language-server
     nil # nix
     ruff # python
