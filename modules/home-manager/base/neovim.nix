@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  mylib,
   ...
 }: {
   programs.neovim = {
@@ -28,7 +29,7 @@
   xdg.configFile."nvim" = {
     enable = true;
     recursive = true;
-    source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
+    source = config.lib.file.mkOutOfStoreSymlink ( mylib.relativeToRoot "config/nvim" );
     target = "nvim";
   };
 }

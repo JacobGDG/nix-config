@@ -1,11 +1,9 @@
-{pkgs, ...}: let
-  layoutDir = "tmux/layouts";
-in {
+{pkgs, ...}: {
   home = {
     packages = [pkgs.tmuxifier];
 
     sessionVariables = {
-      TMUXIFIER_LAYOUT_PATH = "\$HOME/.config/${layoutDir}";
+      TMUXIFIER_LAYOUT_PATH = "\$HOME/.config/tmux/layouts";
     };
   };
 

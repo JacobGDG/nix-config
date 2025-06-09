@@ -3,12 +3,6 @@
   config,
   ...
 }: {
-  imports = [
-    ./sesh.nix
-    ./tmuxifier.nix
-    ./zoxide.nix
-  ];
-
   programs.tmux = {
     enable = true;
     keyMode = "vi";
