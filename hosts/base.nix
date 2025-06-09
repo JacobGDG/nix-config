@@ -7,6 +7,7 @@
   imports =
     [
       inputs.nix-colors.homeManagerModules.default
+      ../modules/home-manager/my-modules
     ]
     ++ map mylib.homeManagerModules [
       "base"

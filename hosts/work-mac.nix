@@ -5,14 +5,14 @@
   inputs,
   ...
 }: {
-  imports =
-    [
-      inputs.mac-app-util.homeManagerModules.default
-      ./base.nix
-    ]
-    ++ (map mylib.homeManagerModules [
-      "terraform.nix"
-    ]);
+  imports = [
+    inputs.mac-app-util.homeManagerModules.default
+    ./base.nix
+  ];
+
+  myModules = {
+    devops.enable = true;
+  };
 
   home = {
     homeDirectory = "/Users/jakegreenwood";
@@ -23,9 +23,8 @@
     ];
 
     packages = with pkgs; [
-      docker-credential-helpers
-      step-cli # certificate information
       btop
+      docker-credential-helpers
     ];
   };
 }

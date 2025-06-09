@@ -1,5 +1,4 @@
+{ mylib, ... }:
 {
-  imports = [
-    ./test-module.nix
-  ];
+  imports = mylib.scanPaths ./.;
 }
