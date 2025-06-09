@@ -14,9 +14,4 @@
   home.packages = with pkgs; [
     btop
   ];
-
-  myModules.testModule = {
-    enable = true;
-    testValue = "Jake!";
-  };
 }
