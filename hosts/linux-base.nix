@@ -6,9 +6,9 @@
   imports =
     [
       ./base.nix
-    ] ++ (map mylib.homeManagerModules [
+    ]
+    ++ (map mylib.homeManagerModules [
       "genealogy.nix"
-      "hyprland"
       "libreoffice.nix"
       "spotify-player.nix"
       "thunderbird.nix"
@@ -16,6 +16,12 @@
       "firefox.nix"
       "udiskie.nix"
     ]);
+
+  myModules = {
+    hyprland = {
+      enable = true;
+    };
+  };
 
   systemd.user.startServices = "sd-switch";
 

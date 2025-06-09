@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  mylib,
   ...
 }: {
   home.packages = with pkgs; [
@@ -130,8 +131,8 @@
 
   home.file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
     text = ''
-      preload=${../../../wallpapers/haystacks.jpg}
-      wallpaper=,${../../../wallpapers/haystacks.jpg}
+      preload="${mylib.relativeToRoot "wallpapers/haystacks.jpg"}";
+      wallpaper=,"${mylib.relativeToRoot "wallpapers/haystacks.jpg"}";
     '';
   };
 

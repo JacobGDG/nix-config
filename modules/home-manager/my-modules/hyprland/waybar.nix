@@ -174,11 +174,11 @@
           tooltip = false;
           on-click = "wlogout --protocol layer-shell";
         };
-        idle_inhibitor= {
+        idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-              activated = " ";
-              deactivated = " ";
+            activated = " ";
+            deactivated = " ";
           };
         };
       }

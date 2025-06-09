@@ -1,4 +1,4 @@
-{
+{mylib, ...}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -11,7 +11,7 @@
 
       background = [
         {
-          path = "${../../../wallpapers/haystacks.jpg}";
+          path = "${mylib.relativeToRoot "wallpapers/haystacks.jpg"}";
           blur_passes = 1;
           blur_size = 8;
         }
