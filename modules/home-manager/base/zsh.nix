@@ -43,7 +43,7 @@
                     setopt hist_find_no_dups
 
                     if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
-                      tmux attach || exec tmux new-session && exit;
+                      tmux attach || exec tmux new-session -t home && exit;
                     fi
                   ";
     in

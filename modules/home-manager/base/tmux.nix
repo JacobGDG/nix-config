@@ -34,6 +34,9 @@
 
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
+      set -g set-titles on
+      set -g set-titles-string '#S'
+
       # -----------------------------------------------------------------------------
       # Key bindings
       # -----------------------------------------------------------------------------
@@ -80,10 +83,15 @@
         --preview 'sesh preview {}' \
       )\""
 
-      set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] #(tomato -t)  %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h"
-
       # fingers
+      unbind Space
       set -g @fingers-key Space
+
+      # -----------------------------------------------------------------------------
+      # UI
+      # -----------------------------------------------------------------------------
+
+      set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] #(tomato -t)  %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h"
 
       # colourscheme
       set-window-option -g mode-style "fg=#${config.colorScheme.palette.base05},bg=#${config.colorScheme.palette.base02}"
