@@ -30,8 +30,8 @@ function run_command {
       sudo nixos-rebuild switch --flake .#$(get_host_name) --show-trace
     ;;
     hm)
-      echo "Rebuilding Home Manager configuration for user: $(whoami) on host: $(get_host_name)"
-      home-manager switch --flake .#$(get_host_name)--$(whoami) --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
+      echo "Rebuilding Home Manager configuration for user: $(whoami)@$(get_host_name)"
+      home-manager switch --flake .#$(whoami)@$(get_host_name) --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
     ;;
     update)
       echo "Updating flake..."

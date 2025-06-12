@@ -48,7 +48,6 @@
     inherit lib;
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       jake-laptop-nixos = lib.nixosSystem {
         specialArgs = {
@@ -81,9 +80,8 @@
       };
     };
 
-    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "MacBook-Pro.local--jakegreenwood" = lib.homeManagerConfiguration {
+      "jakegreenwood@MacBook-Pro.local" = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           overlays = [
@@ -102,7 +100,7 @@
           ./hosts/work-mac.nix
         ];
       };
-      jake-laptop-nixos--jake = lib.homeManagerConfiguration {
+      "jake@jake-laptop-nixos" = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [
@@ -121,7 +119,7 @@
           ./hosts/jake-laptop-nixos.nix
         ];
       };
-      erebor--jake = lib.homeManagerConfiguration {
+      "jake@erebor" = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [
