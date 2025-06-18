@@ -17,8 +17,8 @@
     };
 
     aliases = {
-      # https://github.com/JacobGDG/dotfiles/blob/master/dot_config/git/config.tmpl
-      co = "checkout";
+      # if branch not given then run ls
+      co = "!sh git-chckout"; # ideally i could use tab complete like git checkout
       cm = "commit --verbose";
 
       rbm = "pull origin main --rebase";
@@ -38,7 +38,6 @@
       fooked = "!git add . && git amend && git p-force";
       resetorigin = "!git fetch origin && git reset --hard @{u} && git clean -f -d";
 
-      ls = "!bash -c 'gitcheckout'";
       pretty = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       # diffnames = "!git diff-tree -r --no-commit-id --name-only $(git log -1 --format="%H") origin/master";
 
