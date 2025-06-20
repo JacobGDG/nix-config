@@ -31,6 +31,12 @@ def check_dependency(cmd)
   system("which #{cmd} > /dev/null 2>&1") || exit_error("Required command '#{cmd}' not found. Please install it before running this script.")
 end
 
+def check_repo
+  unless system("git rev-parse --is-inside-work-tree > /dev/null 2>&1")
+    exit_error("This script must be run inside a git repository. Please navigate to your git repo and try again.")
+  end
+end
+
 def staged_diff
   changes = `git diff --staged`.strip
   exit_error("No staged changes found. Please stage your changes before running this script.") if changes.empty?
@@ -87,6 +93,8 @@ end.parse!
 check_dependency('git')
 check_dependency('llm')
 check_dependency('fzf')
+
+check_repo
 
 context = prompt_for_context
 commit_type = prompt_for_type(COMMIT_TYPES)
