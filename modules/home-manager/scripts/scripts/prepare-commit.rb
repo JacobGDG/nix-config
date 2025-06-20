@@ -86,6 +86,7 @@ check_dependency('llm')
 check_dependency('fzf')
 
 check_repo
+# TODO: basic secret search before sending to OpenAI
 
 context = prompt_for_context
 commit_type = prompt_for_type(COMMIT_TYPES)
