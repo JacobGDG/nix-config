@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -11,7 +11,7 @@
 
       background = [
         {
-          path = "${../../../wallpapers/haystacks.jpg}";
+          path = "${inputs.wallpapers}/nature/haystacks.jpg";
           blur_passes = 1;
           blur_size = 8;
         }

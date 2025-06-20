@@ -241,10 +241,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1744531733,
-        "narHash": "sha256-YUB3bYmgb4hOQBwEAac2IgfhfNcoFZQ/C8rM6sJycnc=",
+        "lastModified": 1750261393,
+        "narHash": "sha256-UPZ5IRUmC+qDiXrNOJ6PrHvE4aldpmVsxkUILNKIPBY=",
         "ref": "refs/heads/main",
-        "rev": "b6510c1d65db090f9ae8f2d99289e0f04e06240b",
+        "rev": "95a5220bb117f126143142ddd7dbe73fe8604c3b",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nix-secrets.git"
@@ -307,11 +307,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1749496427,
-        "narHash": "sha256-ZZdATbWARfu7M8UguxDnruaCiuZb1utxCMyVl9N4SP8=",
+        "lastModified": 1750441923,
+        "narHash": "sha256-b6CrXmLs0BJV/sPP8HJqqqiy6tEu2yELrLOGdPS3Cdc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c1b77a2360eed92ca778707f733041daea185050",
+        "rev": "49645047e67857e6521f2e18644d0c8bd62140ee",
         "type": "github"
       },
       "original": {
@@ -323,11 +323,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1749237914,
-        "narHash": "sha256-N5waoqWt8aMr/MykZjSErOokYH6rOsMMXu3UOVH5kiw=",
+        "lastModified": 1750259320,
+        "narHash": "sha256-H8J4H2XCIMEJ5g6fZ179QfQvsc2dUqhqfBjC8RAHNRY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "70c74b02eac46f4e4aa071e45a6189ce0f6d9265",
+        "rev": "9ba04bda9249d5d5e5238303c9755de5a49a79c5",
         "type": "github"
       },
       "original": {
@@ -345,7 +345,8 @@
         "mysecrets": "mysecrets",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "wallpapers": "wallpapers"
       }
     },
     "rust-overlay": {
@@ -412,6 +413,23 @@
         "owner": "nix-systems",
         "repo": "default-darwin",
         "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750442111,
+        "narHash": "sha256-rbsdDu0hIyY95B4/Y3FQnZfWdq2g15wAc5NzH6o0zo4=",
+        "ref": "refs/heads/main",
+        "rev": "5f35f5a6fa3f93a241acd90eee063675b9635186",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/wallpapers.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/wallpapers.git"
       }
     }
   },

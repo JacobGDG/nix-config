@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -130,8 +131,8 @@
 
   home.file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
     text = ''
-      preload=${../../../wallpapers/haystacks.jpg}
-      wallpaper=,${../../../wallpapers/haystacks.jpg}
+      preload=${inputs.wallpapers}/nature/haystacks.jpg
+      wallpaper=,${inputs.wallpapers}/nature/haystacks.jpg
     '';
   };
 

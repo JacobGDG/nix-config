@@ -19,6 +19,10 @@
       url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
       flake = false;
     };
+    wallpapers = {
+      url = "git+ssh://git@github.com/JacobGDG/wallpapers.git?shallow=1";
+      flake = false;
+    };
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -27,6 +31,7 @@
     agenix,
     home-manager,
     mysecrets,
+    wallpapers,
     nix-colors,
     mac-app-util,
     nixpkgs,
