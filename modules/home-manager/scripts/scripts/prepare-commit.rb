@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 
-# bin/prepare-commit: Prepare a commit message using staged changes and LLM, following semantic commit guidelines.
-#
-# It allows the user to given optional context and generates a commit message that can be used directly in a git commit.
-#
-# Usage: prepare-commit --context
+# prepare-commit.rb
+# A Ruby script to prepare a commit message using staged changes, user input, and a prompt file.
 
 require 'optparse'
 require 'tempfile'
@@ -49,7 +46,6 @@ def prompt_for_context
 end
 
 def prompt_for_type(types)
-  # with fzf
   response = `echo "#{types.join("\n")}" | fzf --height=10 --border --prompt="Commit Type: "`.strip
 end
 
@@ -70,20 +66,15 @@ def read_prompt(file_path)
 end
 
 def generate_commit_message(prompt)
-  # Assuming `llm` is a command that takes a prompt and returns a generated message
   Tempfile.create(['commit_prompt', '.md']) do |file|
     file.write(prompt)
     file.flush
-    # Call the LLM with the prompt
     cmd = "llm prompt -f #{file.path} -m gpt-4o"
     msg, _ = Open3.capture2(cmd)
     return msg.strip
   end
 end
 
-# === Main Script ===
-
-# Step 1: Parse command-line options
 options = {}
 
 OptionParser.new do |opts|
