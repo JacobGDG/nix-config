@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   scriptDir = ./scripts;
   scriptEntries = builtins.readDir scriptDir;
 
@@ -7,20 +6,28 @@ let
     builtins.attrNames scriptEntries
   );
 
-  shellScripts = builtins.filter (
-    name: builtins.match ".*\\.sh$" name != null
-  ) regularFiles;
-
   mkScript = name: {
     name = name;
-    value = pkgs.writeScriptBin (builtins.replaceStrings [ ".sh" ] [ "" ] name) (
+    value = pkgs.writeScriptBin (builtins.replaceStrings [".sh" ".rb"] ["" ""] name) (
       builtins.readFile (scriptDir + "/${name}")
     );
   };
 
-  scriptsSet = builtins.listToAttrs (map mkScript shellScripts);
-  scripts = builtins.attrValues scriptsSet;
-in
-{
-  home.packages = scripts;
+  bashFiles =
+    builtins.filter (
+      name: builtins.match ".*\\.sh$" name != null
+    )
+    regularFiles;
+  bashSet = builtins.listToAttrs (map mkScript bashFiles);
+  bashScripts = builtins.attrValues bashSet;
+
+  rubyFiles =
+    builtins.filter (
+      name: builtins.match ".*\\.rb$" name != null
+    )
+    regularFiles;
+  rubySet = builtins.listToAttrs (map mkScript rubyFiles);
+  rubyScripts = builtins.attrValues rubySet;
+in {
+  home.packages = bashScripts ++ rubyScripts;
 }
