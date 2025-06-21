@@ -6,7 +6,6 @@
 }: {
   home.packages = with pkgs; [
     brightnessctl
-    hypridle
     libnotify # notify-send
     networkmanager
     networkmanagerapplet
@@ -89,9 +88,7 @@
       ];
       exec-once = [
         "$terminal"
-        "hypridle"
         "nm-applet"
-        # "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
       ];
       input = {
         kb_options = "ctrl:nocaps";
@@ -124,34 +121,5 @@
         rounding = 5;
       };
     };
-  };
-
-  home.file."${config.xdg.configHome}/hypr/hypridle.conf" = {
-    text = ''
-      general {
-          lock_cmd = pidof hyprlock || hyprlock
-          before_sleep_cmd = pidof hyprlock || hyprlock
-          after_sleep_cmd = hyprctl dispatch dpms on
-      }
-
-      # Lock the screen
-      listener {
-          timeout = 300
-          on-timeout = pidof hyprlock || hyprlock
-      }
-
-      # Turn off screen
-      listener {
-          timeout = 420
-          on-timeout = hyprctl dispatch dpms off
-          on-resume = hyprctl dispatch dpms on
-      }
-
-      # Suspend the system
-      listener {
-          timeout = 600
-          on-timeout = systemctl suspend
-      }
-    '';
   };
 }
