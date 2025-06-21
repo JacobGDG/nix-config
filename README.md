@@ -5,6 +5,9 @@ My overkill dotfiles.
 * https://search.nixos.org/packages
 * https://github.com/NixOS/nixpkgs/tree/master/nixos/modules/programs
 * https://github.com/nix-community/home-manager/tree/master/modules/programs
+* https://github.com/JacobGDG/wallpapers
+* https://github.com/JacobGDG/nix-secrets \<_private_\>
+
 
 # Why?
 
