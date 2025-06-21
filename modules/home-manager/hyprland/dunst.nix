@@ -37,23 +37,4 @@
       '';
     };
   };
-
-  systemd.user.services = lib.mkForce {
-    dunst = {
-      Install = {
-        WantedBy = ["default.target"];
-      };
-
-      Unit = {
-        Description = "Dunst notification service";
-        Documentation = ["man:dunst(1)"];
-      };
-
-      Service = {
-        Type = "exec";
-        ExecStart = "${pkgs.dunst}/bin/dunst";
-        Restart = "no";
-      };
-    };
-  };
 }
