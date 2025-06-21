@@ -7,7 +7,6 @@
   home.packages = with pkgs; [
     brightnessctl
     hypridle
-    hyprpaper # wallpaper
     libnotify # notify-send
     networkmanager
     networkmanagerapplet
@@ -91,7 +90,6 @@
       exec-once = [
         "$terminal"
         "dunst"
-        "hyprpaper"
         "hypridle"
         "nm-applet"
         # "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
@@ -127,13 +125,6 @@
         rounding = 5;
       };
     };
-  };
-
-  home.file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
-    text = ''
-      preload=${inputs.wallpapers}/nature/haystacks.jpg
-      wallpaper=,${inputs.wallpapers}/nature/haystacks.jpg
-    '';
   };
 
   home.file."${config.xdg.configHome}/hypr/hypridle.conf" = {
