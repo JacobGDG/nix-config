@@ -89,7 +89,6 @@
       ];
       exec-once = [
         "$terminal"
-        "dunst"
         "hypridle"
         "nm-applet"
         # "pidof -x battery-warning-daemon || battery-warning-daemon" # ./battery-warning.nix
