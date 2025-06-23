@@ -18,6 +18,8 @@ COMMIT_TYPES = [
   'chore: Changes to the build process or auxiliary tools and libraries such as documentation generation'
 ].freeze
 
+PROMPT_FILE = "{{COMMIT_PROMPT}}".freeze
+
 def exit_error(message)
   puts "Error: #{message}"
   exit 1
@@ -78,7 +80,7 @@ options = {}
 
 OptionParser.new do |opts|
   opts.banner = "Usage: prepare-commit [options]"
-  opts.on("-p", "--prompt FILE", "Path to the prompt file [required]") do |file|
+  opts.on("-p", "--prompt FILE", "Path to the prompt file") do |file|
     options[:prompt_file] = file
   end
 end.parse!
@@ -92,7 +94,7 @@ check_repo
 
 context = prompt_for_context
 commit_type = prompt_for_type(COMMIT_TYPES)
-base_prompt = read_prompt(options[:prompt_file])
+base_prompt = read_prompt(options[:prompt_file] || PROMPT_FILE)
 
 prompt = generate_full_prompt(base_prompt, context, commit_type, staged_diff)
 

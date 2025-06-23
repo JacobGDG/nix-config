@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   scriptDir = ./scripts;
   scriptEntries = builtins.readDir scriptDir;
 
@@ -6,10 +10,12 @@
     builtins.attrNames scriptEntries
   );
 
+  substituteVars = content: builtins.replaceStrings ["{{COMMIT_PROMPT}}"] ["${inputs.prompts}/generate/commit-message.md"] content;
+
   mkScript = name: {
     name = name;
     value = pkgs.writeScriptBin (builtins.replaceStrings [".sh" ".rb"] ["" ""] name) (
-      builtins.readFile (scriptDir + "/${name}")
+      substituteVars (builtins.readFile (scriptDir + "/${name}"))
     );
   };
 
