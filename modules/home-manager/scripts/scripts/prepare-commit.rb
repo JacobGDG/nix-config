@@ -36,7 +36,8 @@ def check_repo
 end
 
 def staged_diff
-  changes = `git diff --staged`.strip
+
+  changes = `git diff --staged --unified=5`.strip
   exit_error("No staged changes found. Please stage your changes before running this script.") if changes.empty?
   changes.split("\n")
 end
