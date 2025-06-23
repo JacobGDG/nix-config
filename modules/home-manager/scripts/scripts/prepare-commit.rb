@@ -17,7 +17,6 @@ COMMIT_TYPES = [
   'test: Adding missing or correcting existing tests',
   'chore: Changes to the build process or auxiliary tools and libraries such as documentation generation'
 ].freeze
-PROMPT_FILE = "~/src/prompts/generate/commit-message.md"
 
 def exit_error(message)
   puts "Error: #{message}"
@@ -79,6 +78,9 @@ options = {}
 
 OptionParser.new do |opts|
   opts.banner = "Usage: prepare-commit [options]"
+  opts.on("-p", "--prompt FILE", "Path to the prompt file [required]") do |file|
+    options[:prompt_file] = file
+  end
 end.parse!
 
 check_dependency('git')
@@ -90,7 +92,7 @@ check_repo
 
 context = prompt_for_context
 commit_type = prompt_for_type(COMMIT_TYPES)
-base_prompt = read_prompt(PROMPT_FILE)
+base_prompt = read_prompt(options[:prompt_file])
 
 prompt = generate_full_prompt(base_prompt, context, commit_type, staged_diff)
 

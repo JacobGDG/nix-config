@@ -23,6 +23,10 @@
       url = "git+ssh://git@github.com/JacobGDG/wallpapers.git?shallow=1";
       flake = false;
     };
+    prompts = {
+      url = "git+ssh://git@github.com/JacobGDG/prompts.git?shallow=1";
+      flake = false;
+    };
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -32,6 +36,7 @@
     home-manager,
     mysecrets,
     wallpapers,
+    prompts,
     nix-colors,
     mac-app-util,
     nixpkgs,

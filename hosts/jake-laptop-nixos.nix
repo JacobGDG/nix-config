@@ -11,10 +11,6 @@
       "my-modules/"
     ]);
 
-  myModules = {
-    llm.enable = true;
-  };
-
   home.packages = with pkgs; [
     btop
     ruby

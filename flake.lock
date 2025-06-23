@@ -337,6 +337,23 @@
         "type": "github"
       }
     },
+    "prompts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750671730,
+        "narHash": "sha256-9Q4OH87SmyCgstxX/AdFssfHdY8HS5Pt9I4E8hj1/W4=",
+        "ref": "refs/heads/main",
+        "rev": "1878e3bd3f749eb1f59f0d81a79150a54d82e398",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/prompts.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/prompts.git"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -346,6 +363,7 @@
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "prompts": "prompts",
         "wallpapers": "wallpapers"
       }
     },

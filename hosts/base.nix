@@ -19,6 +19,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  myModules = {
+    llm.enable = true;
+  };
+
   home = {
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";

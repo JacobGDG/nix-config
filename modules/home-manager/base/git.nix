@@ -1,4 +1,8 @@
 {
+  inputs,
+  ...
+}:
+{
   programs.git = {
     enable = true;
     userName = "JacobGDG";
@@ -20,6 +24,8 @@
       # if branch not given then run ls
       co = "!sh git-checkout"; # ideally i could use tab complete like git checkout
       cm = "commit --verbose";
+
+      prep-cm = "!prepare-commit --prompt ${inputs.prompts}/generate/commit-message.md";
 
       rbm = "pull origin main --rebase";
       cm-temp = "commit -m 'temp commit'";
