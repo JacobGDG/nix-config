@@ -54,8 +54,8 @@ end
 def generate_full_prompt(base_prompt, context, commit_type, changes)
   full_prompt = base_prompt.dup
   full_prompt << "\n\nContext: #{context}" unless context.empty?
-  full_prompt << "\n\nCommit Type: #{commit_type}" unless commit_type.empty?
-  full_prompt << "\n\nStaged Changes:\n#{changes.join("\n")}"
+  full_prompt << "\n\nCommit Type:\n#{commit_type}" unless commit_type.empty?
+  full_prompt << "\n\nStaged Changes:\n```diff\n#{changes.join("\n")}\n```"
   full_prompt
 end
 
