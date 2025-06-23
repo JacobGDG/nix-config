@@ -12,3 +12,7 @@ repos:
   rev: 3.1.0
   hooks:
     - id: alejandra-nix
+- repo: https://github.com/sirwart/ripsecrets
+  rev: v0.1.8
+  hooks:
+    - id: ripsecrets
