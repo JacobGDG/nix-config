@@ -43,7 +43,6 @@
           "$mod ALT, F, exec, $browser"
           "$mod ALT, K, exec, $terminal"
           "$mod, SPACE, exec, $launcher"
-          ", Print, exec, grimblast copy area"
 
           "$mod SHIFT, H, movewindow, l"
           "$mod SHIFT, L, movewindow, r"
