@@ -47,17 +47,10 @@
     mylib = import ./mylib {inherit lib;};
 
     lib = nixpkgs.lib // home-manager.lib;
-    systems = [
-      "x86_64-linux"
-      "aarch64-darwin"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
 
     inherit (self) outputs;
   in {
     inherit lib;
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
-
     nixosConfigurations = {
       jake-laptop-nixos = lib.nixosSystem {
         specialArgs = {
