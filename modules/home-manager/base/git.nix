@@ -1,8 +1,4 @@
-{
-  inputs,
-  ...
-}:
-{
+{inputs, ...}: {
   programs.git = {
     enable = true;
     userName = "JacobGDG";
@@ -22,7 +18,7 @@
 
     aliases = {
       # if branch not given then run ls
-      co = "!sh git-checkout"; # ideally i could use tab complete like git checkout
+      co = "!git-checkout"; # ideally i could use tab complete like git checkout
       cm = "commit --verbose";
 
       rbm = "pull origin main --rebase";
