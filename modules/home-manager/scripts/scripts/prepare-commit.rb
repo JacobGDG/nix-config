@@ -36,7 +36,6 @@ def check_repo
 end
 
 def staged_diff
-
   changes = `git diff --staged --unified=5`.strip
   exit_error("No staged changes found. Please stage your changes before running this script.") if changes.empty?
   changes.split("\n")
@@ -93,11 +92,12 @@ check_dependency('fzf')
 check_repo
 # TODO: basic secret search before sending to OpenAI
 
+diff = staged_diff
 context = prompt_for_context
 commit_type = prompt_for_type(COMMIT_TYPES)
 base_prompt = read_prompt(options[:prompt_file] || PROMPT_FILE)
 
-prompt = generate_full_prompt(base_prompt, context, commit_type, staged_diff)
+prompt = generate_full_prompt(base_prompt, context, commit_type, diff)
 
 commit_msg = generate_commit_message(prompt)
 
