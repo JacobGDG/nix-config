@@ -19,6 +19,10 @@
 
   systemd.user.startServices = "sd-switch";
 
+  myModules = {
+    hyprland.enable = true;
+  };
+
   home = {
     username = "jake";
     homeDirectory = "/home/jake";
@@ -30,6 +34,7 @@
       rpi-imager
       unstable.talosctl
       kitty
+      ruby
     ];
   };
 }

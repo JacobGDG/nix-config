@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -33,23 +34,25 @@
     done
   '';
 in {
-  home.packages = [battery-warning-daemon];
+  config = lib.mkIf (!config.myModules.common.desktop) {
+    home.packages = [battery-warning-daemon];
 
-  systemd.user.services = lib.mkForce {
-    battery-warning-daemon = {
-      Install = {
-        WantedBy = ["default.target"];
-      };
+    systemd.user.services = lib.mkForce {
+      battery-warning-daemon = {
+        Install = {
+          WantedBy = ["default.target"];
+        };
 
-      Unit = {
-        Description = "Daemon warning about low battery";
-        After = ["default.target"];
-      };
+        Unit = {
+          Description = "Daemon warning about low battery";
+          After = ["default.target"];
+        };
 
-      Service = {
-        Type = "exec";
-        ExecStart = "${battery-warning-daemon}/bin/battery-warning-daemon";
-        Restart = "on-failure";
+        Service = {
+          Type = "exec";
+          ExecStart = "${battery-warning-daemon}/bin/battery-warning-daemon";
+          Restart = "on-failure";
+        };
       };
     };
   };

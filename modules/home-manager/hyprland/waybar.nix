@@ -113,12 +113,12 @@
           "hyprland/workspaces"
           "idle_inhibitor"
         ];
-        modules-right = [
+        modules-right = builtins.filter (x: x != null) [
           "pulseaudio"
           "network"
           "cpu"
           "memory"
-          "battery"
+          ( if config.myModules.common.desktop then null else "battery" )
           "clock"
           "custom/power"
         ];
