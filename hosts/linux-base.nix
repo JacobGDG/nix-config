@@ -6,9 +6,10 @@
   imports =
     [
       ./base.nix
-    ] ++ (map mylib.homeManagerModules [
+    ]
+    ++ (map mylib.homeManagerModules [
       "genealogy.nix"
-      "hyprland"
+      "hyprland" # TODO: move to my-modules
       "libreoffice.nix"
       "spotify-player.nix"
       "thunderbird.nix"

@@ -12,7 +12,6 @@
     ++ map mylib.homeManagerModules [
       "base"
       "scripts"
-      "hyprland" # TODO: move to my-modules
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
