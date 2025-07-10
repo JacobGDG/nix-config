@@ -50,6 +50,7 @@ in{
 
       settings = {
         "$mod" = "SUPER";
+        "$window-mod" = "$mod SHIFT";
         "$terminal" = "kitty";
         "$browser" = "firefox";
         "$launcher" = "wofi --show drun";
@@ -58,12 +59,18 @@ in{
             "$mod ALT, F, exec, $browser"
             "$mod ALT, K, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
-
-            "$mod SHIFT, H, movewindow, l"
-            "$mod SHIFT, L, movewindow, r"
-            "$mod SHIFT, K, movewindow, u"
-            "$mod SHIFT, J, movewindow, d"
             "$mod, Q, killactive"
+
+            "$window-mod, H, movewindow, l"
+            "$window-mod, L, movewindow, r"
+            "$window-mod, K, movewindow, u"
+            "$window-mod, J, movewindow, d"
+
+            # Resize window
+            "$window-mod, Left, resizeactive, -240 0"
+            "$window-mod, Right, resizeactive, 180 0"
+            "$window-mod, Up, resizeactive, 0 -240"
+            "$window-mod, Down, resizeactive, 0 180"
 
             "$mod, H, movefocus, l"
             "$mod, L, movefocus, r"
