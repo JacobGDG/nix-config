@@ -71,6 +71,8 @@ in{
             "$mod, J, movefocus, d"
 
             "$mod, F, fullscreen"
+
+            "ALT, X, togglespecialworkspace"
           ]
           ++ (
             # workspaces
@@ -129,6 +131,7 @@ in{
         };
         windowrule = [
           "idleinhibit fullscreen, class:.*"
+          "float,title:^(Volume Control)$"
         ];
 
         decoration = {
