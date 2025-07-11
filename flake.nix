@@ -84,7 +84,7 @@
     };
 
     homeConfigurations = {
-      "jakegreenwood@MacBook-Pro.local" = lib.homeManagerConfiguration {
+      "jakegreenwood@MacOS" = lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           overlays = [

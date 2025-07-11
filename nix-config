@@ -3,11 +3,11 @@
 function get_host_name {
   if [ -f /etc/hostname ]; then
     cat /etc/hostname
-  # with hostname command
-  elif command -v hostname &> /dev/null; then
-    hostname
+  elif [[ "$(uname)" == "Darwin" ]]; then
+    echo "MacOS"
   else
-    echo "unknown"
+    echo "unknown host"
+    exit 1
   fi
 }
 
