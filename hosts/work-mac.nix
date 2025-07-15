@@ -25,6 +25,7 @@
     packages = with pkgs; [
       btop
       docker-credential-helpers
+      dbeaver-bin
     ];
   };
 }
