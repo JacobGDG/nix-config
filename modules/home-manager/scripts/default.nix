@@ -10,7 +10,7 @@
     builtins.attrNames scriptEntries
   );
 
-  substituteVars = content: builtins.replaceStrings ["{{COMMIT_PROMPT}}"] ["${inputs.prompts}/generate/commit-message.md"] content;
+  substituteVars = content: builtins.replaceStrings ["{{COMMIT_PROMPT}}" "{{PULL_REQUEST_PROMPT}}"] ["${inputs.prompts}/generate/commit-message.md" "${inputs.prompts}/generate/pull-request.md"] content;
 
   mkScript = name: {
     name = name;

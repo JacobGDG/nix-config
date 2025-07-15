@@ -340,10 +340,10 @@
     "prompts": {
       "flake": false,
       "locked": {
-        "lastModified": 1751828209,
-        "narHash": "sha256-TJOYFrxt5HUjyJRyp82qtiqD8l4ZQX904W/spONSpOE=",
+        "lastModified": 1752582329,
+        "narHash": "sha256-cA7aaUZVkUHbMhexuvFz+m2i55watPBU+ghqsK1MYdg=",
         "ref": "refs/heads/main",
-        "rev": "cb230bda0462f2065acef782049a9dbe6961311d",
+        "rev": "eebe2e81c97a6b854d93b91903805d9bce696c4c",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/prompts.git"
