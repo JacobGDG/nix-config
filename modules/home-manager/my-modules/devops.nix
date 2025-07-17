@@ -26,26 +26,40 @@ in {
           whether to enable Kubernetes tools
         '';
       };
+      aws = lib.mkOption {
+        default = true;
+        description = ''
+          whether to enable aws tools
+        '';
+      };
     };
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      step-cli # certificate information
-    ] ++ lib.optionals cfg.terraform (
-      with pkgs; [
-        tenv # tofu version manager
-        tflint
-        checkov
+    home.packages = with pkgs;
+      [
+        step-cli # certificate information
       ]
-    ) ++ lib.optionals cfg.kubernetes (
-      with pkgs; [
-        kubectl
-        k9s
-        kubectx
-        kustomize
-      ]
-    );
+      ++ lib.optionals cfg.terraform (
+        with pkgs; [
+          tenv # tofu version manager
+          tflint
+          checkov
+        ]
+      )
+      ++ lib.optionals cfg.kubernetes (
+        with pkgs; [
+          kubectl
+          k9s
+          kubectx
+          kustomize
+        ]
+      )
+      ++ lib.optionals cfg.aws (
+        with pkgs; [
+          aws-sso-util
+        ]
+      );
 
     programs.zsh.shellAliases = lib.mkIf cfg.kubernetes {
       "k" = "kubectl";
@@ -53,5 +67,4 @@ in {
       "kctx" = "kubectx";
     };
   };
-
 }
