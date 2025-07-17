@@ -21,7 +21,7 @@
       co = "!git-checkout"; # ideally i could use tab complete like git checkout
       cm = "commit --verbose";
 
-      rbm = "pull origin main --rebase";
+      rbm = "!git pull origin $(git default-branch) --rebase";
       cm-temp = "commit -m 'temp commit'";
 
       # default branch
