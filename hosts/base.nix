@@ -29,6 +29,7 @@
 
     packages = with pkgs; [
       ripsecrets
+      ttyper
     ];
   };
 }
