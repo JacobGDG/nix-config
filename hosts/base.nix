@@ -23,6 +23,8 @@
     llm.enable = true;
   };
 
+  news.display = "silent";
+
   home = {
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
