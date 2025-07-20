@@ -140,6 +140,10 @@ in{
           "idleinhibit fullscreen, class:.*"
           "float,title:^(Volume Control)$"
         ];
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
 
         decoration = {
           rounding = 5;
