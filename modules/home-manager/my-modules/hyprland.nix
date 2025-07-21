@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.myModules.hyprland;
-in{
+in {
   options = {
     myModules.hyprland = {
       enable = lib.mkOption {
@@ -56,8 +56,8 @@ in{
         "$launcher" = "wofi --show drun";
         bind =
           [
-            "$mod ALT, F, exec, $browser"
-            "$mod ALT, K, exec, $terminal"
+            "$mod ALT, F, exec, smart-launch $browser"
+            "$mod ALT, K, exec, smart-launch $terminal"
             "$mod, SPACE, exec, $launcher"
             "$mod, Q, killactive"
 
