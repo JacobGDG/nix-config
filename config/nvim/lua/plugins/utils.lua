@@ -81,5 +81,8 @@ return {
     },
   },
 
-  "tpope/vim-abolish",
+  {
+    "gregorias/coerce.nvim",
+    config = true,
+  },
 }
