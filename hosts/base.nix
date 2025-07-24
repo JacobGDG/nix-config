@@ -33,6 +33,7 @@
       ripsecrets
       ttyper
       jq
+      yq
     ];
   };
 }
