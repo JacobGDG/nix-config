@@ -16,7 +16,7 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
     plugins = with pkgs; [
       tmuxPlugins.gruvbox
-      tmuxPlugins.fingers
+      tmuxPlugins.extrakto
     ];
 
     extraConfig = ''
@@ -85,7 +85,7 @@
 
       # fingers
       unbind Space
-      set -g @fingers-key Space
+      bind-key Space run-shell "${pkgs.tmuxPlugins.extrakto}/share/tmux-plugins/extrakto/scripts/open.sh \"#{pane_id}\""
 
       # -----------------------------------------------------------------------------
       # UI
