@@ -22,6 +22,7 @@
 
   myModules = {
     hyprland.enable = true;
+    zen-browser.enable = true;
   };
 
   home = {
