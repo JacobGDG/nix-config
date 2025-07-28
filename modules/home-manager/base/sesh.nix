@@ -21,11 +21,6 @@
         path = "~";
         startup_command = "tomato";
       }
-      {
-        name = "FileManager 📥";
-        path = "~";
-        startup_command = "yy";
-      }
     ];
   };
 }

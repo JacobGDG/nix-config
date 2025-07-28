@@ -58,7 +58,7 @@ worrying about breaking something beyond (my ability to) repair.
 | **Color Scheme**            | Gruvbox                           |
 | **network management tool** | [NetworkManager][NetworkManager]  |
 | **System resource monitor** | [Btop][Btop]                      |
-| **File Manager**            | [Yazi][Yazi] + [Dolphin][Dolphin] |
+| **File Manager**            | [Neovim][Neovim] + [Dolphin][Dolphin] |
 | **Shell**                   | ZSH + [P10k][P10k]                |
 | **Media Player**            | [vlc][vlc]                        |
 | **Text Editor**             | [Neovim][Neovim]                  |
@@ -82,6 +82,5 @@ worrying about breaking something beyond (my ability to) repair.
 [Nerd fonts]: https://github.com/ryanoasis/nerd-fonts
 [NetworkManager]: https://wiki.gnome.org/Projects/NetworkManager
 [wl-clipboard]: https://github.com/bugaevc/wl-clipboard
-[Yazi]: https://github.com/sxyazi/yazi
 [SDDM]: https://github.com/sddm/sddm
 [Dolphin]: https://github.com/KDE/dolphin
