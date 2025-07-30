@@ -118,7 +118,11 @@
           "network"
           "cpu"
           "memory"
-          ( if config.myModules.common.desktop then null else "battery" )
+          (
+            if config.myModules.common.desktop
+            then null
+            else "battery"
+          )
           "clock"
           "custom/power"
         ];
@@ -174,12 +178,22 @@
           tooltip = false;
           on-click = "wlogout --protocol layer-shell";
         };
-        idle_inhibitor= {
+        idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-              activated = " ";
-              deactivated = " ";
+            activated = " ";
+            deactivated = " ";
           };
+        };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "1" = " ";
+            "2" = "󰖟 ";
+            "9" = " ";
+            "10" = "󰊴 ";
+          };
+          on-click = "hyprctl dispatch workspace";
         };
       }
     ];

@@ -56,8 +56,8 @@ in {
         "$launcher" = "wofi --show drun";
         bind =
           [
-            "$mod ALT, F, exec, smart-launch $browser"
-            "$mod ALT, K, exec, smart-launch $terminal"
+            "$mod ALT, F, exec, $browser"
+            "$mod ALT, K, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
             "$mod, Q, killactive"
 
@@ -80,10 +80,12 @@ in {
             "$mod, F, fullscreen"
 
             "ALT, X, togglespecialworkspace"
+
+            "$mod, G, workspace, 10" # game
+            "$mod, L, workspace, e+1"
+            "$mod, H, workspace, e-1"
           ]
           ++ (
-            # workspaces
-            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
             builtins.concatLists (builtins.genList (
                 i: let
                   ws = i + 1;
@@ -136,9 +138,17 @@ in {
           "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
           "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
         };
-        windowrule = [
+        windowrulev2 = [
           "idleinhibit fullscreen, class:.*"
+
           "float,title:^(Volume Control)$"
+
+          "fullscreen,class:^steam_app\d+$"
+
+          "workspace 1, class:^(kitty)$"
+          "workspace 2, class:^(zen-beta|firefox)$"
+          "workspace 9, class:^(steam)$"
+          "workspace 10, class:^steam_app_[0-9]+$"
         ];
         ecosystem = {
           no_update_news = true;
