@@ -38,6 +38,14 @@ return {
                 vim.fn.setreg("+", rel_path)
               end,
           },
+          ['cd']= {
+              desc = 'CD into this directory in TMUX pane 2',
+              callback = function ()
+                local dir = require('oil').get_current_dir()
+                io.popen(string.format('tmux send-keys -t 2 "cd %s" Enter', dir))
+                io.popen('tmux select-pane -t 2')
+              end,
+          },
         },
       }
     end,
