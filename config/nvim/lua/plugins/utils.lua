@@ -27,8 +27,15 @@ return {
           ['yp'] = {
               desc = 'Copy filepath to system clipboard',
               callback = function ()
-                  require('oil.actions').copy_entry_path.callback()
-                  vim.fn.setreg("+", vim.fn.getreg(vim.v.register))
+                local entry = require('oil').get_cursor_entry()
+                local dir = require('oil').get_current_dir()
+                local name = entry.name
+                if entry.type == "directory" then
+                  name = name .. "/"
+                end
+                local ab_path = dir .. name
+                local rel_path = vim.fn.fnamemodify(ab_path, ":.")
+                vim.fn.setreg("+", rel_path)
               end,
           },
         },
