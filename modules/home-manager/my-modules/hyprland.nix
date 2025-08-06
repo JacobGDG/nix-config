@@ -59,7 +59,7 @@ in {
             "$mod ALT, F, exec, $browser"
             "$mod ALT, K, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
-            "$mod, Q, killactive"
+            "$mod, Q, killactive" # Replace with https://www.reddit.com/r/hyprland/comments/18bjm4b/comment/kc4nccy/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 
             "$window-mod, H, movewindow, l"
             "$window-mod, L, movewindow, r"
