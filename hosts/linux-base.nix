@@ -37,7 +37,6 @@
       unstable.talosctl
       kitty
       ruby
-      zen
     ];
   };
 }
