@@ -59,7 +59,7 @@ in {
             "$mod ALT, F, exec, $browser"
             "$mod ALT, K, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
-            "$mod, Q, killactive" # Replace with https://www.reddit.com/r/hyprland/comments/18bjm4b/comment/kc4nccy/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+            "$mod, Q, exec, hyprctl-conditional-quit"
 
             "$window-mod, H, movewindow, l"
             "$window-mod, L, movewindow, r"
@@ -148,7 +148,7 @@ in {
           "workspace 1, class:^(kitty)$"
           "workspace 2, class:^(zen-beta|firefox)$"
           "workspace 9, class:^(steam)$"
-          "workspace 10, class:^steam_app_[0-9]+$"
+          "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
         ];
         ecosystem = {
           no_update_news = true;
