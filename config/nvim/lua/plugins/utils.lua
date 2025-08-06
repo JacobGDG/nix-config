@@ -21,7 +21,7 @@ return {
           ["<CR>"] = "actions.select",
           ["<leader>v"] = { "actions.select", opts = { vertical = true } },
           ["-"] = "actions.parent",
-          ["_"] = "actions.open_cwd",
+          ["~"] = "actions.open_cwd",
           ["g."] = "actions.toggle_hidden",
           ["<leader>l"] = "actions.refresh",
           ['yp'] = {
