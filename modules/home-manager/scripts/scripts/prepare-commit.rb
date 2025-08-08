@@ -73,7 +73,7 @@ def generate_commit_message(prompt)
   Tempfile.create(['commit_prompt', '.md']) do |file|
     file.write(prompt)
     file.flush
-    cmd = "llm prompt -f #{file.path} -m gpt-4o"
+    cmd = "llm prompt -f #{file.path} -m gpt-4o-mini"
     msg, _ = Open3.capture2(cmd)
     return msg.strip
   end
