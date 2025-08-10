@@ -28,6 +28,8 @@ in {
       pulseaudio
       kdePackages.dolphin
       playerctl
+      grim # screenshot
+      slurp # select area for screenshot
     ];
 
     home.pointerCursor = {
@@ -84,6 +86,8 @@ in {
             "$mod, G, workspace, 10" # game
             "$mod, L, workspace, e+1"
             "$mod, H, workspace, e-1"
+
+            ", Print, exec, grim -g \"$(slurp)\" && notify-send -a 'Grim' 'Screenshot taken'"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
@@ -142,6 +146,7 @@ in {
           "idleinhibit fullscreen, class:.*"
 
           "float,title:^(Volume Control)$"
+          "float,class:^(org.kde.dolphin)$"
 
           "fullscreen,class:^steam_app\d+$"
 
