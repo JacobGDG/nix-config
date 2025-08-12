@@ -39,11 +39,25 @@ end
 
 local select_schema = function(schemas)
   vim.ui.select(schemas, { prompt = 'Select schema: ' }, function(selection)
+
     if not selection then
-      require('user.utils').pretty_print 'Canceled.'
+      vim.notify('Canceled schema selection.', vim.log.levels.INFO)
       return
     end
-    local schema_url = 'https://raw.githubusercontent.com/' .. sources.crds.schemas_catalog .. '/' .. sources.crds.branch .. '/' .. selection
+
+    local source = nil
+    if string.find(selection, sources.native.select_prefix) == 1 then
+      source = sources.native
+    elseif string.find(selection, sources.crds.select_prefix) == 1 then
+      source = sources.crds
+    else
+      vim.notify('Unknown schema source: ' .. selection, vim.log.levels.ERROR)
+      return
+    end
+
+    local selection_path = selection:gsub('^' .. source.select_prefix, '')
+
+    local schema_url = 'https://raw.githubusercontent.com/' .. source.schemas_catalog .. '/' .. source.branch .. '/' .. selection_path
     local schema_modeline = '# yaml-language-server: $schema=' .. schema_url
     vim.api.nvim_buf_set_lines(0, 0, 0, false, {
       schema_modeline,
