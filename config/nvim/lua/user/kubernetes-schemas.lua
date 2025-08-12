@@ -1,7 +1,9 @@
--- Script to fetch Kubernetes schemas and append a yaml schema modeline
--- It will query
--- https://github.com/yannh/kubernetes-json-schema - for native K8s objects
--- https://github.com/datreeio/CRDs-catalog - for CRDS
+--[[
+  This script it SLOW
+  It is pulling a LOT from the the native catalatog specifically
+  We should limit which path it pulls from
+  We should also look at making the queries async
+]]
 
 local curl = require 'plenary.curl'
 
