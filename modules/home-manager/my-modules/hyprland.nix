@@ -30,6 +30,7 @@ in {
       playerctl
       grim # screenshot
       slurp # select area for screenshot
+      cliphist # clipboard history
     ];
 
     home.pointerCursor = {
@@ -62,6 +63,8 @@ in {
             "$mod ALT, K, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
             "$mod, Q, exec, hyprctl-conditional-quit"
+
+            "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
             "$window-mod, H, movewindow, l"
             "$window-mod, L, movewindow, r"
@@ -118,6 +121,8 @@ in {
         exec-once = [
           "$terminal"
           "nm-applet"
+          "wl-paste --type text --watch cliphist store # Stores only text data"
+          "wl-paste --type image --watch cliphist store # Stores only text data"
         ];
         input = {
           kb_options = "ctrl:nocaps";
