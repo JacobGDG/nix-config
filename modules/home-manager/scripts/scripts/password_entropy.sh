@@ -59,7 +59,7 @@ fi
 if [[ "$password" =~ [+=/] ]]; then
   charsetLength=$((charsetLength + 3))
 fi
-# SHIFT + numbers
+# SHIFT + numrow
 if [[ "$password" =~ [!\"£$%^\&*()_] ]]; then
   charsetLength=$((charsetLength + 11))
 fi
@@ -72,5 +72,7 @@ fi
 
 characterSetBitEntropy=$(log2 "$charsetLength")
 passwordLength=${#password}
+entropy=$(echo "entropy=$characterSetBitEntropy * $passwordLength; scale=0; entropy/1" | bc -l)
 
-echo "$(echo "$characterSetBitEntropy * $passwordLength" | bc -l)"
+
+echo $entropy

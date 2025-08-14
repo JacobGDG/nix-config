@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: Add an entropy rating to verify the randomness of the generated string.
-# warn on low entropy as in theory /dev/random could return a very low entropy
-# string, but in practice it is unlikely.
-
 # https://owasp.org/www-community/password-special-characters
 owaspCharset='A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~'
 base64Charset="A-Za-z0-9+/="
@@ -79,4 +75,15 @@ fi
 
 log "Using charset: $charset"
 
-LC_ALL=C tr -dc "$charset" </dev/random | head -c $length; echo
+password=$(LC_ALL=C tr -dc "$charset" </dev/random | head -c $length)
+
+entropy="$(password_entropy $password)"
+
+log "Password entropy: $entropy bits"
+
+if [[ $entropy -lt 80 ]]; then
+  echo "WARNING!!! Password entropy is low. Consider using a longer password or a different character set." 1>&2
+fi
+
+log
+echo $password
