@@ -9,8 +9,17 @@
 
 function help() {
 cat << EOF >&2
-  Usage: ${0##*/} [-h] [PASSWORD]
+Usage: ${0##*/} [-h] [PASSWORD]
+Options:"
+  -h              Show this help message"
+  -v              Verbose output"
 EOF
+}
+
+function log() {
+  if [[ $verbose -eq 1 ]]; then
+    echo "$1" 1>&2
+  fi
 }
 
 function error() {
@@ -21,6 +30,26 @@ function error() {
 function log2() {
   echo $1 | awk '{print log($1)/log(2)}'
 }
+
+verbose=0
+
+OPTIND=1
+while getopts hv opt; do
+    case $opt in
+      h)
+        help
+        exit 0
+        ;;
+      v)
+        verbose=1
+        ;;
+      *)
+        help
+        exit 1
+        ;;
+    esac
+done
+shift "$((OPTIND-1))"   # Discard the options and sentinel --
 
 if [[ -p /dev/stdin ]]; then
   stdin="$(cat -)"
@@ -46,29 +75,40 @@ charsetLength=0
 # TODO: replace this with a process of removing characters so we can see what is
 # not accounted for.
 
-if [[ "$password" =~ [a-z] ]]; then
+length=${#password}
+password_calc=$(echo $password | sed 's/[a-z]//g')
+if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 26))
 fi
-if [[ "$password" =~ [A-Z] ]]; then
+length=${#password_calc}
+password_calc=$(echo $password_calc | sed 's/[A-Z]//g')
+if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 26))
 fi
-if [[ "$password" =~ [0-9] ]]; then
+length=${#password_calc}
+password_calc=$(echo $password_calc | sed 's/[0-9]//g')
+if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 10))
 fi
-# base64 symbols
-if [[ "$password" =~ [+=/] ]]; then
+length=${#password_calc}
+password_calc=$(echo $password_calc | sed 's/[+=\/]//g')
+if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 3))
 fi
-# SHIFT + numrow
-if [[ "$password" =~ [!\"£$%^\&*()_] ]]; then
+length=${#password_calc}
+password_calc=$(echo $password_calc | sed 's/[!\"£$%^\&*()_]//g')
+if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 11))
 fi
-# # rest of the common symbols
-# # ,./;'#[]<>?:@~{}
-# if grep -q 'a[,./;'"'"'#\[\]<>?:@~{}]' <<< "$password"; then
-#   echo "sdfasdfasfd"
-#   charsetLength=$((charsetLength + 12))
+# length=${#password_calc}
+# password_calc=$(echo $password_calc | sed 's/[,\-.\/;#\[\]<>?:@~{}]//g')
+# if [[ $length -gt ${#password_calc} ]]; then
+#   charsetLength=$((charsetLength + 11))
 # fi
+
+if [[ ${#password_calc} -gt 0 ]]; then
+  log "Characters not accounted for: $(echo $password_calc | grep -o . | sort -u | tr -d '\n')"
+fi
 
 characterSetBitEntropy=$(log2 "$charsetLength")
 passwordLength=${#password}

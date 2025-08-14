@@ -6,15 +6,15 @@ base64Charset="A-Za-z0-9+/="
 
 function help() {
 cat << EOF >&2
-  Usage: ${0##*/} [-hfs] [LENGTH]"
+Usage: ${0##*/} [-hfs] [LENGTH]"
 
-  Generate a random string of LENGTH characters.
+Generate a random string of LENGTH characters.
 
-  Options:"
-    -h              Show this help message"
-    -f (default)    Including the OWASP recommended characters"
-    -s              Use Simple base(Sixty)4 characters (A-Z, a-z, 0-9, +, /)"
-    -v              Verbose output"
+Options:"
+  -h              Show this help message"
+  -f (default)    Including the OWASP recommended characters"
+  -s              Use Simple base(Sixty)4 characters (A-Z, a-z, 0-9, +, /)"
+  -v              Verbose output"
 EOF
 }
 
@@ -29,7 +29,7 @@ function error() {
   exit 1
 }
 
-vervose=0
+verbose=0
 
 OPTIND=1
 while getopts hfsv opt; do
