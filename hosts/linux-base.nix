@@ -38,6 +38,7 @@
       kitty
       ruby
       bc # cli calculator
+      unzip
     ];
   };
 }
