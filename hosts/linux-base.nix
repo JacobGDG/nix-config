@@ -37,6 +37,7 @@
       unstable.talosctl
       kitty
       ruby
+      bc # cli calculator
     ];
   };
 }

@@ -114,5 +114,4 @@ characterSetBitEntropy=$(log2 "$charsetLength")
 passwordLength=${#password}
 entropy=$(echo "entropy=$characterSetBitEntropy * $passwordLength; scale=0; entropy/1" | bc -l)
 
-
 echo $entropy
