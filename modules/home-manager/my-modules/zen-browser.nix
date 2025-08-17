@@ -21,6 +21,7 @@ in {
         # COMMON
         AutofillAddressEnabled = true;
         AutofillCreditCardEnabled = false;
+        DefaultDownloadDirectory = "\${home}/Downloads";
         DisableAppUpdate = true;
         DisableFeedbackCommands = true;
         DisableFirefoxStudies = true;
@@ -66,6 +67,18 @@ in {
             # "browser.startup.homepage" = "https://duckduckgo.com";
             "browser.search.defaultenginename" = "ddg";
             "browser.search.order.1" = "ddg";
+            "browser.startup.homepage" = "https://nixos.org";
+            "browser.search.region" = "GB";
+            "browser.search.isUS" = false;
+            "distribution.searchplugins.defaultLocale" = "en-GB";
+            "general.useragent.locale" = "en-GB";
+            "browser.bookmarks.showMobileBookmarks" = true;
+            "browser.newtabpage.pinned" = [
+              {
+                title = "DuckDuckGo";
+                url = "https://duckduckgo.com";
+              }
+            ];
 
             "signon.rememberSignons" = false;
             "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -79,6 +92,8 @@ in {
             # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
             # then have Firefox open on some other workspace.
             "widget.disable-workspace-management" = true;
+
+            "zen.welcome-screen.seen" = true; # disable welcome workflow
           };
           search = {
             force = true;
