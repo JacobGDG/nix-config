@@ -91,6 +91,8 @@ in {
             "$mod, H, workspace, e-1"
 
             ", Print, exec, grim -g \"$(slurp)\" && notify-send -a 'Grim' 'Screenshot taken'"
+
+            "$mod, TAB, workspace, previous"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
