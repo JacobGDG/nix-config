@@ -59,6 +59,7 @@
       #battery,
       #clock,
       #cpu,
+      #custom-gpu,
       #custom-power,
       #date,
       #memory,
@@ -120,7 +121,7 @@
           "memory"
           (
             if config.myModules.common.desktop
-            then null
+            then "custom/gpu"
             else "battery"
           )
           "clock"
@@ -177,6 +178,12 @@
           format = " ⏻ ";
           tooltip = false;
           on-click = "wlogout --protocol layer-shell";
+        };
+        "custom/gpu" = {
+          format = " {}% {icon}";
+          exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+          format-icons = "󰢮 ";
+          interval = 1;
         };
         idle_inhibitor = {
           format = "{icon}";
