@@ -57,7 +57,6 @@
       }
 
       #battery,
-      #clock,
       #cpu,
       #custom-gpu,
       #custom-power,
@@ -109,7 +108,9 @@
         layer = "top";
         position = "top";
         spacing = 10;
-        modules-center = [];
+        modules-center = [
+          "clock"
+        ];
         modules-left = [
           "hyprland/workspaces"
           "idle_inhibitor"
@@ -124,7 +125,6 @@
             then "custom/gpu"
             else "battery"
           )
-          "clock"
           "custom/power"
         ];
         battery = {
