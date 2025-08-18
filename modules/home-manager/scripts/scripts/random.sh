@@ -94,7 +94,14 @@ log "Using charset: $charset"
 
 password=$(LC_ALL=C tr -dc "$charset" </dev/random | head -c $length)
 
-entropy="$(password_entropy $password)"
+entropy_command=""
+if [[ $verbose -eq 1 ]]; then
+  entropy_command="password_entropy -v"
+else
+  entropy_command="password_entropy"
+fi
+
+entropy="$($entropy_command $password)"
 
 log "Password entropy: $entropy bits"
 

@@ -107,7 +107,7 @@ fi
 # fi
 
 if [[ ${#password_calc} -gt 0 ]]; then
-  log "Characters not accounted for: $(echo $password_calc | grep -o . | sort -u | tr -d '\n')"
+  log "Characters not accounted for in entropy calculation: $(echo $password_calc | grep -o . | sort -u | tr -d '\n')"
 fi
 
 characterSetBitEntropy=$(log2 "$charsetLength")
