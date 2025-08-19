@@ -60,7 +60,7 @@ worrying about breaking something beyond (my ability to) repair.
 | **System resource monitor** | [Btop][Btop]                      |
 | **File Manager**            | [Neovim][Neovim] + [Dolphin][Dolphin] |
 | **Shell**                   | ZSH + [P10k][P10k]                |
-| **Media Player**            | [vlc][vlc]                        |
+| **Media Player**            | [mpv][mpv]                        |
 | **Text Editor**             | [Neovim][Neovim]                  |
 | **Fonts**                   | [Nerd fonts][Nerd fonts]          |
 | **Image Viewer**            |                                   |
@@ -84,3 +84,4 @@ worrying about breaking something beyond (my ability to) repair.
 [wl-clipboard]: https://github.com/bugaevc/wl-clipboard
 [SDDM]: https://github.com/sddm/sddm
 [Dolphin]: https://github.com/KDE/dolphin
+[mpv]: https://mpv.io/

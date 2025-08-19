@@ -23,6 +23,7 @@
   myModules = {
     hyprland.enable = true;
     zen-browser.enable = true;
+    mpv.enable = true;
   };
 
   home = {
@@ -32,9 +33,7 @@
     packages = with pkgs; [
       devenv
       blender
-      vlc
       rpi-imager
-      unstable.talosctl
       kitty
       ruby
       bc # cli calculator
