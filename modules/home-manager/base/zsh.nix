@@ -5,11 +5,17 @@
 }: {
   programs.zsh = {
     enable = true;
+    autosuggestion.enable = true;
+    defaultKeymap = "viins";
     dotDir = ".config/zsh";
     enableCompletion = true;
-    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history = {
+      append = true;
+      extended = true;
+      findNoDups = true;
+      ignoreSpace = true;
+      share = true;
       size = 10000;
     };
     shellAliases =
@@ -33,14 +39,8 @@
                     source ~/.config/zsh/.p10k.zsh
 
                     bindkey '^R' history-incremental-search-backward
-
-                    setopt appendhistory
-                    setopt sharehistory
-                    setopt hist_ignore_space
-                    setopt hist_ignore_all_dups
-                    setopt hist_save_no_dups
-                    setopt hist_ignore_dups
-                    setopt hist_find_no_dups
+                    bindkey '^H' backward-delete-char
+                    bindkey '^?' backward-delete-char
 
                     if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
                       tmux attach || exec tmux new-session -t home && exit;
