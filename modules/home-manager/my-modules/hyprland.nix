@@ -84,8 +84,6 @@ in {
 
             "$mod, F, fullscreen"
 
-            "ALT, X, togglespecialworkspace"
-
             "$mod, G, workspace, 10" # game
             "$mod, L, workspace, e+1"
             "$mod, H, workspace, e-1"
@@ -93,6 +91,9 @@ in {
             ", Print, exec, grim -g \"$(slurp)\" && notify-send -a 'Grim' 'Screenshot taken'"
 
             "$mod, TAB, workspace, previous"
+
+            "$mod, X, togglespecialworkspace"
+            "$mod SHIFT, X, movetoworkspace, special"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
