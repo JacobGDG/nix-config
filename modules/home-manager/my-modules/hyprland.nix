@@ -163,7 +163,7 @@ in {
           "fullscreen,class:^steam_app\d+$"
 
           "workspace 1, class:^(kitty)$"
-          "workspace 2, class:^(zen-beta|firefox)$"
+          "workspace 2, class:^(firefox)$"
           "workspace 9, class:^(steam)$"
           "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
         ];

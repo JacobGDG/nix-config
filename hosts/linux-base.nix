@@ -22,7 +22,6 @@
 
   myModules = {
     hyprland.enable = true;
-    zen-browser.enable = true;
     mpv.enable = true;
   };
 

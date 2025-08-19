@@ -7,7 +7,6 @@
   imports =
     [
       inputs.nix-colors.homeManagerModules.default
-      inputs.zen-browser.homeModules.beta
       ../modules/home-manager/my-modules
     ]
     ++ map mylib.homeManagerModules [
