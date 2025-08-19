@@ -155,7 +155,7 @@ in {
         windowrulev2 = [
           "idleinhibit fullscreen, class:.*"
 
-          "float,title:^(Volume Control)$"
+          "float,title:^(Volume Control|Friends List|Steam Settings)$"
           "float,class:^(org.kde.dolphin)$"
 
           "fullscreen,class:^steam_app\d+$"
