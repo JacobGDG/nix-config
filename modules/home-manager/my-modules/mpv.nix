@@ -25,6 +25,7 @@ in {
           scripts = with pkgs.mpvScripts; [
             uosc
             sponsorblock
+            mpris
           ];
 
           mpv = pkgs.mpv-unwrapped.override {

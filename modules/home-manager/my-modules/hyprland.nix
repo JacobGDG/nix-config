@@ -119,6 +119,9 @@ in {
         bindl = [
           ", XF86AudioMute, exec, media-control volume_mute"
           ", XF86AudioMicMute, exec, media-control mic_mute"
+          ", F8, exec, media-control play_pause"
+          ", F9, exec, media-control next"
+          ", F7, exec, media-control prev"
         ];
         exec-once = [
           "$terminal"
