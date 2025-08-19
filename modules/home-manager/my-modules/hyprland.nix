@@ -59,9 +59,10 @@ in {
         "$launcher" = "wofi --show drun";
         bind =
           [
-            "$mod ALT, F, exec, $browser"
-            "$mod ALT, K, exec, $terminal"
+            "$mod, B, exec, $browser"
+            "$mod, T, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
+
             "$mod, Q, exec, hyprctl-conditional-quit"
 
             "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
