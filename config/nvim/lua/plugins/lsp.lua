@@ -83,7 +83,7 @@ return {
       { "gr",        vim.lsp.buf.references,      desc = "LSP References" },
       { "<leader>e", vim.diagnostic.open_float,   desc = "Show Diagnostic" },
       { "Q",         vim.diagnostic.setloclist,   desc = "Open Diagnostic Loclist" },
-      { "<C-n>",     vim.diagnostic.goto_next,    desc = "Goto Next Diagnostic" },
+      -- { "<C-n>",     vim.diagnostic.goto_next,    desc = "Goto Next Diagnostic" },
       { "<C-b>",     vim.diagnostic.goto_prev,    desc = "Goto Next Diagnostic" },
       { "<leader>r", vim.lsp.buf.rename,          desc = "Rename" },
       { "<leader>a", vim.lsp.buf.code_action,     desc = "Goto Next Diagnostic", mode = { "n", "v" } },
