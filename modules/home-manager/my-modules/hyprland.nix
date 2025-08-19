@@ -84,6 +84,7 @@ in {
             "$mod, J, movefocus, d"
 
             "$mod, F, fullscreen"
+            # "$mod, R, fullscreenstate, 0 2" # use this for firefox app mode
 
             "$mod, G, workspace, 10" # game
             "$mod, L, workspace, e+1"
