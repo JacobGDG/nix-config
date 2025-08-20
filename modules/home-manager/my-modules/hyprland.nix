@@ -76,7 +76,6 @@ in {
             "$window-mod, K, movewindow, u"
             "$window-mod, J, movewindow, d"
 
-            # Resize window
             "$window-mod, Left, resizeactive, -240 0"
             "$window-mod, Right, resizeactive, 180 0"
             "$window-mod, Up, resizeactive, 0 -240"
@@ -88,7 +87,6 @@ in {
             "$mod, J, movefocus, d"
 
             "$mod, F, fullscreen"
-            "$mod, R, fullscreenstate, 0 2" # use this for firefox app mode
 
             "$mod, G, workspace, 10" # game
 
@@ -97,7 +95,7 @@ in {
             "$mod, TAB, workspace, previous"
 
             "$mod, X, togglespecialworkspace"
-            "$mod SHIFT, X, movetoworkspace, special"
+            "$window-mod, X, movetoworkspace, special"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
