@@ -31,6 +31,7 @@ in {
       grim # screenshot
       slurp # select area for screenshot
       cliphist # clipboard history
+      ungoogled-chromium # for webapps
     ];
 
     home.pointerCursor = {
@@ -56,12 +57,14 @@ in {
         "$window-mod" = "$mod SHIFT";
         "$terminal" = "kitty";
         "$browser" = "firefox";
+        "$webapp" = "uwsm app -- chromium --new-window --ozone-platform=wayland --app";
         "$launcher" = "wofi --show drun";
         bind =
           [
             "$mod, B, exec, $browser"
             "$mod, T, exec, $terminal"
             "$mod, SPACE, exec, $launcher"
+            "$mod, A, exec, $webapp=https://chatgpt.com"
 
             "$mod, Q, exec, hyprctl-conditional-quit"
 
@@ -84,11 +87,9 @@ in {
             "$mod, J, movefocus, d"
 
             "$mod, F, fullscreen"
-            # "$mod, R, fullscreenstate, 0 2" # use this for firefox app mode
+            "$mod, R, fullscreenstate, 0 2" # use this for firefox app mode
 
             "$mod, G, workspace, 10" # game
-            "$mod, L, workspace, e+1"
-            "$mod, H, workspace, e-1"
 
             ", Print, exec, grim -g \"$(slurp)\" && notify-send -a 'Grim' 'Screenshot taken'"
 
@@ -165,6 +166,7 @@ in {
 
           "workspace 1, class:^(kitty)$"
           "workspace 2, class:^(firefox)$"
+          "workspace 3, class:^(chrome-chatgpt.com__-Default)$"
           "workspace 9, class:^(steam)$"
           "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
         ];
