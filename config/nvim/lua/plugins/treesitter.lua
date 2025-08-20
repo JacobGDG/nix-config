@@ -13,6 +13,7 @@ return {
         },
         with_sync = true,
         ensure_installed = {
+          "nix",
           "bash",
           "diff",
           "hcl",
