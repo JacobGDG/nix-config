@@ -46,6 +46,10 @@ in {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
           installation_mode = "force_installed";
         };
+        "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" = {
+          install_url = " https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
+          installation_mode = "force_installed";
+        };
       };
     };
   };
