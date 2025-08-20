@@ -61,10 +61,11 @@ in {
         "$launcher" = "wofi --show drun";
         bind =
           [
+            "$mod, SPACE, exec, $launcher"
             "$mod, B, exec, $browser"
             "$mod, T, exec, $terminal"
-            "$mod, SPACE, exec, $launcher"
             "$mod, A, exec, $webapp=https://chatgpt.com"
+            "$mod, W, exec, $webapp=https://web.whatsapp.com/"
 
             "$mod, Q, exec, hyprctl-conditional-quit"
 
@@ -166,7 +167,7 @@ in {
 
           "workspace 1, class:^(kitty)$"
           "workspace 2, class:^(firefox)$"
-          "workspace 3, class:^(chrome-chatgpt.com__-Default)$"
+          "workspace 3, class:^(chrome-.+__-Default)$"
           "workspace 9, class:^(steam)$"
           "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
         ];
