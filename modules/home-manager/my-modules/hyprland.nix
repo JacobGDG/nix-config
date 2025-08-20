@@ -64,6 +64,7 @@ in {
             "$mod, SPACE, exec, $launcher"
             "$mod, B, exec, $browser"
             "$mod, T, exec, $terminal"
+            "$mod, S, exec, steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
 
