@@ -30,22 +30,22 @@
       };
 
     initContent = let
-      zshConfigEarlyInit = lib.mkBefore "
-                    if [[ -r \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
-                      source \"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\"
-                    fi
-                  ";
-      zshConfig = lib.mkOrder 1000 "
-                    source ~/.config/zsh/.p10k.zsh
+      zshConfigEarlyInit = lib.mkBefore ''
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '';
+      zshConfig = lib.mkOrder 1000 ''
+        source ~/.config/zsh/.p10k.zsh
 
-                    bindkey '^R' history-incremental-search-backward
-                    bindkey '^H' backward-delete-char
-                    bindkey '^?' backward-delete-char
+        bindkey '^R' history-incremental-search-backward
+        bindkey '^H' backward-delete-char
+        bindkey '^?' backward-delete-char
 
-                    if [ -z \"$TMUX\" ] && [ \"$TERM\" = \"xterm-kitty\" ]; then
-                      tmux attach || exec tmux new-session -t home && exit;
-                    fi
-                  ";
+        if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
+          tmux attach || exec tmux new-session -t home && exit;
+        fi
+      '';
     in
       lib.mkMerge [zshConfigEarlyInit zshConfig];
 
