@@ -11,7 +11,9 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 
-vim.opt.scrolloff = 3
+vim.opt.scrolloff = 8
+
+vim.opt.colorcolumn = "80"
 
 vim.opt.hidden = true
 
