@@ -1,12 +1,5 @@
 return {
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require('gitsigns').setup()
-    end
-  },
-
-  {
     'rhysd/committia.vim',
     event = 'BufReadPre COMMIT_EDITMSG',
     init = function()
