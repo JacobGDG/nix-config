@@ -88,7 +88,7 @@ return {
       { "<leader>r", vim.lsp.buf.rename,          desc = "Rename" },
       { "<leader>a", vim.lsp.buf.code_action,     desc = "Goto Next Diagnostic", mode = { "n", "v" } },
 
-      { "<leader>y", function() require('user.kubernetes-schemas').init() end, mode = { "n" }, desc = "Set yamlls comment" },
+      { "<leader>y", function() require('scripts.kubernetes-schemas').init() end, mode = { "n" }, desc = "Set yamlls comment" },
     },
   },
 
