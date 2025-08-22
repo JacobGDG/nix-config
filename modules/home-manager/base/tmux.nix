@@ -65,6 +65,9 @@
       unbind h
       bind-key h split-window -c "#{pane_current_path}"
 
+      unbind o
+      bind-key o run-shell "open-last-url"
+
       # source tmus
       bind-key r source ~/.config/tmux/tmux.conf
 
