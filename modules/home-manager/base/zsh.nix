@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   programs.zsh = {
@@ -45,6 +46,8 @@
         if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
           tmux attach || exec tmux new-session -t home && exit;
         fi
+
+        export PATH="${config.home.profileDirectory}/bin:$PATH"
       '';
     in
       lib.mkMerge [zshConfigEarlyInit zshConfig];

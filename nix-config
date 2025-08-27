@@ -36,7 +36,7 @@ function run_command {
     ;;
     update)
       echo "Updating flake..."
-      nix flake update
+      nix flake update --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
     ;;
     check)
       echo "Checking flake..."
