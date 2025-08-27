@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 vim.opt.showmatch  = true
 vim.opt.ignorecase = true
 vim.opt.smartcase  = true
