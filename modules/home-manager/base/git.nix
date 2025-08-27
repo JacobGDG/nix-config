@@ -17,8 +17,7 @@
     };
 
     aliases = {
-      # if branch not given then run ls
-      co = "!git-checkout"; # ideally i could use tab complete like git checkout
+      co = "checkout";
       cm = "commit --verbose";
 
       rbm = "!git pull origin $(git default-branch) --rebase";
