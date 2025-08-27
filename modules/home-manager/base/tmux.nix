@@ -12,6 +12,7 @@
     prefix = "C-a";
     escapeTime = 10;
     historyLimit = 50000;
+    focusEvents = true;
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
     plugins = with pkgs; [
@@ -24,12 +25,6 @@
 
       # Undercurl
       set -g default-terminal "tmux-256color"
-
-      set -sg escape-time 10
-      set -g focus-events on
-
-      # Remove Vim mode delays
-      set -g focus-events on
 
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
