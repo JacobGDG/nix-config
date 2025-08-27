@@ -105,9 +105,15 @@ return {
     },
     config = function()
       local cmp = require('cmp')
-      local luasnip = require 'luasnip'
+      local luasnip = require('luasnip')
 
       cmp.setup({
+        enabled = function()
+          local disabled = false
+          disabled = disabled or vim.bo.filetype == 'markdown'
+          disabled = disabled or require('cmp.config.context').in_treesitter_capture('comment')
+          return not disabled
+        end,
         map_complete = true;
         sources = {
           { name = "copilot"},
