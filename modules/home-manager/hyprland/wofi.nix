@@ -19,6 +19,20 @@
         executable = true;
       };
     })
+    (pkgs.writeShellApplication {
+      name = "wofi-bookmarks";
+
+      runtimeInputs = with pkgs; [
+        ripgrep
+        wofi
+      ];
+
+      text = ''
+        #!/usr/bin/env bash
+
+        awk '{print $2}' < ~/.mozilla/firefox/default/bookmarks.html  | rg -o 'https?://[^"]+' |  wofi -p "Bookmarks: " --show dmenu -i | xargs -- xdg-open
+      '';
+    })
     pkgs.xdg-terminal-exec # Opening terminal apps from wofi
   ];
 
@@ -31,6 +45,14 @@
       exec = "${pkgs.wofi-emoji}/bin/wofi-emoji";
       terminal = false;
     };
+    # bookmarks = {
+    #   name = "Bookmarks";
+    #   genericName = "Bookmarks";
+    #   comment = "Firefox Bookmarks";
+    #   icon = "📑";
+    #   exec = "${pkgs.wofi-bookmarks}/bin/wofi-bookmarks";
+    #   terminal = false;
+    # };
   };
 
   programs.wofi = {
