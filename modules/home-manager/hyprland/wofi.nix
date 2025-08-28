@@ -2,37 +2,38 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  wofiBookmarks = pkgs.writeShellApplication {
+    name = "wofi-bookmarks";
+
+    runtimeInputs = with pkgs; [
+      ripgrep
+      wofi
+    ];
+
+    text = ''
+      #!/usr/bin/env bash
+
+      awk '{print $2}' < ~/.mozilla/firefox/default/bookmarks.html  | rg -o 'https?://[^"]+' |  wofi -p "Bookmarks: " --show dmenu -i | xargs -- xdg-open
+    '';
+  };
+  wofiEmoji = pkgs.writeShellApplication {
+    name = "wofi-emoji";
+
+    runtimeInputs = with pkgs; [
+      wofi
+      wtype
+      wl-clipboard
+    ];
+
+    text = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/Zeioth/wofi-emoji/7fe4c6316cb69ff7d8cf1b98ece4695d42785e2a/wofi-emoji";
+      hash = "sha256-zv3hDGSthPvajwFtb75JjorS3GCXaxeKg4SZbP57LAU=";
+      executable = true;
+    };
+  };
+in {
   home.packages = [
-    (pkgs.writeShellApplication {
-      name = "wofi-emoji";
-
-      runtimeInputs = with pkgs; [
-        wofi
-        wtype
-        wl-clipboard
-      ];
-
-      text = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/Zeioth/wofi-emoji/7fe4c6316cb69ff7d8cf1b98ece4695d42785e2a/wofi-emoji";
-        hash = "sha256-zv3hDGSthPvajwFtb75JjorS3GCXaxeKg4SZbP57LAU=";
-        executable = true;
-      };
-    })
-    (pkgs.writeShellApplication {
-      name = "wofi-bookmarks";
-
-      runtimeInputs = with pkgs; [
-        ripgrep
-        wofi
-      ];
-
-      text = ''
-        #!/usr/bin/env bash
-
-        awk '{print $2}' < ~/.mozilla/firefox/default/bookmarks.html  | rg -o 'https?://[^"]+' |  wofi -p "Bookmarks: " --show dmenu -i | xargs -- xdg-open
-      '';
-    })
     pkgs.xdg-terminal-exec # Opening terminal apps from wofi
   ];
 
@@ -42,17 +43,17 @@
       genericName = "Emoji";
       comment = "Emoji";
       icon = "👋";
-      exec = "${pkgs.wofi-emoji}/bin/wofi-emoji";
+      exec = "${wofiEmoji}/bin/wofi-emoji";
       terminal = false;
     };
-    # bookmarks = {
-    #   name = "Bookmarks";
-    #   genericName = "Bookmarks";
-    #   comment = "Firefox Bookmarks";
-    #   icon = "📑";
-    #   exec = "${pkgs.wofi-bookmarks}/bin/wofi-bookmarks";
-    #   terminal = false;
-    # };
+    bookmarks = {
+      name = "Bookmarks";
+      genericName = "Bookmarks";
+      comment = "Firefox Bookmarks";
+      icon = "📑";
+      exec = "${wofiBookmarks}/bin/wofi-bookmarks";
+      terminal = false;
+    };
   };
 
   programs.wofi = {
