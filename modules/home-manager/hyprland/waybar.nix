@@ -150,11 +150,12 @@
         network = {
           interval = 1;
           tooltip = false;
-          format-alt = " {ifname}: {ipaddr}/{cidr}";
+          # format-alt = " {ifname}: {ipaddr}/{cidr}";
           format-disconnected = "Disconnected ⚠";
           format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
           format-linked = " {ifname} (No IP) ";
           format-wifi = " {essid} ({signalStrength}%)  ";
+          on-click = "networkmanager_dmenu";
         };
         pulseaudio = {
           format = " {volume}% {icon} | {format_source}";

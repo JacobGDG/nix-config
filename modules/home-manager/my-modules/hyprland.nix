@@ -23,7 +23,7 @@ in {
       brightnessctl
       libnotify # notify-send
       networkmanager
-      networkmanagerapplet
+      networkmanager_dmenu
       pavucontrol
       pulseaudio
       kdePackages.dolphin
