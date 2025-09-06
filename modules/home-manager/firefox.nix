@@ -26,6 +26,7 @@
           "browser.search.order.1" = "ddg";
           "browser.startup.homepage" = "https://duckduckgo.com";
           "mousewheel.min_line_scroll_amount" = 50;
+          "sidebar.verticalTabs" = true;
           "signon.rememberSignons" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 1;
 

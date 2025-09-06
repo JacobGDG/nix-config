@@ -16,10 +16,13 @@ in {
     enable = true;
 
     policies = {
-      DisableTelemetry = true;
+      AutofillAddressEnabled = false;
+      AutofillCreditCardEnabled = false;
       DisableFirefoxStudies = true;
-      DontCheckDefaultBrowser = true;
       DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      OfferToSaveLogins = false;
       SearchBar = "unified";
 
       Preferences = {

@@ -160,6 +160,7 @@ in {
           "idleinhibit fullscreen, class:.*"
 
           "float,title:^(Volume Control|Friends List|Steam Settings)$"
+          "float,title:^(Extension.*Mozilla Firefox)$"
           "float,class:^(org.kde.dolphin)$"
 
           "fullscreen,class:^steam_app\d+$"
