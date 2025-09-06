@@ -53,24 +53,25 @@ in {
       };
 
       settings = {
+        "$app" = "uwsm app --";
         "$mod" = "SUPER";
         "$window-mod" = "$mod SHIFT";
-        "$terminal" = "kitty";
-        "$browser" = "firefox";
-        "$webapp" = "uwsm app -- chromium --new-window --ozone-platform=wayland --app";
-        "$launcher" = "wofi --show drun";
+        "$terminal" = "$app kitty";
+        "$browser" = "$app firefox";
+        "$webapp" = "$app chromium --new-window --ozone-platform=wayland --app";
+        "$launcher" = "$app wofi --show drun";
         bind =
           [
             "$mod, SPACE, exec, $launcher"
             "$mod, B, exec, $browser"
             "$mod, T, exec, $terminal"
-            "$mod, S, exec, steam"
+            "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
 
             "$mod, Q, exec, hyprctl-conditional-quit"
 
-            "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+            "$mod, V, exec, cliphist list | $app wofi --dmenu | cliphist decode | wl-copy"
 
             "$window-mod, H, movewindow, l"
             "$window-mod, L, movewindow, r"
