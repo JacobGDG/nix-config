@@ -9,7 +9,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     agenix = {
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
@@ -37,10 +40,10 @@
     mysecrets,
     wallpapers,
     prompts,
-    nix-colors,
     mac-app-util,
     nixpkgs,
     nixpkgs-unstable,
+    stylix,
     self,
     ...
   } @ inputs: let

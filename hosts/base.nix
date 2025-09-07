@@ -6,7 +6,7 @@
 }: {
   imports =
     [
-      inputs.nix-colors.homeManagerModules.default
+      inputs.stylix.homeModules.stylix
       ../modules/home-manager/my-modules
     ]
     ++ map mylib.homeManagerModules [
@@ -14,7 +14,6 @@
       "scripts"
     ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
   fonts.fontconfig.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -24,6 +23,16 @@
   };
 
   news.display = "silent";
+
+  # https://nix-community.github.io/stylix/
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    image = "${inputs.wallpapers}/nature/haystacks.jpg";
+    targets = {
+      firefox.profileNames = ["default"];
+    };
+  };
 
   home = {
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

@@ -101,8 +101,8 @@ in {
       }
 
       #window {
-         background-color: #${config.colorScheme.palette.base00};
-         color: #${config.colorScheme.palette.base05};
+         background-color: #${config.lib.stylix.colors.base00};
+         color: #${config.lib.stylix.colors.base05};
          border-radius: 5px;
        }
        #outer-box {
@@ -110,9 +110,9 @@ in {
        }
 
        #input {
-         background-color: #${config.colorScheme.palette.base01};
-         border: 0px solid #${config.colorScheme.palette.base0D};
-         color: #${config.colorScheme.palette.base05};
+         background-color: #${config.lib.stylix.colors.base01};
+         border: 0px solid #${config.lib.stylix.colors.base0D};
+         color: #${config.lib.stylix.colors.base05};
          padding: 8px 12px;
        }
 
@@ -127,11 +127,11 @@ in {
        }
 
        #text {
-         color: #${config.colorScheme.palette.base05};
+         color: #${config.lib.stylix.colors.base05};
        }
 
        #text:selected {
-         color: #${config.colorScheme.palette.base05};
+         color: #${config.lib.stylix.colors.base05};
        }
 
        #entry {
@@ -139,8 +139,8 @@ in {
        }
 
        #entry:selected {
-         background-color: #${config.colorScheme.palette.base0D};
-         color: #${config.colorScheme.palette.base05};
+         background-color: #${config.lib.stylix.colors.base0D};
+         color: #${config.lib.stylix.colors.base05};
        }
 
        #unselected {}
