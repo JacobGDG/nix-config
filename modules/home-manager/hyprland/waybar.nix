@@ -19,20 +19,20 @@
       }
 
       window#waybar {
-        background: #${config.colorScheme.palette.base00};
-        color: #${config.colorScheme.palette.base05};
+        background: #${config.lib.stylix.colors.base00};
+        color: #${config.lib.stylix.colors.base05};
       }
 
       tooltip {
-        background: #${config.colorScheme.palette.base00};
+        background: #${config.lib.stylix.colors.base00};
         border-radius: 10px;
         border-width: 2px;
         border-style: solid;
-        border-color: #${config.colorScheme.palette.base01};
+        border-color: #${config.lib.stylix.colors.base01};
       }
       #workspaces button {
         padding: 0 0.6em;
-        color: #${config.colorScheme.palette.base05};
+        color: #${config.lib.stylix.colors.base05};
         border-radius: 6px;
         margin-right: 2px;
         margin-left: 2px;
@@ -42,18 +42,18 @@
 
       #workspaces button:hover,
       #workspaces button.active {
-        color: #${config.colorScheme.palette.base05};
-        background: #${config.colorScheme.palette.base0D};
+        color: #${config.lib.stylix.colors.base05};
+        background: #${config.lib.stylix.colors.base0D};
       }
 
       #workspaces button.focused {
-        color: #${config.colorScheme.palette.base05};
-        background: #${config.colorScheme.palette.base01};
+        color: #${config.lib.stylix.colors.base05};
+        background: #${config.lib.stylix.colors.base01};
       }
 
       #workspaces button.urgent {
-        color: #${config.colorScheme.palette.base00};
-        background: #${config.colorScheme.palette.base08};
+        color: #${config.lib.stylix.colors.base00};
+        background: #${config.lib.stylix.colors.base08};
       }
 
       #battery,
@@ -65,8 +65,8 @@
       #network,
       #pulseaudio,
       #workspaces {
-        color: #${config.colorScheme.palette.base05};
-        background: #${config.colorScheme.palette.base01};
+        color: #${config.lib.stylix.colors.base05};
+        background: #${config.lib.stylix.colors.base01};
       }
 
       #pulseaudio {
@@ -78,27 +78,27 @@
       }
 
       #custom-power {
-        color: #${config.colorScheme.palette.base08};
+        color: #${config.lib.stylix.colors.base08};
       }
 
       #cpu.critical,
       #memory.critical,
       #battery.critical,
       #battery.urgent {
-          background-color: #${config.colorScheme.palette.base02};
-          border: 2px solid #${config.colorScheme.palette.base08};
-          color: #${config.colorScheme.palette.base08};
+          background-color: #${config.lib.stylix.colors.base02};
+          border: 2px solid #${config.lib.stylix.colors.base08};
+          color: #${config.lib.stylix.colors.base08};
       }
 
       #battery.warning {
-        border: 2px solid #${config.colorScheme.palette.base09};
-        color: #${config.colorScheme.palette.base09};
+        border: 2px solid #${config.lib.stylix.colors.base09};
+        color: #${config.lib.stylix.colors.base09};
       }
 
       #battery.charging.critical,
       #battery.charging.warning {
-        border: 2px solid #${config.colorScheme.palette.base0B};
-        color: #${config.colorScheme.palette.base0B};
+        border: 2px solid #${config.lib.stylix.colors.base0B};
+        color: #${config.lib.stylix.colors.base0B};
       }
     '';
 

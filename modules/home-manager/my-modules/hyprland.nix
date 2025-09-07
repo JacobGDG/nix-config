@@ -154,8 +154,8 @@ in {
         general = {
           gaps_out = 5;
           gaps_in = 3;
-          "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
-          "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
+          # "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
+          # "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
         };
         windowrulev2 = [
           "idleinhibit fullscreen, class:.*"
