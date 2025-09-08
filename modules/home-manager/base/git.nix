@@ -13,6 +13,7 @@
 
       core = {
         editor = "nvim";
+        hooksPath = "~/.config/git/global-hooks";
       };
     };
 
@@ -28,7 +29,7 @@
 
       url = "config --get remote.origin.url";
 
-      # checkout deafult branch
+      # checkout default branch
       home = "!f(){ git checkout $(git default-branch) $@;}; f";
 
       # oops
@@ -50,5 +51,10 @@
       # print aliases
       alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /";
     };
+  };
+
+  xdg.configFile."git/global-hooks/pre-commit" = {
+    text = builtins.readFile ./git/global-hooks/pre-commit.sh;
+    executable = true;
   };
 }
