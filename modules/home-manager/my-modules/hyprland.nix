@@ -130,7 +130,6 @@ in {
         ];
         exec-once = [
           "$terminal"
-          "nm-applet"
           "wl-paste --type text --watch cliphist store # Stores only text data"
           "wl-paste --type image --watch cliphist store # Stores only text data"
         ];
@@ -166,10 +165,20 @@ in {
 
           "fullscreen,class:^steam_app\d+$"
 
+          # Coding
           "workspace 1, class:^(kitty)$"
+
+          # Browsing
           "workspace 2, class:^(firefox)$"
+
+          # AI
           "workspace 3, class:^(chrome-.+__-Default)$"
+
+          # Game Launcher
           "workspace 9, class:^(steam)$"
+          "workspace 9, title:^(Steam)$"
+
+          # Game (in theory)
           "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
         ];
         ecosystem = {

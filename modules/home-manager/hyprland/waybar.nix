@@ -150,7 +150,7 @@
         network = {
           interval = 1;
           tooltip = false;
-          # format-alt = " {ifname}: {ipaddr}/{cidr}";
+          format-disabled = "Disabled ⚠";
           format-disconnected = "Disconnected ⚠";
           format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
           format-linked = " {ifname} (No IP) ";
