@@ -16,6 +16,7 @@
       "wireguard.nix"
       "firefox.nix"
       "udiskie.nix"
+      "dconf.nix"
     ]);
 
   systemd.user.startServices = "sd-switch";
