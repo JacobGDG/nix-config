@@ -5,8 +5,14 @@
   ...
 }: let
   cfg = config.myModules.tmux;
+
+  other_pane = pkgs.writeScriptBin "tmux-other-pane" (builtins.readFile ./tmux-other-pane.sh);
 in {
   config = lib.mkIf cfg.enable {
+    home.packages = [
+      other_pane
+    ];
+
     programs.tmux = {
       enable = true;
       keyMode = "vi";
