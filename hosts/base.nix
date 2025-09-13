@@ -21,6 +21,28 @@
 
   myModules = {
     llm.enable = true;
+    tmux = {
+      enable = true;
+      sesh = {
+        startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
+        sessions = [
+          {
+            name = "NixConfig 🔧";
+            path = "~/src/nix-config/";
+            startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
+          }
+          {
+            name = "Spotify 🎵";
+            startup_command = "tmuxifier load-window music && tmux move-window -t 0 && tmux kill-window -t 1";
+          }
+          {
+            name = "Tomato 🍅";
+            path = "~";
+            startup_command = "tomato";
+          }
+        ];
+      };
+    };
   };
 
   news.display = "silent";
