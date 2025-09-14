@@ -17,6 +17,7 @@
       "firefox.nix"
       "udiskie.nix"
       "dconf.nix"
+      "cava.nix"
     ]);
 
   systemd.user.startServices = "sd-switch";
@@ -24,6 +25,16 @@
   myModules = {
     hyprland.enable = true;
     mpv.enable = true;
+    tmux = {
+      sesh = {
+        sessions = [
+          {
+            name = "Spotify 🎵";
+            startup_command = "tmuxifier load-window music && tmux move-window -t 0 && tmux kill-window -t 1";
+          }
+        ];
+      };
+    };
   };
 
   home = {
