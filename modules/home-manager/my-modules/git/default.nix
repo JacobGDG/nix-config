@@ -13,7 +13,7 @@
     value = ''
       ${builtins.readFile (hooksDir + "/${name}")}
 
-      # Run local pre-commit hook if exists
+      # Run local hook if exists
       if [ -e ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} ]; then
         ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} "$@"
       else
