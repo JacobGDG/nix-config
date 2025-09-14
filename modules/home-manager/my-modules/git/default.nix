@@ -10,7 +10,16 @@
   hookFiles = builtins.attrNames (builtins.readDir hooksDir);
   mkScript = name: {
     name = builtins.replaceStrings [".sh"] [""] name;
-    value = builtins.readFile (hooksDir + "/${name}");
+    value = ''
+      ${builtins.readFile (hooksDir + "/${name}")}
+
+      # Run local pre-commit hook if exists
+      if [ -e ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} ]; then
+        ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} "$@"
+      else
+        exit 0
+      fi
+    '';
   };
   hookSet = builtins.listToAttrs (map mkScript hookFiles);
 

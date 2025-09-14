@@ -16,10 +16,3 @@ for file in $FILES; do
     exit 1
   fi
 done
-
-# Run local pre-commit hook if exists
-if [ -e ./.git/hooks/pre-commit ]; then
-  ./.git/hooks/pre-commit "$@"
-else
-  exit 0
-fi
