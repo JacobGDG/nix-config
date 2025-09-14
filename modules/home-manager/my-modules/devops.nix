@@ -8,30 +8,10 @@
 in {
   options = {
     myModules.devops = {
-      enable = lib.mkOption {
-        default = false;
-        description = ''
-          Whether to enable the many devops tools used professionally
-        '';
-      };
-      terraform = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable Terraform tools
-        '';
-      };
-      kubernetes = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable Kubernetes tools
-        '';
-      };
-      aws = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable aws tools
-        '';
-      };
+      enable = lib.mkEnableOption "devops";
+      terraform.enable = lib.mkEnableOption "terraform";
+      kubernetes.enable = lib.mkEnableOption "kubernetes";
+      aws.enable = lib.mkEnableOption "aws";
     };
   };
 
@@ -40,14 +20,14 @@ in {
       [
         step-cli # certificate information
       ]
-      ++ lib.optionals cfg.terraform (
+      ++ lib.optionals cfg.terraform.enable (
         with pkgs; [
           tenv # tofu version manager
           tflint
           checkov
         ]
       )
-      ++ lib.optionals cfg.kubernetes (
+      ++ lib.optionals cfg.kubernetes.enable (
         with pkgs; [
           kubectl
           k9s
@@ -55,13 +35,13 @@ in {
           kustomize
         ]
       )
-      ++ lib.optionals cfg.aws (
+      ++ lib.optionals cfg.aws.enable (
         with pkgs; [
           aws-sso-util
         ]
       );
 
-    programs.zsh.shellAliases = lib.mkIf cfg.kubernetes {
+    programs.zsh.shellAliases = lib.mkIf cfg.kubernetes.enable {
       "k" = "kubectl";
       "kns" = "kubens";
       "kctx" = "kubectx";

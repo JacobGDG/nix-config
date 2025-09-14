@@ -9,12 +9,7 @@
 in {
   options = {
     myModules.nvim = {
-      enable = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable
-        '';
-      };
+      enable = lib.mkEnableOption "neovim";
     };
   };
 

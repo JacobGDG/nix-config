@@ -20,10 +20,14 @@
   nixpkgs.config.allowUnfree = true;
 
   myModules = {
+    git.enable = true;
     llm.enable = true;
+    nvim.enable = true;
     tmux = {
       enable = true;
+      tmuxifier.enable = true;
       sesh = {
+        enable = true;
         startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
         sessions = [
           {

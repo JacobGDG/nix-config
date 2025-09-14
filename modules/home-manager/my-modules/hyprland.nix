@@ -9,12 +9,7 @@
 in {
   options = {
     myModules.hyprland = {
-      enable = lib.mkOption {
-        default = false;
-        description = ''
-          Whether to enable the hyprland module and all it's dependancies
-        '';
-      };
+      enable = lib.mkEnableOption "hyprland";
     };
   };
 

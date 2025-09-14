@@ -9,7 +9,12 @@
   ];
 
   myModules = {
-    devops.enable = true;
+    devops = {
+      enable = true;
+      terraform.enable = true;
+      kubernetes.enable = true;
+      aws.enable = true;
+    };
   };
 
   home = {

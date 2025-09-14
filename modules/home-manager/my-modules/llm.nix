@@ -8,12 +8,7 @@
 in {
   options = {
     myModules.llm = {
-      enable = lib.mkOption {
-        default = false;
-        description = ''
-          whether to enable
-        '';
-      };
+      enable = lib.mkEnableOption "llm";
     };
   };
 

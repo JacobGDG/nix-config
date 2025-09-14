@@ -35,12 +35,7 @@
 in {
   options = {
     myModules.git = {
-      enable = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable
-        '';
-      };
+      enable = lib.mkEnableOption "git";
     };
   };
 

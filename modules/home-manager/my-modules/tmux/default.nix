@@ -5,19 +5,9 @@
 }: {
   options = {
     myModules.tmux = {
-      enable = lib.mkOption {
-        default = true;
-        description = ''
-          whether to enable tmux
-        '';
-      };
+      enable = lib.mkEnableOption "tmux";
       sesh = {
-        enable = lib.mkOption {
-          default = true;
-          description = ''
-            whether enable Sesh
-          '';
-        };
+        enable = lib.mkEnableOption "sesh";
         startup_command = lib.mkOption {
           type = lib.types.str;
           description = "Default startup command for new sessions";
@@ -44,14 +34,7 @@
           description = "List of sesh sessions to create";
         };
       };
-      tmuxifier = {
-        enable = lib.mkOption {
-          default = true;
-          description = ''
-            whether to enable tmuxifier
-          '';
-        };
-      };
+      tmuxifier.enable = lib.mkEnableOption "tmuxifier";
     };
   };
 
