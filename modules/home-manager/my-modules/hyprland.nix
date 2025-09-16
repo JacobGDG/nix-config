@@ -59,6 +59,7 @@ in {
           [
             "$mod, SPACE, exec, $launcher"
             "$mod, B, exec, $browser"
+            "$mod SHIFT, B, exec, wofi-bookmarks"
             "$mod, T, exec, $terminal"
             "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"

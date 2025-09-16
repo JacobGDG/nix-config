@@ -3,20 +3,6 @@
   config,
   ...
 }: let
-  wofiBookmarks = pkgs.writeShellApplication {
-    name = "wofi-bookmarks";
-
-    runtimeInputs = with pkgs; [
-      ripgrep
-      wofi
-    ];
-
-    text = ''
-      #!/usr/bin/env bash
-
-      awk '{print $2}' < ~/.mozilla/firefox/default/bookmarks.html  | rg -o 'https?://[^"]+' |  wofi -p "Bookmarks: " --show dmenu -i | xargs -- xdg-open
-    '';
-  };
   wofiEmoji = pkgs.writeShellApplication {
     name = "wofi-emoji";
 
@@ -44,14 +30,6 @@ in {
       comment = "Emoji";
       icon = "👋";
       exec = "${wofiEmoji}/bin/wofi-emoji";
-      terminal = false;
-    };
-    bookmarks = {
-      name = "Bookmarks";
-      genericName = "Bookmarks";
-      comment = "Firefox Bookmarks";
-      icon = "📑";
-      exec = "${wofiBookmarks}/bin/wofi-bookmarks";
       terminal = false;
     };
   };
