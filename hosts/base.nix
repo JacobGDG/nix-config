@@ -32,7 +32,7 @@
         sessions = [
           {
             name = "NixConfig 🔧";
-            path = "~/src/nix-config/";
+            path = "~/src/nix-config/main/";
             startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
           }
           {
