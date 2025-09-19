@@ -39,6 +39,7 @@ in {
         la = "ls -lAh";
         vim = "nvim";
         zadd = "ls -d */ | xargs -I {} zoxide add {}";
+        gwt = "git worktree";
       } // cfg.extraAliases;
 
       initContent = let
