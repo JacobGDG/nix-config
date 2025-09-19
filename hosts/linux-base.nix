@@ -29,6 +29,7 @@
       extraAliases = {
         pbcopy = "wl-copy";
       };
+      starship.enable = true;
     };
     tmux = {
       sesh = {
