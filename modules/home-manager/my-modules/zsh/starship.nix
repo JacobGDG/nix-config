@@ -68,6 +68,17 @@ in {
           style = "fg:#ffffff bg:#e44729";
           format = "[$all_status$ahead_behind ]($style)";
           disabled = false;
+
+          diverged = "  \${ahead_count} \${behind_count}";
+          ahead = "  \${count}";
+          behind = "  \${count}";
+          modified = "  \${count}";
+          staged = " 󰳻 \${count}";
+          untracked = "  \${count}";
+          deleted = "  \${count}";
+          conflicted = "  \${count}";
+          stashed = " 󱉼 \${count}";
+          renamed = " 󰑌 \${count}";
         };
 
         # Start languages and tools #
@@ -126,7 +137,7 @@ in {
         time = {
           disabled = false;
           time_format = "%R"; # Hour:Minute Format
-            style = "fg:#ffffff bg:#8250df";
+          style = "fg:#ffffff bg:#8250df";
           format = "[ $time ]($style)";
         };
 
