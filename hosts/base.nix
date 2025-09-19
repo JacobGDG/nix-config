@@ -23,6 +23,7 @@
     git.enable = true;
     llm.enable = true;
     nvim.enable = true;
+    zsh.enable = true;
     tmux = {
       enable = true;
       tmuxifier.enable = true;

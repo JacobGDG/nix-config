@@ -25,6 +25,11 @@
   myModules = {
     hyprland.enable = true;
     mpv.enable = true;
+    zsh = {
+      extraAliases = {
+        pbcopy = "wl-copy";
+      };
+    };
     tmux = {
       sesh = {
         sessions = [
