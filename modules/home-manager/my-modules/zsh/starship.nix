@@ -8,6 +8,8 @@
   cfg = config.myModules.zsh.starship;
 in {
   config = lib.mkIf cfg.enable {
+    programs.zsh.shellAliases."tg-kube" = "[ -z $KUBE_PROMPT ] && export KUBE_PROMPT=1 || unset KUBE_PROMPT";
+
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
@@ -86,8 +88,9 @@ in {
         # https://github.com/starship/starship/issues/840
         kubernetes = {
           style = "fg:#ffffff bg:#326ce5";
-          format = "[ on ﴱ ($user on )($cluster in )$context \($namespace\) ]($style)";
-          disabled = true;
+          format = "[ k8s: $context \($namespace\) ]($style)";
+          detect_env_vars = ["KUBE_PROMPT"];
+          disabled = false;
         };
 
         golang = {
