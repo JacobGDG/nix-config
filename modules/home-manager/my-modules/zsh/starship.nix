@@ -17,16 +17,17 @@ in {
       # https://starship.rs/config/
       settings = {
         format = lib.concatStrings [
-          "[](fg:#0969da bg:#0969da)"
+          "[](fg:#${config.colorScheme.palette.base02} bg:#${config.colorScheme.palette.base02})"
           "$username"
-          "[](fg:#0969da bg:#eac54f)"
+          "[](fg:#${config.colorScheme.palette.base02} bg:#${config.colorScheme.palette.base03})"
           "$directory"
-          "[](fg:#eac54f bg:#e44729)"
+          "[](fg:#${config.colorScheme.palette.base03} bg:#${config.colorScheme.palette.base0C})"
           "$git_branch"
           "$git_status"
-          "[ ](fg:#e44729)"
+          "$git_state"
+          "[ ](fg:#${config.colorScheme.palette.base0C})"
           "$fill"
-          "[](fg:#8250df)"
+          "[](fg:#${config.colorScheme.palette.base02})"
           "$time"
           # "$all"
           "$kubernetes"
@@ -36,7 +37,6 @@ in {
           "$package"
           "$python"
           "$rust"
-          "[](fg:yellow bg:#8250df)"
           "$cmd_duration"
           "$line_break"
           "$character"
@@ -44,14 +44,14 @@ in {
 
         username = {
           show_always = true;
-          style_user = "fg:#ffffff bg:#0969da";
-          style_root = "fg:#ffffff bg:#0969da";
+          style_user = "fg:#${config.colorScheme.palette.base05} bg:#${config.colorScheme.palette.base02}";
+          style_root = "fg:#${config.colorScheme.palette.base05} bg:#${config.colorScheme.palette.base02}";
           format = "[$user ]($style)";
           disabled = false;
         };
 
         directory = {
-          style = "fg:#000000 bg:#eac54f";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#${config.colorScheme.palette.base03}";
           format = "[ $path ]($style)";
           disabled = false;
           truncate_to_repo = false;
@@ -61,14 +61,14 @@ in {
 
         git_branch = {
           symbol = "";
-          style = "fg:#ffffff bg:#e44729";
-          format = "[ $symbol ]($style)";
+          style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C}";
+          format = "[ $symbol $branch ]($style)";
           disabled = false;
         };
 
         git_status = {
-          style = "fg:#ffffff bg:#e44729";
-          format = "[$all_status$ahead_behind ]($style)";
+          style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C}";
+          format = "[-$all_status$ahead_behind ]($style)";
           disabled = false;
 
           diverged = "  \${ahead_count} \${behind_count}";
@@ -83,11 +83,17 @@ in {
           renamed = " 󰑌 \${count}";
         };
 
+        git_state = {
+          disabled = false;
+          style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C}";
+          format = "[\\($state - $progress_current/$progress_total\\)]($style)";
+        };
+
         # Start languages and tools #
 
         # https://github.com/starship/starship/issues/840
         kubernetes = {
-          style = "fg:#ffffff bg:#326ce5";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#326ce5";
           format = "[ k8s: $context \($namespace\) ]($style)";
           detect_env_vars = ["KUBE_PROMPT"];
           disabled = false;
@@ -95,42 +101,42 @@ in {
 
         golang = {
           symbol = "";
-          style = "fg:#ffffff bg:#007d9c";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#007d9c";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
 
         lua = {
           symbol = "";
-          style = "fg:#ffffff bg:#000080";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#000080";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
 
         nodejs = {
           symbol = "";
-          style = "fg:#ffffff bg:#5fa04e";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#5fa04e";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
 
         package = {
           symbol = "";
-          style = "fg:#ffffff bg:#cb3837";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#cb3837";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
 
         python = {
           symbol = "";
-          style = "fg:#000000 bg:#ffdf76";
+          style = "fg:#${config.colorScheme.palette.base00} bg:#ffdf76";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
 
         rust = {
           symbol = "";
-          style = "fg:#ffffff bg:#a72145";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#a72145";
           format = "[ $symbol ($version) ]($style)";
           disabled = false;
         };
@@ -140,13 +146,13 @@ in {
         time = {
           disabled = false;
           time_format = "%R"; # Hour:Minute Format
-          style = "fg:#ffffff bg:#8250df";
+          style = "fg:#${config.colorScheme.palette.base05} bg:#${config.colorScheme.palette.base02}";
           format = "[ $time ]($style)";
         };
 
         cmd_duration = {
           disabled = false;
-          style = "fg:#000000 bg:yellow";
+          style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0A}";
           format = "[ $duration ]($style)";
         };
 
