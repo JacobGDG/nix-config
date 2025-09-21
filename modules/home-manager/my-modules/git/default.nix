@@ -1,41 +1,21 @@
 {
   config,
   lib,
-  pkgs,
+  mylib,
   ...
 }: let
   cfg = config.myModules.git;
-
-  hooksDir = ./hooks;
-  hookFiles = builtins.attrNames (builtins.readDir hooksDir);
-  mkScript = name: {
-    name = builtins.replaceStrings [".sh"] [""] name;
-    value = ''
-      ${builtins.readFile (hooksDir + "/${name}")}
-
-      # Run local hook if exists
-      if [ -e ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} ]; then
-        ./.git/hooks/${builtins.replaceStrings [".sh"] [""] name} "$@"
-      else
-        exit 0
-      fi
-    '';
-  };
-  hookSet = builtins.listToAttrs (map mkScript hookFiles);
-
-  # create configFile for each hook
-  hookConfigs =
-    builtins.mapAttrs (name: value: {
-      "git/global-hooks/${name}" = {
-        text = value;
-        executable = true;
-      };
-    })
-    hookSet;
 in {
+  imports = [
+    ./global-pre-commit.nix
+  ];
+
   options = {
     myModules.git = {
       enable = lib.mkEnableOption "git";
+      global-pre-commit = {
+        enable = lib.mkEnableOption "global pre-commit hook";
+      };
     };
   };
 
@@ -54,7 +34,6 @@ in {
 
         core = {
           editor = "nvim";
-          hooksPath = "~/.config/git/global-hooks";
         };
       };
 
@@ -93,7 +72,5 @@ in {
         alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /";
       };
     };
-
-    xdg.configFile = lib.mkMerge (builtins.attrValues hookConfigs);
   };
 }

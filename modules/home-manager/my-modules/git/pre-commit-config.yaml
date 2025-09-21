@@ -1,0 +1,8 @@
+repos:
+- repo: local
+  hooks:
+    - id: no-commit
+      name: no-commit
+      entry: git-no-commit
+      language: script
+      pass_filenames: false

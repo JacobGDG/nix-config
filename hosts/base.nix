@@ -20,7 +20,10 @@
   nixpkgs.config.allowUnfree = true;
 
   myModules = {
-    git.enable = true;
+    git = {
+      enable = true;
+      global-pre-commit.enable = true;
+    };
     llm.enable = true;
     nvim.enable = true;
     zsh.enable = true;
