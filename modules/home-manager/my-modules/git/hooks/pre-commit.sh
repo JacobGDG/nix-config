@@ -25,8 +25,8 @@ if [ -f .pre-commit-config.yaml ]; then
   run-pre-commit .pre-commit-config.yaml "$@"
 fi
 
-if [ -e ./.git/hooks/pre-commit ]; then
-  ./.git/hooks/pre-commit "$@"
-fi
+# if [ -e ./.git/hooks/pre-commit ]; then
+#   ./.git/hooks/pre-commit "$@"
+# fi
 
 exit $exit_code
