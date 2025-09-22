@@ -1,7 +1,8 @@
 {
   imports = [
     ../../modules/nixos/my-modules/qbittorrent.nix
+    ../../modules/nixos/my-modules/vpn.nix
   ];
 
-  myModules.nixOS.qbittorrent.enable = false;
+  myModules.nixOS.vpn.enable = true;
 }
