@@ -94,7 +94,11 @@ in {
         # UI
         # -----------------------------------------------------------------------------
 
-        set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] #(tomato -t)  %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h"
+        set-option -g status-left "#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base05}] #S #[fg=#${config.colorScheme.palette.base02},bg=#${config.colorScheme.palette.base01},nobold,noitalics,nounderscore]"
+
+        # set-option -g window-status-current-format
+
+        set-option -g status-right "#[fg=#${config.colorScheme.palette.base03}, nobold, nounderscore, noitalics]#[bg=#${config.colorScheme.palette.base03},fg=#${config.colorScheme.palette.base05}] #(tomato -t)  %Y-%m-%d  %H:%M #[fg=#${config.colorScheme.palette.base02},bg=#${config.colorScheme.palette.base03},nobold,noitalics,nounderscore]#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base05}] #h"
 
         # colourscheme
         set-window-option -g mode-style "fg=#${config.colorScheme.palette.base05},bg=#${config.colorScheme.palette.base02}"
