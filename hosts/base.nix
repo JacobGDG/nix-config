@@ -26,7 +26,10 @@
     };
     llm.enable = true;
     nvim.enable = true;
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+      starship.enable = true;
+    };
     tmux = {
       enable = true;
       tmuxifier.enable = true;

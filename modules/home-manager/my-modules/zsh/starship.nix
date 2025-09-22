@@ -5,9 +5,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.myModules.zsh.starship;
+  zshCfg = config.myModules.zsh;
+  cfg = zshCfg.starship;
 in {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (builtins.all (x: x) [cfg.enable zshCfg.enable]) {
     programs.zsh.shellAliases."tg-kube" = "[ -z $KUBE_PROMPT ] && export KUBE_PROMPT=1 || unset KUBE_PROMPT";
 
     programs.starship = {
