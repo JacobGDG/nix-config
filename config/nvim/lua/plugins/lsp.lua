@@ -72,6 +72,7 @@ return {
           navic.attach(client, bufnr)
         end
       }
+
       lspconfig.ruff.setup{}
     end,
     keys = {
@@ -164,24 +165,4 @@ return {
       })
     end
   },
-
-  -- "AI"
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    }
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = {
-      "zbirenbaum/copilot.lua"
-    },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  }
 }
