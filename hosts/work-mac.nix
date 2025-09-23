@@ -29,6 +29,7 @@
       btop
       docker-credential-helpers
       dbeaver-bin
+      python311
     ];
   };
 }
