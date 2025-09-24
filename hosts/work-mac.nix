@@ -8,6 +8,10 @@
     ./base.nix
   ];
 
+  xdg.configFile."nix/nix.conf".text = ''
+    experimental-features = nix-command flakes
+  '';
+
   myModules = {
     devops = {
       enable = true;

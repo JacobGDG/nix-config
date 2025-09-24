@@ -32,11 +32,11 @@ function run_command {
     ;;
     hm)
       echo "Rebuilding Home Manager configuration for user: $(whoami)@$(get_host_name)"
-      home-manager switch --flake .#$(whoami)@$(get_host_name) --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
+      home-manager switch --flake .#$(whoami)@$(get_host_name) --show-trace
     ;;
     update)
       echo "Updating flake..."
-      nix flake update --extra-experimental-features nix-command --extra-experimental-features flakes --show-trace
+      nix flake update --show-trace
     ;;
     check)
       echo "Checking flake..."
