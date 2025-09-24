@@ -8,6 +8,12 @@
 # get staged files
 FILES=$(git diff --cached --name-only)
 
+# check no file is named nocommit
+if echo "$FILES" | grep -q 'nocommit'; then
+  echo "'nocommit' file found in staged files"
+  exit 1
+fi
+
 # iterate over FILES and look for !nocommit
 for file in $FILES; do
   if grep -q '!nocommit' "$file"; then
