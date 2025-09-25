@@ -27,6 +27,7 @@
       url = "git+ssh://git@github.com/JacobGDG/prompts.git?shallow=1";
       flake = false;
     };
+    neovim.url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -41,6 +42,7 @@
     mac-app-util,
     nixpkgs,
     nixpkgs-unstable,
+    neovim,
     self,
     ...
   } @ inputs: let
@@ -51,6 +53,11 @@
     inherit (self) outputs;
   in {
     inherit lib;
+
+    nixpkgs.overlays = [
+      # replace <kickstart-nix-nvim> with the name you chose
+    ];
+
     nixosConfigurations = {
       jake-laptop-nixos = lib.nixosSystem {
         specialArgs = {
@@ -93,6 +100,7 @@
                 system = prev.system;
               };
             })
+            neovim.overlays.default
           ];
         };
         extraSpecialArgs = {
@@ -112,6 +120,7 @@
                 system = prev.system;
               };
             })
+            neovim.overlays.default
           ];
         };
         extraSpecialArgs = {
@@ -131,6 +140,7 @@
                 system = prev.system;
               };
             })
+            neovim.overlays.default
           ];
         };
         extraSpecialArgs = {
