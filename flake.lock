@@ -379,10 +379,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1750261393,
-        "narHash": "sha256-UPZ5IRUmC+qDiXrNOJ6PrHvE4aldpmVsxkUILNKIPBY=",
+        "lastModified": 1757962844,
+        "narHash": "sha256-86j+xG19NJjZOHY6RIr07A0+nGDwlF7P9aLlcvJifJc=",
         "ref": "refs/heads/main",
-        "rev": "95a5220bb117f126143142ddd7dbe73fe8604c3b",
+        "rev": "cfdfa49b28a118a39fb778e2a938b538ec56af69",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nix-secrets.git"
@@ -400,10 +400,10 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1758794179,
-        "narHash": "sha256-aft3IqNnbyEhlixOSaQM2GUiTRiH2FZ8hJVBiAKsBQc=",
+        "lastModified": 1758797807,
+        "narHash": "sha256-XeJU7Jmcdp15BEhDV/DuPkCaw4IReXzFc5bfHUwrZaQ=",
         "ref": "refs/heads/main",
-        "rev": "c2237e1a80bf5bc35f790220a0fdc339aa2d126f",
+        "rev": "ad7a48394a90fcf8966aa5f4e3b3da6accbd39f1",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
