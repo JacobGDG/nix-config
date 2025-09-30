@@ -39,11 +39,6 @@ worrying about breaking something beyond (my ability to) repair.
 * `mylib/`
     * Helper functions, purposefully kept separate from nixos or home-manager
       lib
-* `config/`
-    * I like Lua and I like how Neovim is configured with Lua, this is my
-      solution. It isn't fully declarative doesn't allow Nix rollbacks etc, but
-      it works.
-    * TLDR, disable Nix nvim config, symlink this directory to `~/.config/nvim`
 
 ## Components (for NixOs)
 
