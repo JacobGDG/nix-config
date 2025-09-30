@@ -33,7 +33,9 @@
       btop
       docker-credential-helpers
       dbeaver-bin
-      python311
+      (
+        python311.withPackages (ps: [ps.pip])
+      )
     ];
   };
 }
