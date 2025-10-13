@@ -400,10 +400,10 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1759497743,
-        "narHash": "sha256-PSWbtKCUILudAU4fRCGW3ox6HZXHdI4BwgJEEggmiIc=",
+        "lastModified": 1759847028,
+        "narHash": "sha256-dhzPQlP/wO891UMph2oCZ/mfDk+6Mt7p0Nou6sRu51g=",
         "ref": "refs/heads/main",
-        "rev": "9dec9a61e238e2fc0bffd3f13ccee26f4055df3e",
+        "rev": "6e6eb8890c7a026a58921e9fc9163935da55bd76",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
@@ -572,6 +572,27 @@
         "type": "github"
       }
     },
+    "private-config": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760381452,
+        "narHash": "sha256-AGe0B/aJpHPjJUv+v0eXfYGMIfAOr+tfabqAO7Q/D6A=",
+        "ref": "refs/heads/main",
+        "rev": "a078e66e8c70e1d09d5a71e6761a8ce7fa006445",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/private-nix-config.nix.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JacobGDG/private-nix-config.nix.git"
+      }
+    },
     "prompts": {
       "flake": false,
       "locked": {
@@ -599,6 +620,7 @@
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "private-config": "private-config",
         "prompts": "prompts",
         "wallpapers": "wallpapers"
       }

@@ -28,6 +28,10 @@
       flake = false;
     };
     neovim.url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
+    private-config = {
+      url = "git+ssh://git@github.com/JacobGDG/private-nix-config.nix.git?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     mac-app-util.url = "github:hraban/mac-app-util";
   };
@@ -43,6 +47,7 @@
     nixpkgs,
     nixpkgs-unstable,
     neovim,
+    private-config,
     self,
     ...
   } @ inputs: let

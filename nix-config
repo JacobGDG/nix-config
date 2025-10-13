@@ -35,7 +35,7 @@ function run_command {
       home-manager switch --flake .#$(whoami)@$(get_host_name) --show-trace
     ;;
     update)
-      nix flake update agenix mysecrets wallpapers prompts neovim
+      nix flake update agenix mysecrets wallpapers prompts neovim private-config
     ;;
     full_update)
       echo "Updating flake..."
