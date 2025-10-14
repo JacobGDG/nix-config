@@ -31,7 +31,7 @@ in {
       };
 
       settings = {
-        title = lib.mkDefault "SET IN NIXCONFIG";
+        title = "Your Homepage!";
         footer = "";
         links = lib.mkAfter [
           {

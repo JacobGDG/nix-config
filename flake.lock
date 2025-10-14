@@ -579,10 +579,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1760381452,
-        "narHash": "sha256-AGe0B/aJpHPjJUv+v0eXfYGMIfAOr+tfabqAO7Q/D6A=",
+        "lastModified": 1760465636,
+        "narHash": "sha256-zxO6ht2pm5edH8YiDaWRnpCEegbzN5NnCpK82zfRV68=",
         "ref": "refs/heads/main",
-        "rev": "a078e66e8c70e1d09d5a71e6761a8ce7fa006445",
+        "rev": "e29966fa24ea6b20b68e98c012d4f0b597faebf8",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/private-nix-config.nix.git"
