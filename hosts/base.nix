@@ -25,6 +25,7 @@
       global-pre-commit.enable = true;
     };
     llm.enable = true;
+    kitty.enable = true;
     nvim.enable = true;
     zsh = {
       enable = true;

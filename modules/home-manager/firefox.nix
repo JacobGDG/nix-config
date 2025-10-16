@@ -27,6 +27,7 @@
           "browser.startup.homepage" = "https://duckduckgo.com";
           "mousewheel.min_line_scroll_amount" = 50;
           "sidebar.verticalTabs" = true;
+          "sidebar.main.tools" = "syncedtabs,jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack";
           "signon.rememberSignons" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 1;
 
