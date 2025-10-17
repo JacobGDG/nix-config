@@ -1,9 +1,22 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.myModules.kitty;
+
+  toKittyConfig = lib.generators.toKeyValue {
+    mkKeyValue = key: value: let
+      value' =
+        (
+          if lib.isBool value
+          then lib.hm.booleans.yesNo
+          else toString
+        )
+        value;
+    in "${key} ${value'}";
+  };
 in {
   options = {
     myModules.kitty = {
@@ -53,6 +66,12 @@ in {
         color14 = "#${config.colorScheme.palette.base0C}";
         color15 = "#${config.colorScheme.palette.base07}";
       };
+    };
+
+    xdg.configFile."kitty/quick-access-terminal.conf".text = toKittyConfig {
+      lines = 10;
+      edge = "center-sized";
+      hide_on_focus_loss = false;
     };
   };
 }
