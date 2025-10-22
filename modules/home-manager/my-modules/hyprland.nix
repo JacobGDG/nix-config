@@ -61,6 +61,7 @@ in {
             "$mod, B, exec, $browser"
             "$mod SHIFT, B, exec, wofi-bookmarks"
             "$mod, T, exec, $terminal"
+            "$mod SHIFT, T, exec, kitten quick-access-terminal"
             "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
