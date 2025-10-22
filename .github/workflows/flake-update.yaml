@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v20
+      - uses: cachix/install-nix-action@29bd9290ef037a3ecbdafe83cbd2185e9dd0fa0a # v20
 
       - run: nix flake update
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4
         with:
           commit_message: Bump flake.lock
           branch: main
