@@ -14,7 +14,6 @@
       "spotify-player.nix"
       "thunderbird.nix"
       "wireguard.nix"
-      "firefox.nix"
       "udiskie.nix"
       "dconf.nix"
       "cava.nix"
@@ -24,6 +23,7 @@
 
   myModules = {
     hyprland.enable = true;
+    firefox.enable = true;
     mpv.enable = true;
     zsh.extraAliases = {
       pbcopy = "wl-copy";
