@@ -55,106 +55,76 @@
 
     lib = nixpkgs.lib // home-manager.lib;
 
-    inherit (self) outputs;
+    # Common overlay set (unstable + neovim)
+    mkOverlays = system: [
+      (final: prev: {
+        unstable = import nixpkgs-unstable {inherit system;};
+      })
+      neovim.overlays.default
+    ];
+
+    # Generic Home Manager builder
+    mkHome = {
+      user,
+      system,
+      modules,
+    }:
+      lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = mkOverlays system;
+        };
+        extraSpecialArgs = {inherit inputs mylib;};
+        inherit modules;
+      };
+
+    # Generic NixOS builder
+    mkNixos = {
+      hostName,
+      username,
+      modules,
+    }:
+      lib.nixosSystem {
+        specialArgs = {
+          hostConfig = {inherit hostName username;};
+          inherit inputs;
+        };
+        modules = [agenix.nixosModules.default] ++ modules;
+      };
   in {
     inherit lib;
 
-    nixpkgs.overlays = [
-      # replace <kickstart-nix-nvim> with the name you chose
-    ];
-
     nixosConfigurations = {
-      jake-laptop-nixos = lib.nixosSystem {
-        specialArgs = {
-          hostConfig = {
-            username = "jake";
-            hostName = "jake-laptop-nixos";
-          };
-          inherit inputs outputs;
-        };
-        modules = [
-          agenix.nixosModules.default
-
-          ./nixos/jake-laptop-nixos
-        ];
+      jake-laptop-nixos = mkNixos {
+        hostName = "jake-laptop-nixos";
+        username = "jake";
+        modules = [./nixos/jake-laptop-nixos];
       };
-      erebor = lib.nixosSystem {
-        specialArgs = {
-          hostConfig = {
-            username = "jake";
-            hostName = "erebor";
-          };
-          inherit inputs outputs;
-        };
-        modules = [
-          agenix.nixosModules.default
 
-          ./nixos/erebor
-          # ./secrets/erebor
-        ];
+      erebor = mkNixos {
+        hostName = "erebor";
+        username = "jake";
+        modules = [./nixos/erebor];
       };
     };
 
     homeConfigurations = {
-      "jakegreenwood@MacOS" = lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          overlays = [
-            (final: prev: {
-              unstable = import nixpkgs-unstable {
-                system = prev.system;
-              };
-            })
-            neovim.overlays.default
-          ];
-        };
-        extraSpecialArgs = {
-          mylib = mylib;
-          inherit inputs outputs;
-        };
-        modules = [
-          ./hosts/work-mac.nix
-        ];
+      "jakegreenwood@MacOS" = mkHome {
+        user = "jakegreenwood";
+        system = "aarch64-darwin";
+        modules = [./hosts/work-mac.nix];
       };
-      "jake@jake-laptop-nixos" = lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          overlays = [
-            (final: prev: {
-              unstable = import nixpkgs-unstable {
-                system = prev.system;
-              };
-            })
-            neovim.overlays.default
-          ];
-        };
-        extraSpecialArgs = {
-          mylib = mylib;
-          inherit inputs outputs;
-        };
-        modules = [
-          ./hosts/jake-laptop-nixos.nix
-        ];
+
+      "jake@jake-laptop-nixos" = mkHome {
+        user = "jake";
+        system = "x86_64-linux";
+        modules = [./hosts/jake-laptop-nixos.nix];
       };
-      "jake@erebor" = lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          overlays = [
-            (final: prev: {
-              unstable = import nixpkgs-unstable {
-                system = prev.system;
-              };
-            })
-            neovim.overlays.default
-          ];
-        };
-        extraSpecialArgs = {
-          mylib = mylib;
-          inherit inputs outputs;
-        };
-        modules = [
-          ./hosts/erebor.nix
-        ];
+
+      "jake@erebor" = mkHome {
+        user = "jake";
+        system = "x86_64-linux";
+        modules = [./hosts/erebor.nix];
       };
     };
   };
