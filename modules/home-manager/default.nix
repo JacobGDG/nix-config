@@ -3,16 +3,24 @@
   pkgs,
   ...
 }: {
-  imports = mylib.scanPaths ./.;
-
   programs.home-manager.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
+  programs.ripgrep = {
+    enable = true;
+    arguments = ["--smart-case"];
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   home.packages = with pkgs; [
+    bottom
     dig
     fzf
     gh

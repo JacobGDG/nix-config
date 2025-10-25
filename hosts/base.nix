@@ -8,9 +8,9 @@
     [
       inputs.nix-colors.homeManagerModules.default
       ../modules/home-manager/my-modules
+      ../modules/home-manager
     ]
     ++ map mylib.homeManagerModules [
-      "base"
       "scripts"
     ];
 
