@@ -2,17 +2,10 @@
   config,
   pkgs,
   lib,
-  mylib,
   ...
 }: let
   cfg = config.myModules.hyprland;
 in {
-  options = {
-    myModules.hyprland = {
-      enable = lib.mkEnableOption "hyprland";
-    };
-  };
-
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       brightnessctl

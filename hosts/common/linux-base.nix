@@ -9,7 +9,6 @@
     ]
     ++ (map mylib.homeManagerModules [
       "genealogy.nix"
-      "hyprland" # TODO: move to my-modules
       "libreoffice.nix"
       "spotify-player.nix"
       "thunderbird.nix"

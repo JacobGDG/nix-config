@@ -17,4 +17,12 @@
             )
         )
         (builtins.readDir path)));
+
+  mkEnableOptionWithDefault = name: default:
+    lib.mkOption {
+      default = default;
+      example = true;
+      description = "Whether to enable ${name}.";
+      type = lib.types.bool;
+    };
 }
