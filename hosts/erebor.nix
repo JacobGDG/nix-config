@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./linux-base.nix
+    ./common/linux-base.nix
   ];
 
   myModules = {

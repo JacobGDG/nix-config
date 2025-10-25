@@ -1,16 +1,7 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    inputs.mac-app-util.homeManagerModules.default
-    ./base.nix
+    ./common/darwin-base.nix
   ];
-
-  xdg.configFile."nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
-  '';
 
   myModules = {
     devops = {
@@ -24,10 +15,6 @@
   home = {
     homeDirectory = "/Users/jakegreenwood";
     username = "jakegreenwood";
-
-    sessionPath = [
-      "/opt/homebrew/bin/brew"
-    ];
 
     packages = with pkgs; [
       btop

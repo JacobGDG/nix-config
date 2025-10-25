@@ -5,7 +5,7 @@
 }: {
   imports =
     [
-      ./linux-base.nix
+      ./common/linux-base.nix
     ]
     ++ (map mylib.homeManagerModules [
       "my-modules/"
