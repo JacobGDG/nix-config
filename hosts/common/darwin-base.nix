@@ -12,5 +12,5 @@
     experimental-features = nix-command flakes
   '';
 
-  home.sessPath = ["/opt/homebrew/bin/brew"];
+  home.sessionPath = ["/opt/homebrew/bin/brew"];
 }
