@@ -1,6 +1,7 @@
 {
   pkgs,
   mylib,
+  config,
   ...
 }: {
   imports =
@@ -21,7 +22,11 @@
   systemd.user.startServices = "sd-switch";
 
   myModules = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      hyprpaper.wallpaper_path = config.myModules.common.wallpaper;
+      hyprlock.wallpaper_path = config.myModules.common.wallpaper;
+    };
     firefox.enable = true;
     mpv.enable = true;
     zsh.extraAliases = {

@@ -12,7 +12,7 @@ in {
 
       file."${config.xdg.configHome}/hypr/hyprpaper.conf" = {
         text = ''
-          preload=${cfg.wallpaper_path}.
+          preload=${cfg.wallpaper_path}
           wallpaper=,${cfg.wallpaper_path}
         '';
       };

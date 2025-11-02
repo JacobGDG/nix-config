@@ -1,6 +1,6 @@
 {
   pkgs,
-  mylib,
+  inputs,
   ...
 }: {
   imports = [
@@ -10,6 +10,7 @@
   myModules = {
     common = {
       desktop = true;
+      wallpaper = "${inputs.wallpapers}/nature/view_of_marshfield.jpg";
     };
   };
 
