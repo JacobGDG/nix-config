@@ -52,8 +52,19 @@
     ...
   } @ inputs: let
     mylib = import ./mylib {inherit lib;};
-
     lib = nixpkgs.lib // home-manager.lib;
+
+    mkShellForSystem = system: let
+      pkgs = import nixpkgs {inherit system;};
+    in
+      pkgs.mkShell {
+        name = "nixConfig";
+
+        buildInputs = with pkgs; [
+          nil
+          alejandra
+        ];
+      };
 
     # Common overlay set (unstable + neovim)
     mkOverlays = system: [
@@ -63,6 +74,12 @@
       neovim.overlays.default
     ];
 
+    mkPkgs = system:
+      import nixpkgs {
+        inherit system;
+        overlays = mkOverlays system;
+      };
+
     # Generic Home Manager builder
     mkHome = {
       user,
@@ -70,10 +87,7 @@
       modules,
     }:
       lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = mkOverlays system;
-        };
+        pkgs = mkPkgs system;
         extraSpecialArgs = {inherit inputs mylib;};
         inherit modules;
       };
@@ -126,6 +140,11 @@
         system = "x86_64-linux";
         modules = [./hosts/erebor.nix];
       };
+    };
+
+    devShells = {
+      x86_64-linux.default = mkShellForSystem "x86_64-linux";
+      aarch64-darwin.default = mkShellForSystem "aarch64-darwin";
     };
   };
 }

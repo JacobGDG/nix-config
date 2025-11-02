@@ -31,6 +31,7 @@ in {
           "[](fg:#${config.colorScheme.palette.base02})"
           "$time"
           # "$all"
+          "$nix_shell"
           "$kubernetes"
           "$golang"
           "$lua"
@@ -91,6 +92,12 @@ in {
         };
 
         # Start languages and tools #
+
+        nix_shell = {
+          disabled = false;
+          format = "[ $state \\($name\\) ]($style)";
+          style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C}";
+        };
 
         # https://github.com/starship/starship/issues/840
         kubernetes = {
