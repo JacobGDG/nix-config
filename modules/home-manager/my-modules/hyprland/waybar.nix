@@ -185,7 +185,10 @@ in {
           };
           "custom/gpu" = {
             format = " {}% {icon}";
-            exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+            exec = ''
+              nvidia-smi --query-gpu=power.draw,power.limit --format=csv,noheader,nounits \
+              | awk -F, '{printf "%.2f", ($1/$2)*100}'
+            '';
             format-icons = "󰢮 ";
             interval = 1;
           };
