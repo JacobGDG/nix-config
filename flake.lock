@@ -400,10 +400,10 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1762122481,
-        "narHash": "sha256-saZ9f2Pdu2tp9KngCkY/MVNK30tHLtQLGGJzG6H8MIc=",
+        "lastModified": 1762163911,
+        "narHash": "sha256-y/WOQsLZhLeh5MHisEr6eD6Cf3K1fzc7Cs294GxnyU4=",
         "ref": "refs/heads/main",
-        "rev": "a343651184dee6470142d265b56504b91776555d",
+        "rev": "231bbcfb76ac52faa56889c344da0c751af97172",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"

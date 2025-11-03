@@ -51,7 +51,6 @@
     packages = with pkgs; [
       devenv
       blender
-      rpi-imager
       kitty
       ruby
       bc # cli calculator
