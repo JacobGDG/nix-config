@@ -56,6 +56,7 @@
       bc # cli calculator
       unzip
       wl-clipboard
+      sshfs
     ];
   };
 }
