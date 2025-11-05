@@ -1,6 +1,5 @@
 # https://github.com/ryantm/agenix
 {
-  config,
   platformConfig,
   inputs,
   ...

@@ -4,7 +4,6 @@
   config,
   pkgs,
   hostConfig,
-  mylib,
   ...
 }: {
   # You can import other NixOS modules here

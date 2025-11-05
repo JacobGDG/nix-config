@@ -23,13 +23,15 @@ in {
         share = true;
         size = 10000;
       };
-      shellAliases = {
-        cd = "z";
-        la = "ls -lAh";
-        vim = "nvim";
-        zadd = "ls -d */ | xargs -I {} zoxide add {}";
-        gwt = "git worktree";
-      } // cfg.extraAliases;
+      shellAliases =
+        {
+          cd = "z";
+          la = "ls -lAh";
+          vim = "nvim";
+          zadd = "ls -d */ | xargs -I {} zoxide add {}";
+          gwt = "git worktree";
+        }
+        // cfg.extraAliases;
 
       initContent = ''
         source ~/.config/zsh/.p10k.zsh

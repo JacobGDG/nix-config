@@ -1,8 +1,4 @@
-{
-  mylib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.home-manager.enable = true;
   programs.direnv = {
     enable = true;

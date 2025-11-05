@@ -20,4 +20,3 @@
 
   imports = mylib.scanPaths ./.;
 }
-
