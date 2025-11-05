@@ -11,11 +11,6 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.private-config.nixosModules.generic
-
-    # TODO: create helper function for thie
-    ../../modules/nixos/hyprland.nix
-    ../../modules/nixos/steam.nix
-    ../../modules/nixos/firefox.nix
   ];
 
   nixpkgs = {

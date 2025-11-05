@@ -3,15 +3,16 @@
   lib,
   ...
 }: let
-  cfg = config.myModules.nixOS.tlp;
+  cfg = config.myModules.nixOS.battery;
 in {
   options = {
-    myModules.nixOS.tlp = {
-      enable = lib.mkEnableOption "TLP service, for battery saving";
+    myModules.nixOS.battery = {
+      enable = lib.mkEnableOption "Battery saving services.";
     };
   };
 
   config = lib.mkIf cfg.enable {
+    services.thermald.enable = true;
     services.tlp = {
       enable = true;
       settings = {

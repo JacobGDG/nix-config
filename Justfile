@@ -12,5 +12,8 @@ full_update: pull
 
 go: update hm
 
+clean:
+  ./nix-config clean
+
 pull:
   git pull
