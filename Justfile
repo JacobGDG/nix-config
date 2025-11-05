@@ -4,10 +4,10 @@ hm:
 os:
   ./nix-config os
 
-update: pull
+update:
   ./nix-config update
 
-full_update: pull
+full_update:
   ./nix-config full_update
 
 go: update hm

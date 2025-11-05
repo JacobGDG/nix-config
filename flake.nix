@@ -101,7 +101,7 @@
       lib.nixosSystem {
         specialArgs = {
           hostConfig = {inherit hostName username;};
-          inherit inputs;
+          inherit inputs mylib;
         };
         modules = [agenix.nixosModules.default] ++ modules;
       };

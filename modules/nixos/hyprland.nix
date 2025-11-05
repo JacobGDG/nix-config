@@ -1,12 +1,4 @@
 {
-  inputs,
-  pkgs,
-  hostConfig,
-  ...
-}: {
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  # ly
   services.displayManager = {
     sddm = {
       enable = true;
@@ -17,7 +9,7 @@
   };
 
   # Allow hyprlock to perform auth
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.enable = true;
 
   programs = {
     hyprlock.enable = true;

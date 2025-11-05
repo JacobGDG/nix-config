@@ -1,7 +1,3 @@
 {mylib, ...}: {
-  imports = [
-    ./homer.nix
-    ./battery.nix
-    ./qbittorrent.nix
-  ];
+  imports = mylib.scanPaths ./.;
 }
