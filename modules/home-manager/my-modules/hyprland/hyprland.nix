@@ -146,6 +146,9 @@ in {
           "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
           "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
         };
+        misc = {
+          force_default_wallpaper = 1;
+        };
         windowrulev2 = [
           "idleinhibit fullscreen, class:.*"
 
