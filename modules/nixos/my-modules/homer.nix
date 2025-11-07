@@ -15,7 +15,7 @@ in {
       };
       port = lib.mkOption {
         description = "port on which to host Homer";
-        default = 80;
+        default = 8000;
         type = lib.types.int;
       };
     };
@@ -24,10 +24,6 @@ in {
   config = lib.mkIf cfg.enable {
     services.homer = {
       enable = true;
-      virtualHost = {
-        nginx.enable = true;
-        domain = cfg.domain;
-      };
 
       settings = {
         title = "Your Homepage!";
@@ -81,12 +77,12 @@ in {
       };
     };
 
-    services.nginx.virtualHosts."${cfg.domain}".listen = [
-      {
-        addr = cfg.domain;
-        port = cfg.port;
-      }
-    ];
+    services.nginx = {
+      enable = true;
+      virtualHosts."${cfg.domain}".locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+      };
+    };
 
     networking.hosts = {
       "127.0.0.1" = [cfg.domain];
