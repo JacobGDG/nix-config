@@ -6,12 +6,6 @@
   hostConfig,
   ...
 }: {
-  # You can import other NixOS modules here
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.private-config.nixosModules.generic
-  ];
-
   nixpkgs = {
     overlays = [];
     config = {

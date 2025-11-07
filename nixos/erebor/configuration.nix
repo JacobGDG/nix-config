@@ -4,19 +4,8 @@
   config,
   pkgs,
   hostConfig,
-  mylib,
   ...
 }: {
-  # You can import other NixOS modules here
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-
-    ../../modules/nixos/hyprland.nix
-    ../../modules/nixos/steam.nix
-    ../../modules/nixos/firefox.nix
-    ../../modules/nixos/bluetooth.nix
-  ];
-
   nixpkgs = {
     overlays = [];
     config = {
