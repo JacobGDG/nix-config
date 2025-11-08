@@ -1,11 +1,19 @@
-{inputs, ...}: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.private-config.nixosModules.generic
-    ../../modules/nixos/my-modules
+{
+  inputs,
+  mylib,
+  ...
+}: {
+  imports =
+    [
+      inputs.home-manager.nixosModules.home-manager
+      inputs.private-config.nixosModules.generic
+      ../../modules/nixos
+    ]
+    ++ mylib.scanPaths ./.;
 
-    ../../modules/nixos/hyprland.nix
-    ../../modules/nixos/steam.nix
-    ../../modules/nixos/firefox.nix
-  ];
+  myModules.nixOS = {
+    firefox.enable = true;
+    hyprland.enable = true;
+    steam.enable = true;
+  };
 }

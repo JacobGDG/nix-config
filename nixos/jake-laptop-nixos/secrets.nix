@@ -1,6 +1,6 @@
 # https://github.com/ryantm/agenix
 {
-  platformConfig,
+  hostConfig,
   inputs,
   ...
 }: let
@@ -14,7 +14,7 @@
   };
   user_readable = {
     mode = "0500";
-    owner = platformConfig.username;
+    owner = hostConfig.username;
   };
 in {
   age.identityPaths = [

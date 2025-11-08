@@ -1,4 +1,9 @@
-let
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.myModules.nixOS.firefox;
   lock-false = {
     Value = false;
     Status = "locked";
@@ -12,62 +17,66 @@ let
     Status = "locked";
   };
 in {
-  programs.firefox = {
-    enable = true;
+  options.myModules.nixOS.firefox.enable = lib.mkEnableOption "Firefox";
 
-    policies = {
-      AutofillAddressEnabled = false;
-      AutofillCreditCardEnabled = false;
-      DisableFirefoxStudies = true;
-      DisablePocket = true;
-      DisableTelemetry = true;
-      DontCheckDefaultBrowser = true;
-      OfferToSaveLogins = false;
-      SearchBar = "unified";
+  config = lib.mkIf cfg.enable {
+    programs.firefox = {
+      enable = true;
 
-      Preferences = {
-        # Privacy settings
-        "extensions.pocket.enabled" = lock-false;
-        "browser.newtabpage.pinned" = lock-empty-string;
-        "browser.topsites.contile.enabled" = lock-false;
-        "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-        "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
-        "browser.contentblocking.category" = {
-          Value = "strict";
-          Status = "locked";
-        };
-        "extensions.screenshots.disabled" = lock-true;
-        "browser.formfill.enable" = lock-false;
-        "browser.search.suggest.enabled" = lock-false;
-        "browser.search.suggest.enabled.private" = lock-false;
-        "browser.urlbar.suggest.searches" = lock-false;
-        "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-        "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
-        "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
-      };
+      policies = {
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DontCheckDefaultBrowser = true;
+        OfferToSaveLogins = false;
+        SearchBar = "unified";
 
-      ExtensionSettings = {
-        "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
-        "uBlock0@raymondhill.net" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "force_installed";
+        Preferences = {
+          # Privacy settings
+          "extensions.pocket.enabled" = lock-false;
+          "browser.newtabpage.pinned" = lock-empty-string;
+          "browser.topsites.contile.enabled" = lock-false;
+          "browser.newtabpage.activity-stream.showSponsored" = lock-false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+          "browser.contentblocking.category" = {
+            Value = "strict";
+            Status = "locked";
+          };
+          "extensions.screenshots.disabled" = lock-true;
+          "browser.formfill.enable" = lock-false;
+          "browser.search.suggest.enabled" = lock-false;
+          "browser.search.suggest.enabled.private" = lock-false;
+          "browser.urlbar.suggest.searches" = lock-false;
+          "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
         };
-        "support@lastpass.com" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        "sponsorBlocker@ajay.app" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" = {
-          install_url = " https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
-          installation_mode = "force_installed";
+
+        ExtensionSettings = {
+          "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+          "uBlock0@raymondhill.net" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          "support@lastpass.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          "sponsorBlocker@ajay.app" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" = {
+            install_url = " https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
+            installation_mode = "force_installed";
+          };
         };
       };
     };

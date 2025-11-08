@@ -4,14 +4,20 @@
   ...
 }: let
   cfg = config.myModules.nixOS.battery;
+  hasBattery =
+    lib.any (x: lib.strings.hasPrefix "BAT" x)
+    (builtins.attrNames (builtins.readDir "/sys/class/power_supply"));
 in {
-  options = {
-    myModules.nixOS.battery = {
-      enable = lib.mkEnableOption "Battery saving services.";
+  options.myModules.nixOS.battery = {
+    enable = lib.mkOption {
+      default = hasBattery;
+      description = "Enable better battery support";
+      type = lib.types.bool;
     };
   };
 
   config = lib.mkIf cfg.enable {
+    powerManagement.powertop.enable = true;
     services.thermald.enable = true;
     services.tlp = {
       enable = true;

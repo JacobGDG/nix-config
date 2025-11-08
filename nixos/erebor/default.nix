@@ -1,10 +1,10 @@
 {mylib, ...}: {
-  imports =
-    [
-      ../common
+  imports = [../common] ++ mylib.scanPaths ./.;
 
-      ../../modules/nixos/nvidia.nix
-      ../../modules/nixos/bluetooth.nix
-    ]
-    ++ mylib.scanPaths ./.;
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "25.05";
+
+  myModules.nixOS = {
+    nvidia.enable = true;
+  };
 }
