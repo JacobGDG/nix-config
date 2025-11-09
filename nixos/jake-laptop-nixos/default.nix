@@ -6,5 +6,9 @@
 
   myModules.nixOS = {
     battery.enable = true;
+    homelab = {
+      enable = true;
+      homer.enable = true;
+    };
   };
 }
