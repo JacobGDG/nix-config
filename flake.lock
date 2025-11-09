@@ -400,10 +400,10 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1762513566,
-        "narHash": "sha256-9dbvKcmUWDMASn38aVMZwiVSUyIYvjz6kpDALctHE3U=",
+        "lastModified": 1762602842,
+        "narHash": "sha256-SkJj5LOClefVko4TF/+sWEu9CkknaETWl3FJpeGvcpk=",
         "ref": "refs/heads/main",
-        "rev": "c6a1fe140eb286818f70c83b32b45164e52de7be",
+        "rev": "e01adcff267e65c08b21d0d09208f552b9e6071f",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
@@ -494,11 +494,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1762580002,
-        "narHash": "sha256-RyQ8FpohhQumkR7+Yoj4FyUyRQ5A0vJnJ2ZUEtYAMUQ=",
+        "lastModified": 1762668188,
+        "narHash": "sha256-qVyL0HGpRvKlFkD2yT5L/iqrgjd7u4nvhxZBGfr5aU4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8a0ddfe5e62a2814979672aa1afd54dfb4aa345a",
+        "rev": "a71dcca70774e98338890f24063de26e77be3d95",
         "type": "github"
       },
       "original": {
