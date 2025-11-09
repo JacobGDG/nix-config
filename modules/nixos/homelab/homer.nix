@@ -23,7 +23,17 @@ in {
         "traefik.http.routers.myapp.entrypoints" = "web";
         "traefik.http.services.testapp.loadbalancer.server.port" = "8080";
       };
+      podman.user = "homer";
     };
+
+    users.users.homer = {
+      isSystemUser = true;
+      group = "homer";
+      extraGroups = ["podman"];
+      home = "/var/lib/podman";
+      createHome = true;
+    };
+    users.groups.homer = {};
 
     systemd.services."podman-homer" = {
       serviceConfig = {
