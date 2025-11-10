@@ -14,8 +14,8 @@ in {
     virtualisation.oci-containers.containers.homer = {
       image = "docker.io/b4bz/homer:v25.10.1";
       log-driver = "journald";
-      extraOptions = [
-        "--network=insecure"
+      networks = [
+        "insecure"
       ];
       labels = {
         "traefik.enable" = "true";
@@ -23,17 +23,7 @@ in {
         "traefik.http.routers.myapp.entrypoints" = "web";
         "traefik.http.services.testapp.loadbalancer.server.port" = "8080";
       };
-      podman.user = "homer";
     };
-
-    users.users.homer = {
-      isSystemUser = true;
-      group = "homer";
-      extraGroups = ["podman"];
-      home = "/var/lib/podman";
-      createHome = true;
-    };
-    users.groups.homer = {};
 
     systemd.services."podman-homer" = {
       serviceConfig = {
@@ -45,6 +35,23 @@ in {
       requires = [
         "podman-network-insecure.service"
       ];
+      serviceConfig = {
+        ## Security Tuning
+        ProtectHome = "yes";
+        ProtectClock = "yes";
+        ProtectKernelLogs = "yes";
+        ProtectKernelModules = "yes";
+        ProtectSystem = "full";
+        RestrictSUIDSGID = "yes";
+        UMask = 0077;
+        SystemCallArchitectures = "native";
+        SystemCallFilter = "@system-service @mount @privileged";
+        RestrictRealtime = "yes";
+        RestrictIPC = "yes";
+        LockPersonality = "yes";
+        RestrictAddressFamilies = "AF_INET AF_INET6 AF_UNIX AF_NETLINK";
+        MemoryDenyWriteExecute = "yes";
+      };
     };
 
     networking.hosts = {
