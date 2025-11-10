@@ -49,7 +49,6 @@
     homeDirectory = "/home/jake";
 
     packages = with pkgs; [
-      devenv
       blender
       kitty
       ruby

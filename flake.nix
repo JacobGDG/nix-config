@@ -9,8 +9,9 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
-
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
     agenix = {
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,13 +28,19 @@
       url = "git+ssh://git@github.com/JacobGDG/prompts.git?shallow=1";
       flake = false;
     };
-    neovim.url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
+    neovim = {
+      url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     private-config = {
       url = "git+ssh://git@github.com/JacobGDG/private-nix-config.nix.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
