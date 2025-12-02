@@ -168,11 +168,11 @@ in {
           "workspace 3, class:^(chrome-.+__-Default)$"
 
           # Game Launcher
-          "workspace 9, class:^(steam)$"
+          "workspace 9, class:^(steam|org.prismlauncher.PrismLauncher)$"
           "workspace 9, title:^(Steam)$"
 
           # Game (in theory)
-          "workspace 10, class:^(steam_app_[0-9]+|dwarfort)$"
+          "workspace 10, class:^(steam_app_[0-9]+|dwarfort|Minecraft.*)$"
         ];
         ecosystem = {
           no_update_news = true;
