@@ -36,7 +36,7 @@ in {
     home.packages = [
       noCommit
     ];
-    programs.git.extraConfig.core.hooksPath = "~/.config/git/hooks";
+    programs.git.settings.core.hooksPath = "${config.xdg.configHome}/git/hooks";
     xdg.configFile = lib.mkMerge (builtins.attrValues hookConfigs);
     home.file.".config/pre-commit/pre-commit-config.yaml" = {
       text = ''

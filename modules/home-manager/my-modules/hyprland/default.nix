@@ -17,11 +17,11 @@ in {
       dunst = {enable = mylib.mkEnableOptionWithDefault "dunst" base-enabled;};
       hyprlock = {
         enable = mylib.mkEnableOptionWithDefault "hyprlock" base-enabled;
-        wallpaper_path = lib.mkOption {type = lib.types.string;};
+        wallpaper_path = lib.mkOption {type = lib.types.str;};
       };
       hyprpaper = {
         enable = mylib.mkEnableOptionWithDefault "hyprpaper" base-enabled;
-        wallpaper_path = lib.mkOption {type = lib.types.string;};
+        wallpaper_path = lib.mkOption {type = lib.types.str;};
       };
     };
   };

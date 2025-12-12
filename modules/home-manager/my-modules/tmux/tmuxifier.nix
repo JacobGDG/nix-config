@@ -11,7 +11,7 @@ in {
       packages = [pkgs.tmuxifier];
 
       sessionVariables = {
-        TMUXIFIER_LAYOUT_PATH = "\$HOME/.config/tmux/layouts";
+        TMUXIFIER_LAYOUT_PATH = "${config.xdg.configHome}/tmux/layouts";
       };
     };
 

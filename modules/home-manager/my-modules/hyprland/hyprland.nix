@@ -133,9 +133,9 @@ in {
           repeat_delay = 200;
           repeat_rate = 40;
         };
-        gestures = {
-          workspace_swipe = true;
-        };
+        gesture = [
+          "3, horizontal, workspace"
+        ];
         monitor = [
           "eDP-1, 1920x1080@60, 0x0, 1" # Laptop screen
           "HDMI-A-2, 2560x1440@60, 0x0, 1" # Erebor/Desktop screen

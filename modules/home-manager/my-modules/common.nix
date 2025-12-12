@@ -10,7 +10,7 @@
       description = "whether to enable common desktop applications and settings, also state lack of battery management.";
     };
     wallpaper = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       default = "${inputs.wallpapers}/nature/haystacks.jpg";
       description = "Wallpaper to use for desktop, lockscreen etc";
     };

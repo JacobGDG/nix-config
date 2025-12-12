@@ -11,7 +11,7 @@ in {
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       defaultKeymap = "viins";
       enableCompletion = true;
       syntaxHighlighting.enable = true;
