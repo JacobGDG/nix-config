@@ -168,7 +168,7 @@ in {
           "workspace 3, class:^(chrome-.+__-Default)$"
 
           # Game Launcher
-          "workspace 9, class:^(steam|org.prismlauncher.PrismLauncher)$"
+          "workspace 9, class:^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$"
           "workspace 9, title:^(Steam)$"
 
           # Game (in theory)

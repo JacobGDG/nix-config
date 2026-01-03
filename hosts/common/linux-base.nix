@@ -56,6 +56,8 @@
       unzip
       wl-clipboard
       sshfs
+      prismlauncher
+      mumble
     ];
   };
 }
