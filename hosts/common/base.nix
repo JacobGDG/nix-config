@@ -64,6 +64,7 @@
       ttyper
       jq
       yq
+      spotify
     ];
   };
 }

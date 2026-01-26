@@ -20,6 +20,7 @@ in {
       slurp # select area for screenshot
       cliphist # clipboard history
       ungoogled-chromium # for webapps
+      xev # help with keycodes
     ];
 
     home.pointerCursor = {
@@ -58,6 +59,7 @@ in {
             "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
+            "$mod, K, exec, $webapp=https://remap-keys.app/configure"
 
             "$mod, Q, exec, hyprctl-conditional-quit"
 
@@ -115,8 +117,11 @@ in {
           ", XF86AudioMute, exec, media-control volume_mute"
           ", XF86AudioMicMute, exec, media-control mic_mute"
           ", F8, exec, media-control play_pause"
+          ", XF86AudioPlay, exec, media-control play_pause"
           ", F9, exec, media-control next"
+          ", XF86AudioNext, exec, media-control next"
           ", F7, exec, media-control prev"
+          ", XF86AudioPrev, exec, media-control prev"
         ];
         exec-once = [
           "$terminal"
@@ -164,8 +169,9 @@ in {
           # Browsing
           "workspace 2, class:^(firefox)$"
 
-          # AI
-          "workspace 3, class:^(chrome-.+__-Default)$"
+          # Tools
+          "workspace 3, class:^(chrome-.+__-Default|Spotify)$"
+          "workspace 3, title:^(Remap)$"
 
           # Game Launcher
           "workspace 9, class:^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$"
