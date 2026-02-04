@@ -170,7 +170,7 @@ in {
           "workspace 2, class:^(firefox)$"
 
           # Tools
-          "workspace 3, class:^(chrome-.+__-Default|Spotify)$"
+          "workspace 3, class:^(chrome-.+__-Default|Spotify|discord)$"
           "workspace 3, title:^(Remap)$"
 
           # Game Launcher
