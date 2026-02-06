@@ -12,5 +12,11 @@
     experimental-features = nix-command flakes
   '';
 
-  home.sessionPath = ["/opt/homebrew/bin/brew"];
+  home = {
+    sessionPath = ["/opt/homebrew/bin/brew"];
+
+    packages = with pkgs; [
+      jira-cli-go
+    ];
+  };
 }
