@@ -5,15 +5,19 @@ os:
   ./nix-config os
 
 update:
-  ./nix-config update
+  nix flake update agenix mysecrets wallpapers prompts neovim private-config
 
 full_update:
-  ./nix-config full_update
+  nix flake update --show-trace
 
 go: update hm
 
 clean:
-  ./nix-config clean
+  sudo nix-collect-garbage -d
+
+check:
+  nix flake check
+
 
 pull:
   git pull

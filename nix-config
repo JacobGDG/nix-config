@@ -16,9 +16,6 @@ function help {
   echo "Commands:"
   echo "  os            - Rebuild the NixOS configuration for the current host"
   echo "  hm            - Rebuild the Home Manager configuration for the current user"
-  echo "  full_update   - Update the flake"
-  echo "  check         - Check the flake without building"
-  echo "  clean         - Clean up old generations"
   echo "  help          - Show this help message"
 }
 
@@ -33,21 +30,6 @@ function run_command {
     hm)
       echo "Rebuilding Home Manager configuration for user: $(whoami)@$(get_host_name)"
       home-manager switch --flake .#$(whoami)@$(get_host_name) --show-trace
-    ;;
-    update)
-      nix flake update agenix mysecrets wallpapers prompts neovim private-config
-    ;;
-    full_update)
-      echo "Updating flake..."
-      nix flake update --show-trace
-    ;;
-    check)
-      echo "Checking flake..."
-      nix flake check
-    ;;
-    clean)
-      echo "Cleaning up old generations..."
-      sudo nix-collect-garbage -d
     ;;
     *)
       echo "Unknown command: $command"
