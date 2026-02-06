@@ -36,7 +36,7 @@
       sesh = {
         sessions = [
           {
-            name = "Spotify 🎵";
+            name = "Spotify  ";
             startup_command = "tmuxifier load-window music && tmux move-window -t 0 && tmux kill-window -t 1";
           }
         ];
