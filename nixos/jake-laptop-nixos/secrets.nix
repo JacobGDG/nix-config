@@ -2,6 +2,8 @@
 {
   hostConfig,
   inputs,
+  config,
+  lib,
   ...
 }: let
   noaccess = {
@@ -21,11 +23,20 @@ in {
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
+  environment.variables = {
+    OPENAI_API_KEY_FILE = config.age.secrets.openai_api_key.path;
+  };
+
   age.secrets = {
     "home_wg_config.conf" =
       {
         file = "${inputs.mysecrets}/home_wg_config.conf.age";
       }
       // high_security;
+    openai_api_key =
+      {
+        file = "${inputs.mysecrets}/openai_api_key.age";
+      }
+      // user_readable;
   };
 }
