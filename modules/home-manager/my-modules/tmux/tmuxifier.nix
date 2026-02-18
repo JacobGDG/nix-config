@@ -21,6 +21,8 @@ in {
         new_window "Editor"
         run_cmd "nvim -c \"FzfLua files\""
         split_v 20
+        run_cmd "export DIRENV_AUTOLOAD=1"
+        run_cmd "direnv reload"
         run_cmd "git fetch"
       '';
     };
