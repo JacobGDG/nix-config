@@ -84,6 +84,7 @@ in {
           color: #${config.colorScheme.palette.base08};
         }
 
+        #privacy,
         #cpu.critical,
         #memory.critical,
         #battery.critical,
@@ -113,6 +114,7 @@ in {
           spacing = 10;
           modules-center = [
             "clock"
+            "privacy"
           ];
           modules-left = [
             "hyprland/workspaces"
@@ -130,6 +132,8 @@ in {
             )
             "custom/power"
           ];
+          privacy = {
+          };
           battery = {
             format = " {capacity}% {icon} ";
             format-alt = " {time} {icon} ";

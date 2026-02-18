@@ -58,6 +58,7 @@
       sshfs
       prismlauncher
       mumble
+      discord
     ];
   };
 }
