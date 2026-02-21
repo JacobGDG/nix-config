@@ -85,6 +85,7 @@ in {
         }
 
         #privacy,
+        #custom-wireguard.active,
         #cpu.critical,
         #memory.critical,
         #battery.critical,
@@ -119,6 +120,7 @@ in {
           modules-left = [
             "hyprland/workspaces"
             "idle_inhibitor"
+            "custom/wireguard"
           ];
           modules-right = builtins.filter (x: x != null) [
             "pulseaudio"
@@ -194,6 +196,18 @@ in {
               | awk -F, '{printf "%.2f", ($1/$2)*100}'
             '';
             format-icons = "󰢮 ";
+            interval = 1;
+          };
+          "custom/wireguard" = {
+            format = " {icon} ";
+            return-type = "json";
+            on-click = "wg-wofi";
+            format-icons = {
+              inactive = "󰦞 ";
+              home = "󰚊 ";
+              public = " ";
+            };
+            exec = "wg-waybar";
             interval = 1;
           };
           idle_inhibitor = {

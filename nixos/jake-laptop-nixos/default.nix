@@ -10,5 +10,10 @@
       enable = true;
       homer.enable = true;
     };
+    wireguard = {
+      enable = true;
+      home.enable = true;
+      public.enable = true;
+    };
   };
 }

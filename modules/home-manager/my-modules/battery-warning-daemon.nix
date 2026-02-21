@@ -23,9 +23,9 @@
     fi
 
     while true; do
-      battery=$(cat $battery_capacity_file)
-      status=$(cat $charging_status_file)
-      if [ "$battery" -le "20" ] && [ "$status" = "Discharging" ]; then
+      battery=$(cat "$battery_capacity_file" 2>/dev/null)
+      status=$(cat "$charging_status_file" 2>/dev/null)
+      if [[ "$battery" =~ ^[0-9]+$ ]] && [ "$battery" -le 20 ] && [ "$status" = "Discharging" ]; then
         notify-send -t $notification_timeout -u critical "  Low battery: $battery%"
         sleep $sleep_when_low
       else

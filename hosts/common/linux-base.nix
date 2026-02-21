@@ -13,7 +13,6 @@
       "libreoffice.nix"
       "spotify-player.nix"
       "thunderbird.nix"
-      "wireguard.nix"
       "udiskie.nix"
       "dconf.nix"
       "cava.nix"

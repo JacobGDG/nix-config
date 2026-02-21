@@ -28,11 +28,6 @@ in {
   };
 
   age.secrets = {
-    "home_wg_config.conf" =
-      {
-        file = "${inputs.mysecrets}/home_wg_config.conf.age";
-      }
-      // high_security;
     openai_api_key =
       {
         file = "${inputs.mysecrets}/openai_api_key.age";
