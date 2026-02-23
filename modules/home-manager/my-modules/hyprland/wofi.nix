@@ -46,6 +46,7 @@ in {
         gtk_dark = true;
         filter_rate = 100;
         key_exit = "Escape";
+        close_on_focus_loss = true;
       };
 
       style = ''
