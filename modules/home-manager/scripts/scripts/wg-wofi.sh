@@ -18,10 +18,10 @@ done
 selection="$(echo "$menu_items" | wofi --show dmenu --prompt "WireGuard")"
 
 if [[ "$selection" == "Disconnect All" ]]; then
-    wg-manager down
+    pkexec wg-manager down
 elif [[ "$selection" =~ ^([a-zA-Z0-9_-]+)\ \[.*\]$ ]]; then
     iface="${BASH_REMATCH[1]}"
-    wg-manager up "$iface"
+    pkexec wg-manager up "$iface"
 else
     echo "No valid selection."
     exit 1
