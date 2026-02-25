@@ -5,13 +5,10 @@
   ...
 }: let
   cfg = config.myModules.hyprland.wofi;
-  icons = pkgs.fetchurl {
+  cheatsheet = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/groovykiwi/rofi-nerdfont/2e30cd34e1c0e3aaa755a5a88dd5da9476403a5d/nerd-font-cheatsheet.txt";
     hash = "sha256-vjgRbfcwlkCtcJxS6y247RZe9WpMESxYrngpFveuUM0=";
   };
-  nerdFontCheatsheetFile = pkgs.runCommand "nerd-font-cheatsheet.txt" {} ''
-    cp ${icons} $out
-  '';
   wofiDevicons = pkgs.writeShellApplication {
     name = "wofi-devicons";
 
@@ -25,10 +22,14 @@
       #!/usr/bin/env bash
       set -euo pipefail
 
-      DEVICON="$(wofi -p "devicon" --show dmenu -i < ${nerdFontCheatsheetFile} | awk '{print $1}')"
+      DEVICON="$(wofi -p "devicon" --show dmenu -i < ${cheatsheet} | awk '{print $1}')"
 
       wtype "$DEVICON"; wl-copy "$DEVICON"
     '';
+  };
+  icon = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/a44afb8aebf2eeef8798e1deb1a9eeb207ec3a3b/assets/img/nerd-fonts-logo.svg";
+    hash = "sha256-yYQsRhSvXxW5CW/EgmOKip/w1ovo0A9DeXrZq9GlO7g=";
   };
 in {
   config = lib.mkIf cfg.enable {
@@ -38,6 +39,7 @@ in {
         genericName = "Devicons";
         comment = "Devicons";
         exec = "${wofiDevicons}/bin/wofi-devicons";
+        icon = icon;
         terminal = false;
       };
     };

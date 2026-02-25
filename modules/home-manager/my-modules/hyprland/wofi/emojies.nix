@@ -5,8 +5,8 @@
   ...
 }: let
   cfg = config.myModules.hyprland.wofi;
-  wofiEmoji = pkgs.writeShellApplication {
-    name = "wofi-emoji";
+  wofiEmojies = pkgs.writeShellApplication {
+    name = "wofi-emojies";
 
     runtimeInputs = with pkgs; [
       wofi
@@ -20,15 +20,20 @@
       executable = true;
     };
   };
+
+  icon = pkgs.fetchurl {
+    url = "https://slackmojis.com/emojis/38331-smiley/download";
+    hash = "sha256-mcB4psADEyxMOsiR7cXKDZPNsGi9DpnGZ4QvsajKp90=";
+  };
 in {
   config = lib.mkIf cfg.enable {
     xdg.desktopEntries = {
       emojies = {
-        name = "Emoji";
-        genericName = "Emoji";
-        comment = "Emoji";
-        icon = "👋";
-        exec = "${wofiEmoji}/bin/wofi-emoji";
+        name = "Emojies";
+        genericName = "Emojies";
+        comment = "Emojies";
+        icon = icon;
+        exec = "${wofiEmojies}/bin/wofi-emojies";
         terminal = false;
       };
     };
