@@ -22,8 +22,8 @@
   };
 
   icon = pkgs.fetchurl {
-    url = "https://slackmojis.com/emojis/38331-smiley/download";
-    hash = "sha256-mcB4psADEyxMOsiR7cXKDZPNsGi9DpnGZ4QvsajKp90=";
+    url = "https://raw.githubusercontent.com/googlefonts/noto-emoji/8998f5dd683424a73e2314a8c1f1e359c19e8742/svg/emoji_u1f31d.svg";
+    hash = "sha256-iOW0LsZgPQMo7LlcElVtN4/Zwt0uCEfI7I3TE3Y3Qdw=";
   };
 in {
   config = lib.mkIf cfg.enable {
