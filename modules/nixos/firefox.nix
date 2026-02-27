@@ -12,6 +12,10 @@
     Value = true;
     Status = "locked";
   };
+  lock-blocked = {
+    Value = "blocked";
+    Status = "locked";
+  };
   lock-empty-string = {
     Value = "";
     Status = "locked";
@@ -57,6 +61,13 @@ in {
           "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
           "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
           "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
+
+          "browser.ai.control.default" = lock-blocked;
+          "browser.ai.control.linkPreviewKeyPoints" = lock-blocked;
+          "browser.ai.control.pdfjsAltText" = lock-blocked;
+          "browser.ai.control.sidebarChatbot" = lock-blocked;
+          "browser.ai.control.smartTabGroups" = lock-blocked;
+          "browser.ai.control.translations" = lock-blocked;
         };
 
         ExtensionSettings = {
