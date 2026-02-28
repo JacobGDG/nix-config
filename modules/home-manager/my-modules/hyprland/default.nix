@@ -10,7 +10,17 @@ in {
     myModules.hyprland = {
       enable = lib.mkEnableOption "hyprland";
       waybar.enable = mylib.mkEnableOptionWithDefault "waybar" base-enabled;
-      hypridle.enable = mylib.mkEnableOptionWithDefault "hypridle" base-enabled;
+      hypridle = {
+        enable = mylib.mkEnableOptionWithDefault "hypridle" base-enabled;
+        auto_suspend_timeout = lib.mkOption {
+          type = lib.types.int;
+          default = 600;
+        };
+        auto_screenoff_timeout = lib.mkOption {
+          type = lib.types.int;
+          default = 420;
+        };
+      };
       wlogout.enable = mylib.mkEnableOptionWithDefault "wlogout" base-enabled;
       wofi.enable = mylib.mkEnableOptionWithDefault "wofi" base-enabled;
       dunst.enable = mylib.mkEnableOptionWithDefault "dunst" base-enabled;
