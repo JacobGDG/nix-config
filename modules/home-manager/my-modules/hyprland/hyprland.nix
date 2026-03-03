@@ -146,7 +146,7 @@ in {
           "HDMI-A-2, 2560x1440@60, 0x0, 1" # Erebor/Desktop screen
         ];
         general = {
-          gaps_out = 5;
+          gaps_out = 3;
           gaps_in = 3;
           "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
           "col.active_border" = "rgb(${config.colorScheme.palette.base05})";
@@ -186,7 +186,7 @@ in {
         };
 
         decoration = {
-          rounding = 5;
+          rounding = 2;
         };
       };
     };

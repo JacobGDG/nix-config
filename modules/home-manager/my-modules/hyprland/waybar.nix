@@ -15,7 +15,7 @@ in {
       style = ''
         * {
           border: none;
-          border-radius: 5px;
+          border-radius: 0px;
           font-family: JetBrainsMono;
           font-size: 12px;
           min-height: 0;
@@ -28,7 +28,7 @@ in {
 
         tooltip {
           background: #${config.colorScheme.palette.base00};
-          border-radius: 10px;
+          border-radius: 5px;
           border-width: 2px;
           border-style: solid;
           border-color: #${config.colorScheme.palette.base01};
@@ -73,18 +73,25 @@ in {
         }
 
         #pulseaudio {
-          margin-right: 6px;
         }
 
         #clock {
           margin-right: 6px;
+          margin-left: 6px;
         }
 
         #custom-power {
           color: #${config.colorScheme.palette.base08};
+          padding: 0 0.5em;
         }
 
-        #privacy,
+        #privacy {
+          background-color: #${config.colorScheme.palette.base02};
+          color: #${config.colorScheme.palette.base08};
+          padding: 0 0.2em;
+
+        }
+
         #custom-wireguard.active,
         #cpu.critical,
         #memory.critical,
@@ -114,13 +121,13 @@ in {
           position = "top";
           spacing = 10;
           modules-center = [
-            "clock"
-            "privacy"
+            "hyprland/workspaces"
           ];
           modules-left = [
-            "hyprland/workspaces"
+            "clock"
             "idle_inhibitor"
             "custom/wireguard"
+            "privacy"
           ];
           modules-right = builtins.filter (x: x != null) [
             "pulseaudio"
@@ -185,7 +192,7 @@ in {
             on-click = "pavucontrol";
           };
           "custom/power" = {
-            format = " ⏻ ";
+            format = "⏻";
             tooltip = false;
             on-click = "wlogout --protocol layer-shell";
           };
@@ -203,9 +210,9 @@ in {
             return-type = "json";
             on-click = "wg-wofi";
             format-icons = {
-              inactive = "󰦞 ";
-              home = "󰚊 ";
-              public = " ";
+              inactive = "󰦞";
+              home = "󰚊";
+              public = "";
             };
             exec = "wg-waybar";
             interval = 1;
