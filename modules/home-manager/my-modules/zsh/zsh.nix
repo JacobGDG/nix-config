@@ -40,8 +40,11 @@ in {
         bindkey '^H' backward-delete-char
         bindkey '^?' backward-delete-char
 
+        TMUX_SESSION=''${TMUX_SESSION:-"home"}
+
         if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
-          tmux attach || exec tmux new-session -t home && exit;
+          tmux attach -t "$TMUX_SESSION" || exec tmux new-session -s "$TMUX_SESSION"
+          exit
         fi
 
         export PATH="${config.home.profileDirectory}/bin:$PATH"

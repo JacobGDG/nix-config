@@ -55,7 +55,7 @@ in {
             "$mod, B, exec, $browser"
             "$mod SHIFT, B, exec, wofi-bookmarks"
             "$mod, T, exec, $terminal"
-            "$mod SHIFT, T, exec, kitten quick-access-terminal"
+            "$mod SHIFT, T, exec, TMUX_SESSION=quick-access kitten quick-access-terminal"
             "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
@@ -160,6 +160,11 @@ in {
           "float,title:^(Volume Control|Friends List|Steam Settings)$"
           "float,title:^(Extension.*Mozilla Firefox)$"
           "float,class:^(org.kde.dolphin)$"
+
+          # File explorer
+          "size 1200 800, class:^(org.kde.dolphin)$"
+          "center, class:^(org.kde.dolphin)$"
+          "workspace special, class:^(org.kde.dolphin)$"
 
           "fullscreen,class:^steam_app\d+$"
 
