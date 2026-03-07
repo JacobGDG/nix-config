@@ -25,7 +25,6 @@ in {
       };
       shellAliases =
         {
-          cd = "z";
           la = "ls -lAh";
           vim = "nvim";
           zadd = "ls -d */ | xargs -I {} zoxide add {}";
