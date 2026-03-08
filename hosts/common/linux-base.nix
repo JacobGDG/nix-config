@@ -41,6 +41,7 @@
         ];
       };
     };
+    opencode.enable = true;
   };
 
   home = {
