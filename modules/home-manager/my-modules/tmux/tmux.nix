@@ -77,7 +77,7 @@ in {
 
         unbind s
         bind-key "s" run-shell "sesh connect \"$(
-          sesh list --icons | fzf-tmux -p 55%,60% \
+          sesh list --icons | rg -v quick-access-kitty | fzf-tmux -p 55%,60% \
           --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
           --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
           --bind 'tab:down,btab:up' \

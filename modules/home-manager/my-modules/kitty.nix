@@ -67,13 +67,5 @@ in {
         color15 = "#${config.colorScheme.palette.base07}";
       };
     };
-
-    xdg.configFile."kitty/quick-access-terminal.conf".text = toKittyConfig {
-      # lines = 10;
-      lines = 20;
-      columns = 150;
-      edge = "center-sized";
-      background_opacity = 0.9;
-    };
   };
 }

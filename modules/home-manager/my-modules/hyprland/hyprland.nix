@@ -44,7 +44,7 @@ in {
       settings = {
         "$app" = "uwsm app --";
         "$mod" = "SUPER";
-        "$window-mod" = "$mod SHIFT";
+        "$window-mod" = "$mod CTRL";
         "$terminal" = "$app kitty";
         "$browser" = "$app firefox";
         "$webapp" = "$app chromium --new-window --ozone-platform=wayland --app";
@@ -55,7 +55,7 @@ in {
             "$mod, B, exec, $browser"
             "$mod SHIFT, B, exec, wofi-bookmarks"
             "$mod, T, exec, $terminal"
-            "$mod SHIFT, T, exec, TMUX_SESSION=quick-access kitten quick-access-terminal"
+            "$mod SHIFT, SPACE, exec, quick-access-kitty"
             "$mod, S, exec, $app steam"
             "$mod, A, exec, $webapp=https://chatgpt.com"
             "$mod, W, exec, $webapp=https://web.whatsapp.com/"
@@ -159,9 +159,9 @@ in {
 
           "float,title:^(Volume Control|Friends List|Steam Settings)$"
           "float,title:^(Extension.*Mozilla Firefox)$"
-          "float,class:^(org.kde.dolphin)$"
 
           # File explorer
+          "float,class:^(org.kde.dolphin)$"
           "size 1200 800, class:^(org.kde.dolphin)$"
           "center, class:^(org.kde.dolphin)$"
           "workspace special, class:^(org.kde.dolphin)$"
@@ -170,6 +170,11 @@ in {
 
           # Coding
           "workspace 1, class:^(kitty)$"
+
+          "float, title:^(QuickAccessKitty)$"
+          "size 1200 800, title:^(QuickAccessKitty)$"
+          "center, title:^(QuickAccessKitty)$"
+          "workspace special, title:^(QuickAccessKitty)$"
 
           # Browsing
           "workspace 2, class:^(firefox)$"
