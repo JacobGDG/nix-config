@@ -17,7 +17,7 @@ account_id=$(echo "$caller_json" | jq -r '.Account')
 url="https://healios-portal.awsapps.com/start/#/console?account_id=$account_id&role_name=AWSAdministratorAccess"
 
 echo "Opening URL:"
-echo $url
+echo "$url"
 
 if command -v xdg-open >/dev/null 2>&1; then
   xdg-open "$url" >/dev/null 2>&1 || echo "Failed to auto-open browser. Copy the URL above into your browser."

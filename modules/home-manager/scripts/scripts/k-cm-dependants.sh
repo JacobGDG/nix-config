@@ -6,7 +6,7 @@ function help {
 }
 
 function check_configmap {
-  configmap_exists=$(kubectl get configmap "$configmap_name" --namespace $namespace --ignore-not-found)
+  configmap_exists=$(kubectl get configmap "$configmap_name" --namespace "$namespace" --ignore-not-found)
 
   if [[ -z "$configmap_exists" ]]; then
     echo "ConfigMap $configmap_name does not exist."
@@ -27,8 +27,8 @@ check_configmap
 kubectl get pods -n "$namespace" -o json | jq -r '
   .items[] |
   select(
-    (.spec.volumes[]?.configMap?.name == "'$configmap_name'") or
-    (.spec.containers[].envFrom[]?.configMapRef?.name == "'$configmap_name'") or
-    (.spec.containers[].env[]?.valueFrom?.configMapKeyRef?.name == "'$configmap_name'")
+    (.spec.volumes[]?.configMap?.name == '"$configmap_name"') or
+    (.spec.containers[].envFrom[]?.configMapRef?.name == '"$configmap_name"') or
+    (.spec.containers[].env[]?.valueFrom?.configMapKeyRef?.name == '"$configmap_name"')
   ) |
   .metadata.name'

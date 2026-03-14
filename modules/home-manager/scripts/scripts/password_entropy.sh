@@ -8,7 +8,7 @@
 # - TBC on symbols (maybe +=/ are their own set to complete base64)
 
 function help() {
-cat << EOF >&2
+  cat <<EOF >&2
 Usage: ${0##*/} [-h] [PASSWORD]
 Options:"
   -h              Show this help message"
@@ -28,28 +28,28 @@ function error() {
 }
 
 function log2() {
-  echo $1 | awk '{print log($1)/log(2)}'
+  echo "$1" | awk '{print log($1)/log(2)}'
 }
 
 verbose=0
 
 OPTIND=1
 while getopts hv opt; do
-    case $opt in
-      h)
-        help
-        exit 0
-        ;;
-      v)
-        verbose=1
-        ;;
-      *)
-        help
-        exit 1
-        ;;
-    esac
+  case $opt in
+  h)
+    help
+    exit 0
+    ;;
+  v)
+    verbose=1
+    ;;
+  *)
+    help
+    exit 1
+    ;;
+  esac
 done
-shift "$((OPTIND-1))"   # Discard the options and sentinel --
+shift "$((OPTIND - 1))" # Discard the options and sentinel --
 
 if [[ -p /dev/stdin ]]; then
   stdin="$(cat -)"
@@ -64,8 +64,6 @@ fi
 
 if [[ -n "$arg" && -n "$stdin" ]]; then
   error "Please provide either a password as an argument or via stdin, not both."
-  help
-  exit 1
 fi
 
 password="${arg:-$stdin}"
@@ -76,38 +74,38 @@ charsetLength=0
 # not accounted for.
 
 length=${#password}
-password_calc=$(echo $password | sed 's/[a-z]//g')
+password_calc=${password//[a-z]//}
 if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 26))
 fi
 length=${#password_calc}
-password_calc=$(echo $password_calc | sed 's/[A-Z]//g')
+password_calc=${password_calc//[A-Z]//g}
 if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 26))
 fi
 length=${#password_calc}
-password_calc=$(echo $password_calc | sed 's/[0-9]//g')
+password_calc=${password_calc//[0-9]//}
 if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 10))
 fi
 length=${#password_calc}
-password_calc=$(echo $password_calc | sed 's/[+=\/]//g')
+password_calc=${password_calc//[+=\/]//}
 if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 3))
 fi
 length=${#password_calc}
-password_calc=$(echo $password_calc | sed 's/[!\"£$%^\&*()_]//g')
+password_calc=${password_calc//[!\"£$%^\&*()_]//}
 if [[ $length -gt ${#password_calc} ]]; then
   charsetLength=$((charsetLength + 11))
 fi
 # length=${#password_calc}
-# password_calc=$(echo $password_calc | sed 's/[,\-.\/;#\[\]<>?:@~{}]//g')
+# password_calc=$(echo "$password_calc" | sed 's/[,\-.\/;#\[\]<>?:@~{}]//g')
 # if [[ $length -gt ${#password_calc} ]]; then
 #   charsetLength=$((charsetLength + 11))
 # fi
 
 if [[ ${#password_calc} -gt 0 ]]; then
-  log "Characters not accounted for in entropy calculation: $(echo $password_calc | grep -o . | sort -u | tr -d '\n')"
+  log "Characters not accounted for in entropy calculation: $(echo "$password_calc" | grep -o . | sort -u | tr -d '\n')"
 fi
 
 characterSetBitEntropy=$(log2 "$charsetLength")
