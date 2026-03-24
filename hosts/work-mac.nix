@@ -4,6 +4,7 @@
   ];
 
   myModules = {
+    opencode.enable = true;
     devops = {
       enable = true;
       terraform.enable = true;

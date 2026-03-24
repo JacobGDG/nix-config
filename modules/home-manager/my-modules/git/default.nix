@@ -71,6 +71,8 @@ in {
 
           # print aliases
           alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /";
+
+          claude = "!git commit --amend --no-edit --trailer 'Co-authored-by: Claude <noreply@anthropic.com>'";
         };
       };
     };
