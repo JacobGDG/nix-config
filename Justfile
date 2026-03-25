@@ -25,4 +25,4 @@ pull:
 prep_sudo:
   sudo -v
 
-full_sync: prep_sudo pull update os hm
+full_sync: prep_sudo pull os hm
