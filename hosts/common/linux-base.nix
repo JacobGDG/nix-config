@@ -42,6 +42,10 @@
       };
     };
     opencode.enable = true;
+    nixUpdateApp = {
+      enable = true;
+      configPath = "${config.home.homeDirectory}/src/nix-config/main";
+    };
   };
 
   home = {

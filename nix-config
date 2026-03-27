@@ -23,21 +23,21 @@ function run_command {
   local command="$1"
   shift
   case "$command" in
-    os)
-      echo "Rebuilding NixOS configuration for host: $(get_host_name)"
-      sudo nixos-rebuild switch --flake .#$(get_host_name) --show-trace
+  os)
+    echo "Rebuilding NixOS configuration for host: $(get_host_name)"
+    sudo nixos-rebuild switch --flake .#"$(get_host_name)" --show-trace
     ;;
-    hm)
-      echo "Rebuilding Home Manager configuration for user: $(whoami)@$(get_host_name)"
-      home-manager switch --flake .#$(whoami)@$(get_host_name) --show-trace
+  hm)
+    echo "Rebuilding Home Manager configuration for user: $(whoami)@$(get_host_name)"
+    home-manager switch --flake .#"$(whoami)"@"$(get_host_name)" --show-trace
     ;;
-    *)
-      echo "Unknown command: $command"
-      help
-      exit 1
+  *)
+    echo "Unknown command: $command"
+    help
+    exit 1
     ;;
-      esac
-    }
+  esac
+}
 
 if [[ $# -eq 0 || $1 == "help" ]]; then
   help

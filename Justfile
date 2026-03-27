@@ -18,11 +18,7 @@ clean:
 check:
   nix flake check
 
-
 pull:
   git pull
 
-prep_sudo:
-  sudo -v
-
-full_sync: prep_sudo pull os hm
+full_sync: pull os hm
