@@ -4,35 +4,42 @@
   lib,
   ...
 }: let
-  battery-warning-daemon = pkgs.writeShellScriptBin "battery-warning-daemon" ''
-    #!/bin/bash
+  battery-warning-daemon = pkgs.writeShellApplication {
+    name = "battery-warning-daemon";
+    runtimeInputs = with pkgs; [
+      libnotify
+    ];
+    text = ''
+      notification_timeout=5000 # in milliseconds
+      sleep_when_low=240 # in seconds
+      sleep_normal=120 # in seconds
+      battery_capacity_file=/sys/class/power_supply/BAT1/capacity
+      charging_status_file=/sys/class/power_supply/BAT1/status
 
-    notification_timeout=5000 # in milliseconds
-    sleep_when_low=240 # in seconds
-    sleep_normal=120 # in seconds
-    battery_capacity_file=/sys/class/power_supply/BAT1/capacity
-    charging_status_file=/sys/class/power_supply/BAT1/status
+      if [ ! -f $battery_capacity_file ]; then
+        notify-send -t $notification_timeout "
+        Failed to read battery capacity. Cannot warn of low battery.
 
-    if [ ! -f $battery_capacity_file ]; then
-      notify-send -t $notification_timeout "
-      Failed to read battery capacity. Cannot warn of low battery.
-
-    Could not read $battery_capacity_file
-    "
-      exit 1
-    fi
-
-    while true; do
-      battery=$(cat "$battery_capacity_file" 2>/dev/null)
-      status=$(cat "$charging_status_file" 2>/dev/null)
-      if [[ "$battery" =~ ^[0-9]+$ ]] && [ "$battery" -le 20 ] && [ "$status" = "Discharging" ]; then
-        notify-send -t $notification_timeout -u critical "  Low battery: $battery%"
-        sleep $sleep_when_low
-      else
-        sleep $sleep_normal
+      Could not read $battery_capacity_file
+      "
+        exit 1
       fi
-    done
-  '';
+
+      while true; do
+        read -r battery < "$battery_capacity_file"
+        read -r status < "$charging_status_file"
+
+        echo "status: $status, $battery%"
+
+        if (( battery <= 20 )) && [ "$status" = "Discharging" ]; then
+          notify-send -t $notification_timeout -u critical "  Low battery: $battery%"
+          sleep $sleep_when_low
+        else
+          sleep $sleep_normal
+        fi
+      done
+    '';
+  };
 in {
   config = lib.mkIf (!config.myModules.common.desktop) {
     home.packages = [battery-warning-daemon];

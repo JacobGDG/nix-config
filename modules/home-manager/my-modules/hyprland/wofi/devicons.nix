@@ -19,7 +19,6 @@
     ];
 
     text = ''
-      #!/usr/bin/env bash
       set -euo pipefail
 
       DEVICON="$(wofi -p "devicon" --show dmenu -i < ${cheatsheet} | awk '{print $1}')"

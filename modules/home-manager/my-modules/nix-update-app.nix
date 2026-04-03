@@ -14,9 +14,6 @@
     ];
 
     text = ''
-      #!/usr/bin/env bash
-      set -euo pipefail
-
       trap "read -p 'Press [ENTER] to continue...'" ERR
 
       cd ${cfg.configPath} || exit 1
