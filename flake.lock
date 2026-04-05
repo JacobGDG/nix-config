@@ -260,11 +260,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724097937,
-        "narHash": "sha256-Q4tgm8ZHAQUdvsNft86MqIbHQAm7OF7RT/wwYWXqSdY=",
+        "lastModified": 1755304025,
+        "narHash": "sha256-xVKfjFwc0zMbLMjLTiHz+0llggkjs93SmHkhaa9S3M4=",
         "owner": "mrcjkb",
         "repo": "nix-gen-luarc-json",
-        "rev": "b36b69c4ded9f31b079523bc452e23458734cf00",
+        "rev": "1865b0ebb753ae5324d7381b1fa8c98c04ec7509",
         "type": "github"
       },
       "original": {
@@ -431,10 +431,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1775132520,
-        "narHash": "sha256-80IcvTgnwoEaR2QN3FajrtD8YgEAl3fGlTURZEx9P3s=",
+        "lastModified": 1775424892,
+        "narHash": "sha256-ej5MU2ovnruzbWopGq1vbKxUeMXWPZvVc4gCf4OhJwI=",
         "ref": "refs/heads/main",
-        "rev": "f3d1ba37dc2aea4de6a8e3a8382d8b8ae6610599",
+        "rev": "5cc57ec331c896a7185560360b1f156892eaba75",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
