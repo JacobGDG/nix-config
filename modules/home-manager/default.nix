@@ -3,6 +3,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    package = pkgs.direnv.overrideAttrs (_old: {doCheck = false;}); # TODO: https://github.com/NixOS/nixpkgs/issues/507531
     stdlib = ''
       : ''${XDG_CACHE_HOME:=$HOME/.cache}
       declare -A direnv_layout_dirs
@@ -37,7 +38,6 @@
     obsidian
     pre-commit
     tealdeer
-    tomato-c
     tree
     watch
     xclip

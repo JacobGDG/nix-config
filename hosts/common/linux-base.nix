@@ -53,6 +53,7 @@
     homeDirectory = "/home/jake";
 
     packages = with pkgs; [
+      tomato-c
       blender
       kitty
       ruby

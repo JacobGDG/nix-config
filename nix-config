@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+function ensure_nix {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    if ! command -v nix &>/dev/null; then
+      export PATH="/nix/var/nix/profiles/default/bin:$PATH"
+      if ! command -v nix &>/dev/null; then
+        echo "Error: nix not found. /etc/zshenv may have been clobbered by a macOS update."
+        exho "Even with 'export PATH=/nix/var/nix/profiles/default/bin:$$PATH' it failed"
+        exit 1
+      fi
+    fi
+  fi
+}
+
 function get_host_name {
   if [ -f /etc/hostname ]; then
     cat /etc/hostname
@@ -44,4 +57,5 @@ if [[ $# -eq 0 || $1 == "help" ]]; then
   exit 0
 fi
 
+ensure_nix
 run_command "$@"

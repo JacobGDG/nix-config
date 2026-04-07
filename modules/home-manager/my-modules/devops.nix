@@ -24,7 +24,7 @@ in {
         with pkgs; [
           tenv # tofu version manager
           tflint
-          checkov
+          # checkov # TODO: reenable in macos ffmpeg (???) was returining kill 9 in test phase
         ]
       )
       ++ lib.optionals cfg.kubernetes.enable (

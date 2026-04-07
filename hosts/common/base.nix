@@ -65,6 +65,7 @@
       jq
       yq
       spotify
+      # tomato-c # TODO: Reenable in mac, mpv was failing to build
     ];
   };
 }

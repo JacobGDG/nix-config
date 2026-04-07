@@ -13,7 +13,10 @@
   '';
 
   home = {
-    sessionPath = ["/opt/homebrew/bin/brew"];
+    sessionPath = [
+      "/nix/var/nix/profiles/default/bin"
+      "/opt/homebrew/bin"
+    ];
 
     packages = with pkgs; [
       jira-cli-go
