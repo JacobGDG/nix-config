@@ -14,8 +14,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      nvim-pkg
-    ];
+    home = {
+      sessionVariables.EDITOR = "nvim";
+      packages = with pkgs; [
+        nvim-pkg
+      ];
+    };
   };
 }

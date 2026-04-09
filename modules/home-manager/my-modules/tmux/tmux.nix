@@ -76,18 +76,18 @@ in {
         bind-key r source ~/.config/tmux/tmux.conf
 
         unbind s
-        bind-key "s" run-shell "sesh connect \"$(
-          sesh list --icons | rg -v quick-access-kitty | fzf-tmux -p 55%,60% \
+        bind-key "s" run-shell "${pkgs.sesh}/bin/sesh connect \"$(
+          ${pkgs.sesh}/bin/sesh list --icons | ${pkgs.ripgrep}/bin/rg -v quick-access-kitty | ${pkgs.fzf}/bin/fzf --tmux 55%,60% \
           --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
           --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
           --bind 'tab:down,btab:up' \
-          --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-          --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
-          --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
-          --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
-          --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-          --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
-          --preview 'sesh preview {}' \
+          --bind 'ctrl-a:change-prompt(⚡  )+reload(${pkgs.sesh}/bin/sesh list --icons)' \
+          --bind 'ctrl-t:change-prompt(🪟  )+reload(${pkgs.sesh}/bin/sesh list -t --icons)' \
+          --bind 'ctrl-g:change-prompt(⚙️  )+reload(${pkgs.sesh}/bin/sesh list -c --icons)' \
+          --bind 'ctrl-x:change-prompt(📁  )+reload(${pkgs.sesh}/bin/sesh list -z --icons)' \
+          --bind 'ctrl-f:change-prompt(🔎  )+reload(${pkgs.fd}/bin/fd -H -d 2 -t d -E .Trash . ~)' \
+          --bind 'ctrl-d:execute(${pkgs.tmux}/bin/tmux kill-session -t {2..})+change-prompt(⚡  )+reload(${pkgs.sesh}/bin/sesh list --icons)' \
+          --preview '${pkgs.sesh}/bin/sesh preview {}' \
         )\""
 
         # -----------------------------------------------------------------------------

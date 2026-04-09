@@ -33,8 +33,6 @@ in {
         // cfg.extraAliases;
 
       initContent = ''
-        source ~/.config/zsh/.p10k.zsh
-
         bindkey '^R' history-incremental-search-backward
         bindkey '^H' backward-delete-char
         bindkey '^?' backward-delete-char
