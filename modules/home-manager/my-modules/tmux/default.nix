@@ -7,6 +7,10 @@
   options = {
     myModules.tmux = {
       enable = lib.mkEnableOption "tmux";
+      bindings = lib.mkOption {
+        type = lib.types.attrsOf lib.types.str;
+        description = "An attribute set with arbitrary keys and string values.";
+      };
       shell = lib.mkOption {
         type = lib.types.str;
         default = "${pkgs.zsh}/bin/zsh";
@@ -42,6 +46,13 @@
       };
       tmuxifier.enable = lib.mkEnableOption "tmuxifier";
     };
+  };
+
+  config.myModules.tmux.bindings = {
+    o = lib.mkDefault "run-shell open-last-url";
+    g = lib.mkDefault "split-window -h -c \"#{pane_current_path}\"";
+    h = lib.mkDefault "split-window -c \"#{pane_current_path}\"";
+    r = lib.mkDefault "source ~/.config/tmux/tmux.conf";
   };
 
   imports = mylib.scanPaths ./.;

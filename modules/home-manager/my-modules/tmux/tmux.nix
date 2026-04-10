@@ -6,7 +6,12 @@
 }: let
   cfg = config.myModules.tmux;
 
-  other_pane = pkgs.writeScriptBin "tmux-other-pane" (builtins.readFile ./tmux-other-pane.sh);
+  other_pane = pkgs.writeScriptBin "tmux-other-pane" (builtins.readFile ./scripts/tmux-other-pane.sh);
+
+  mkBinding = key: value: ''
+    unbind ${key}
+    bind-key ${key} ${value}
+  '';
 in {
   config = lib.mkIf cfg.enable {
     home.packages = [
@@ -61,35 +66,7 @@ in {
         # auto launch tmux creates a blank screen here. often pressed with split zoom
         unbind C-z
 
-        # vertical splits with g
-        unbind g
-        bind-key g split-window -h -c "#{pane_current_path}"
-
-        # horizontal splits with h
-        unbind h
-        bind-key h split-window -c "#{pane_current_path}"
-
-        unbind o
-        bind-key o run-shell "open-last-url"
-
-        # source tmux
-        bind-key r source ~/.config/tmux/tmux.conf
-
-        # TODO: Extract into script
-        unbind s
-        bind-key "s" run-shell "${pkgs.sesh}/bin/sesh connect \"$(
-          ${pkgs.sesh}/bin/sesh list --icons | ${pkgs.ripgrep}/bin/rg -v quick-access-kitty | ${pkgs.fzf}/bin/fzf --tmux 55%,60% \
-          --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-          --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
-          --bind 'tab:down,btab:up' \
-          --bind 'ctrl-a:change-prompt(⚡  )+reload(${pkgs.sesh}/bin/sesh list --icons)' \
-          --bind 'ctrl-t:change-prompt(🪟  )+reload(${pkgs.sesh}/bin/sesh list -t --icons)' \
-          --bind 'ctrl-g:change-prompt(⚙️  )+reload(${pkgs.sesh}/bin/sesh list -c --icons)' \
-          --bind 'ctrl-x:change-prompt(📁  )+reload(${pkgs.sesh}/bin/sesh list -z --icons)' \
-          --bind 'ctrl-f:change-prompt(🔎  )+reload(${pkgs.fd}/bin/fd -H -d 2 -t d -E .Trash . ~)' \
-          --bind 'ctrl-d:execute(${pkgs.tmux}/bin/tmux kill-session -t {2..})+change-prompt(⚡  )+reload(${pkgs.sesh}/bin/sesh list --icons)' \
-          --preview '${pkgs.sesh}/bin/sesh preview {}' \
-        )\""
+        ${lib.concatStrings (builtins.attrValues (builtins.mapAttrs mkBinding cfg.bindings))}
 
         # -----------------------------------------------------------------------------
         # UI
