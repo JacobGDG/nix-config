@@ -39,15 +39,15 @@ in {
 
         TMUX_SESSION=''${TMUX_SESSION:-"home"}
 
-        if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
-          tmux attach -t "$TMUX_SESSION" || exec tmux new-session -s "$TMUX_SESSION"
-          exit
-        fi
-
         export PATH="${config.home.profileDirectory}/bin:$PATH"
 
         if [ -n "$OPENAI_API_KEY_FILE" ] && [ -f "$OPENAI_API_KEY_FILE" ]; then
           export OPENAI_API_KEY=$(cat $OPENAI_API_KEY_FILE)
+        fi
+
+        if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
+          tmux attach -t "$TMUX_SESSION" || exec tmux new-session -s "$TMUX_SESSION"
+          exit
         fi
       '';
 

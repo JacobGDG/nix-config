@@ -1,11 +1,17 @@
 {
   mylib,
   lib,
+  pkgs,
   ...
 }: {
   options = {
     myModules.tmux = {
       enable = lib.mkEnableOption "tmux";
+      shell = lib.mkOption {
+        type = lib.types.str;
+        default = "${pkgs.zsh}/bin/zsh";
+        description = "Preferred shell";
+      };
       sesh = {
         enable = lib.mkEnableOption "sesh";
         startup_command = lib.mkOption {

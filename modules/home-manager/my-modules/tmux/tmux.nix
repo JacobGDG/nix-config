@@ -23,6 +23,8 @@ in {
       escapeTime = 10;
       historyLimit = 50000;
       focusEvents = true;
+      terminal = "tmux-256color";
+      shell = cfg.shell;
 
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with pkgs; [
@@ -31,10 +33,8 @@ in {
 
       extraConfig = ''
         set -gu default-command
-        set -g default-shell "$SHELL"
 
         # Undercurl
-        set -g default-terminal "tmux-256color"
 
         set -g detach-on-destroy off  # don't exit from tmux when closing a session
 
@@ -72,9 +72,10 @@ in {
         unbind o
         bind-key o run-shell "open-last-url"
 
-        # source tmus
+        # source tmux
         bind-key r source ~/.config/tmux/tmux.conf
 
+        # TODO: Extract into script
         unbind s
         bind-key "s" run-shell "${pkgs.sesh}/bin/sesh connect \"$(
           ${pkgs.sesh}/bin/sesh list --icons | ${pkgs.ripgrep}/bin/rg -v quick-access-kitty | ${pkgs.fzf}/bin/fzf --tmux 55%,60% \
