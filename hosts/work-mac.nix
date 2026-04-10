@@ -4,7 +4,7 @@
   ];
 
   myModules = {
-    opencode.enable = true;
+    aiAgents.enable = true;
     devops = {
       enable = true;
       terraform.enable = true;
