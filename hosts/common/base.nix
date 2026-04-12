@@ -20,6 +20,7 @@
   nixpkgs.config.allowUnfree = true;
 
   myModules = {
+    aiAgents.enable = true;
     git = {
       enable = true;
       global-pre-commit.enable = true;

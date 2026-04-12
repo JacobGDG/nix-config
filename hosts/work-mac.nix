@@ -4,7 +4,6 @@
   ];
 
   myModules = {
-    aiAgents.enable = true;
     devops = {
       enable = true;
       terraform.enable = true;
