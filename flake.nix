@@ -12,7 +12,7 @@
     nix-colors = {
       url = "github:misterio77/nix-colors";
     };
-    agenix = {
+    ragenix = {
       url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -44,7 +44,7 @@
   };
 
   outputs = {
-    agenix,
+    ragenix,
     home-manager,
     mysecrets,
     wallpapers,
@@ -110,7 +110,7 @@
           hostConfig = {inherit hostName username;};
           inherit inputs mylib;
         };
-        modules = [agenix.nixosModules.default] ++ modules;
+        modules = [ragenix.nixosModules.default] ++ modules;
       };
   in {
     inherit lib;
