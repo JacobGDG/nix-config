@@ -20,6 +20,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "JacobGDG";
+          email = "10035081+JacobGDG@users.noreply.github.com";
+        };
+      };
+    };
     programs.git = {
       enable = true;
       settings = {
