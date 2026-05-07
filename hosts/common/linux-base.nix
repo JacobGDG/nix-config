@@ -63,6 +63,7 @@
       prismlauncher
       mumble
       discord
+      rpi-imager
     ];
   };
 }
