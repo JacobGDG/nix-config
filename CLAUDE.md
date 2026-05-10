@@ -19,11 +19,15 @@ nix run .#write-flake --show-trace
 ## Commands
 
 ```bash
-nix run .#write-flake --show-trace     # Regenerate flake.nix after input changes
-just hm                                # Apply home-manager for current user@host
-just os                                # Apply NixOS config for current host
-just check                             # nix flake check
-nix develop                            # Enter devShell
+just write-flake    # Regenerate flake.nix after input changes
+just hm-build       # Build home-manager for current user@host
+just os-build       # Build NixOS config for current host
+just check          # nix flake check
+just vm [host]      # Build and run VM for host (default: current hostname)
+just debug          # Enable debug module (copies _debug.nix → debug.nix)
+just debug-clean    # Remove debug module
+just test           # write-flake + hm-build + os-build
+nix develop         # Enter devShell
 ```
 
 **Formatting:** `alejandra .` (enforced via pre-commit).
@@ -40,14 +44,14 @@ modules/
   meta/
     default.nix             # systems list: [ "x86_64-linux" "aarch64-darwin" ]
     inputs.nix              # imports den + flake-file modules; declares flake inputs via flake-file
-    den.nix                 # namespace declaration (jk), stateVersion defaults, schema defaults
+    den.nix                 # namespace declaration (jg), stateVersion defaults, schema defaults
     devshells.nix           # perSystem devShells
   hosts/
     <hostname>.nix          # den.hosts declaration + den.aspects.<hostname> NixOS config
-  me.nix                    # jake user: den.homes or den.hosts user + composes jk.* aspects
+  me.nix                    # jake user: den.homes or den.hosts user + composes jg.* aspects
   <feature>/
-    default.nix             # composite aspect: jk.<feature>.includes = with jk; [ ... ]
-    <concern>.nix           # leaf aspect: jk.<concern>.homeManager/nixos = { ... }
+    default.nix             # composite aspect: jg.<feature>.includes = with jg; [ ... ]
+    <concern>.nix           # leaf aspect: jg.<concern>.homeManager/nixos = { ... }
 ```
 
 `import-tree` auto-imports every `.nix` file under `modules/`. Files/dirs prefixed with `_` are excluded. No manual imports needed.
@@ -58,24 +62,24 @@ modules/
 
 ### Namespace
 
-The namespace is `jk` (declared in `modules/meta/den.nix`):
+The namespace is `jg` (declared in `modules/meta/den.nix`):
 ```nix
-imports = [ (inputs.den.namespace "jk" false) ];
+imports = [ (inputs.den.namespace "jg" false) ];
 ```
-This makes `jk` available as a module arg. Feature aspects are registered as `jk.<name>.homeManager = ...` and/or `jk.<name>.nixos = ...`.
+This makes `jg` available as a module arg. Feature aspects are registered as `jg.<name>.homeManager = ...` and/or `jg.<name>.nixos = ...`.
 
 ### Aspects
 
 An aspect bundles config for multiple Nix classes:
 ```nix
-jk.cava.homeManager = { programs.cava.enable = true; };
-jk.hyprland.nixos = { programs.hyprland.enable = true; };
-jk.hyprland.homeManager = { wayland.windowManager.hyprland.enable = true; };
+jg.cava.homeManager = { programs.cava.enable = true; };
+jg.hyprland.nixos = { programs.hyprland.enable = true; };
+jg.hyprland.homeManager = { wayland.windowManager.hyprland.enable = true; };
 ```
 
 Composites use `includes`:
 ```nix
-jk.desktop.includes = with jk; [ hyprland waybar dunst kitty ];
+jg.desktop.includes = with jg; [ hyprland waybar dunst kitty ];
 ```
 
 ### Hosts & Users
@@ -101,7 +105,7 @@ Any module can declare its own flake input alongside its config:
 # modules/tui/neovim.nix
 { inputs, ... }: {
   flake-file.inputs.neovim.url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
-  jk.neovim.homeManager = { pkgs, ... }: {
+  jg.neovim.homeManager = { pkgs, ... }: {
     nixpkgs.overlays = [ inputs.neovim.overlays.default ];
     home.packages = [ pkgs.nvim-pkg ];
   };
@@ -147,9 +151,16 @@ See `TODO-migrate.md` for the full checklist of features to migrate from `main`.
 
 ---
 
+## Patterns
+
+### home-manager git options
+Use `programs.git.settings.*` (not the deprecated `extraConfig`, `userName`, `userEmail`, `aliases`).
+
+---
+
 ## Reference
 
-- Old config (main branch): `../` or `git show main:<path>`
+- Old config (main branch): `../` (git worktree — do NOT use `git show main:<path>`, it doesn't work from this worktree)
 - Working memory / session context: `./working-memory/` (not committed)
 - Test repo (confirmed working): `./working-memory/nix-dendritic-test/`
 - `vic/den` source: `./working-memory/den/`
