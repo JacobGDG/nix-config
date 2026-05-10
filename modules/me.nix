@@ -5,5 +5,8 @@
       den.provides.primary-user
       (den.provides.user-shell "zsh")
     ];
+    homeManager = {pkgs, ...}: {
+      home.packages = with pkgs; [htop tealdeer];
+    };
   };
 }
