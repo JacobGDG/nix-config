@@ -53,7 +53,7 @@ Use `/den-migrate <topic>` to help work through each item.
 
 ## Hosts
 
-- [ ] erebor hardware config (`nixos/erebor/hardware-configuration.nix`)
+- [x] erebor hardware config (`nixos/erebor/hardware-configuration.nix`) → `modules/hosts/erebor/hardware.nix`
 - [ ] jake-laptop-nixos host + hardware config
 
 ## Open questions
