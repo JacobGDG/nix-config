@@ -70,6 +70,7 @@
         buildInputs = with pkgs; [
           nil
           alejandra
+          nvd
         ];
       };
 
