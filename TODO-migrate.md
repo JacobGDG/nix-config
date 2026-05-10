@@ -8,7 +8,7 @@ Use `/den-migrate <topic>` to help work through each item.
 - [x] zsh + starship (`modules/tui/zsh.nix`, `modules/tui/starship.nix`)
 - [ ] neovim (`modules/home-manager/my-modules/neovim.nix`) — private input
 - [ ] tmux + sesh + tmuxifier (`modules/home-manager/my-modules/tmux/`)
-- [ ] git + pre-commit hooks (`modules/home-manager/my-modules/git/`)
+- [x] git + jujutsu + pre-commit hooks (`modules/tui/git.nix`, `modules/tui/jujutsu.nix`)
 - [ ] kitty (`modules/home-manager/my-modules/kitty.nix`)
 
 ## Desktop (Linux only)
