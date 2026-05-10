@@ -16,4 +16,11 @@ vm-clean host=`hostname`:
 vm host=`hostname`: (vm-clean host)
   nix run .#vm-{{host}}
 
+debug:
+  cp modules/_debug.nix modules/debug.nix
+  git add modules/debug.nix
+
+debug-clean:
+  git rm -f modules/debug.nix 2>/dev/null || rm -f modules/debug.nix
+
 test: write-flake hm-build os-build
