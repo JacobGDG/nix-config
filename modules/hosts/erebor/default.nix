@@ -3,5 +3,9 @@
 
   den.aspects.erebor = {
     includes = [den.provides.hostname];
+    nixos = {pkgs, ...}: {
+      environment.systemPackages = [pkgs.neovim];
+      users.users.jake.initialPassword = "password";
+    };
   };
 }

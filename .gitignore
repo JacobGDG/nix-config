@@ -3,3 +3,4 @@ result/
 result-alejandra
 .direnv/
 working-memory/
+*.qcow2
