@@ -25,8 +25,8 @@ Use `/den-migrate <topic>` to help work through each item.
 
 ## System (NixOS)
 
-- [x] locale (`nixos/common/locale.nix`) — inlined into `den.default.nixos` in `modules/meta/den.nix`
-- [ ] nix settings (`nixos/common/nix.nix`) — consider as `den.default.nixos` instead
+- [x] locale (`nixos/common/locale.nix`) — inlined into `den.default.nixos` in `modules/meta/defaults.nix`
+- [x] nix settings (`nixos/common/nix.nix`) — all defaults (locale, nix settings, stateVersion) consolidated in `modules/meta/defaults.nix`; `den.nix` kept minimal (namespace + schema only)
 - [ ] polkit + rtkit (`nixos/common/security.nix`)
 - [ ] printing + udisks (`nixos/common/services.nix`)
 - [ ] pipewire (`nixos/common/services.nix`)
