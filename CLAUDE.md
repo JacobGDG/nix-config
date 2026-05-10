@@ -141,6 +141,12 @@ Declare these via `flake-file.inputs` in the relevant feature module.
 
 ---
 
+## Migration
+
+See `TODO-migrate.md` for the full checklist of features to migrate from `main`. Use `/den-migrate <topic>` to work through each item.
+
+---
+
 ## Reference
 
 - Old config (main branch): `../` or `git show main:<path>`
