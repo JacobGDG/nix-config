@@ -24,3 +24,6 @@ debug-clean:
   git rm -f modules/debug.nix 2>/dev/null || rm -f modules/debug.nix
 
 test: write-flake hm-build os-build
+
+web:
+  xdg-open https://github.com/JacobGDG/nix-config/tree/dendritic-rebuild
