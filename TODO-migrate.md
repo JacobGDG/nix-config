@@ -7,9 +7,9 @@ Use `/den-migrate <topic>` to help work through each item.
 
 - [x] zsh + starship (`modules/tui/zsh.nix`, `modules/tui/starship.nix`)
 - [ ] neovim (`modules/home-manager/my-modules/neovim.nix`) — private input
-- [ ] tmux + sesh + tmuxifier (`modules/home-manager/my-modules/tmux/`)
+- [x] tmux + sesh + tmuxifier (`modules/tui/tmux.nix`)
+- [x] zoxide (`modules/tui/zoxide.nix`)
 - [x] git + jujutsu + pre-commit hooks (`modules/tui/git.nix`, `modules/tui/jujutsu.nix`)
-- [ ] kitty (`modules/home-manager/my-modules/kitty.nix`)
 
 ## Desktop (Linux only)
 
@@ -22,6 +22,7 @@ Use `/den-migrate <topic>` to help work through each item.
 - [ ] wlogout (`modules/home-manager/my-modules/hyprland/wlogout.nix`)
 - [ ] firefox — NixOS + HM (`modules/nixos/firefox.nix`, `modules/home-manager/my-modules/firefox.nix`)
 - [ ] mpv (`modules/home-manager/my-modules/mpv.nix`)
+- [ ] kitty (`modules/home-manager/my-modules/kitty.nix`)
 
 ## System (NixOS)
 
