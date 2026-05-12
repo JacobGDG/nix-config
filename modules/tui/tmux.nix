@@ -1,11 +1,4 @@
-{jg, ...}: let
-  # Gruvbox dark palette (base16)
-  bg = "504945"; # base02
-  bg-dark = "3c3836"; # base01
-  bg-darker = "282828"; # base00
-  fg = "d5c4a1"; # base05
-  fg-dim = "665c54"; # base03
-in {
+{jg, ...}: {
   jg.tui.includes = [jg.tmux];
 
   jg.tmux.homeManager = {
@@ -158,13 +151,17 @@ in {
         bind-key s run-shell tmux-sesh-open
 
         # -----------------------------------------------------------------------------
-        # UI (Gruvbox dark)
+        # UI
         # -----------------------------------------------------------------------------
 
-        set-window-option -g mode-style "fg=#${fg},bg=#${bg}"
+        ${let
+          p = config.theme.palette;
+        in ''
+          set-window-option -g mode-style "fg=#${p.base05},bg=#${p.base02}"
 
-        set-option -g status-left "#[bg=#${bg},fg=#${fg}] #S #[fg=#${bg},bg=#${bg-dark},nobold,noitalics,nounderscore]"
-        set-option -g status-right "#[fg=#${fg-dim},nobold,nounderscore,noitalics]#[bg=#${fg-dim},fg=#${fg}] #(tomato -t)  %Y-%m-%d  %H:%M #[fg=#${bg},bg=#${fg-dim},nobold,noitalics,nounderscore]#[bg=#${bg},fg=#${fg}] #h"
+          set-option -g status-left "#[bg=#${p.base02},fg=#${p.base05}] #S #[fg=#${p.base02},bg=#${p.base01},nobold,noitalics,nounderscore]"
+          set-option -g status-right "#[fg=#${p.base03},nobold,nounderscore,noitalics]#[bg=#${p.base03},fg=#${p.base05}] #(tomato -t)  %Y-%m-%d  %H:%M #[fg=#${p.base02},bg=#${p.base03},nobold,noitalics,nounderscore]#[bg=#${p.base02},fg=#${p.base05}] #h"
+        ''}
       '';
     };
   };

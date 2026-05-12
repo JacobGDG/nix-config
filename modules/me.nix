@@ -10,6 +10,8 @@
       (den.provides.user-shell "zsh")
       jg.tui
       jg.desktop
+
+      jg.gruvbox
     ];
     homeManager = {pkgs, ...}: {
       fonts.fontconfig.enable = true;
