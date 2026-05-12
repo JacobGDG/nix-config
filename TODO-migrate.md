@@ -9,7 +9,11 @@ Use `/den-migrate <topic>` to help work through each item.
 - [x] neovim (`modules/tui/neovim.nix`) — private input
 - [x] tmux + sesh + tmuxifier (`modules/tui/tmux.nix`)
 - [x] zoxide (`modules/tui/zoxide.nix`)
+- [x] direnv + nix-direnv (`modules/tui/direnv.nix`)
+- [x] ripgrep (`modules/tui/ripgrep.nix`)
 - [x] git + jujutsu + pre-commit hooks (`modules/tui/git.nix`, `modules/tui/jujutsu.nix`)
+- [x] misc packages + fonts (`modules/me.nix`)
+- [x] linux-specific packages (`modules/hosts/linux.nix`)
 
 ## Desktop (Linux only)
 

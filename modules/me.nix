@@ -11,7 +11,30 @@
       jg.tui
     ];
     homeManager = {pkgs, ...}: {
-      home.packages = with pkgs; [htop tealdeer];
+      fonts.fontconfig.enable = true;
+
+      home.packages = with pkgs; [
+        # monitoring
+        bottom
+        dig
+        htop
+        tree
+        watch
+
+        # cli tools
+        fzf
+        gh
+        jq
+        just
+        tealdeer # tldr
+        yq-go
+
+        # security
+        ripsecrets
+
+        # fonts
+        nerd-fonts.jetbrains-mono
+      ];
     };
   };
 }

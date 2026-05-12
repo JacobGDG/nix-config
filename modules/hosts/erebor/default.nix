@@ -10,6 +10,7 @@
     includes = [
       den.provides.hostname
       (den.provides.tty-autologin "jake")
+      jg.linux
       jg.bluetooth
       jg.networking
     ];

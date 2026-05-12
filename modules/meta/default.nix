@@ -34,6 +34,9 @@ in {
         nixPath = nixPath;
       };
     };
-    homeManager.home.stateVersion = "25.11";
+    homeManager = {
+      home.stateVersion = "25.11";
+      news.display = "silent";
+    };
   };
 }
