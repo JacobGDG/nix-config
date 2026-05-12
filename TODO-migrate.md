@@ -6,7 +6,7 @@ Use `/den-migrate <topic>` to help work through each item.
 ## TUI
 
 - [x] zsh + starship (`modules/tui/zsh.nix`, `modules/tui/starship.nix`)
-- [ ] neovim (`modules/home-manager/my-modules/neovim.nix`) — private input
+- [x] neovim (`modules/tui/neovim.nix`) — private input
 - [x] tmux + sesh + tmuxifier (`modules/tui/tmux.nix`)
 - [x] zoxide (`modules/tui/zoxide.nix`)
 - [x] git + jujutsu + pre-commit hooks (`modules/tui/git.nix`, `modules/tui/jujutsu.nix`)
