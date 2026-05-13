@@ -25,5 +25,21 @@ debug-clean:
 
 test: write-flake hm-build os-build
 
+check-scripts:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  orphans=()
+  while IFS= read -r sh; do
+    basename=$(basename "$sh")
+    if ! grep -q "$basename" modules/packages/default.nix; then
+      orphans+=("$sh")
+    fi
+  done < <(find modules/packages -name "*.sh")
+  if ! [ ${#orphans[@]} -eq 0 ]; then
+    echo "Orphaned .sh files (not referenced in modules/packages/default.nix):"
+    printf '  %s\n' "${orphans[@]}"
+    exit 1
+  fi
+
 web:
   xdg-open https://github.com/JacobGDG/nix-config/tree/dendritic-rebuild

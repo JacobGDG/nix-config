@@ -22,6 +22,27 @@ map (a: a.name or "?") jg.tui.includes
 builtins.attrNames jg
 ```
 
+## Custom packages / scripts
+
+Custom shell scripts and packages live in `modules/packages/`. They are exposed as a nixpkgs overlay applied to all home-manager configs via `den.default.homeManager`, so `pkgs.<name>` works anywhere.
+
+**Adding a new script:**
+
+1. Drop a `.sh` file in `modules/packages/`
+2. Add a `writeShellApplication` entry in `modules/packages/default.nix` with explicit `runtimeInputs`
+3. Install it where needed: `home.packages = [ pkgs.my-script ]`
+
+```nix
+# modules/packages/default.nix
+my-script = prev.writeShellApplication {
+  name = "my-script";
+  runtimeInputs = with prev; [curl jq];
+  text = builtins.readFile ./my-script.sh;
+};
+```
+
+A pre-commit hook (`just check-scripts`) ensures every `.sh` in `modules/packages/` is referenced in `default.nix`.
+
 ## Theming
 
 Colours are centralised in `modules/theming/`. Each theme is a `jg.<name>` aspect that declares and sets a `theme.palette` home-manager option (base16 attrset of hex strings without `#`).

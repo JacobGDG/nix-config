@@ -38,7 +38,7 @@
       hash = "sha256-iOW0LsZgPQMo7LlcElVtN4/Zwt0uCEfI7I3TE3Y3Qdw=";
     };
   in {
-    home.packages = [pkgs.xdg-terminal-exec];
+    home.packages = with pkgs; [xdg-terminal-exec wofi-bookmarks];
 
     programs.wofi = {
       enable = true;

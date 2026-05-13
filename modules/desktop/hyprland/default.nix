@@ -37,21 +37,12 @@
     ...
   }: let
     p = config.theme.palette;
-    hyprctl-conditional-quit = pkgs.writeShellApplication {
-      name = "hyprctl-conditional-quit";
-      runtimeInputs = with pkgs; [hyprland jq];
-      text = ''
-        active_window=$(hyprctl activewindow -j | jq -r '.class')
-        if [[ $active_window =~ ^(steam_app_[0-9]+|dwarfort|Minecraft.+)$ ]]; then
-          notify-send -a "Safe Exit" "Canceled exit call, use app UI."
-          exit 1
-        fi
-        hyprctl dispatch killactive
-      '';
-    };
   in {
     home.packages = with pkgs; [
       hyprctl-conditional-quit
+      media-control
+      quick-access-kitty
+      show-keymaps
       brightnessctl
       libnotify
       networkmanager

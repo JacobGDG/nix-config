@@ -48,6 +48,14 @@ Use `/den-migrate <topic>` to help work through each item.
 - [ ] llm (`modules/home-manager/my-modules/llm.nix`)
 - [ ] ai-agents (`modules/home-manager/my-modules/ai-agents.nix`) — secrets
 
+## Scripts
+
+- [x] scripts pattern established (`modules/packages/`) — overlay via `den.default.homeManager`
+- [x] hyprland scripts: `hyprctl-conditional-quit`, `media-control`, `quick-access-kitty`, `show-keymaps`, `wofi-bookmarks`
+- [ ] wireguard scripts: `wg-manager`, `wg-waybar`, `wg-wofi` — migrate with wireguard module
+- [ ] devops scripts: `aws-console`, `clean-pr`, `create-app`, `git-repo`, `jira-id`, `k-cm-dependants`, `open-last-url`, `password_entropy`, `random` — migrate with devops module
+- [ ] `prepare-commit`, `prepare-pr` (Ruby) — need `inputs.prompts` private input first
+
 ## DevOps
 
 - [ ] devops (`modules/home-manager/my-modules/devops.nix`)
