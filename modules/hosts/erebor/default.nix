@@ -17,6 +17,7 @@
     ];
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.neovim];
+      users.users.jake.extraGroups = ["networkmanager" "wheel"];
     };
   };
 }

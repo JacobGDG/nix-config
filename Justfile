@@ -7,12 +7,15 @@ check:
 hm-build:
   home-manager build --flake ".#$(whoami)@$(hostname)" --show-trace
 
+[linux]
 os-build:
   sudo nixos-rebuild build --flake .#"$(hostname)" --show-trace
 
+[linux]
 vm-clean host=`hostname`:
   rm -f ./{{host}}.qcow2
 
+[linux]
 vm host=`hostname`: (vm-clean host)
   nix run .#vm-{{host}}
 
@@ -22,6 +25,13 @@ debug:
 
 debug-clean:
   git rm -f modules/debug.nix 2>/dev/null || rm -f modules/debug.nix
+
+hm-switch:
+  home-manager switch --flake ".#$(whoami)@$(hostname)" --show-trace
+
+[linux]
+os-switch:
+  sudo nixos-rebuild switch --flake .#"$(hostname)" --show-trace
 
 test: write-flake hm-build os-build
 
