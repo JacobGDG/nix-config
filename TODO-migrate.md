@@ -73,6 +73,10 @@ Use `/den-migrate <topic>` to help work through each item.
 - [x] erebor hardware config (`nixos/erebor/hardware-configuration.nix`) → `modules/hosts/erebor/hardware.nix`
 - [ ] jake-laptop-nixos host + hardware config
 
+## Known issues
+
+- [ ] fix: home-manager CLI unavailable after `nixos-rebuild switch` / reboot — user loses `home-manager` from PATH until `hm-switch` is manually re-run
+
 ## Open questions
 
 - Secrets / ragenix — how does it integrate with den?

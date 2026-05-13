@@ -37,7 +37,6 @@ in {
     homeManager = {
       home.stateVersion = "25.11";
       news.display = "silent";
-      programs.home-manager.enable = true;
     };
   };
 }

@@ -149,7 +149,7 @@
             tooltip = false;
             format-disabled = "disabled ⚠";
             format-disconnected = "disconnected ⚠";
-            format-ethernet = " 󰈁 up: {bandwidthupbits} down: {bandwidthdownbits}";
+            format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
             format-linked = " {ifname} (no ip) ";
             format-wifi = " {essid} ({signalstrength}%)  ";
             on-click = "networkmanager_dmenu";
