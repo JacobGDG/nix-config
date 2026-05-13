@@ -17,7 +17,7 @@ Use `/den-migrate <topic>` to help work through each item.
 
 ## Desktop (Linux only)
 
-- [ ] hyprland — NixOS + HM (`modules/nixos/hyprland.nix`, `modules/home-manager/my-modules/hyprland/`)
+- [x] hyprland — NixOS + HM (`modules/desktop/hyprland.nix`)
 - [ ] waybar (`modules/home-manager/my-modules/hyprland/waybar.nix`)
 - [ ] dunst (`modules/home-manager/my-modules/hyprland/dunst.nix`)
 - [ ] wofi (`modules/home-manager/my-modules/hyprland/wofi/`)
@@ -26,7 +26,7 @@ Use `/den-migrate <topic>` to help work through each item.
 - [ ] wlogout (`modules/home-manager/my-modules/hyprland/wlogout.nix`)
 - [ ] firefox — NixOS + HM (`modules/nixos/firefox.nix`, `modules/home-manager/my-modules/firefox.nix`)
 - [ ] mpv (`modules/home-manager/my-modules/mpv.nix`)
-- [ ] kitty (`modules/home-manager/my-modules/kitty.nix`)
+- [x] kitty (`modules/home-manager/my-modules/kitty.nix`)
 
 ## System (NixOS)
 
