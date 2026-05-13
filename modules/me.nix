@@ -15,6 +15,8 @@
       jg.gruvbox
 
       jg.kitty
+      jg.firefox
+      jg.mpv
     ];
     homeManager = {pkgs, ...}: {
       fonts.fontconfig.enable = true;

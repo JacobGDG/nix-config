@@ -25,8 +25,8 @@ Use `/den-migrate <topic>` to help work through each item.
 - [x] hypridle (`modules/desktop/hyprland/hypridle.nix`)
 - [x] hyprpaper (`modules/desktop/hyprland/hyprpaper.nix`) — wallpaper TODO
 - [x] wlogout (`modules/desktop/hyprland/wlogout.nix`)
-- [ ] firefox — NixOS + HM (`modules/nixos/firefox.nix`, `modules/home-manager/my-modules/firefox.nix`)
-- [ ] mpv (`modules/home-manager/my-modules/mpv.nix`)
+- [x] firefox — NixOS + HM (`modules/applications/firefox.nix`)
+- [x] mpv (`modules/applications/mpv.nix`)
 - [x] kitty (`modules/home-manager/my-modules/kitty.nix`)
 
 ## System (NixOS)
