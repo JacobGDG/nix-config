@@ -11,8 +11,9 @@
       den.provides.hostname
       (den.provides.tty-autologin "jake")
       jg.linux
-      jg.bluetooth
-      jg.networking
+      jg.bootable
+      jg.nvidia
+      jg.steam
     ];
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.neovim];

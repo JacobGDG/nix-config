@@ -17,7 +17,7 @@
         * {
           border: none;
           border-radius: 0px;
-          font-family: JetBrainsMono;
+          font-family: "JetBrainsMono Nerd Font";
           font-size: 12px;
           min-height: 0;
         }
@@ -117,56 +117,59 @@
           layer = "top";
           position = "top";
           spacing = 10;
-          modules-center = ["hyprland/workspaces"];
+          modules-center = [
+            "hyprland/workspaces"
+          ];
           modules-left = [
             "clock"
             "idle_inhibitor"
             "custom/wireguard"
             "privacy"
           ];
-          modules-right = [
+          modules-right = builtins.filter (x: x != null) [
             "pulseaudio"
             "network"
             "cpu"
             "memory"
             "custom/power"
           ];
-          privacy = {};
+          privacy = {
+          };
           clock = {
-            format-alt = " {:%Y-%m-%d} ";
-            tooltip-format = "{:%Y-%m-%d | %H:%M}";
+            format-alt = " {:%y-%m-%d} ";
+            tooltip-format = "{:%y-%m-%d | %h:%m}";
           };
           cpu = {
-            format = " {usage}%    ";
+            format = " {usage}%    ";
             tooltip = false;
           };
-          memory = {format = " {}%  ";};
+          memory = {format = " {}%  ";};
           network = {
             interval = 1;
             tooltip = false;
-            format-disabled = "Disabled ⚠";
-            format-disconnected = "Disconnected ⚠";
-            format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
-            format-linked = " {ifname} (No IP) ";
-            format-wifi = " {essid} ({signalStrength}%)  ";
+            format-disabled = "disabled ⚠";
+            format-disconnected = "disconnected ⚠";
+            format-ethernet = " 󰈁 up: {bandwidthupbits} down: {bandwidthdownbits}";
+            format-linked = " {ifname} (no ip) ";
+            format-wifi = " {essid} ({signalstrength}%)  ";
             on-click = "networkmanager_dmenu";
           };
           pulseaudio = {
             format = " {volume}% {icon} | {format_source}";
-            format-bluetooth = "{volume}% {icon} | {format_source}";
-            format-bluetooth-muted = " {icon} | {format_source}";
+            format-bluetooth = "{volume}% {icon} | {format_source}";
+            format-bluetooth-muted = " {icon} | {format_source}";
             format-muted = " 󰖁 | {format_source}";
             format-icons = {
-              car = " ";
-              default = [" " " " " "];
-              headphones = " ";
-              phone = " ";
-              portable = " ";
-              "alsa_output.pci-0000_04_00.6.HiFi__Speaker__sink" = "󰌢 ";
-              "bluez_output.88_C9_E8_24_52_61.1" = "󱡏 ";
+              car = " ";
+              default = [" " " " " "];
+              headphones = " ";
+              phone = " ";
+              portable = " ";
+              "alsa_output.pci-0000_04_00.6.hifi__speaker__sink" = "󰌢 ";
+              "bluez_output.88_c9_e8_24_52_61.1" = "󱡏 ";
             };
-            format-source = " ";
-            format-source-muted = " ";
+            format-source = " ";
+            format-source-muted = " ";
             on-click = "pavucontrol";
           };
           "custom/power" = {
@@ -181,7 +184,7 @@
             format-icons = {
               inactive = "󰦞";
               home = "󰚊";
-              public = "";
+              public = "";
             };
             exec = "wg-waybar";
             interval = 1;
@@ -189,17 +192,17 @@
           idle_inhibitor = {
             format = "{icon}";
             format-icons = {
-              activated = " ";
-              deactivated = " ";
+              activated = " ";
+              deactivated = " ";
             };
           };
           "hyprland/workspaces" = {
             format = "{icon}";
             format-icons = {
-              "1" = " ";
+              "1" = " ";
               "2" = "󰖟 ";
               "3" = "󱃷 ";
-              "9" = " ";
+              "9" = " ";
               "10" = "󰊴 ";
             };
             on-click = "hyprctl dispatch workspace";

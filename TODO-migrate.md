@@ -27,26 +27,29 @@ Use `/den-migrate <topic>` to help work through each item.
 - [x] wlogout (`modules/desktop/hyprland/wlogout.nix`)
 - [x] firefox — NixOS + HM (`modules/applications/firefox.nix`)
 - [x] mpv (`modules/applications/mpv.nix`)
-- [x] kitty (`modules/home-manager/my-modules/kitty.nix`)
+- [x] kitty (`modules/applications/kitty.nix`)
+- [x] cava (`modules/applications/cava.nix`) — TODO: configure settings/theming
+- [x] dconf (`modules/applications/dconf.nix`) — TODO: configure GTK dark theme
+- [x] spotify-player (`modules/applications/spotify-player.nix`)
+- [x] thunderbird (`modules/applications/thunderbird.nix`) — TODO: configure profiles
+- [x] udiskie + dolphin (`modules/applications/filemanager.nix`)
+- [x] libreoffice (`modules/applications/libreoffice.nix`)
+- [x] genealogy (`modules/applications/genealogy.nix`)
 
 ## System (NixOS)
 
 - [x] locale (`nixos/common/locale.nix`) — inlined into `den.default.nixos` in `modules/meta/defaults.nix`
 - [x] nix settings (`nixos/common/nix.nix`) — all defaults (locale, nix settings, stateVersion) consolidated in `modules/meta/defaults.nix`; `den.nix` kept minimal (namespace + schema only)
-- [ ] polkit + rtkit (`nixos/common/security.nix`)
-- [ ] printing + udisks (`nixos/common/services.nix`)
-- [ ] pipewire (`nixos/common/services.nix`)
-- [ ] openssh (`nixos/common/services.nix`)
-- [ ] networking (`nixos/common/networking.nix`)
-- [ ] battery — NixOS + HM warning daemon (`modules/nixos/battery.nix`, `modules/home-manager/my-modules/battery-warning-daemon.nix`)
-- [ ] nvidia (`modules/nixos/nvidia.nix`) — erebor specific
-- [ ] steam (`modules/nixos/steam.nix`)
+- [x] polkit + rtkit + printing + udisks + pipewire + openssh + networking (`modules/system/bootable.nix`)
+- [ ] battery — NixOS + HM warning daemon (`modules/nixos/battery.nix`, `modules/home-manager/my-modules/battery-warning-daemon.nix`) — laptop only, skip for now
+- [x] nvidia (`modules/system/nvidia.nix`) — erebor specific
+- [x] steam (`modules/system/steam.nix`)
 - [ ] wireguard (`modules/nixos/wireguard.nix`)
 
 ## AI / LLM
 
 - [ ] llm (`modules/home-manager/my-modules/llm.nix`)
-- [ ] ai-agents (`modules/home-manager/my-modules/ai-agents.nix`) — secrets
+- [x] ai-agents / claude-code (`modules/tui/claude.nix`) — registered under `jg.ai`
 
 ## Scripts
 

@@ -9,6 +9,7 @@
       den.provides.primary-user
       (den.provides.user-shell "zsh")
       jg.tui
+      jg.ai
 
       jg.hyprland
 
@@ -17,6 +18,11 @@
       jg.kitty
       jg.firefox
       jg.mpv
+      jg.cava
+      jg.dconf
+      jg.thunderbird
+      jg.filemanager
+      jg.libreoffice
     ];
     homeManager = {pkgs, ...}: {
       fonts.fontconfig.enable = true;
