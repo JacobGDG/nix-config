@@ -9,9 +9,12 @@
       den.provides.primary-user
       (den.provides.user-shell "zsh")
       jg.tui
-      jg.desktop
+
+      jg.hyprland
 
       jg.gruvbox
+
+      jg.kitty
     ];
     homeManager = {pkgs, ...}: {
       fonts.fontconfig.enable = true;

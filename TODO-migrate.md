@@ -17,13 +17,14 @@ Use `/den-migrate <topic>` to help work through each item.
 
 ## Desktop (Linux only)
 
-- [x] hyprland — NixOS + HM (`modules/desktop/hyprland.nix`)
-- [ ] waybar (`modules/home-manager/my-modules/hyprland/waybar.nix`)
-- [ ] dunst (`modules/home-manager/my-modules/hyprland/dunst.nix`)
-- [ ] wofi (`modules/home-manager/my-modules/hyprland/wofi/`)
-- [ ] hyprlock + hypridle (`modules/home-manager/my-modules/hyprland/hyprlock.nix`, `hypridle.nix`)
-- [ ] hyprpaper (`modules/home-manager/my-modules/hyprland/hyprpaper.nix`)
-- [ ] wlogout (`modules/home-manager/my-modules/hyprland/wlogout.nix`)
+- [x] hyprland — NixOS + HM (`modules/desktop/hyprland/default.nix`)
+- [x] waybar (`modules/desktop/hyprland/waybar.nix`)
+- [x] dunst (`modules/desktop/hyprland/dunst.nix`)
+- [x] wofi (`modules/desktop/hyprland/wofi.nix`)
+- [x] hyprlock (`modules/desktop/hyprland/hyprlock.nix`) — wallpaper TODO
+- [x] hypridle (`modules/desktop/hyprland/hypridle.nix`)
+- [x] hyprpaper (`modules/desktop/hyprland/hyprpaper.nix`) — wallpaper TODO
+- [x] wlogout (`modules/desktop/hyprland/wlogout.nix`)
 - [ ] firefox — NixOS + HM (`modules/nixos/firefox.nix`, `modules/home-manager/my-modules/firefox.nix`)
 - [ ] mpv (`modules/home-manager/my-modules/mpv.nix`)
 - [x] kitty (`modules/home-manager/my-modules/kitty.nix`)

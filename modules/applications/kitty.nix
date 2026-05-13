@@ -1,6 +1,4 @@
-{jg, ...}: {
-  jg.desktop.includes = [jg.kitty];
-
+{
   jg.kitty.homeManager = {config, ...}: {
     programs.kitty = {
       enable = true;

@@ -1,6 +1,4 @@
-{jg, ...}: {
-  jg.desktop.includes = [jg.hyprland];
-
+{
   jg.hyprland.nixos = {...}: {
     services.displayManager.sddm = {
       enable = true;
