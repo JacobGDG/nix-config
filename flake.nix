@@ -15,10 +15,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
+    mysecrets = {
+      url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
+      flake = false;
+    };
     neovim = {
       url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    ragenix = {
+      url = "github:JacobGDG/ragenix/687ee92114bce9c4724376cf6b21235abe880bfa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wallpapers = {
+      url = "git+ssh://git@github.com/JacobGDG/wallpapers.git?shallow=1";
+      flake = false;
+    };
   };
 }

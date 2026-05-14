@@ -1,7 +1,15 @@
-{jg, ...}: {
+{
+  inputs,
+  jg,
+  ...
+}: {
+  flake-file.inputs.wallpapers = {
+    url = "git+ssh://git@github.com/JacobGDG/wallpapers.git?shallow=1";
+    flake = false;
+  };
+
   jg.hyprland.includes = [jg.hyprpaper];
 
-  # TODO: declare flake-file.inputs.wallpapers and use wallpaper path
   jg.hyprpaper.homeManager = {
     config,
     pkgs,
@@ -10,11 +18,10 @@
   }: {
     home.packages = [pkgs.hyprpaper];
 
-    # TODO: configure hyprpaper.conf once wallpaper input is available
-    # home.file."${config.xdg.configHome}/hypr/hyprpaper.conf".text = ''
-    #   preload=<wallpaper_path>
-    #   wallpaper=,<wallpaper_path>
-    # '';
+    xdg.configFile."hypr/hyprpaper.conf".text = ''
+      preload="${inputs.wallpapers}/nature/haystacks.jpg";
+      wallpaper=,"${inputs.wallpapers}/nature/haystacks.jpg";
+    '';
 
     systemd.user.services = lib.mkForce {
       hyprpaper = {

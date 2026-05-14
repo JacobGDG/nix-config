@@ -1,7 +1,7 @@
 {jg, ...}: {
   jg.hyprland.includes = [jg.hyprlock];
 
-  jg.hyprlock.homeManager = {...}: {
+  jg.hyprlock.homeManager = {config, ...}: {
     programs.hyprlock = {
       enable = true;
       settings = {
@@ -12,8 +12,13 @@
           no_fade_in = false;
         };
 
-        # TODO: add background with wallpaper input
-        # background = [{ path = "..."; blur_passes = 1; blur_size = 8; }];
+        background = [
+          {
+            path = config.theme.wallpaper;
+            blur_passes = 1;
+            blur_size = 8;
+          }
+        ];
 
         input-field = [
           {

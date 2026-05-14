@@ -23,6 +23,7 @@
       jg.thunderbird
       jg.filemanager
       jg.libreoffice
+      jg.discord
     ];
     homeManager = {pkgs, ...}: {
       fonts.fontconfig.enable = true;
@@ -30,7 +31,7 @@
         # monitoring
         bottom
         dig
-        htop
+        btop
         tree
         watch
 
@@ -42,7 +43,18 @@
         tealdeer # tldr
         yq-go
 
-        # security
+        # productivity
+        ttyper
+        tomato-c
+
+        # gaming
+        prismlauncher
+        mumble
+
+        # utilities
+        rpi-imager
+
+        # lint
         ripsecrets
 
         # fonts
