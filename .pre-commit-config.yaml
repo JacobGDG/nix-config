@@ -16,3 +16,12 @@ repos:
   rev: 4.0.0
   hooks:
     - id: alejandra-system
+      exclude: ^flake\.nix$
+- repo: local
+  hooks:
+    - id: check-scripts
+      name: Check .sh files are referenced in modules/packages/default.nix
+      language: system
+      entry: just check-scripts
+      pass_filenames: false
+      files: ^modules/packages/

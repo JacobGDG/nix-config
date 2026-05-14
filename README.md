@@ -1,82 +1,67 @@
-# My Nix config
+# nix-config
 
-My overkill dotfiles.
+## Debugging
 
-* https://search.nixos.org/packages
-* https://github.com/NixOS/nixpkgs/tree/master/nixos/modules/programs
-* https://github.com/nix-community/home-manager/tree/master/modules/programs
-* https://github.com/JacobGDG/wallpapers
-* https://github.com/JacobGDG/nix-secrets \<_private_\>
+### How to view includes on an aspect
 
+`jg` and `den` are not exposed by default. `modules/_debug.nix` is committed but excluded from import-tree via the `_` prefix.
 
-# Why?
+To activate it:
 
-Simply putting my dotfiles into a git repo a few year ago opened up a lot of
-potential for me. I enjoyed making tweaks over time and building my own bespoke
-development space is very satisfying.
+```bash
+just debug-file   # copies _debug.nix → debug.nix and stages it
+just debug-clean  # removes debug.nix when done
+```
 
-I can also easily lie to myself and say my constant tinkering is productive. "I
-am learning."
+Then in the repl:
 
-So why not go further, and put packages into Git. NixOS and Home Manager make
-that fun. I have been able to experiment much more with Linux in general without
-worrying about breaking something beyond (my ability to) repair.
+```bash
+nix repl
+:lf .
+map (a: a.name or "?") jg.tui.includes
+builtins.attrNames jg
+```
 
-# Modules
-* `hosts/`
-    * Location for most of my home-manager setup. In future I hope to expand
-      this to also include nixos
-* `secrets/`
-    * Secret declaration per system, including OS permissions on the files
-      created. Secret values are stored, encrypted, in a separate and private
-      repo
-* `nixos/`
-    * NixOS configuration. Currently only for a single device
-* `modules/home-manager/`
-    * Primary location for more complex home-manager package config
-* `modules/nixos/`
-    * Primary location for more complex NixOS package config
-* `mylib/`
-    * Helper functions, purposefully kept separate from nixos or home-manager
-      lib
+## Custom packages / scripts
 
-## Components (for NixOs)
+Custom shell scripts and packages live in `modules/packages/`. They are exposed as a nixpkgs overlay applied to all home-manager configs via `den.default.homeManager`, so `pkgs.<name>` works anywhere.
 
-|                             | NixOS(Wayland)                    |
-| --------------------------- | --------------------------------- |
-| **Window Manager**          | [Hyprland][Hyprland]              |
-| **Terminal Emulator**       | [Kitty][Kitty]                    |
-| **Bar**                     | [Waybar][Waybar]                  |
-| **Application Launcher**    | [Wofi][wofi]                      |
-| **Notification Daemon**     | [Dunst][Dunst]                    |
-| **Display Manager**         | [SDDM][SDDM]                      |
-| **Color Scheme**            | Gruvbox                           |
-| **network management tool** | [NetworkManager][NetworkManager]  |
-| **System resource monitor** | [Btop][Btop]                      |
-| **File Manager**            | [Neovim][Neovim] + [Dolphin][Dolphin] |
-| **Shell**                   | ZSH + [P10k][P10k]                |
-| **Media Player**            | [mpv][mpv]                        |
-| **Text Editor**             | [Neovim][Neovim]                  |
-| **Fonts**                   | [Nerd fonts][Nerd fonts]          |
-| **Image Viewer**            |                                   |
-| **Screenshot Software**     |                                   |
-| **Screen Recording**        |                                   |
+**Adding a new script:**
 
+1. Drop a `.sh` file in `modules/packages/`
+2. Add a `writeShellApplication` entry in `modules/packages/default.nix` with explicit `runtimeInputs`
+3. Install it where needed: `home.packages = [ pkgs.my-script ]`
 
+```nix
+# modules/packages/default.nix
+my-script = prev.writeShellApplication {
+  name = "my-script";
+  runtimeInputs = with prev; [curl jq];
+  text = builtins.readFile ./my-script.sh;
+};
+```
 
-[Hyprland]: https://github.com/hyprwm/Hyprland
-[Kitty]: https://github.com/kovidgoyal/kitty
-[Zsh]: https://github.com/nushell/nushell
-[P10k]: https://github.com/romkatv/powerlevel10k
-[Waybar]: https://github.com/Alexays/Waybar
-[wofi]: https://github.com/SimplyCEO/wofi
-[Dunst]: https://github.com/dunst-project/dunst
-[Btop]: https://github.com/aristocratos/btop
-[Neovim]: https://github.com/neovim/neovim
-[Hyprshot]: https://github.com/Gustash/Hyprshot
-[Nerd fonts]: https://github.com/ryanoasis/nerd-fonts
-[NetworkManager]: https://wiki.gnome.org/Projects/NetworkManager
-[wl-clipboard]: https://github.com/bugaevc/wl-clipboard
-[SDDM]: https://github.com/sddm/sddm
-[Dolphin]: https://github.com/KDE/dolphin
-[mpv]: https://mpv.io/
+A pre-commit hook (`just check-scripts`) ensures every `.sh` in `modules/packages/` is referenced in `default.nix`.
+
+## Theming
+
+Colours are centralised in `modules/theming/`. Each theme is a `jg.<name>` aspect that declares and sets a `theme.palette` home-manager option (base16 attrset of hex strings without `#`).
+
+The active theme is included in `me.nix`:
+
+```nix
+den.aspects.jake.includes = [
+  jg.gruvbox  # swap this to change theme
+  ...
+];
+```
+
+Aspects that need colours read from `config.theme.palette`:
+
+```nix
+jg.kitty.homeManager = {config, ...}: {
+  programs.kitty.settings.background = "#${config.theme.palette.base00}";
+};
+```
+
+To add a new theme, create `modules/theming/<name>.nix` following the same pattern as `gruvbox.nix` and swap the include in `me.nix`.
