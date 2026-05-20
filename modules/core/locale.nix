@@ -19,10 +19,5 @@
 
       console.keyMap = "uk";
     };
-
-    # # Example of host specific patch
-    # "nixosConfigurations/erebor" = {
-    #   time.timeZone = lib.mkForce "Europe/Paris";
-    # };
   };
 }

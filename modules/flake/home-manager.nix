@@ -18,11 +18,6 @@
   };
 
   config = {
-    flake-file.inputs.home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     homeManagerModuleSets = let
       userAtHostModules = lib.filterAttrs (name: _: builtins.match ".+@.+" name != null) config.flake.modules.homeManager;
     in

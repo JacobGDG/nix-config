@@ -1,5 +1,5 @@
-{
-  flake-file.inputs.home-manager = {config, ...}: {
+{config, ...}: {
+  flake-file.inputs.home-manager = {
     url = "github:nix-community/home-manager/release-${config.nixpkgsStableVersion}";
     inputs.nixpkgs.follows = "nixpkgs";
   };

@@ -4,7 +4,7 @@
       jake = {
         initialPassword = "password";
         isNormalUser = true;
-        extraGroups = ["wheel"];
+        extraGroups = ["wheel" "networkmanager"];
         useDefaultShell = true;
       };
     };
