@@ -3,14 +3,10 @@
     system = "x86_64-linux";
   };
 
-  flake.modules.homeManager.erebor = {inputs, ...}: {
-    imports = [inputs.self.modules.homeManager.hyprland];
-  };
-
   flake.modules.nixos."nixosConfigurations/erebor" = {inputs, ...}: {
-    imports = [
-      inputs.self.modules.nixos.nvidia
-      inputs.self.modules.nixos.hyprland
+    imports = with inputs.self.modules.nixos; [
+      nvidia
+      hyprland
     ];
 
     networking.hostName = "erebor";
@@ -19,5 +15,9 @@
       stateVersion = "25.05";
       autoUpgrade.enable = false;
     };
+  };
+
+  flake.modules.homeManager.erebor = {inputs, ...}: {
+    imports = with inputs.self.modules.homeManager; [hyprland];
   };
 }
