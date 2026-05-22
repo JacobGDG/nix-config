@@ -21,6 +21,7 @@ in {
       enable = true;
       settings = {
         theme = "dark";
+        customInstructions = "When public public git repositories, clone them to /tmp/<repo>.";
       };
     };
   };

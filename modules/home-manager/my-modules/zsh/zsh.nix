@@ -49,6 +49,10 @@ in {
           tmux attach -t "$TMUX_SESSION" || exec tmux new-session -s "$TMUX_SESSION"
           exit
         fi
+
+        if [ -f "$ZDOTDIR/.zshrc.local" ]; then
+          source "$ZDOTDIR/.zshrc.local"
+        fi
       '';
 
       plugins = [

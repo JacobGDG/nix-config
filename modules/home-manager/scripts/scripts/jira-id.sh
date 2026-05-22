@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-tickets=$(jira issue list -a"$(jira me)" -s"In Progress" -t~Epic --raw | jq -r '.[] | "\(.key) - \(.fields.status.name) - \(.fields.summary)"')
+tickets=$(jira issue list -a"$(jira me)" -s"Doing" -t~Epic --raw | jq -r '.[] | "\(.key) - \(.fields.status.name) - \(.fields.summary)"')
 
 if [[ -z "$tickets" ]]; then
   echo "No in-progress tickets found."
@@ -26,6 +26,6 @@ if [[ -z "${ticket_map[$selection]}" ]]; then
   exit 1
 fi
 
-echo "$ticket_id" | pbcopy
+echo "${ticket_map[$selection]}" | pbcopy
 
-echo "$ticket_id coppied to clipbaord."
+echo "${ticket_map[$selection]} copied to clipboard."

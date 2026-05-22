@@ -35,6 +35,7 @@ in {
           kustomize
           cmctl # cert-manager
           kubernetes-helm
+          kind
         ]
       )
       ++ lib.optionals cfg.aws.enable (
