@@ -40,6 +40,7 @@
 
     homeManager.core = {lib, ...}: {
       home.stateVersion = lib.mkDefault "25.05";
+      news.display = "silent";
       programs.home-manager.enable = true;
       programs.zsh.enable = true;
     };

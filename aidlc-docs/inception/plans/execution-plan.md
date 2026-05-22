@@ -1,16 +1,23 @@
-# Execution Plan: Erebor Initial Config
+# Execution Plan — Erebor Full Config Migration (with Jake)
 
-## Change Impact Assessment
-- **User-facing**: No (system config only)
-- **Structural**: Yes — new modules added to core and nixos layers
-- **Data model**: No
-- **API/interface**: No
-- **NFR impact**: Low — standard NixOS module patterns
+## Detailed Analysis Summary
 
-## Risk Assessment
-- **Risk Level**: Low
-- **Rollback**: Easy — all changes are additive except users.nix modification
-- **Testing**: `nix flake check` / `nix build .#nixosConfigurations.erebor.config.system.build.toplevel`
+### Transformation Scope
+- **Type**: Brownfield extension — adding new modules to an existing working flake-parts repo
+- **Primary Changes**: 15 new .nix files + 5 existing files modified; new `modules/shell/` and `modules/development/` directories
+- **Existing Infrastructure**: Untouched — flake.nix, hosts.nix, home-manager.nix, unfree.nix, systems.nix, versions.nix all remain as-is
+
+### Change Impact Assessment
+- **User-facing changes**: Yes — jake's full home environment (desktop, shell, dev tools) becomes declarative
+- **Structural changes**: Yes — two new module directories (shell/, development/)
+- **Data model changes**: No
+- **API changes**: No
+- **NFR impact**: No
+
+### Risk Assessment
+- **Risk Level**: Low — each module is independently declarative; failure in one doesn't break others
+- **Rollback Complexity**: Easy — revert individual files; `nix flake check` catches issues early
+- **Testing Complexity**: Simple — `nix flake check` + `nixos-rebuild dry-build`
 
 ---
 
@@ -18,24 +25,24 @@
 
 ```
 INCEPTION PHASE
-  [x] Workspace Detection      COMPLETED
-  [-] Reverse Engineering      SKIPPED  (source repo read directly)
-  [x] Requirements Analysis    COMPLETED
-  [-] User Stories             SKIPPED  (infra config, no personas)
-  [x] Workflow Planning        IN PROGRESS
-  [-] Application Design       SKIPPED
-  [-] Units Generation         SKIPPED
+  [x] Workspace Detection          COMPLETE
+  [-] Reverse Engineering          SKIP (done in session 1)
+  [x] Requirements Analysis        COMPLETE (21 FRs, 2 revision rounds)
+  [-] User Stories                 SKIP (infra config, no personas)
+  [>] Workflow Planning            IN PROGRESS
+  [-] Application Design           SKIP (no new component boundaries)
+  [-] Units Generation             SKIP (single logical unit)
 
 CONSTRUCTION PHASE
-  [-] Functional Design        SKIPPED
-  [-] NFR Requirements         SKIPPED
-  [-] NFR Design               SKIPPED
-  [-] Infrastructure Design    SKIPPED
-  [>] Code Generation          EXECUTE
-  [>] Build and Test           EXECUTE
+  [-] Functional Design            SKIP (direct config port)
+  [-] NFR Requirements             SKIP (no new NFRs)
+  [-] NFR Design                   SKIP
+  [-] Infrastructure Design        SKIP (no cloud/infra changes)
+  [ ] Code Generation              EXECUTE
+  [ ] Build and Test               EXECUTE
 
 OPERATIONS PHASE
-  [ ] Operations               PLACEHOLDER
+  [ ] Operations                   PLACEHOLDER
 ```
 
 ---
@@ -43,59 +50,65 @@ OPERATIONS PHASE
 ## Phases to Execute
 
 ### INCEPTION PHASE
-- [x] Workspace Detection — COMPLETED
-- [x] Requirements Analysis — COMPLETED
-- [x] Workflow Planning — IN PROGRESS
-- [-] All other inception stages — SKIPPED
+- [x] Workspace Detection — COMPLETE
+- [-] Reverse Engineering — SKIP: source analysed in session 1
+- [x] Requirements Analysis — COMPLETE
+- [-] User Stories — SKIP: infrastructure config, no personas
+- [>] Workflow Planning — IN PROGRESS
+- [-] Application Design — SKIP: no new component boundaries
+- [-] Units Generation — SKIP: single logical unit
 
-### CONSTRUCTION PHASE — Code Generation
+### CONSTRUCTION PHASE
+- [-] Functional Design — SKIP: direct config port, no new business logic
+- [-] NFR Requirements — SKIP: no new NFRs
+- [-] NFR Design — SKIP
+- [-] Infrastructure Design — SKIP: no cloud infrastructure changes
+- [ ] Code Generation — EXECUTE (single unit, 15 new + 5 modified files)
+- [ ] Build and Test — EXECUTE
 
-**Design pattern**:
-- Core modules go in `modules/core/` and contribute to `flake.modules.nixos.core` (applied to all hosts)
-- Named NixOS modules go in `modules/nixos/` and contribute to `flake.modules.nixos.<name>` (opt-in per host)
-- Per-host opt-in via NixOS `imports` list: `imports = [ config.flake.modules.nixos.nvidia ]`
-  - `config` here is the **flake-parts** config, referenced from the outer `{ config, ... }:` scope of the host's flake-parts module
-- Unfree packages declared at flake-parts level via `nixpkgs.allowedUnfreePackages` (nix-iv pattern)
-- No enable options — just import or don't
+---
 
-Files to **create**:
+## Code Generation Scope
 
-1. `modules/flake/unfree.nix`
-   - Declares `nixpkgs.allowedUnfreePackages` as a flake-parts list option
-   - Sets `flake.modules.nixos.core.nixpkgs.config.allowUnfreePredicate` from that list
-   - Pattern from nix-iv
+### Files to Create (new)
+| # | File | Module Name | FR |
+|---|---|---|---|
+| 1 | `modules/core/colors.nix` | homeManager.core (colors) | FR-1 |
+| 2 | `modules/desktop/waybar.nix` | homeManager.waybar | FR-3 |
+| 3 | `modules/desktop/dunst.nix` | homeManager.dunst | FR-4 |
+| 4 | `modules/desktop/hypridle.nix` | homeManager.hypridle | FR-5 |
+| 5 | `modules/desktop/hyprlock.nix` | homeManager.hyprlock | FR-6 |
+| 6 | `modules/desktop/hyprpaper.nix` | homeManager.hyprpaper | FR-7 |
+| 7 | `modules/desktop/wlogout.nix` | homeManager.wlogout | FR-8 |
+| 8 | `modules/desktop/wofi.nix` | homeManager.wofi | FR-9 |
+| 9 | `modules/shell/zsh.nix` | homeManager.zsh | FR-11 |
+| 10 | `modules/shell/starship.nix` | homeManager.starship | FR-12 |
+| 11 | `modules/shell/tmux.nix` | homeManager.tmux | FR-13 |
+| 12 | `modules/shell/sesh.nix` | homeManager.sesh | FR-14 |
+| 13 | `modules/shell/tmuxifier.nix` | homeManager.tmuxifier | FR-15 |
+| 14 | `modules/development/git.nix` | homeManager.git | FR-16 |
+| 15 | `modules/development/neovim.nix` | homeManager.neovim | FR-17 |
 
-2. `modules/core/networking.nix`
-   - `flake.modules.nixos.core` → `networking.networkmanager.enable = true`
+### Files to Modify (existing)
+| # | File | Change | FR |
+|---|---|---|---|
+| 16 | `modules/desktop/hyprland.nix` | Expand HM section with full config | FR-2 |
+| 17 | `modules/desktop/terminal.nix` | Expand kitty config | FR-10 |
+| 18 | `modules/core/home-manager.nix` | Add news.display = "silent" | FR-18 |
+| 19 | `modules/jake.nix` | Add packages/programs; remove jake@erebor stub | FR-19 |
+| 20 | `modules/hosts/erebor/default.nix` | Add jake@erebor module with imports + packages | FR-21 |
 
-3. `modules/core/services.nix`
-   - `flake.modules.nixos.core` → pipewire (alsa, pulse), printing, udisks2, openssh (off by default, hardened)
-
-4. `modules/core/security.nix`
-   - `flake.modules.nixos.core` → rtkit, polkit, polkit-gnome systemd user service
-
-5. `modules/nixos/nvidia.nix`
-   - Flake-parts module that exposes `flake.modules.nixos.nvidia` (plain NixOS config, no options)
-   - Also declares `nixpkgs.allowedUnfreePackages` for nvidia packages
-
-Files to **modify**:
-
-6. `modules/hosts/erebor/default.nix`
-   - Add `{ config, ... }:` arg to the flake-parts module
-   - Add `imports = [ config.flake.modules.nixos.nvidia ]` inside `flake.modules.nixos."nixosConfigurations/erebor"`
-
-7. `modules/hosts/erebor/users.nix`
-   - No changes — existing jake user config retained as-is
-
-### CONSTRUCTION PHASE — Build and Test
-- Run `nix flake check`
-- Run `nix build .#nixosConfigurations.erebor.config.system.build.toplevel`
+### Files Unchanged
+| File | Reason |
+|---|---|
+| `modules/hosts/erebor/users.nix` | Already correct — FR-20 requires no changes |
+| All `modules/flake/*` | No changes needed |
+| `modules/system/nvidia.nix` | No changes needed |
+| `modules/core/shells.nix`, `security.nix`, etc. | No changes needed |
 
 ---
 
 ## Success Criteria
-- `nix flake check` passes
-- erebor toplevel builds
-- All common config ported to core modules
-- Nvidia included via `imports` in erebor host module
-- No user accounts defined
+- **Primary Goal**: `jake@erebor` fully declared; all desktop/shell/dev tools in purpose-built single-responsibility modules
+- **Key Deliverables**: 15 new modules + 5 modified files
+- **Quality Gates**: `nix flake check` passes; no evaluation errors
