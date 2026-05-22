@@ -2,7 +2,6 @@
   nixpkgs.allowedUnfreePackages = [
     "nvidia-x11"
     "nvidia-settings"
-    "nvidia-persistenced"
   ];
 
   flake.modules.nixos.nvidia = {config, ...}: {

@@ -1,6 +1,4 @@
 {
-  nixpkgs.allowedUnfreePackages = ["ungoogled-chromium"];
-
   flake.modules.nixos.hyprland = {
     services.displayManager.sddm = {
       enable = true;

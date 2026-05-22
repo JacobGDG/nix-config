@@ -1,6 +1,4 @@
 {
-  nixpkgs.allowedUnfreePackages = ["btop-cuda"];
-
   nixosHosts.erebor = {
     system = "x86_64-linux";
   };
