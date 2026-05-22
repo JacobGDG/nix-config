@@ -9,6 +9,7 @@
     imports = with inputs.self.modules.nixos; [
       nvidia
       hyprland
+      firefox
     ];
 
     networking.hostName = "erebor";
@@ -34,6 +35,12 @@
       wlogout
       wofi
       terminal
+      firefox
+      aiAgents
+      devops
+      spotifyPlayer
+      cava
+      mpv
     ];
 
     home.packages = with pkgs; [

@@ -15,6 +15,5 @@
       pkg: builtins.elem (lib.getName pkg) allowed;
   in {
     flake.modules.nixos.core.nixpkgs.config.allowUnfreePredicate = predicate;
-    flake.modules.homeManager.core.nixpkgs.config.allowUnfreePredicate = predicate;
   };
 }

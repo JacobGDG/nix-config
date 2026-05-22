@@ -42,7 +42,10 @@
           host = builtins.elemAt parts 1;
         in
           inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${config.nixosHosts.${host}.system};
+            pkgs = import inputs.nixpkgs {
+              system = config.nixosHosts.${host}.system;
+              config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
+            };
             extraSpecialArgs.inputs = inputs;
             inherit modules;
           }
