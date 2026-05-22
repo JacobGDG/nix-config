@@ -10,6 +10,7 @@
       nvidia
       hyprland
       firefox
+      steam
     ];
 
     networking.hostName = "erebor";
