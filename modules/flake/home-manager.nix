@@ -45,6 +45,7 @@
             pkgs = import inputs.nixpkgs {
               system = config.nixosHosts.${host}.system;
               config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
+              overlays = config.nixpkgs.overlays;
             };
             extraSpecialArgs.inputs = inputs;
             inherit modules;

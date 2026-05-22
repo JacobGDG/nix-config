@@ -45,7 +45,6 @@
     };
 
     wayland.windowManager.hyprland.settings = {
-      exec-once = ["kitty"];
       input = {
         kb_layout = "gb";
         kb_options = "ctrl:nocaps";
