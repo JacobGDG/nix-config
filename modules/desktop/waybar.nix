@@ -98,10 +98,13 @@
           layer = "top";
           position = "top";
           spacing = 10;
-          modules-center = ["hyprland/workspaces"];
+          modules-center = [
+            "hyprland/workspaces"
+          ];
           modules-left = [
             "clock"
             "idle_inhibitor"
+            "custom/wireguard"
             "privacy"
           ];
           modules-right = [
@@ -111,70 +114,96 @@
             "memory"
             "custom/power"
           ];
-
-          privacy = {};
-
+          privacy = {
+          };
+          battery = {
+            format = " {capacity}% {icon} ";
+            format-alt = " {time} {icon} ";
+            format-charging = " {capacity}% 󱟠 ";
+            format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂂" "󰁹"];
+            format-plugged = " {capacity}%  ";
+            states = {
+              critical = 10;
+              warning = 20;
+            };
+          };
           clock = {
             format-alt = " {:%Y-%m-%d} ";
             tooltip-format = "{:%Y-%m-%d | %H:%M}";
           };
-
           cpu = {
-            format = " {usage}%    ";
+            format = " {usage}%    ";
             tooltip = false;
           };
-
-          memory = {format = " {}%  ";};
-
+          memory = {format = " {}%  ";};
           network = {
             interval = 1;
             tooltip = false;
-            format-disabled = "Disabled";
-            format-disconnected = "Disconnected";
+            format-disabled = "Disabled ⚠";
+            format-disconnected = "Disconnected ⚠";
             format-ethernet = " 󰈁 up: {bandwidthUpBits} down: {bandwidthDownBits}";
-            format-linked = " {ifname} (No IP) ";
-            format-wifi = " {essid} ({signalStrength}%)  ";
+            format-linked = " {ifname} (No IP) ";
+            format-wifi = " {essid} ({signalStrength}%)  ";
             on-click = "networkmanager_dmenu";
           };
-
           pulseaudio = {
             format = " {volume}% {icon} | {format_source}";
-            format-bluetooth = "{volume}% {icon} | {format_source}";
-            format-bluetooth-muted = " {icon} | {format_source}";
+            format-bluetooth = "{volume}% {icon} | {format_source}";
+            format-bluetooth-muted = " {icon} | {format_source}";
             format-muted = " 󰖁 | {format_source}";
             format-icons = {
-              car = " ";
-              default = [" " " " " "];
-              headphones = " ";
-              phone = " ";
-              portable = " ";
+              car = " ";
+              default = [" " " " " "];
+              headphones = " ";
+              phone = " ";
+              portable = " ";
+              "alsa_output.pci-0000_04_00.6.HiFi__Speaker__sink" = "󰌢 ";
+              "bluez_output.88_C9_E8_24_52_61.1" = "󱡏 ";
             };
-            format-source = " ";
-            format-source-muted = " ";
+            format-source = " ";
+            format-source-muted = " ";
             on-click = "pavucontrol";
           };
-
           "custom/power" = {
             format = "⏻";
             tooltip = false;
             on-click = "wlogout --protocol layer-shell";
           };
-
+          "custom/gpu" = {
+            format = " {}% {icon}";
+            exec = ''
+              nvidia-smi --query-gpu=power.draw,power.limit --format=csv,noheader,nounits \
+              | awk -F, '{printf "%.2f", ($1/$2)*100}'
+            '';
+            format-icons = "󰢮 ";
+            interval = 1;
+          };
+          "custom/wireguard" = {
+            format = " {icon} ";
+            return-type = "json";
+            on-click = "wg-wofi";
+            format-icons = {
+              inactive = "󰦞";
+              home = "󰚊";
+              public = "";
+            };
+            exec = "wg-waybar";
+            interval = 1;
+          };
           idle_inhibitor = {
             format = "{icon}";
             format-icons = {
-              activated = " ";
-              deactivated = " ";
+              activated = " ";
+              deactivated = " ";
             };
           };
-
           "hyprland/workspaces" = {
             format = "{icon}";
             format-icons = {
-              "1" = " ";
+              "1" = " ";
               "2" = "󰖟 ";
               "3" = "󱃷 ";
-              "9" = " ";
+              "9" = " ";
               "10" = "󰊴 ";
             };
             on-click = "hyprctl dispatch workspace";

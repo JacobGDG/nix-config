@@ -12,8 +12,15 @@ vm-clean host=`hostname`:
 os-build host=`hostname`:
   sudo nixos-rebuild build --flake .#"{{host}}" --show-trace
 
+[linux]
+os host=`hostname`:
+  sudo nixos-rebuild switch --flake .#"{{host}}" --show-trace
+
 hm-build user=`whoami` host=`hostname`:
   home-manager build --flake .#"{{user}}@{{host}}" --show-trace
+
+hm user=`whoami` host=`hostname`:
+  home-manager switch --flake .#"{{user}}@{{host}}" --show-trace
 
 [linux]
 vm host=`hostname`: (vm-clean host)
