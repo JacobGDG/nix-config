@@ -15,6 +15,10 @@
       tmuxifier
       git
       neovim
+      dconf
+      udiskie
+      thunderbird
+      libreoffice
     ];
 
     home = {
