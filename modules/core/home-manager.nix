@@ -22,6 +22,9 @@
         homeManagerModuleSets;
     in {
       imports = [inputs.home-manager.nixosModules.home-manager];
+
+      environment.systemPackages = [pkgs.home-manager];
+
       home-manager = {
         backupFileExtension = "bak";
 
