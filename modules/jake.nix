@@ -24,6 +24,7 @@
       firefox
       mpv
       libreoffice
+      scripts
     ];
 
     home = {
