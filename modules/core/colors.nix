@@ -1,4 +1,4 @@
-{lib, ...}: {
+{
   flake.modules.homeManager.core = {lib, ...}: {
     options.colorScheme.palette = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;

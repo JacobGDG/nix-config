@@ -1,4 +1,5 @@
 {
+  flake.modules.homeManager."jake@erebor" = {};
   flake.modules.nixos."nixosConfigurations/erebor" = {
     users.users = {
       jake = {

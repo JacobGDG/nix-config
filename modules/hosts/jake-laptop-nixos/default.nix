@@ -1,25 +1,25 @@
 {
-  nixosHosts.erebor = {
+  nixosHosts.jake-laptop-nixos = {
     system = "x86_64-linux";
   };
 
-  flake.modules.nixos."nixosConfigurations/erebor" = {inputs, ...}: {
+  flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {inputs, ...}: {
     imports = with inputs.self.modules.nixos; [
-      nvidia
       hyprland
       firefox
       steam
+      battery
     ];
 
-    networking.hostName = "erebor";
+    networking.hostName = "jake-laptop-nixos";
 
     system = {
-      stateVersion = "25.05";
+      stateVersion = "24.05";
       autoUpgrade.enable = false;
     };
   };
 
-  flake.modules.homeManager.erebor = {
+  flake.modules.homeManager.jake-laptop-nixos = {
     inputs,
     pkgs,
     ...
@@ -34,10 +34,11 @@
       wlogout
       wofi
       terminal
+      battery
     ];
 
     home.packages = with pkgs; [
-      btop-cuda
+      btop
     ];
   };
 }

@@ -1,6 +1,5 @@
 {
-  flake.modules.homeManager."jake@erebor" = {};
-  nixpkgs.allowedUnfreePackages = ["obsidian"];
+  nixpkgs.allowedUnfreePackages = ["obsidian" "discord"];
 
   flake.modules.homeManager.jake = {
     pkgs,
@@ -18,6 +17,12 @@
       dconf
       udiskie
       thunderbird
+      spotifyPlayer
+      cava
+      devops
+      aiAgents
+      firefox
+      mpv
       libreoffice
     ];
 
@@ -41,6 +46,11 @@
         ripsecrets
         ttyper
         tomato-c
+        blender
+        discord
+        mumble
+        prismlauncher
+        rpi-imager
       ];
     };
 
