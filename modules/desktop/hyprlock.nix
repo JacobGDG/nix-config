@@ -10,13 +10,13 @@
           no_fade_in = false;
         };
 
-        # background = [
-        #   {
-        #     path = "/path/to/wallpaper.jpg";
-        #     blur_passes = 1;
-        #     blur_size = 8;
-        #   }
-        # ];
+        background = [
+          {
+            path = "${./wallpapers/haystacks.jpg}";
+            blur_passes = 1;
+            blur_size = 8;
+          }
+        ];
 
         input-field = [
           {

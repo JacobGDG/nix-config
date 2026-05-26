@@ -8,11 +8,10 @@
     home = {
       packages = [pkgs.hyprpaper];
 
-      # Wallpaper config — update path before enabling
-      # file."${config.xdg.configHome}/hypr/hyprpaper.conf".text = ''
-      #   preload=/path/to/wallpaper.jpg
-      #   wallpaper=,/path/to/wallpaper.jpg
-      # '';
+      file."${config.xdg.configHome}/hypr/hyprpaper.conf".text = ''
+        preload=${./wallpapers/haystacks.jpg}
+        wallpaper=,${./wallpapers/haystacks.jpg}
+      '';
     };
 
     systemd.user.services = lib.mkForce {
