@@ -43,7 +43,7 @@
         in
           inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = import inputs.nixpkgs {
-              system = config.nixosHosts.${host}.system;
+              system = config.hosts.${host}.system;
               config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
               overlays = config.nixpkgs.overlays;
             };

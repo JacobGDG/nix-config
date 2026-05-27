@@ -5,17 +5,21 @@
   ...
 }: {
   options = {
-    nixosHosts = let
-      nixosHostType = lib.types.submodule {
+    hosts = let
+      hostType = lib.types.submodule {
         options = {
           system = lib.mkOption {
             type = lib.types.str;
+          };
+          configurator = lib.mkOption {
+            type = lib.types.str;
+            default = "noop";
           };
         };
       };
     in
       lib.mkOption {
-        type = lib.types.attrsOf nixosHostType;
+        type = lib.types.attrsOf hostType;
       };
   };
 
@@ -33,6 +37,6 @@
           ];
         };
     in
-      lib.mapAttrs mkHost config.nixosHosts;
+      lib.mapAttrs mkHost (lib.filterAttrs (_: attr: attr.configurator == "nixos") config.hosts);
   };
 }

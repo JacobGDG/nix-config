@@ -1,6 +1,7 @@
 {
-  nixosHosts.erebor = {
+  hosts.erebor = {
     system = "x86_64-linux";
+    configurator = "nixos";
   };
 
   flake.modules.nixos."nixosConfigurations/erebor" = {inputs, ...}: {

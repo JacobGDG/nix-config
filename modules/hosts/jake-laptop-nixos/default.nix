@@ -1,6 +1,7 @@
 {
-  nixosHosts.jake-laptop-nixos = {
+  hosts.jake-laptop-nixos = {
     system = "x86_64-linux";
+    configurator = "nixos";
   };
 
   flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {inputs, ...}: {
