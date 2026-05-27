@@ -7,6 +7,7 @@
       kustomize
       cmctl
       kubernetes-helm
+      kind
       tenv
       tflint
       aws-sso-util
