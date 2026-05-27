@@ -43,6 +43,35 @@
 ### OPERATIONS PHASE
 - [ ] Operations - PLACEHOLDER
 
+---
+
+# Session 7 - work-mac Home Manager Import
+
+## Stage Progress
+
+### INCEPTION PHASE
+- [x] Workspace Detection - COMPLETE
+- [ ] Reverse Engineering - SKIP (patterns established)
+- [x] Requirements Analysis - COMPLETE (minimal depth)
+- [ ] User Stories - SKIP (infrastructure config)
+- [x] Workflow Planning - COMPLETE
+- [ ] Application Design - SKIP
+- [ ] Units Generation - SKIP
+
+### CONSTRUCTION PHASE
+- [ ] Functional Design - SKIP
+- [ ] NFR Requirements - SKIP
+- [ ] NFR Design - SKIP
+- [ ] Infrastructure Design - SKIP
+- [x] Code Generation - COMPLETE
+- [x] Build and Test - COMPLETE (nix flake check: all pass, jakegreenwood@work-mac homeConfiguration generated)
+
+## Notes
+- User reorganised post-codegen: all packages + devops moved to jakegreenwood.nix (user-level); work-mac host is mac-specific config only
+- mac-app-util follows nixpkgs
+
+---
+
 ## Current Status (Session 1 - Erebor No Users)
 - **Lifecycle Phase**: CONSTRUCTION
 - **Current Stage**: Complete

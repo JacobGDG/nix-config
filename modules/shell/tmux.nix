@@ -29,8 +29,6 @@
   in {
     home.packages = [tmux-other-pane];
 
-    programs.zsh.shellAliases."pbcopy" = "wl-copy";
-
     programs.tmux = {
       enable = true;
       keyMode = "vi";

@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:denful/import-tree";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim = {
       url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
