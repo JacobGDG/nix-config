@@ -2,6 +2,9 @@
   flake-file.inputs.mac-app-util = {
     url = "github:hraban/mac-app-util";
     inputs.nixpkgs.follows = "nixpkgs";
+    inputs.cl-nix-lite.inputs.nixpkgs.follows = "nixpkgs";
+    inputs.cl-nix-lite.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   hosts.work-mac.system = "aarch64-darwin";

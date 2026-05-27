@@ -13,11 +13,21 @@
     import-tree.url = "github:denful/import-tree";
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        cl-nix-lite.inputs = {
+          nixpkgs.follows = "nixpkgs";
+          treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
     neovim = {
       url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        gen-luarc.inputs.git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
   };
