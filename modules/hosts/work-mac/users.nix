@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."jakegreenwood@work-mac" = {...}: {
+  flake.modules.homeManager."jakegreenwood@MacBook-Pro.local" = {...}: {
     home = {
       username = "jakegreenwood";
       homeDirectory = "/Users/jakegreenwood";

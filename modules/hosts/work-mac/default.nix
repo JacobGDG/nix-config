@@ -7,9 +7,9 @@
     inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  hosts.work-mac.system = "aarch64-darwin";
+  hosts."MacBook-Pro.local".system = "aarch64-darwin";
 
-  flake.modules.homeManager.work-mac = {
+  flake.modules.homeManager."MacBook-Pro.local" = {
     pkgs,
     inputs,
     ...
