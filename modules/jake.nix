@@ -22,6 +22,7 @@
       devops
       aiAgents
       firefox
+      direnv
       mpv
       libreoffice
       scripts
@@ -65,17 +66,7 @@
     };
 
     programs = {
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
-
       ripgrep.enable = true;
-
-      zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-      };
     };
   };
 }

@@ -12,6 +12,7 @@
       git
       neovim
       scripts
+      direnv
       sesh
       starship
       terminal
@@ -31,6 +32,16 @@
       spotify
       ttyper
       yq-go
+      just
+      pre-commit
+      tealdeer
+      watch
+      fzf
+      gh
     ];
+
+    programs = {
+      ripgrep.enable = true;
+    };
   };
 }

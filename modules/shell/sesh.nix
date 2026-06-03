@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.sesh = {pkgs, ...}: let
+  flake.modules.homeManager.sesh = {pkgs, inputs, ...}: let
     tmux-sesh-open = pkgs.writeScriptBin "tmux-sesh-open" ''
       #!/usr/bin/env bash
       sesh connect "$(
@@ -17,6 +17,10 @@
       )"
     '';
   in {
+    imports = with inputs.self.modules.homeManager; [
+      zoxide
+    ];
+
     home.packages = [
       pkgs.sesh
       tmux-sesh-open
