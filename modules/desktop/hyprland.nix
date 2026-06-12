@@ -61,6 +61,7 @@
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
+      configType = "hyprlang";
       systemd = {
         # disable systemd integration as it conflicts with uwsm
         enable = false;
@@ -187,35 +188,35 @@
           "3, horizontal, workspace"
         ];
 
-        windowrulev2 = [
-          "idleinhibit fullscreen, class:.*"
+        windowrule = [
+          "idle_inhibit fullscreen, match:class .*"
 
-          "float,title:^(Volume Control|Friends List|Steam Settings)$"
-          "float,title:^(Extension.*Mozilla Firefox)$"
+          "float on, match:title ^(Volume Control|Friends List|Steam Settings)$"
+          "float on, match:title ^(Extension.*Mozilla Firefox)$"
 
-          "float,class:^(org.kde.dolphin)$"
-          "size 1200 800, class:^(org.kde.dolphin)$"
-          "center, class:^(org.kde.dolphin)$"
-          "workspace special, class:^(org.kde.dolphin)$"
+          "float on, match:class ^(org.kde.dolpkgs.mpv-unwrapped.overridephin)$"
+          "size 1200 800, match:class ^(org.kde.dolphin)$"
+          "center on, match:class ^(org.kde.dolphin)$"
+          "workspace special, match:class ^(org.kde.dolphin)$"
 
-          "fullscreen,class:^steam_app\\d+$"
+          "fullscreen on, match:class ^steam_app\\d+$"
 
-          "workspace 1, class:^(kitty)$"
+          "workspace 1, match:class ^(kitty)$"
 
-          "float, title:^(QuickAccessKitty)$"
-          "size 1200 800, title:^(QuickAccessKitty)$"
-          "center, title:^(QuickAccessKitty)$"
-          "workspace special, title:^(QuickAccessKitty)$"
+          "float on, match:title ^(QuickAccessKitty)$"
+          "size 1200 800, match:title ^(QuickAccessKitty)$"
+          "center on, match:title ^(QuickAccessKitty)$"
+          "workspace special, match:title ^(QuickAccessKitty)$"
 
-          "workspace 2, class:^(firefox)$"
+          "workspace 2, match:class ^(firefox)$"
 
-          "workspace 3, class:^(chrome-.+__-Default|Spotify|discord)$"
-          "workspace 3, title:^(Remap)$"
+          "workspace 3, match:class ^(chrome-.+__-Default|Spotify|discord)$"
+          "workspace 3, match:title ^(Remap)$"
 
-          "workspace 9, class:^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$"
-          "workspace 9, title:^(Steam)$"
+          "workspace 9, match:class ^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$"
+          "workspace 9, match:title ^(Steam)$"
 
-          "workspace 10, class:^(steam_app_[0-9]+|dwarfort|Minecraft.*)$"
+          "workspace 10, match:class ^(steam_app_[0-9]+|dwarfort|Minecraft.*)$"
         ];
       };
     };

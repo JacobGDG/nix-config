@@ -85,7 +85,11 @@
     };
   };
 
-  flake.modules.homeManager.firefox = {lib, ...}: {
+  flake.modules.homeManager.firefox = {
+    lib,
+    config,
+    ...
+  }: {
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -99,6 +103,7 @@
 
     programs.firefox = {
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles = {
         default = {
           id = 0;
