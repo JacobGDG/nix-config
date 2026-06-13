@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BOOKMARKS_FILE="${HOME}/.mozilla/firefox/default/bookmarks.html"
+BOOKMARKS_FILE="${HOME}/Downloads/bookmarks.html"
+
+if [[ ! -f "$BOOKMARKS_FILE" ]]; then
+  notify-send -t 5000 -u critical "wofi-bookmarks" "Bookmarks file not found: $BOOKMARKS_FILE, download it from firefox."
+  exit 1
+fi
 
 extract_bookmarks() {
   rg '<A HREF="([^"]+)"[^>]*ADD_DATE="([^"]+)"[^>]*LAST_MODIFIED="([^"]+)"[^>]*>([^<]+)</A>' \
