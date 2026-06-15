@@ -117,12 +117,16 @@
             "browser.search.defaultenginename" = "ddg";
             "browser.search.order.1" = "ddg";
             "browser.startup.homepage" = "https://duckduckgo.com";
+            "browser.toolbars.bookmarks.visibility"	= "always";
+            "browser.uidensity" = 1;
             "mousewheel.min_line_scroll_amount" = 50;
-            "sidebar.verticalTabs" = true;
+            "sidebar.expandOnHover" =	true;
             "sidebar.main.tools" = "syncedtabs,jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack";
+            "sidebar.verticalTabs" = true;
+            "sidebar.visibility" = "expand-on-hover";
             "signon.rememberSignons" = false;
-            "widget.use-xdg-desktop-portal.file-picker" = 1;
             "widget.disable-workspace-management" = true;
+            "widget.use-xdg-desktop-portal.file-picker" = 1;
           };
           search = {
             force = true;
