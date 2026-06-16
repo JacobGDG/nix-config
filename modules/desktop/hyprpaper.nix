@@ -5,30 +5,15 @@
     lib,
     ...
   }: {
-    home = {
-      packages = [pkgs.hyprpaper];
-
-      file."${config.xdg.configHome}/hypr/hyprpaper.conf".text = ''
-        preload=${./wallpapers/haystacks.jpg}
-        wallpaper=,${./wallpapers/haystacks.jpg}
-      '';
-    };
-
-    systemd.user.services = lib.mkForce {
-      hyprpaper = {
-        Install.WantedBy = ["graphical-session.target"];
-        Unit = {
-          Description = "Hyprpaper UWSM";
-          Documentation = ["https://github.com/hyprwm/hyprpaper"];
-          After = ["graphical-session.target"];
-        };
-        Service = {
-          Type = "exec";
-          ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
-          ExecCondition = "${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
-          Restart = "on-failure";
-          Slice = "background-graphical.slice";
-        };
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        wallpaper = [
+          {
+            monitor = "";
+            path = "${./wallpapers/haystacks.jpg}";
+          }
+        ];
       };
     };
   };
