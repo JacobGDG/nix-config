@@ -48,6 +48,7 @@
               overlays = config.nixpkgs.overlays;
             };
             extraSpecialArgs.inputs = inputs;
+            extraSpecialArgs.hasBattery = config.hosts.${host}.hasBattery;
             inherit modules;
           }
       )

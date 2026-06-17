@@ -2,6 +2,7 @@
   hosts.jake-laptop-nixos = {
     system = "x86_64-linux";
     configurator = "nixos";
+    hasBattery = true;
   };
 
   flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {inputs, ...}: {

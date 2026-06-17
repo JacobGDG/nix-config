@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.waybar = {
     config,
+    hasBattery,
     pkgs,
     lib,
     ...
@@ -90,6 +91,24 @@
           border: 2px solid #${config.colorScheme.palette.base08};
           color: #${config.colorScheme.palette.base08};
         }
+
+        #battery.critical,
+        #battery.urgent {
+          background-color: #${config.colorScheme.palette.base02};
+          border: 2px solid #${config.colorScheme.palette.base08};
+          color: #${config.colorScheme.palette.base08};
+        }
+
+        #battery.warning {
+          border: 2px solid #${config.colorScheme.palette.base09};
+          color: #${config.colorScheme.palette.base09};
+        }
+
+        #battery.charging.critical,
+        #battery.charging.warning {
+          border: 2px solid #${config.colorScheme.palette.base0B};
+          color: #${config.colorScheme.palette.base0B};
+        }
       '';
 
       settings = [
@@ -107,11 +126,12 @@
             "custom/wireguard"
             "privacy"
           ];
-          modules-right = [
+          modules-right = builtins.filter (x: x != null) [
             "pulseaudio"
             "network"
             "cpu"
             "memory"
+            (if hasBattery then "battery" else null)
             "custom/power"
           ];
           privacy = {
