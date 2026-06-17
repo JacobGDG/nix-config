@@ -4,48 +4,10 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  flake.modules = {
-    nixos.core = {
-      pkgs,
-      config,
-      inputs,
-      lib,
-      homeManagerModuleSets,
-      ...
-    }: let
-      hostname = config.networking.hostName;
-      usersForHost =
-        lib.filterAttrs (
-          name: _:
-            builtins.match ".+@${hostname}" name != null
-        )
-        homeManagerModuleSets;
-    in {
-      imports = [inputs.home-manager.nixosModules.home-manager];
-
-      environment.systemPackages = [pkgs.home-manager];
-
-      home-manager = {
-        backupFileExtension = "bak";
-
-        useGlobalPkgs = true;
-        useUserPackages = true;
-
-        users = lib.mapAttrs' (name: modules: let
-          user = builtins.head (builtins.match "(.+)@.+" name);
-        in
-          lib.nameValuePair user {imports = modules;})
-        usersForHost;
-
-        extraSpecialArgs.inputs = inputs;
-      };
-    };
-
-    homeManager.core = {lib, ...}: {
-      home.stateVersion = lib.mkDefault "25.05";
-      news.display = "silent";
-      programs.home-manager.enable = true;
-      programs.zsh.enable = true;
-    };
+  flake.modules.homeManager.core = {lib, ...}: {
+    home.stateVersion = lib.mkDefault "25.05";
+    news.display = "silent";
+    programs.home-manager.enable = true;
+    programs.zsh.enable = true;
   };
 }

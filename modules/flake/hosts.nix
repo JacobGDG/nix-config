@@ -29,7 +29,6 @@
         inputs.nixpkgs.lib.nixosSystem {
           system = options.system;
           specialArgs.inputs = inputs;
-          specialArgs.homeManagerModuleSets = config.homeManagerModuleSets;
 
           modules = [
             config.flake.modules.nixos.core
