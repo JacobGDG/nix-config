@@ -80,6 +80,10 @@
             install_url = " https://addons.mozilla.org/firefox/downloads/latest/raindropio/latest.xpi";
             installation_mode = "force_installed";
           };
+          "leechblockng@proginosko.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/leechblock_ng/latest.xpi";
+            installation_mode = "force_installed";
+          };
         };
       };
     };
@@ -117,10 +121,10 @@
             "browser.search.defaultenginename" = "ddg";
             "browser.search.order.1" = "ddg";
             "browser.startup.homepage" = "https://duckduckgo.com";
-            "browser.toolbars.bookmarks.visibility"	= "always";
+            "browser.toolbars.bookmarks.visibility" = "always";
             "browser.uidensity" = 1;
             "mousewheel.min_line_scroll_amount" = 50;
-            "sidebar.expandOnHover" =	true;
+            "sidebar.expandOnHover" = true;
             "sidebar.main.tools" = "syncedtabs,jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack";
             "sidebar.verticalTabs" = true;
             "sidebar.visibility" = "expand-on-hover";
