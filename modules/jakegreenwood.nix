@@ -22,7 +22,7 @@
     ];
 
     home.packages = with pkgs; [
-      (python311.withPackages (ps: [ps.pip]))
+      # (python311.withPackages (ps: [ps.pip]))
       btop
       dbeaver-bin
       docker-credential-helpers

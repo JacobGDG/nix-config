@@ -1,11 +1,7 @@
 {
-  flake-file.inputs.mac-app-util = {
-    url = "github:hraban/mac-app-util";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.cl-nix-lite.inputs.nixpkgs.follows = "nixpkgs";
-    inputs.cl-nix-lite.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-    inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-  };
+  # https://github.com/hraban/mac-app-util/issues/42
+  # nixpkgs pin removed due to above issue
+  flake-file.inputs.mac-app-util.url = "github:hraban/mac-app-util";
 
   hosts."MacBook-Pro.local".system = "aarch64-darwin";
 
