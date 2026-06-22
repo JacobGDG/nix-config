@@ -83,6 +83,11 @@
       text = ''
         #!/usr/bin/env bash
         ${no-commit}/bin/no-commit
+
+        LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/pre-commit"
+        if [ -x "$LOCAL_HOOK" ]; then
+          exec "$LOCAL_HOOK" "$@"
+        fi
       '';
     };
 
