@@ -34,9 +34,6 @@
       pulseaudio
       kdePackages.dolphin
       playerctl
-      grim
-      slurp
-      cliphist
       ungoogled-chromium
     ];
 
@@ -146,8 +143,6 @@
 
         exec-once = [
           "$terminal"
-          "wl-paste --type text --watch cliphist store"
-          "wl-paste --type image --watch cliphist store"
         ];
 
         monitor = [

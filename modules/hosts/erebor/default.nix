@@ -35,6 +35,7 @@
       wlogout
       wofi
       terminal
+      clipboard
     ];
 
     home.packages = with pkgs; [

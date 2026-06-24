@@ -36,6 +36,7 @@
       wlogout
       wofi
       terminal
+      clipboard
       battery
     ];
 
