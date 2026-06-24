@@ -177,6 +177,8 @@
         windowrule = [
           "idle_inhibit fullscreen, match:class .*"
 
+          "stay_focused on, match:class ^(wofi)$"
+
           "float on, match:title ^(Volume Control|Friends List|Steam Settings)$"
           "float on, match:title ^(Extension.*Mozilla Firefox)$"
 
