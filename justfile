@@ -14,7 +14,7 @@ os-build host=`hostname`:
 
 [linux]
 os host=`hostname`:
-  sudo nixos-rebuild switch --flake .#"{{host}}" --show-trace --fast
+  sudo nixos-rebuild switch --flake .#"{{host}}" --show-trace
 
 hm-build user=`whoami` host=`hostname`:
   home-manager build --flake .#"{{user}}@{{host}}" --show-trace
