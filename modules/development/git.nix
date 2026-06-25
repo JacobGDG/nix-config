@@ -70,9 +70,14 @@
           hooksPath = "${config.xdg.configHome}/git/hooks";
         };
 
+        commit = {
+          verbose = true;
+          template = "${config.xdg.configHome}/git/commit-template";
+        };
+
         alias = {
           co = "checkout";
-          cm = "commit --verbose";
+          cm = "commit";
           rbm = "!git pull origin $(git default-branch) --rebase";
           cm-temp = "commit -m 'temp commit'";
           default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4";
@@ -95,6 +100,14 @@
     };
 
     xdg.configFile = {
+      "git/commit-template" = {
+        text = ''
+
+          # Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+          # Scope: optional, e.g. auth, api, ui
+          # Breaking change: append ! after type/scope, e.g. feat!: or feat(api)!:
+        '';
+      };
       "git/hooks/pre-commit" = {
         executable = true;
         text = ''
