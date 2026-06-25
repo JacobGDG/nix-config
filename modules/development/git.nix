@@ -4,7 +4,7 @@
     pkgs,
     ...
   }: let
-    no-commit = pkgs.writeScriptBin "no-commit" ''
+    no_commit = pkgs.writeScriptBin "no-commit" ''
       #!/usr/bin/env bash
       #
       # Prevent debug code from being accidentally committed.
@@ -24,8 +24,24 @@
         fi
       done
     '';
+    conventional_commit = pkgs.writeScriptBin "conventional-commit" ''
+      #!/usr/bin/env bash
+
+      commit_msg=$(cat "$1")
+      pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?(!)?: .+'
+
+      if ! echo "$commit_msg" | grep -qE "$pattern"; then
+        echo "ERROR: commit message does not follow Conventional Commits format."
+        echo "Expected: <type>(optional scope): <description>"
+        echo "Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+        echo ""
+        echo "Got: $commit_msg"
+        exit 1
+      fi
+
+    '';
   in {
-    home.packages = [no-commit];
+    home.packages = [no_commit conventional_commit];
 
     programs.jujutsu = {
       enable = true;
@@ -78,28 +94,32 @@
       };
     };
 
-    xdg.configFile."git/hooks/pre-commit" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        ${no-commit}/bin/no-commit
+    xdg.configFile = {
+      "git/hooks/pre-commit" = {
+        executable = true;
+        text = ''
+          #!/usr/bin/env bash
+          ${no_commit}/bin/no-commit
 
-        LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/pre-commit"
-        if [ -x "$LOCAL_HOOK" ]; then
-          exec "$LOCAL_HOOK" "$@"
-        fi
-      '';
+          LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/pre-commit"
+          if [ -x "$LOCAL_HOOK" ]; then
+            exec "$LOCAL_HOOK" "$@"
+          fi
+        '';
+      };
+      "git/hooks/commit-msg" = {
+        executable = true;
+        text = ''
+          #!/usr/bin/env bash
+          set -eo pipefail
+          ${conventional_commit}/bin/conventional-commit "$1"
+
+          LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/commit-msg"
+          if [ -x "$LOCAL_HOOK" ]; then
+            exec "$LOCAL_HOOK" "$@"
+          fi
+        '';
+      };
     };
-
-    home.file.".config/pre-commit/pre-commit-config.yaml".text = ''
-      repos:
-      - repo: local
-        hooks:
-          - id: no-commit
-            name: no-commit
-            entry: ${no-commit}/bin/no-commit
-            language: script
-            pass_filenames: false
-    '';
   };
 }
