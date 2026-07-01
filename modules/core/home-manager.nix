@@ -4,10 +4,21 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  flake.modules.homeManager.core = {lib, ...}: {
-    home.stateVersion = lib.mkDefault "25.05";
-    news.display = "silent";
-    programs.home-manager.enable = true;
-    programs.zsh.enable = true;
+  flake.modules = {
+    homeManager.core = {lib, ...}: {
+      home.stateVersion = lib.mkDefault "25.05";
+      news.display = "silent";
+      programs.home-manager.enable = true;
+      programs.zsh.enable = true;
+    };
+
+    nixos.core = {pkgs, ...}: {
+      environment.systemPackages = with pkgs; [
+        kitty
+        git
+        just
+        home-manager
+      ];
+    };
   };
 }

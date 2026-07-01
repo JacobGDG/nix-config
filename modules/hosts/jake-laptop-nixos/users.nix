@@ -1,7 +1,5 @@
 {
-  flake.modules.homeManager."jake@jake-laptop-nixos" = {lib, ...}: {
-    home.stateVersion = "24.05";
-  };
+  flake.modules.homeManager."jake@jake-laptop-nixos" = {};
 
   flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {
     users.users = {
