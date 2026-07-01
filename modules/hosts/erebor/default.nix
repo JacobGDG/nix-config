@@ -40,6 +40,7 @@
 
     home.packages = with pkgs; [
       btop-cuda
+      home-manager
     ];
   };
 }
