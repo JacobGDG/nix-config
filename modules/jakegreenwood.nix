@@ -12,6 +12,7 @@
       devops
       direnv
       git
+      jira
       neovim
       scripts
       sesh
