@@ -28,7 +28,7 @@
       #!/usr/bin/env bash
 
       commit_msg=$(cat "$1")
-      pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?(!)?: .+'
+      pattern='^(wip|feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?(!)?: .+'
 
       if ! echo "$commit_msg" | grep -qE "$pattern"; then
         echo "ERROR: commit message does not follow Conventional Commits format."
