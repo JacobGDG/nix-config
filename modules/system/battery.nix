@@ -29,6 +29,7 @@
         libnotify
       ];
       text = ''
+        app_name="battery-warning-daemon"
         notification_timeout=5000
         sleep_when_low=240
         sleep_normal=120
@@ -36,7 +37,7 @@
         charging_status_file=/sys/class/power_supply/BAT1/status
 
         if [ ! -f $battery_capacity_file ]; then
-          notify-send -t $notification_timeout "
+          notify-send -a $app_name -t $notification_timeout "
           Failed to read battery capacity. Cannot warn of low battery.
 
         Could not read $battery_capacity_file
@@ -51,7 +52,7 @@
           echo "status: $status, $battery%"
 
           if (( battery <= 20 )) && [ "$status" = "Discharging" ]; then
-            notify-send -t $notification_timeout -u critical "  Low battery: $battery%"
+            notify-send -a $app_name -t $notification_timeout -u critical "  Low battery: $battery%"
             sleep $sleep_when_low
           else
             sleep $sleep_normal
