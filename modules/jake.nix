@@ -7,26 +7,26 @@
     ...
   }: {
     imports = with inputs.self.modules.homeManager; [
-      zsh
-      starship
-      tmux
-      sesh
-      tmuxifier
-      git
-      neovim
-      dconf
-      udiskie
-      bark
-      thunderbird
-      spotifyPlayer
-      cava
-      devops
       aiAgents
-      firefox
+      bark
+      cava
+      dconf
+      devops
       direnv
-      mpv
+      firefox
+      git
       libreoffice
+      mpv
+      neovim
       scripts
+      sesh
+      spotifyPlayer
+      starship
+      thunderbird
+      tmux
+      tmuxifier
+      udiskie
+      zsh
     ];
 
     home = {
@@ -34,26 +34,26 @@
       homeDirectory = "/home/jake";
 
       packages = with pkgs; [
+        blender
+        bottom
+        discord
         fzf
         gh
+        htop
+        jq
         just
+        mumble
         obsidian
         pre-commit
-        tealdeer
-        bottom
-        htop
-        tree
-        watch
-        jq
-        yq
-        ripsecrets
-        ttyper
-        tomato-c
-        blender
-        discord
-        mumble
         prismlauncher
+        ripsecrets
         rpi-imager
+        tealdeer
+        tomato-c
+        tree
+        ttyper
+        watch
+        yq
       ];
     };
 

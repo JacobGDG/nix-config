@@ -8,12 +8,12 @@
   }: {
     imports = with inputs.self.modules.homeManager; [
       aiAgents
+      bark
       devops
+      direnv
       git
       neovim
       scripts
-      direnv
-      bark
       sesh
       starship
       terminal
@@ -27,18 +27,18 @@
       btop
       dbeaver-bin
       docker-credential-helpers
-      jira-cli-go
-      jq
-      ripsecrets
-      spotify
-      ttyper
-      yq-go
-      just
-      pre-commit
-      tealdeer
-      watch
       fzf
       gh
+      jira-cli-go
+      jq
+      just
+      pre-commit
+      ripsecrets
+      spotify
+      tealdeer
+      ttyper
+      watch
+      yq-go
     ];
 
     programs = {

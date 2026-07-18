@@ -8,9 +8,9 @@
     ...
   }: {
     imports = with inputs.self.modules.homeManager; [
-      starship
       firefox
       libreoffice
+      starship
     ];
 
     home = {
@@ -18,10 +18,10 @@
       homeDirectory = "/home/han";
 
       packages = with pkgs; [
-        just
-        htop
         discord
         google-chrome
+        htop
+        just
       ];
     };
 
