@@ -112,6 +112,7 @@
         executable = true;
         text = ''
           #!/usr/bin/env bash
+          set -eo pipefail
           ${no_commit}/bin/no-commit
 
           LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/pre-commit"
