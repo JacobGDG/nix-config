@@ -13,6 +13,7 @@
       neovim
       scripts
       direnv
+      bark
       sesh
       starship
       terminal

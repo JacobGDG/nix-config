@@ -16,6 +16,7 @@
       neovim
       dconf
       udiskie
+      bark
       thunderbird
       spotifyPlayer
       cava
