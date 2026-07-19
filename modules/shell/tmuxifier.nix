@@ -13,14 +13,14 @@
     xdg.configFile."tmux/layouts/vimsplit.window.sh".text = ''
       window_root $PWD
       new_window "Editor"
-      run_cmd "nvim -c \"FzfLua files\""
+      run_cmd " nvim -c \"FzfLua files\""
       split_v 20
-      run_cmd "git fetch"
+      run_cmd " git fetch"
     '';
 
     xdg.configFile."tmux/layouts/music.window.sh".text = ''
       new_window "Music"
-      run_cmd "spotify_player"
+      run_cmd " spotify_player"
       split_v 20
       run_cmd "cava"
       select_pane 1

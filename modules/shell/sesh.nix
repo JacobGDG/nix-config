@@ -15,13 +15,13 @@
         tmuxKey = "s";
         enableAlias = false;
         settings = {
-          default_session.startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
+          default_session.startup_command = " tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
           blacklist = ["quick-access-kitty"];
           session = [
             {
               name = "NixConfig";
               path = "~/src/nix-config/main/";
-              startup_command = "tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
+              startup_command = " tmuxifier load-window vimsplit && tmux move-window -t 0 && tmux kill-window -t 1";
             }
             {
               name = "Pomodoro";
