@@ -8,10 +8,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1784382517,
-        "narHash": "sha256-keV3yJu/aNu1IFifBFWcu5d1KCatQ0F6/zDBhm0UP7I=",
+        "lastModified": 1784460321,
+        "narHash": "sha256-UYaZB6y0kLls+lBk0EYQ1y93GYN/8kmekCzRueek5T8=",
         "ref": "refs/heads/main",
-        "rev": "0910bbddf165b77a96b3e947b972c51d19fa569a",
+        "rev": "f539300b7f3c25dade6989f4a507c60db3611763",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/bark.git"
