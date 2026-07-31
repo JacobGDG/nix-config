@@ -1,7 +1,7 @@
 {
   nixpkgs.allowedUnfreePackages = ["claude-code"];
 
-  flake.modules.homeManager.aiAgents = {pkgs, ...}: let
+  flake.modules.homeManager.aiAgents = {pkgs, config, ...}: let
     # Notify via tmux-notify on the pane Claude is running in. tmux-notify does
     # the cross-session focus check and only alerts when that pane is not being
     # looked at — see modules/shell/scripts.nix.
@@ -11,11 +11,25 @@
       opencode
     ];
 
+    home.file.".cache/ref-repos/.keep".text = "";
+
     programs.claude-code = {
       enable = true;
+
+      skills = {
+        clone-repo = ./skills/clone-repo.md;
+      };
+
       settings = {
         theme = "dark";
-        customInstructions = "When cloning public git repositories, clone them to /tmp/<repo>.";
+
+        permissions = {
+          allow = [
+            "Bash(git -C:*)"
+            "Bash(mkdir -p ~/.cache/ref-repos:*)"
+          ];
+          additionalDirectories = ["${config.home.homeDirectory}/.cache/ref-repos"];
+        };
 
         # Claude's own terminal-bell notification is gated on the terminal
         # WINDOW being unfocused (OS level), so it never fires when you're on a
