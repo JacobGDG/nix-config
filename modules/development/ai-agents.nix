@@ -13,12 +13,32 @@
       type = "command";
       command = ''${pkgs.tmux-notify}/bin/tmux-notify "$TMUX_PANE"'';
     };
+    mattpocock-skills = pkgs.fetchFromGitHub {
+      owner = "mattpocock";
+      repo = "skills";
+      rev = "2ab958093e83e0ec752e6c1c5932da465bf23e0c";
+      hash = "sha256-dQtG6usJWlg/FqTajrjcs8GSdymH92WsgLiUaCfvKPA=";
+    };
   in {
     home.packages = with pkgs; [
       opencode
     ];
 
     home.file."${config.xdg.cacheHome}/ref-repos/.keep".text = "";
+
+    # home.file.*.source accepts store-path strings, which lets us reference
+    # files inside fetchFromGitHub outputs without the lib.isPath limitation of
+    # programs.claude-code.skills.
+    home.file = {
+      ".claude/skills/grill-with-docs/SKILL.md".source =
+        "${mattpocock-skills}/skills/engineering/grill-with-docs/SKILL.md";
+      ".claude/skills/grilling/SKILL.md".source =
+        "${mattpocock-skills}/skills/productivity/grilling/SKILL.md";
+      ".claude/skills/domain-modeling" = {
+        source = "${mattpocock-skills}/skills/engineering/domain-modeling";
+        recursive = true;
+      };
+    };
 
     programs.claude-code = {
       enable = true;
