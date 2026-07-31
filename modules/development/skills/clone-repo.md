@@ -1,7 +1,7 @@
 ---
 name: clone-repo
 description: Clone or update a reference repository to ~/.cache/ref-repos/<owner>/<repo> for use as context. Use when the user provides a repo URL alongside a task and appends /clone-repo.
-allowed-tools: Bash
+allowed-tools: Bash, Read
 ---
 
 # Clone Reference Repository
@@ -30,18 +30,17 @@ TARGET=~/.cache/ref-repos/<OWNER>/<REPO>
 
 ## Step 3: Handle existing clone
 
-Check whether `$TARGET` already exists with `ls "$TARGET" 2>/dev/null`.
+Check whether `$TARGET` already exists with `[ -d "$TARGET" ]`.
 
-**Exists and a specific REF was requested:**
-- Read the current ref: `git -C "$TARGET" describe --tags --exact-match 2>/dev/null || git -C "$TARGET" rev-parse --abbrev-ref HEAD`
-- If it **does not match** the requested REF → tell the user what ref is currently checked out and what was requested, then ask: "The existing clone is at `<current-ref>`. Remove it and re-clone at `<requested-ref>`?" Wait for confirmation before proceeding. If confirmed, the user must approve the `rm -rf` permission prompt; then re-clone (go to Step 4).
-- If it **matches** → `git -C "$TARGET" fetch --depth 1 origin "$REF"` then `git -C "$TARGET" reset --hard FETCH_HEAD`
-
-**Exists and no specific REF was requested:**
-- `git -C "$TARGET" pull` to update to the latest default branch
+**Exists:**
+- Read the current ref and hash: `(cd "$TARGET" && git log -1 --pretty="format:%D %H")`
+- Tell the user what ref is currently checked out.
+- Ask: "The existing clone is at `<current-ref>`. Remove it and re-clone?" Wait for confirmation before proceeding.
+- If confirmed, the user must approve the `rm -rf` permission prompt; then re-clone (go to Step 4).
+- If declined, skip to Step 5 using the existing clone as-is.
 
 **Does not exist:**
-- `mkdir -p ~/.cache/ref-repos/<OWNER>` then proceed to Step 4
+- `mkdir -p ~/.cache/ref-repos/<OWNER>` then proceed to Step 4.
 
 ## Step 4: Clone
 
@@ -54,7 +53,7 @@ Always use `--depth 1` (shallow).
 
 Tell the user:
 - Local path: `~/.cache/ref-repos/<OWNER>/<REPO>`
-- Checked-out ref (default branch name or the specified ref)
-- Action taken: freshly cloned, updated, or re-cloned at new ref
+- Checked-out ref: from the output already read in Step 3 (or re-run `(cd "$TARGET" && git log -1 --pretty="format:%D %H")` if freshly cloned)
+- Action taken: freshly cloned, re-cloned at new ref, or used existing
 
 Then continue with the original task the user asked you to perform, treating the cloned path as additional read-only context. Use `Read`, `Bash(find:*)`, and `Bash(grep:*)` to explore it.

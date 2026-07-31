@@ -1,17 +1,24 @@
 {
   nixpkgs.allowedUnfreePackages = ["claude-code"];
 
-  flake.modules.homeManager.aiAgents = {pkgs, config, ...}: let
+  flake.modules.homeManager.aiAgents = {
+    pkgs,
+    config,
+    ...
+  }: let
     # Notify via tmux-notify on the pane Claude is running in. tmux-notify does
     # the cross-session focus check and only alerts when that pane is not being
     # looked at — see modules/shell/scripts.nix.
-    notify = ''${pkgs.tmux-notify}/bin/tmux-notify "$TMUX_PANE"'';
+    notifyHook = {
+      type = "command";
+      command = ''${pkgs.tmux-notify}/bin/tmux-notify "$TMUX_PANE"'';
+    };
   in {
     home.packages = with pkgs; [
       opencode
     ];
 
-    home.file.".cache/ref-repos/.keep".text = "";
+    home.file."${config.xdg.cacheHome}/ref-repos/.keep".text = "";
 
     programs.claude-code = {
       enable = true;
@@ -22,13 +29,35 @@
 
       settings = {
         theme = "dark";
+        sandbox = {
+          enabled = true;
+          filesystem.allowWrite = ["${config.xdg.cacheHome}/ref-repos"];
+          network.allowedDomains = ["github.com" "*.github.com"];
+        };
 
         permissions = {
           allow = [
-            "Bash(git -C:*)"
-            "Bash(mkdir -p ~/.cache/ref-repos:*)"
+            "Bash(git* clone:*)"
+            "Bash(git* status:*)"
+            "Bash(git* log:*)"
+            "Bash(git* diff:*)"
+            "Bash(git* show:*)"
+            "Bash(mkdir -p ${config.xdg.cacheHome}/ref-repos/*)"
+            "Bash(mkdir -p ~/.cache/ref-repos/*)"
           ];
-          additionalDirectories = ["${config.home.homeDirectory}/.cache/ref-repos"];
+          deny = [
+            "Bash(git* commit*)"
+            "Bash(git* push*)"
+            "Bash(git* add*)"
+            "Bash(git* merge*)"
+            "Bash(git* rebase*)"
+            "Bash(git* reset*)"
+            "Bash(ssh *)"
+            "Bash(sudo *)"
+            "Bash(tofu apply *)"
+            "Bash(terraform apply *)"
+          ];
+          additionalDirectories = ["${config.xdg.cacheHome}/ref-repos"];
         };
 
         # Claude's own terminal-bell notification is gated on the terminal
@@ -41,14 +70,14 @@
 
         hooks = {
           # Claude finished / is awaiting input.
-          Stop = [{hooks = [{type = "command"; command = notify;}];}];
+          Stop = [{hooks = [notifyHook];}];
           # Claude is asking permission to run a tool (fires mid-turn, so Stop
           # doesn't cover it). idle_prompt is intentionally excluded: Stop
           # already pinged at turn end.
           Notification = [
             {
               matcher = "permission_prompt";
-              hooks = [{type = "command"; command = notify;}];
+              hooks = [notifyHook];
             }
           ];
         };
