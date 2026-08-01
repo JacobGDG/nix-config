@@ -27,6 +27,7 @@
       tmuxifier
       udiskie
       zsh
+      onePassword
     ];
 
     home = {

@@ -14,6 +14,7 @@
       git
       jira
       neovim
+      onePassword
       scripts
       sesh
       starship
