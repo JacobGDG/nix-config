@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.core = {lib, ...}: {
     services = {
-      printing.enable = true;
       udisks2.enable = true;
 
       openssh = {
