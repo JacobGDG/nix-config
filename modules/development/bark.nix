@@ -9,6 +9,13 @@
     inputs,
     ...
   }: {
-    home.packages = [inputs.bark.packages."${pkgs.stdenv.hostPlatform.system}".default];
+    imports = [inputs.bark.homeManagerModules.default];
+
+    programs.bark = {
+      enable = true;
+      settings = {
+        tmux.startup_command = " tmuxifier load-window vimsplit && tmux move-window -t 1 && tmux kill-window -t 1";
+      };
+    };
   };
 }
