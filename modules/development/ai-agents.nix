@@ -36,6 +36,7 @@
         source = "${mattpocock-skills}/skills/engineering/domain-modeling";
         recursive = true;
       };
+      ".claude/skills/handoff/SKILL.md".source = "${mattpocock-skills}/skills/productivity/handoff/SKILL.md";
     };
 
     programs.claude-code = {
