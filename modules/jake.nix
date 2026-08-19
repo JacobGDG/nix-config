@@ -28,6 +28,7 @@
       udiskie
       zsh
       onePassword
+      rustdesk
     ];
 
     home = {
