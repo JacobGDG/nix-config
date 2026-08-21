@@ -5,6 +5,8 @@
       wayland.enable = true;
     };
 
+    services.xserver.xkb.options = "caps:none";
+
     security.pam.services.hyprlock.enable = true;
 
     programs = {
