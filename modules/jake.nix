@@ -27,7 +27,6 @@
       tmuxifier
       udiskie
       zsh
-      onePassword
       rustdesk
     ];
 

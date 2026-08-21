@@ -6,9 +6,10 @@
 
   flake.modules.nixos."nixosConfigurations/erebor" = {inputs, ...}: {
     imports = with inputs.self.modules.nixos; [
-      nvidia
-      hyprland
       firefox
+      hyprland
+      nvidia
+      onePassword
       steam
     ];
 

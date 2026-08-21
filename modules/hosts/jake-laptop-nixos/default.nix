@@ -7,10 +7,11 @@
 
   flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {inputs, ...}: {
     imports = with inputs.self.modules.nixos; [
-      hyprland
-      firefox
-      steam
       battery
+      firefox
+      hyprland
+      onePassword
+      steam
     ];
 
     networking.hostName = "jake-laptop-nixos";
