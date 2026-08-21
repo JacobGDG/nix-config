@@ -16,8 +16,8 @@
     mattpocock-skills = pkgs.fetchFromGitHub {
       owner = "mattpocock";
       repo = "skills";
-      rev = "2ab958093e83e0ec752e6c1c5932da465bf23e0c";
-      hash = "sha256-dQtG6usJWlg/FqTajrjcs8GSdymH92WsgLiUaCfvKPA=";
+      rev = "5b15a47f2d7150f545fbcacbfe381787fc0230dc";
+      hash = "sha256-FPAAotNqA5aHrFDlj/XddoLs4TDKi+4J5H/mvevlOlk=";
     };
   in {
     home.packages = with pkgs; [
@@ -30,12 +30,7 @@
     # files inside fetchFromGitHub outputs without the lib.isPath limitation of
     # programs.claude-code.skills.
     home.file = {
-      ".claude/skills/grill-with-docs/SKILL.md".source = "${mattpocock-skills}/skills/engineering/grill-with-docs/SKILL.md";
       ".claude/skills/grilling/SKILL.md".source = "${mattpocock-skills}/skills/productivity/grilling/SKILL.md";
-      ".claude/skills/domain-modeling" = {
-        source = "${mattpocock-skills}/skills/engineering/domain-modeling";
-        recursive = true;
-      };
       ".claude/skills/handoff/SKILL.md".source = "${mattpocock-skills}/skills/productivity/handoff/SKILL.md";
     };
 
