@@ -196,7 +196,7 @@
 
           "workspace 1, match:class ^(kitty)$"
           "workspace 2, match:class ^(firefox)$"
-          "workspace 3, match:class ^(chrome-.+__-Default|Spotify|discord)$"
+          "workspace 3, match:class ^(chrome-.+__-Default|Spotify|discord|1password)$"
           "workspace 3, match:title ^(Remap)$"
           "workspace 9, match:class ^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$"
           "workspace 9, match:title ^(Steam)$"
