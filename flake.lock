@@ -359,10 +359,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1784815761,
-        "narHash": "sha256-n6kimhH7dHLJBl6rFWjkdjQ+E21mHeWYxqgQA9wXO+o=",
+        "lastModified": 1787563688,
+        "narHash": "sha256-7vCdSrSdLz9zbbhMvR3ri0UTlNfHErCxcbZjWefcfdQ=",
         "ref": "refs/heads/main",
-        "rev": "ef1a84c6f277004039e855bc292106a219ad4f96",
+        "rev": "2826207bf75f91101a7e16f7856db8e06d91e1b3",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
