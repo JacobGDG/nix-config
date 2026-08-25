@@ -1,7 +1,7 @@
 {
-  flake.modules.homeManager."jake@jake-laptop-nixos" = {};
+  flake.modules.homeManager."jake@hobbiton" = {};
 
-  flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {
+  flake.modules.nixos."nixosConfigurations/hobbiton" = {
     users.users = {
       jake = {
         initialPassword = "correcthorsebatterystaple";

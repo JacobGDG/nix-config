@@ -1,11 +1,11 @@
 {
-  hosts.jake-laptop-nixos = {
+  hosts.hobbiton = {
     system = "x86_64-linux";
     configurator = "nixos";
     hasBattery = true;
   };
 
-  flake.modules.nixos."nixosConfigurations/jake-laptop-nixos" = {inputs, ...}: {
+  flake.modules.nixos."nixosConfigurations/hobbiton" = {inputs, ...}: {
     imports = with inputs.self.modules.nixos; [
       battery
       firefox
@@ -14,7 +14,7 @@
       steam
     ];
 
-    networking.hostName = "jake-laptop-nixos";
+    networking.hostName = "hobbiton";
 
     system = {
       stateVersion = "24.05";
@@ -22,7 +22,7 @@
     };
   };
 
-  flake.modules.homeManager.jake-laptop-nixos = {
+  flake.modules.homeManager.hobbiton = {
     inputs,
     pkgs,
     ...
