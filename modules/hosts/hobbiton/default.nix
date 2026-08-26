@@ -12,6 +12,7 @@
       hyprland
       onePassword
       steam
+      impermanance
     ];
 
     networking.hostName = "hobbiton";

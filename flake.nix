@@ -18,6 +18,13 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanance = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        home-manager.follows = "";
+        nixpkgs.follows = "";
+      };
+    };
     import-tree.url = "github:denful/import-tree";
     mac-app-util.url = "github:hraban/mac-app-util";
     neovim = {
