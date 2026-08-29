@@ -54,14 +54,12 @@
           ".local/share/zoxide"
           ".local/share/PrismLauncher"
           ".thunderbird"
-          ".claude/projects"
+          ".claude"
         ];
         files = [
           ".zsh_history"
           ".bash_history"
           "Downloads/.keep"
-          ".claude/.credentials.json"
-          ".claude/history.jsonl"
           ".claude.json"
         ];
       };
