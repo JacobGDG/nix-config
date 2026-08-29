@@ -1,6 +1,17 @@
 {
   nixpkgs.allowedUnfreePackages = ["claude-code"];
 
+  persist = {
+    users = {
+      directories = [
+        ".claude"
+      ];
+      files = [
+        ".claude.json"
+      ];
+    };
+  };
+
   flake.modules.homeManager.aiAgents = {
     pkgs,
     config,

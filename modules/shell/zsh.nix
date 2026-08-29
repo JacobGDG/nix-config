@@ -1,4 +1,12 @@
 {
+  persist = {
+    users = {
+      files = [
+        ".zsh_history"
+      ];
+    };
+  };
+
   flake.modules.homeManager.zsh = {
     config,
     pkgs,

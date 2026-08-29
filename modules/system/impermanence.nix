@@ -61,24 +61,12 @@
               "/var/lib/bluetooth"
               "/var/lib/nixos"
               "/var/lib/systemd/coredump"
-              "/etc/NetworkManager/system-connections"
-              "/var/lib/NetworkManager"
               "/var/lib/systemd/timers"
             ]
             ++ outerConfig.persist.directories;
           files =
             [
               "/etc/machine-id"
-              {
-                file = "/etc/ssh/ssh_host_ed25519_key";
-                parentDirectory = {mode = "0755";};
-              }
-              "/etc/ssh/ssh_host_ed25519_key.pub"
-              {
-                file = "/etc/ssh/ssh_host_rsa_key";
-                parentDirectory = {mode = "0755";};
-              }
-              "/etc/ssh/ssh_host_rsa_key.pub"
             ]
             ++ outerConfig.persist.files;
           users.jake = {
@@ -88,26 +76,16 @@
                 mode = "0700";
               }
               ".mozilla"
-              "worktrees"
-              ".config/1Password"
-              ".config/spotify"
-              ".local/state/nvim"
               ".local/state/wireplumber"
-              ".cache/cliphist"
-              ".cache/spotify"
               ".config/dconf"
               ".local/share/direnv"
-              ".local/share/zoxide"
               ".local/share/PrismLauncher"
               ".thunderbird"
-              ".claude"
               ".local/share/applications"
             ];
             files = [
-              ".zsh_history"
               ".bash_history"
               "Downloads/.keep"
-              ".claude.json"
             ];
           };
         }

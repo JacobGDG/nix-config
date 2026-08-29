@@ -4,6 +4,14 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  persist = {
+    users = {
+      directories = [
+        "worktrees"
+      ];
+    };
+  };
+
   flake.modules.homeManager.bark = {
     pkgs,
     inputs,

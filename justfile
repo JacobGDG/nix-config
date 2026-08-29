@@ -9,6 +9,20 @@ vm-clean host=`hostname`:
   rm -f ./{{host}}.qcow2
 
 [linux]
+diff host=`hostname`:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  git stash
+  OLD=$(nix eval --raw .#nixosConfigurations."{{host}}".config.system.build.toplevel.drvPath)
+  git stash pop
+  NEW=$(nix eval --raw .#nixosConfigurations."{{host}}".config.system.build.toplevel.drvPath)
+  if [ "$OLD" = "$NEW" ]; then
+    echo "✓ {{host}}: derivations are identical"
+  else
+    nix run nixpkgs#nix-diff -- "$OLD" "$NEW"
+  fi
+
+[linux]
 os-build host=`hostname`:
   sudo nixos-rebuild build --flake .#"{{host}}" --show-trace
 

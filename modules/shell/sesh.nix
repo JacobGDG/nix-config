@@ -1,4 +1,12 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".local/share/zoxide"
+      ];
+    };
+  };
+
   flake.modules.homeManager.sesh = {
     pkgs,
     inputs,
