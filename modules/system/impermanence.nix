@@ -101,6 +101,7 @@
               ".local/share/PrismLauncher"
               ".thunderbird"
               ".claude"
+              ".local/share/applications"
             ];
             files = [
               ".zsh_history"
