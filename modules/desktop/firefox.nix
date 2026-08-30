@@ -1,4 +1,13 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".config/mozilla"
+        ".mozilla"
+      ];
+    };
+  };
+
   flake.modules.nixos.firefox = {...}: let
     lock-false = {
       Value = false;

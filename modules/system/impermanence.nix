@@ -77,7 +77,6 @@
                 directory = ".ssh";
                 mode = "0700";
               }
-              ".mozilla"
               ".local/state/wireplumber"
               ".config/dconf"
               ".local/state/nix"
