@@ -2,7 +2,7 @@
   persist = {
     users = {
       files = [
-        ".zsh_history"
+        ".config/zsh/.zsh_history"
       ];
     };
   };
