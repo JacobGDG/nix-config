@@ -82,6 +82,7 @@
               ".local/share/PrismLauncher"
               ".thunderbird"
               ".local/share/applications"
+              ".cache/tealdeer/tldr-pages"
             ];
             files = [
               ".bash_history"
