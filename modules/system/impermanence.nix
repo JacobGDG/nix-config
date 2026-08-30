@@ -59,12 +59,12 @@
           directories =
             [
               "/var/db/sudo/lectured"
-              "/var/log"
               "/var/lib/bluetooth"
               "/var/lib/nixos"
               "/var/lib/systemd/backlight"
               "/var/lib/systemd/coredump"
               "/var/lib/systemd/timers"
+              "/var/log"
             ]
             ++ outerConfig.persist.directories;
           files =
@@ -74,18 +74,18 @@
             ++ outerConfig.persist.files;
           users.jake = {
             directories = [
+              ".cache/tealdeer"
+              ".config/dconf"
+              ".config/systemd"
+              ".local/share/PrismLauncher"
+              ".local/share/applications"
+              ".local/share/direnv"
+              ".local/state/nix"
+              ".local/state/wireplumber"
               {
                 directory = ".ssh";
                 mode = "0700";
               }
-              ".local/state/wireplumber"
-              ".config/dconf"
-              ".local/state/nix"
-              ".config/systemd"
-              ".local/share/direnv"
-              ".local/share/PrismLauncher"
-              ".local/share/applications"
-              ".cache/tealdeer"
             ];
             files = [
               ".bash_history"
