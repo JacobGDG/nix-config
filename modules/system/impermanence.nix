@@ -38,6 +38,7 @@
     flake.modules.nixos.impermanance = {
       inputs,
       lib,
+      pkgs,
       ...
     } @ nixosArgs: let
       nixosConfig = nixosArgs.config;
@@ -78,6 +79,8 @@
               ".mozilla"
               ".local/state/wireplumber"
               ".config/dconf"
+              ".local/state/nix"
+              ".config/systemd"
               ".local/share/direnv"
               ".local/share/PrismLauncher"
               ".thunderbird"
@@ -99,6 +102,18 @@
             normalUsers;
         }
       ];
+
+      systemd.user.services.home-manager-activate = {
+        description = "Activate home-manager on login";
+        wantedBy = ["default.target"];
+        unitConfig.ConditionFileIsExecutable = "%h/.local/state/nix/profiles/home-manager/activate";
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.bash}/bin/bash %h/.local/state/nix/profiles/home-manager/activate";
+          Environment = "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/run/wrappers/bin";
+        };
+      };
     };
   };
 }
