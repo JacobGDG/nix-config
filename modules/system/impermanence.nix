@@ -84,9 +84,8 @@
               ".config/systemd"
               ".local/share/direnv"
               ".local/share/PrismLauncher"
-              ".thunderbird"
               ".local/share/applications"
-              ".cache/tealdeer/tldr-pages"
+              ".cache/tealdeer"
             ];
             files = [
               ".bash_history"
