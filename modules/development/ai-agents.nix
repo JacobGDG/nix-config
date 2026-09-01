@@ -70,6 +70,10 @@
             "Bash(mkdir -p ${config.xdg.cacheHome}/ref-repos/*)"
             "Bash(mkdir -p ~/.cache/ref-repos/*)"
           ];
+          ask = [
+            "Bash(rm *)"
+            "Bash(rmdir *)"
+          ];
           deny = [
             "Bash(git* commit*)"
             "Bash(git* push*)"
