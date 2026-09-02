@@ -57,15 +57,6 @@
       ];
     };
 
-    wayland.windowManager.hyprland.settings = {
-      input = {
-        kb_layout = "gb";
-        kb_options = "ctrl:nocaps";
-        repeat_delay = 200;
-        repeat_rate = 40;
-      };
-    };
-
     programs = {
       ripgrep.enable = true;
     };

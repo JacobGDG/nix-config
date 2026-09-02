@@ -5,7 +5,7 @@
       layout = [
         {
           label = "shutdown";
-          action = "systemctl poweroff";
+          action = "uwsm-app -- hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'";
           text = "Shutdown";
           keybind = "s";
         }
@@ -17,7 +17,7 @@
         }
         {
           label = "reboot";
-          action = "sleep 1 && systemctl reboot";
+          action = "uwsm-app -- hyprshutdown -t 'Rebooting...' --post-cmd 'systemctl reboot'";
           text = "Reboot";
           keybind = "r";
         }
@@ -28,7 +28,7 @@
         }
         {
           label = "logout";
-          action = "sleep 1 && hyprctl dispatch exit";
+          action = "uwsm-app -- hyprshutdown -t 'Logging out...'";
           text = "Logout";
         }
       ];

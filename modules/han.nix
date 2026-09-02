@@ -25,16 +25,12 @@
       ];
     };
 
-    wayland.windowManager.hyprland.settings = {
-      input = {
-        kb_layout = "gb";
-        kb_options = "ctrl:nocaps";
-        repeat_delay = 200;
-        repeat_rate = 40;
-      };
-      exec-once = [
-        "steam"
-      ];
+    wayland.windowManager.hyprland = {
+      extraConfig = ''
+        hl.on("hyprland.start", function()
+            hl.exec_cmd("steam")
+        end)
+      '';
     };
   };
 }
