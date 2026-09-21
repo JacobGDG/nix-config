@@ -14,7 +14,7 @@
     imports = [inputs.ragenix.nixosModules.default];
 
     age = {
-      # TODO: confirm I can jsut refence the persisted value
+      # impermanence mounts after agnix runs, so use persisted version directly
       identityPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
     };
   };
