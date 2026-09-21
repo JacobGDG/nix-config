@@ -22,4 +22,4 @@ if [[ $active_window =~ ^(steam_app_[0-9]+|dwarfort|Minecraft.+)$ ]]; then
   exit 1
 fi
 
-hyprctl dispatch killactive
+hyprctl dispatch 'hl.dsp.window.close()'
