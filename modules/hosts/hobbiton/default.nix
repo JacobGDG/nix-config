@@ -10,9 +10,10 @@
       battery
       firefox
       hyprland
-      onePassword
-      steam
       impermanance
+      onePassword
+      secrets
+      steam
     ];
 
     networking.hostName = "hobbiton";

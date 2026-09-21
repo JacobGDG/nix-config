@@ -35,5 +35,13 @@
       };
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    ragenix = {
+      url = "git+ssh://git@github.com/JacobGDG/ragenix.git?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    secrets = {
+      url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
+      flake = false;
+    };
   };
 }
