@@ -1,17 +1,18 @@
 {
   flake.modules.homeManager.devops = {pkgs, ...}: {
     home.packages = with pkgs; [
-      kubectl
-      k9s
-      kubectx
-      kustomize
+      aws-sso-util
+      awscli2
       cmctl
-      kubernetes-helm
+      k9s
       kind
+      kubectl
+      kubectx
+      kubernetes-helm
+      kustomize
+      step-cli
       tenv
       tflint
-      aws-sso-util
-      step-cli
     ];
 
     programs.zsh.shellAliases = {
