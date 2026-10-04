@@ -127,4 +127,4 @@ hl.window_rule({ match = { class = "^(chrome-.+__-Default|Spotify|discord|1passw
 hl.window_rule({ match = { title = "^(Remap)$" }, workspace = "3" })
 hl.window_rule({ match = { class = "^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$" }, workspace = "9" })
 hl.window_rule({ match = { title = "^(Steam)$" }, workspace = "9" })
-hl.window_rule({ match = { class = "^(steam_app_[0-9]+|dwarfort|Minecraft.*)$" }, workspace = "10" })
+hl.window_rule({ match = { class = "^(steam_app_[0-9]+|dwarfort|Minecraft.*|stellaris)$" }, workspace = "10" })
