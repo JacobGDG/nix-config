@@ -30,6 +30,12 @@
       rev = "5b15a47f2d7150f545fbcacbfe381787fc0230dc";
       hash = "sha256-FPAAotNqA5aHrFDlj/XddoLs4TDKi+4J5H/mvevlOlk=";
     };
+    caveman-skill = pkgs.fetchFromGitHub {
+      owner = "JuliusBrussee";
+      repo = "caveman";
+      rev = "6571943370f7c9d4de1946481177ee7b306cd8e8";
+      hash = "sha256-ZkDCcKjrh5VybFBg28A29hlNz+b0Bi/wKbTzZ22diKY=";
+    };
   in {
     home.packages = with pkgs; [
       opencode
@@ -43,6 +49,7 @@
     home.file = {
       ".claude/skills/grilling/SKILL.md".source = "${mattpocock-skills}/skills/productivity/grilling/SKILL.md";
       ".claude/skills/handoff/SKILL.md".source = "${mattpocock-skills}/skills/productivity/handoff/SKILL.md";
+      ".claude/skills/caveman/SKILL.md".source = "${caveman-skill}/skills/caveman/SKILL.md";
     };
 
     programs.claude-code = {
