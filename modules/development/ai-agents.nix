@@ -55,6 +55,8 @@
     programs.claude-code = {
       enable = true;
 
+      package = pkgs.unstable.claude-code;
+
       skills = {
         clone-repo = ./skills/clone-repo.md;
       };
