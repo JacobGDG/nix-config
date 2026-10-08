@@ -80,11 +80,11 @@
           ask = [
             "Bash(rm *)"
             "Bash(rmdir *)"
+            "Bash(git* commit*)"
+            "Bash(git* add*)"
           ];
           deny = [
-            "Bash(git* commit*)"
             "Bash(git* push*)"
-            "Bash(git* add*)"
             "Bash(git* merge*)"
             "Bash(git* rebase*)"
             "Bash(git* reset*)"
