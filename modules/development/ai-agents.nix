@@ -58,6 +58,7 @@
       package = pkgs.unstable.claude-code;
 
       skills = {
+        adversarial-review = ./skills/adversarial-review.md;
         clone-repo = ./skills/clone-repo.md;
       };
 
