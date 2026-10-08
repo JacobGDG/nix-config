@@ -71,11 +71,11 @@
 
         permissions = {
           allow = [
-            "Bash(git* clone:*)"
-            "Bash(git* status:*)"
-            "Bash(git* log:*)"
-            "Bash(git* diff:*)"
-            "Bash(git* show:*)"
+            "Bash(git clone:*)"
+            "Bash(git status:*)"
+            "Bash(git log:*)"
+            "Bash(git diff:*)"
+            "Bash(git show:*)"
             "Bash(mkdir -p ${config.xdg.cacheHome}/ref-repos/*)"
             "Bash(mkdir -p ~/.cache/ref-repos/*)"
           ];
