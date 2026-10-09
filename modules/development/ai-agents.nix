@@ -62,6 +62,14 @@
         clone-repo = ./skills/clone-repo.md;
       };
 
+      context = ''
+        # Skills
+
+        - `clone-repo` - use this when investigating or reading the source of a
+          git repository other than the current working directory, rather than
+          fetching files from the web.
+      '';
+
       settings = {
         theme = "dark";
         sandbox = {
