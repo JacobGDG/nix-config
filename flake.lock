@@ -194,11 +194,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "lastModified": 1791914995,
+        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
         "type": "github"
       },
       "original": {
@@ -401,10 +401,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790606625,
-        "narHash": "sha256-ZEpG2BM9hC5prwmUtChUttT2DuQxZb4U2tGrEoZgHY8=",
+        "lastModified": 1791970265,
+        "narHash": "sha256-/zB7o8CZrbuBtfCc9OUB98OcqXLwE9BoKLXVF+b/a7o=",
         "ref": "refs/heads/main",
-        "rev": "eb67481ba25b14278d6e1a936876f550a9ddd0cf",
+        "rev": "01d4a4d060b31f77224590b60e02906d7dea9df8",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
