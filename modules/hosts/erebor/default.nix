@@ -10,6 +10,7 @@
       hyprland
       nvidia
       onePassword
+      sddm
       steam
     ];
 

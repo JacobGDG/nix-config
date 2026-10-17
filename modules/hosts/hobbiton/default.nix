@@ -9,6 +9,7 @@
     imports = with inputs.self.modules.nixos; [
       battery
       firefox
+      greetd
       hyprland
       impermanance
       onePassword

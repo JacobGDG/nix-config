@@ -1,10 +1,5 @@
 {
   flake.modules.nixos.hyprland = {
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
-
     services.xserver.xkb.options = "caps:none";
 
     security.pam.services.hyprlock.enable = true;
