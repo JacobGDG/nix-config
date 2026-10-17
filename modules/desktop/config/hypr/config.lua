@@ -125,10 +125,14 @@ hl.window_rule({ match = { title = "^(QuickAccessKitty)$" }, float = true, size 
 
 hl.window_rule({ match = { class = "^(kitty)$" }, workspace = "1" })
 hl.window_rule({ match = { class = "^(firefox)$" }, workspace = "2" })
+
 hl.window_rule({ match = { class = "^(chrome-.+__-Default|Spotify|discord|1password)$" }, workspace = "3" })
 hl.window_rule({ match = { title = "^(Remap)$" }, workspace = "3" })
+
 hl.window_rule({ match = { class = "^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$" }, workspace = "9" })
 hl.window_rule({ match = { title = "^(Steam)$" }, workspace = "9" })
+
 hl.window_rule({ match = { class = "^(steam_app_[0-9]+|dwarfort|Minecraft.*|stellaris)$" }, workspace = "10" })
+hl.window_rule({ match = { title = "^(Steam Big Picture Mode)$" }, workspace = "10" })
 
 hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
