@@ -11,7 +11,8 @@
     pkgs,
     ...
   }: let
-    sessions = "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+    # uwsm brings up graphical-session.target, which home-manager services depend on
+    session = "${lib.getExe config.programs.uwsm.package} start -e -D Hyprland hyprland.desktop";
   in {
     services.greetd = {
       enable = true;
@@ -19,9 +20,8 @@
         (lib.getExe pkgs.tuigreet)
         "--time"
         "--remember"
-        "--remember-session"
         "--asterisks"
-        "--sessions ${sessions}"
+        "--cmd '${session}'"
       ];
     };
   };
