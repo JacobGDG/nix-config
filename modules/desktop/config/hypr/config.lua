@@ -23,8 +23,10 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 -- MONITORS
 
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 hl.monitor({ output = "eDP-1", mode = "1920x1080@60", position = "0x0", scale = 1 })
 hl.monitor({ output = "HDMI-A-2", mode = "2560x1440@60", position = "0x0", scale = 1 })
+hl.monitor({ output = "HDMI-A-1", mode = "3840x2160@60", position = "auto", scale = 2 })
 
 -- AUTOSTART
 
@@ -128,3 +130,5 @@ hl.window_rule({ match = { title = "^(Remap)$" }, workspace = "3" })
 hl.window_rule({ match = { class = "^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$" }, workspace = "9" })
 hl.window_rule({ match = { title = "^(Steam)$" }, workspace = "9" })
 hl.window_rule({ match = { class = "^(steam_app_[0-9]+|dwarfort|Minecraft.*|stellaris)$" }, workspace = "10" })
+
+hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
