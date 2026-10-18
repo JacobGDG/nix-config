@@ -18,6 +18,7 @@
       libreoffice
       mpv
       neovim
+      qbittorrent
       scripts
       sesh
       spotifyPlayer

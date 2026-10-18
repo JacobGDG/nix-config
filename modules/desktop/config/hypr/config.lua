@@ -126,7 +126,7 @@ hl.window_rule({ match = { title = "^(QuickAccessKitty)$" }, float = true, size 
 hl.window_rule({ match = { class = "^(kitty)$" }, workspace = "1" })
 hl.window_rule({ match = { class = "^(firefox)$" }, workspace = "2" })
 
-hl.window_rule({ match = { class = "^(chrome-.+__-Default|Spotify|discord|1password)$" }, workspace = "3" })
+hl.window_rule({ match = { class = "^(chrome-.+__-Default|Spotify|discord|1password|(org\\.qbittorrent\\.)?qBittorrent)$" }, workspace = "3" })
 hl.window_rule({ match = { title = "^(Remap)$" }, workspace = "3" })
 
 hl.window_rule({ match = { class = "^(steam|org.prismlauncher.PrismLauncher|info.mumble.Mumble)$" }, workspace = "9" })
