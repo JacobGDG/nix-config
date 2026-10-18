@@ -131,7 +131,7 @@ main() {
     status_action "$iface" "$services"
     ;;
   services)
-    ${services//^wg-quick-//}
+    echo "${services//wg-quick-/}"
     ;;
   toggle)
     if [ -z "$iface" ]; then

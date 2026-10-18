@@ -46,9 +46,6 @@
         "quick-access-kitty.sh"
         "random.sh"
         "show-keymaps.sh"
-        "wg-manager.sh"
-        "wg-waybar.sh"
-        "wg-wofi.sh"
         "wofi-bookmarks.sh"
       ];
   };

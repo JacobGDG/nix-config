@@ -15,6 +15,7 @@
       onePassword
       secrets
       steam
+      wireguard
     ];
 
     networking.hostName = "hobbiton";

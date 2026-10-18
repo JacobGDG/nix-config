@@ -131,7 +131,11 @@
             "network"
             "cpu"
             "memory"
-            (if hasBattery then "battery" else null)
+            (
+              if hasBattery
+              then "battery"
+              else null
+            )
             "custom/power"
           ];
           privacy = {
@@ -207,6 +211,7 @@
               home = "󰚊";
               public = "";
             };
+            exec-if = "command -v wg-waybar";
             exec = "wg-waybar";
             interval = 1;
           };
