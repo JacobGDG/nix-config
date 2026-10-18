@@ -29,6 +29,14 @@
       runtimeInputs = [wg-manager pkgs.wofi pkgs.gnugrep];
       text = builtins.readFile ./wireguard/wg-wofi.sh;
     };
+    wg-wofi-desktop = pkgs.makeDesktopItem {
+      name = "wg-wofi";
+      desktopName = "WireGuard - Select";
+      comment = "Connect to a WireGuard interface";
+      exec = "${wg-wofi}/bin/wg-wofi";
+      icon = "network-vpn";
+      categories = ["Network"];
+    };
   in {
     age.secrets = {
       publicWgConfig = {
@@ -54,7 +62,7 @@
       };
     };
 
-    environment.systemPackages = [wg-manager wg-waybar wg-wofi];
+    environment.systemPackages = [wg-manager wg-waybar wg-wofi wg-wofi-desktop];
 
     security.sudo.extraRules = [
       {

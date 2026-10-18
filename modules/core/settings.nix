@@ -1,4 +1,10 @@
 {
+  # standalone home-manager can't see the NixOS use-xdg-base-directories setting below,
+  # so without this it points profile paths (e.g. QT_PLUGIN_PATH) at a missing ~/.nix-profile
+  flake.modules.homeManager.core = {pkgs, ...}: {
+    nix.assumeXdg = pkgs.stdenv.hostPlatform.isLinux;
+  };
+
   flake.modules.nixos.core = {
     nix = {
       channel.enable = false;
