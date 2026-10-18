@@ -1,7 +1,6 @@
 {
   flake.modules.homeManager.waybar = {
     config,
-    hasBattery,
     pkgs,
     lib,
     ...
@@ -126,16 +125,12 @@
             "custom/wireguard"
             "privacy"
           ];
-          modules-right = builtins.filter (x: x != null) [
+          modules-right = [
             "pulseaudio"
             "network"
             "cpu"
             "memory"
-            (
-              if hasBattery
-              then "battery"
-              else null
-            )
+            "battery"
             "custom/power"
           ];
           privacy = {

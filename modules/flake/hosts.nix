@@ -15,10 +15,6 @@
             type = lib.types.str;
             default = "noop";
           };
-          hasBattery = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-          };
         };
       };
     in

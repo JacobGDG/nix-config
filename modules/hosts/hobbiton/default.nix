@@ -2,7 +2,6 @@
   hosts.hobbiton = {
     system = "x86_64-linux";
     configurator = "nixos";
-    hasBattery = true;
   };
 
   flake.modules.nixos."nixosConfigurations/hobbiton" = {inputs, ...}: {
