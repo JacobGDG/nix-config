@@ -1,6 +1,12 @@
 ---
 name: adversarial-review
-description: Adversarially re-check a review or set of findings produced by an LLM. Breaks the review into individual claims, verifies each one against source code and web sources, lists open questions where evidence is missing, and returns the same review corrected — inaccuracies removed, nuance added. Use when the user asks to "adversarially review", "nit pick", "fact check", or "verify" a review, or invokes /adversarial-review.
+description:
+  Adversarially re-check a review or set of findings produced by an LLM. Breaks
+  the review into individual claims, verifies each one against source code and
+  web sources, lists open questions where evidence is missing, and returns the
+  same review corrected — inaccuracies removed, nuance added. Use when the user
+  asks to "adversarially review", "nit pick", "fact check", or "verify" a
+  review, or invokes /adversarial-review.
 
 allowed-tools: Read, Bash, WebFetch, WebSearch, AskUserQuestion, Skill
 ---
@@ -71,9 +77,9 @@ quotation of it.
 - **Code claims**: open the file and read the whole function _and its callers_.
   Confirm line numbers, names and signatures. Trace the input path to check the
   claimed state is actually reachable.
-- **Absence claims** ("no tests", "never validated"): search exhaustively (`grep
--rn`, `find`) across all supplied locations before accepting. Absence is the
-  easiest claim to get wrong.
+- **Absence claims** ("no tests", "never validated"): search exhaustively
+  (`grep -rn`, `find`) across all supplied locations before accepting. Absence
+  is the easiest claim to get wrong.
 - **External claims** (library behaviour, defaults, CVEs, standards): confirm
   with `WebFetch` against official docs or the upstream source at the _version
   actually in use_. Check the lockfile or flake input for the version. A blog
@@ -165,8 +171,15 @@ the conclusions you'd have reached.
 
 To break this pattern:
 
-1. **Verify in reverse order.** Start from the last finding and work backwards; the later findings usually got the least scrutiny. Exception: if the review is ranked by severity, verify the top findings first, while your attention is freshest.
-2. **Re-derive before you read.** For each finding, open the evidence and form your own conclusion _before_ rereading the review's reasoning. Then compare.
-3. **Assume every citation is wrong** until you've opened it — line numbers drift, files get renamed, docs describe a different version.
-4. **Assume every severity is unverified** until reachability and impact are shown. Overstated and understated severity are both errors.
-5. **Ask: "If this finding were deleted, would anyone be worse off?"** If not, it's noise — cut it or merge it.
+1. **Verify in reverse order.** Start from the last finding and work backwards;
+   the later findings usually got the least scrutiny. Exception: if the review
+   is ranked by severity, verify the top findings first, while your attention is
+   freshest.
+2. **Re-derive before you read.** For each finding, open the evidence and form
+   your own conclusion _before_ rereading the review's reasoning. Then compare.
+3. **Assume every citation is wrong** until you've opened it — line numbers
+   drift, files get renamed, docs describe a different version.
+4. **Assume every severity is unverified** until reachability and impact are
+   shown. Overstated and understated severity are both errors.
+5. **Ask: "If this finding were deleted, would anyone be worse off?"** If not,
+   it's noise — cut it or merge it.

@@ -10,6 +10,7 @@
         nil
         alejandra
         nvd
+        prettier
       ];
     };
   };
