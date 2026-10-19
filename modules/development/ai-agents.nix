@@ -42,6 +42,7 @@
     ];
 
     home.file."${config.xdg.cacheHome}/ref-repos/.keep".text = "";
+    home.file."${config.xdg.cacheHome}/reading-recs/.keep".text = "";
 
     # home.file.*.source accepts store-path strings, which lets us reference
     # files inside fetchFromGitHub outputs without the lib.isPath limitation of
@@ -60,6 +61,14 @@
       skills = {
         adversarial-review = ./skills/adversarial-review.md;
         clone-repo = ./skills/clone-repo.md;
+        reading-recs = ./skills/reading-recs.md;
+      };
+
+      mcpServers = {
+        raindrop = {
+          type = "http";
+          url = "https://api.raindrop.io/rest/v2/ai/mcp";
+        };
       };
 
       context = ''
@@ -74,7 +83,10 @@
         theme = "dark";
         sandbox = {
           enabled = true;
-          filesystem.allowWrite = ["${config.xdg.cacheHome}/ref-repos"];
+          filesystem.allowWrite = [
+            "${config.xdg.cacheHome}/ref-repos"
+            "${config.xdg.cacheHome}/reading-recs"
+          ];
           network.allowedDomains = ["github.com" "*.github.com"];
         };
 
@@ -104,7 +116,10 @@
             "Bash(tofu apply *)"
             "Bash(terraform apply *)"
           ];
-          additionalDirectories = ["${config.xdg.cacheHome}/ref-repos"];
+          additionalDirectories = [
+            "${config.xdg.cacheHome}/ref-repos"
+            "${config.xdg.cacheHome}/reading-recs"
+          ];
         };
 
         # Claude's own terminal-bell notification is gated on the terminal
