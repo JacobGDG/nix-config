@@ -3,9 +3,9 @@
   # nixpkgs pin removed due to above issue
   # flake-file.inputs.mac-app-util.url = "github:hraban/mac-app-util";
 
-  hosts."MacBook-Pro.local".system = "aarch64-darwin";
+  hosts."Jake-Greenwoods-MacBook-Pro.local".system = "aarch64-darwin";
 
-  flake.modules.homeManager."MacBook-Pro.local" = {
+  flake.modules.homeManager."Jake-Greenwoods-MacBook-Pro.local" = {
     pkgs,
     inputs,
     ...
