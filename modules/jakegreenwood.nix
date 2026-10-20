@@ -9,6 +9,7 @@
     imports = with inputs.self.modules.homeManager; [
       aiAgents
       bark
+      colima
       devops
       direnv
       git
