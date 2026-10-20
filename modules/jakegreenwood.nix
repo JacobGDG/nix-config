@@ -1,5 +1,5 @@
 {
-  nixpkgs.allowedUnfreePackages = ["dbeaver-bin" "spotify"];
+  nixpkgs.allowedUnfreePackages = ["spotify"];
 
   flake.modules.homeManager.jakegreenwood = {
     pkgs,
@@ -13,6 +13,7 @@
       direnv
       git
       jira
+      localLlm
       neovim
       scripts
       sesh
@@ -26,7 +27,6 @@
     home.packages = with pkgs; [
       # (python311.withPackages (ps: [ps.pip]))
       btop
-      dbeaver-bin
       docker-credential-helpers
       fzf
       gh

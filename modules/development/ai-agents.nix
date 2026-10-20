@@ -37,10 +37,6 @@
       hash = "sha256-ZkDCcKjrh5VybFBg28A29hlNz+b0Bi/wKbTzZ22diKY=";
     };
   in {
-    home.packages = with pkgs; [
-      opencode
-    ];
-
     home.file."${config.xdg.cacheHome}/ref-repos/.keep".text = "";
     home.file."${config.xdg.cacheHome}/reading-recs/.keep".text = "";
 
