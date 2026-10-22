@@ -21,6 +21,19 @@
           --replace '@notify_focused@' '${final.notify-focused}/bin/notify-focused' \
           --replace '@play_sound@' '${final.play-sound}/bin/play-sound'
       '';
+      # Pane facts as JSON, with program-specific facts (e.g. Claude's screen
+      # state) under `data`.
+      tmux-status = prev.writeShellApplication {
+        name = "tmux-status";
+        runtimeInputs = with final; [tmux jq gnugrep gawk coreutils];
+        text = builtins.readFile ./scripts/tmux-status.sh;
+      };
+      # Agent picker popup, built on tmux-status.
+      tmux-agents = prev.writeShellApplication {
+        name = "tmux-agents";
+        runtimeInputs = with final; [tmux jq fzf gawk coreutils final.tmux-status];
+        text = builtins.readFile ./scripts/tmux-agents.sh;
+      };
     })
   ];
 
@@ -31,7 +44,7 @@
       pkgs.writeScriptBin name (builtins.readFile (./scripts/${file}));
   in {
     home.packages =
-      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify]
+      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents]
       ++ map mkScript [
         "aws-console.sh"
         "clean-pr.sh"

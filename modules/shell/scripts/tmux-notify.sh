@@ -21,8 +21,10 @@ belling="${1:-}"
 
 # Persistent marker: set the @attention window option so the status bar shows a
 #  on the belling window until it's focused (cleared by the pane-focus-in hook
-# in modules/shell/tmux.nix). Outlives the transient flash below.
+# in modules/shell/tmux.nix). Outlives the transient flash below. Also set it
+# on the pane itself, so tmux-status/tmux-agents can tell which pane it was.
 tmux set-option -w -t "$belling" @attention 1 2>/dev/null
+tmux set-option -p -t "$belling" @attention 1 2>/dev/null
 
 # Only now, on the path that actually alerts, resolve the pane's location for
 # the label (default to the belling pane's session:window).

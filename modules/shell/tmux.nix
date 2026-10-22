@@ -54,8 +54,17 @@
         # Persistent "needs attention" marker. tmux-notify sets the @attention
         # window option when it alerts (see modules/shell/scripts/tmux-notify.sh);
         # the window-status-format below shows a  while it's set, and this hook
-        # clears it as soon as you focus the window.
-        set-hook -g pane-focus-in 'set-option -uw @attention'
+        # clears it as soon as you focus the window. tmux-notify also sets a
+        # pane-level @attention (read by tmux-agents), cleared here likewise.
+        set-hook -g pane-focus-in {
+          set-option -uw @attention
+          set-option -up @attention
+        }
+
+        # Popup listing every Claude pane with its state; enter jumps to it.
+        # run-shell (unlike display-popup) expands #{client_name}, so the
+        # picker knows which terminal to open on and jump with.
+        bind-key a run-shell -b "${pkgs.tmux-agents}/bin/tmux-agents --open-popup '#{client_name}'"
 
         bind-key -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
         bind-key -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
@@ -82,7 +91,9 @@
         # this extraConfig) but adds a  driven by the @attention window option.
         set-window-option -g window-status-format "#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base01},noitalics]#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base06}] #I #[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base06}] #W#{?@attention,  ,} #[bg=#${config.colorScheme.palette.base01}]#[fg=#${config.colorScheme.palette.base02},noitalics]"
         set-option -g status-left "#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base05}] #S #[fg=#${config.colorScheme.palette.base02},bg=#${config.colorScheme.palette.base01},nobold,noitalics,nounderscore]"
-        set-option -g status-right "#[fg=#${config.colorScheme.palette.base03}, nobold, nounderscore, noitalics]#[bg=#${config.colorScheme.palette.base03},fg=#${config.colorScheme.palette.base05}] %Y-%m-%d  %H:%M #[fg=#${config.colorScheme.palette.base02},bg=#${config.colorScheme.palette.base03},nobold,noitalics,nounderscore]#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base05}] #h"
+        # Leads with Claude agent counts per state (e.g. ⏳1 ✅2 💤3), empty
+        # when there are none; refreshed every status-interval.
+        set-option -g status-right "#(${pkgs.tmux-agents}/bin/tmux-agents --summary) #[fg=#${config.colorScheme.palette.base03}, nobold, nounderscore, noitalics]#[bg=#${config.colorScheme.palette.base03},fg=#${config.colorScheme.palette.base05}] %Y-%m-%d  %H:%M #[fg=#${config.colorScheme.palette.base02},bg=#${config.colorScheme.palette.base03},nobold,noitalics,nounderscore]#[bg=#${config.colorScheme.palette.base02},fg=#${config.colorScheme.palette.base05}] #h"
         set-window-option -g mode-style "fg=#${config.colorScheme.palette.base05},bg=#${config.colorScheme.palette.base02}"
       '';
     };
