@@ -106,11 +106,17 @@
       systemd.user.services.home-manager-activate = {
         description = "Activate home-manager on login";
         wantedBy = ["default.target"];
+        # uwsm starts in parallel with the user manager, so hold the compositor
+        # (and graphical-session.target) until home files and units are linked
+        before = ["graphical-session-pre.target"];
         unitConfig.ConditionFileIsExecutable = "%h/.local/state/nix/profiles/home-manager/activate";
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
           ExecStart = "${pkgs.bash}/bin/bash %h/.local/state/nix/profiles/home-manager/activate";
+          # While the user manager is "starting", "home-manager activate" skips its systemd reload,
+          # leaving units stale. Reload explicitly once activation is complete.
+          ExecStartPost = "${nixosConfig.systemd.package}/bin/systemctl --user daemon-reload";
           Environment = "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/run/wrappers/bin";
         };
       };
