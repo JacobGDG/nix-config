@@ -86,6 +86,8 @@
           network.allowedDomains = ["github.com" "*.github.com"];
         };
 
+        promptSuggestionEnabled = false;
+
         permissions = {
           allow = [
             "Bash(git clone:*)"
