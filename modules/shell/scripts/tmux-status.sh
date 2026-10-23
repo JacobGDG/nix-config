@@ -76,9 +76,18 @@ bottom_lines() {
   capture_screen | { grep -v '^[[:space:]]*$' || true; } | tail -n "$1"
 }
 
+# Nix wrappers (makeWrapper) exec the real binary as `.<name>-wrapped`, so tmux
+# reports `.claude-wrapped` rather than `claude`. Turn that back into the name.
+unwrapped_name() {
+  local name=$1
+  name=${name#.}        # remove the leading dot
+  name=${name%-wrapped} # remove the trailing "-wrapped"
+  echo "$name"
+}
+
 # Which reader understands this program, if any.
 program_type() {
-  case "$1" in
+  case "$(unwrapped_name "$1")" in
     claude) echo claude ;;
   esac
 }
