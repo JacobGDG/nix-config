@@ -13,13 +13,13 @@
     # Runs `ollama serve` as a launchd agent (darwin) / systemd user service
     # (linux). Idle cost is ~40MB; models are loaded on first request and
     # unloaded after OLLAMA_KEEP_ALIVE. Models are not pulled declaratively,
-    # run `ollama pull devstral-small-2:24b` once after switching.
+    # run `ollama pull gpt-oss:20b` once after switching.
     services.ollama = {
       enable = true;
       environmentVariables = {
         # Ollama's default context is too small for coding agents' system
         # prompts and tool definitions. 16k with a q8_0 KV cache keeps
-        # devstral-small-2:24b (~15GB weights) near the GPU's share of a
+        # gpt-oss:20b (~13GB weights) within the GPU's share of a
         # 24GB Mac.
         OLLAMA_CONTEXT_LENGTH = "16384";
         OLLAMA_FLASH_ATTENTION = "1";
@@ -31,12 +31,12 @@
     programs.opencode = {
       enable = true;
       settings = {
-        model = "ollama/devstral-small-2:24b";
+        model = "ollama/gpt-oss:20b";
         provider.ollama = {
           npm = "@ai-sdk/openai-compatible";
           name = "Ollama (local)";
           options.baseURL = "${ollamaUrl}/v1";
-          models."devstral-small-2:24b".name = "Devstral Small 2 24B";
+          models."gpt-oss:20b".name = "gpt-oss 20B";
         };
       };
     };
