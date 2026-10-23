@@ -84,6 +84,11 @@
             "${config.xdg.cacheHome}/reading-recs"
           ];
           network.allowedDomains = ["github.com" "*.github.com"];
+          # gh (like other Go binaries on macOS) verifies TLS through
+          # com.apple.trustd.agent, which the sandbox blocks — inside it gh
+          # fails with "x509: OSStatus -26276". Run gh unsandboxed rather than
+          # opening trustd to every sandboxed command.
+          excludedCommands = ["gh *"];
         };
 
         promptSuggestionEnabled = false;
