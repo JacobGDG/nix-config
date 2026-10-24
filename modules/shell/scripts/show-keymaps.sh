@@ -3,4 +3,4 @@
 config_file=~/.config/hypr/hyprland.conf
 keybinds=$(grep -oP '(?<=bind=).*' $config_file)
 keybinds=$(echo "$keybinds" | sed 's/,\([^,]*\)$/ = \1/' | sed 's/, exec//g' | sed 's/^,//g')
-wofi -p keymaps --show dmenu -i <<< "$keybinds"
+wofi -p keymaps --show dmenu -i --cache-file /dev/null <<< "$keybinds"

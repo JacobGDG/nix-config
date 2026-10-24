@@ -1,4 +1,12 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".cache/wofi"
+      ];
+    };
+  };
+
   flake.modules.homeManager.wofi = {
     config,
     pkgs,

@@ -51,7 +51,7 @@ hl.bind(mod .. " + K", hl.dsp.exec_cmd(webapp .. "=https://remap-keys.app/config
 hl.bind(mod .. " + Q", hl.dsp.exec_cmd("hyprctl-conditional-quit"))
 
 -- Clipboard
-hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | " .. app .. " wofi --dmenu | cliphist decode | wl-copy"))
+hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | " .. app .. " wofi --dmenu --cache-file /dev/null | cliphist decode | wl-copy"))
 
 -- Move window
 hl.bind(window_mod .. " + H", hl.dsp.window.move({ direction = "left" }))

@@ -15,7 +15,7 @@ for iface in "${interfaces[@]}"; do
 done
 
 # Show menu and get selection
-selection="$(echo "$menu_items" | wofi --show dmenu --prompt "WireGuard")"
+selection="$(echo "$menu_items" | wofi --show dmenu --prompt "WireGuard" --cache-file /dev/null)"
 
 if [[ "$selection" == "Disconnect All" ]]; then
     wg-manager down

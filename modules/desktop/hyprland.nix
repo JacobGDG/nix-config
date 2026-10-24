@@ -63,7 +63,7 @@
         terminal   = app .. " kitty"
         browser    = app .. " firefox"
         webapp     = app .. " chromium --new-window --ozone-platform=wayland --app"
-        launcher   = app .. " wofi --show drun"
+        launcher   = app .. " wofi --show drun --cache-file ${config.xdg.cacheHome}/wofi/launcher"
 
         -- Colors (injected by Nix)
         active_border   = "rgb(${config.colorScheme.palette.base05})"

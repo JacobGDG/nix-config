@@ -103,6 +103,8 @@
     config,
     ...
   }: {
+    home.sessionVariables.FIREFOX_BOOKMARKS_PATH = "${config.programs.firefox.configPath}/${config.programs.firefox.profiles.default.path}/bookmarks.html";
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {

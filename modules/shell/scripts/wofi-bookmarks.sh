@@ -1,10 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BOOKMARKS_FILE="${HOME}/Downloads/bookmarks.html"
+CANDIDATES=()
+[[ -n "${FIREFOX_BOOKMARKS_PATH:-}" ]] && CANDIDATES+=("$FIREFOX_BOOKMARKS_PATH")
+[[ -n "${XDG_CONFIG_HOME:-}" ]] && CANDIDATES+=("${XDG_CONFIG_HOME}/mozilla/firefox/default/bookmarks.html")
+CANDIDATES+=(
+  "${HOME}/.mozilla/firefox/default/bookmarks.html"
+  "${HOME}/Downloads/bookmarks.html"
+)
 
-if [[ ! -f "$BOOKMARKS_FILE" ]]; then
-  notify-send -t 5000 -u critical "wofi-bookmarks" "Bookmarks file not found: $BOOKMARKS_FILE, download it from firefox."
+BOOKMARKS_FILE=""
+for candidate in "${CANDIDATES[@]}"; do
+  if [[ -f "$candidate" ]]; then
+    BOOKMARKS_FILE="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$BOOKMARKS_FILE" ]]; then
+  notify-send -t 5000 -u critical "wofi-bookmarks" "Bookmarks file not found in: ${CANDIDATES[*]}, download it from firefox."
   exit 1
 fi
 
@@ -19,7 +33,7 @@ format_for_wofi() {
 }
 
 select_bookmark() {
-  wofi -p "Bookmarks: " --show dmenu -i
+  wofi -p "Bookmarks: " --show dmenu -i --cache-file "${XDG_CACHE_HOME:-$HOME/.cache}/wofi/bookmarks"
 }
 
 open_url() {
