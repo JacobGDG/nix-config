@@ -7,6 +7,23 @@
   }: {
     programs.waybar = {
       enable = true;
+      # 0.15.0 sends hyprlang-style dispatches that the hyprland lua config rejects,
+      # so workspace buttons do nothing.
+      package =
+        lib.warnIf (lib.versionAtLeast pkgs.unstable.waybar.version "0.16")
+        "waybar: nixpkgs now ships ${pkgs.unstable.waybar.version}, remove the master override in modules/desktop/waybar.nix"
+        ((pkgs.unstable.waybar.override {cavaSupport = false;}).overrideAttrs (old: {
+          version = "0.15.0-unstable-2026-10-19";
+          src = pkgs.fetchFromGitHub {
+            owner = "Alexays";
+            repo = "Waybar";
+            rev = "c15ec02ede4343592a59eb5c2ff4443c9c045f7c";
+            hash = "sha256-mBDWjeeIuFfDZQuBxHu+EpbJ+GMbbSxpRz0WVM2N+ZI=";
+          };
+          mesonFlags = old.mesonFlags ++ ["-Dwwan=disabled"];
+          # binary still reports v0.15.0, which fails versionCheckPhase
+          doInstallCheck = false;
+        }));
 
       style = ''
         * {
@@ -226,7 +243,6 @@
               "9" = " ";
               "10" = "󰊴 ";
             };
-            on-click = "hyprctl dispatch workspace";
           };
         }
       ];
@@ -241,7 +257,7 @@
       };
       Service = {
         Type = "exec";
-        ExecStart = "${pkgs.waybar}/bin/waybar";
+        ExecStart = "${config.programs.waybar.package}/bin/waybar";
         ExecCondition = "${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
         Restart = "on-failure";
         Slice = "background-graphical.slice";
