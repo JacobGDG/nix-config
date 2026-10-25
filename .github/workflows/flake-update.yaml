@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: protected
     permissions:
       contents: write
 
@@ -20,12 +19,9 @@ jobs:
 
       - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31
 
-      - uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
-        with:
-          ssh-private-key: |
-            ${{ secrets.SECRETS_NIX_KEY }}
-
-      - run: nix flake update
+      # secrets is private and only changes alongside a local rebuild, so bump
+      # everything else; CI then never needs credentials
+      - run: jq -r '.nodes.root.inputs | keys - ["secrets"] | .[]' flake.lock | xargs nix flake update
 
       - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
         with:
