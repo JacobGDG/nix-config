@@ -17,17 +17,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      # full desktop closures don't fit in the runner's default free space
+      - run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache
+
       - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31
 
       # secrets is private and only changes alongside a local rebuild, so bump
       # everything else; CI then never needs credentials
       - run: jq -r '.nodes.root.inputs | keys - ["secrets"] | .[]' flake.lock | xargs nix flake update
 
+      - run: nix flake check --override-input secrets path:./ci/stub-secrets --keep-going
+
       - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
         with:
           commit_message: Bump flake.lock
           branch: main
-          commit_options: '--no-verify --signoff'
+          commit_options: "--no-verify --signoff"
           file_pattern: flake.lock
           commit_user_name: Flake Bot # defaults to "GitHub Actions"
           commit_author: Flake Bot <actions@github.com> # defaults to author of the commit that triggered the run
