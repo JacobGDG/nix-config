@@ -12,10 +12,9 @@ vm-clean host=`hostname`:
 diff host=`hostname`:
   #!/usr/bin/env bash
   set -euo pipefail
-  git stash
-  OLD=$(nix eval --raw .#nixosConfigurations."{{host}}".config.system.build.toplevel.drvPath)
-  git stash pop
-  NEW=$(nix eval --raw .#nixosConfigurations."{{host}}".config.system.build.toplevel.drvPath)
+  attr='nixosConfigurations."{{host}}".config.system.build.toplevel.drvPath'
+  OLD=$(nix eval --raw "git+file://$PWD?rev=$(git rev-parse HEAD)#$attr")
+  NEW=$(nix eval --raw ".#$attr")
   if [ "$OLD" = "$NEW" ]; then
     echo "✓ {{host}}: derivations are identical"
   else
