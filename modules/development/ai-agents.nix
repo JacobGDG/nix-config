@@ -108,13 +108,13 @@
             "Bash(rmdir *)"
             "Bash(git* commit*)"
             "Bash(git* add*)"
+            "Bash(ssh *)"
           ];
           deny = [
             "Bash(git* push*)"
             "Bash(git* merge*)"
             "Bash(git* rebase*)"
             "Bash(git* reset*)"
-            "Bash(ssh *)"
             "Bash(sudo *)"
             "Bash(tofu apply *)"
             "Bash(terraform apply *)"
