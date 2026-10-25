@@ -72,8 +72,8 @@
               "/etc/machine-id"
             ]
             ++ outerConfig.persist.files;
-          users.jake = {
-            directories = [
+          users = lib.optionalAttrs (normalUsers ? jake) {
+            jake.directories = [
               ".cache/tealdeer"
               ".config/dconf"
               ".config/systemd"
@@ -87,7 +87,7 @@
                 mode = "0700";
               }
             ];
-            files = [
+            jake.files = [
               ".bash_history"
               "Downloads/.keep"
             ];
