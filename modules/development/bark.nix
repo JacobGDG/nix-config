@@ -1,6 +1,6 @@
 {
   flake-file.inputs.bark = {
-    url = "git+ssh://git@github.com/JacobGDG/bark.git?shallow=1";
+    url = "github:JacobGDG/bark";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 

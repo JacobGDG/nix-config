@@ -5,7 +5,7 @@
 
   inputs = {
     bark = {
-      url = "git+ssh://git@github.com/JacobGDG/bark.git?shallow=1";
+      url = "github:JacobGDG/bark";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
@@ -27,7 +27,7 @@
     };
     import-tree.url = "github:denful/import-tree";
     neovim = {
-      url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
+      url = "github:JacobGDG/nvim.nix";
       inputs = {
         gen-luarc.inputs.git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
         nixpkgs.follows = "nixpkgs";
@@ -36,7 +36,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     ragenix = {
-      url = "git+ssh://git@github.com/JacobGDG/ragenix.git?shallow=1";
+      url = "github:JacobGDG/ragenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {

@@ -1,6 +1,6 @@
 {inputs, ...}: {
   flake-file.inputs.neovim = {
-    url = "git+ssh://git@github.com/JacobGDG/nvim.nix.git?shallow=1";
+    url = "github:JacobGDG/nvim.nix";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.gen-luarc.inputs.git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
   };

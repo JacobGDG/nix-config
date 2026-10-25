@@ -5,7 +5,7 @@
       flake = false;
     };
     ragenix = {
-      url = "git+ssh://git@github.com/JacobGDG/ragenix.git?shallow=1";
+      url = "github:JacobGDG/ragenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

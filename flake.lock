@@ -34,16 +34,15 @@
       "locked": {
         "lastModified": 1791542999,
         "narHash": "sha256-+H6Fx2rcEgNNXLfnz78zyCG7gBlkjjCp404tj11M23Y=",
-        "ref": "refs/heads/main",
+        "owner": "JacobGDG",
+        "repo": "bark",
         "rev": "6de85358b33d08881f3dc968da420df24bdb5f62",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/bark.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/bark.git"
+        "owner": "JacobGDG",
+        "repo": "bark",
+        "type": "github"
       }
     },
     "crane": {
@@ -403,16 +402,15 @@
       "locked": {
         "lastModified": 1792674175,
         "narHash": "sha256-UL97lF1/KB/kog7n2/KH1Yk+7WAJQhqFREB7nBTWHho=",
-        "ref": "refs/heads/main",
+        "owner": "JacobGDG",
+        "repo": "nvim.nix",
         "rev": "14aead82584f9519482d82627bc554810650c193",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/nvim.nix.git"
+        "owner": "JacobGDG",
+        "repo": "nvim.nix",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -487,16 +485,15 @@
       "locked": {
         "lastModified": 1761832913,
         "narHash": "sha256-VCNVjjuRvrKPiYYwqhE3BAKIaReiKXGpxGp27lZ0MFM=",
-        "ref": "refs/heads/main",
+        "owner": "JacobGDG",
+        "repo": "ragenix",
         "rev": "83bccfdea758241999f32869fb6b36f7ac72f1ac",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/ragenix.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/JacobGDG/ragenix.git"
+        "owner": "JacobGDG",
+        "repo": "ragenix",
+        "type": "github"
       }
     },
     "root": {
