@@ -6,14 +6,10 @@
     (final: prev: {
       pane-focused = prev.writeScriptBin "pane-focused" (builtins.readFile ./scripts/pane-focused.sh);
       notify-focused = prev.writeScriptBin "notify-focused" (builtins.readFile ./scripts/notify-focused.sh);
-      # Bakes the bundled WAV directory into the script by store path, so the
-      # same sounds are used on every machine.
       play-sound = prev.runCommand "play-sound" {} ''
         install -Dm755 ${./scripts/play-sound.sh} $out/bin/play-sound
         substituteInPlace $out/bin/play-sound --replace '@sounds@' '${./sounds}'
       '';
-      # tmux alert-bell handler: composes the three helpers above, each linked
-      # by store path rather than assumed on PATH.
       tmux-notify = prev.runCommand "tmux-notify" {} ''
         install -Dm755 ${./scripts/tmux-notify.sh} $out/bin/tmux-notify
         substituteInPlace $out/bin/tmux-notify \
@@ -21,18 +17,20 @@
           --replace '@notify_focused@' '${final.notify-focused}/bin/notify-focused' \
           --replace '@play_sound@' '${final.play-sound}/bin/play-sound'
       '';
-      # Pane facts as JSON, with program-specific facts (e.g. Claude's screen
-      # state) under `data`.
       tmux-status = prev.writeShellApplication {
         name = "tmux-status";
         runtimeInputs = with final; [tmux jq gnugrep gawk coreutils];
         text = builtins.readFile ./scripts/tmux-status.sh;
       };
-      # Agent picker popup, built on tmux-status.
       tmux-agents = prev.writeShellApplication {
         name = "tmux-agents";
         runtimeInputs = with final; [tmux jq fzf gawk coreutils final.tmux-status];
         text = builtins.readFile ./scripts/tmux-agents.sh;
+      };
+      edit-local-env = prev.writeShellApplication {
+        name = "edit-local-env";
+        runtimeInputs = with final; [coreutils];
+        text = builtins.readFile ./scripts/edit-local-env.sh;
       };
     })
   ];
@@ -44,7 +42,7 @@
       pkgs.writeScriptBin name (builtins.readFile (./scripts/${file}));
   in {
     home.packages =
-      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents]
+      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents pkgs.edit-local-env]
       ++ map mkScript [
         "aws-console.sh"
         "clean-pr.sh"
