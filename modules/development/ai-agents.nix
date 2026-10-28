@@ -36,6 +36,11 @@
       rev = "6571943370f7c9d4de1946481177ee7b306cd8e8";
       hash = "sha256-ZkDCcKjrh5VybFBg28A29hlNz+b0Bi/wKbTzZ22diKY=";
     };
+    statusline = pkgs.writeShellApplication {
+      name = "claude-statusline";
+      runtimeInputs = with pkgs; [jq];
+      text = builtins.readFile ./scripts/claude-statusline.sh;
+    };
   in {
     home.file."${config.xdg.cacheHome}/ref-repos/.keep".text = "";
     home.file."${config.xdg.cacheHome}/reading-recs/.keep".text = "";
@@ -92,6 +97,12 @@
         };
 
         promptSuggestionEnabled = false;
+
+        statusLine = {
+          type = "command";
+          command = "${statusline}/bin/claude-statusline";
+          refreshInterval = 60;
+        };
 
         permissions = {
           allow = [

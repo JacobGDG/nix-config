@@ -103,7 +103,17 @@ program_type() {
 # when a Claude update breaks one. Verified against Claude Code 2.1.300.
 
 # Footer while a turn runs: `⏵⏵ auto mode on · esc to interrupt · ← for agents`
+# Claude hides this hint when a custom status line is set, so the spinner below
+# is the signal we normally see.
 CLAUDE_TURN_FOOTER='esc to interrupt'
+# Spinner above the input box while a turn runs: `✢ Moseying… (3s · thinking)`.
+# Once done it reads `✻ Cooked for 10s · done 19:12`, without the ellipsis.
+CLAUDE_TURN_SPINNER='^[^[:space:]] [[:alpha:]]+… \('
+# Our custom status line (modules/development/scripts/claude-statusline.sh),
+# drawn between the input box and the footer. Matched by the marker glyph it
+# leads with and dropped before reading, so the layout below holds with or
+# without it.
+CLAUDE_STATUS_LINE='^[[:space:]]*◆ '
 # Key hints closing a permission prompt, question form or menu, anchored to
 # their shape so a sentence merely containing "esc to cancel" doesn't count:
 #   `Esc to cancel · Tab to amend`
@@ -117,9 +127,10 @@ CLAUDE_RULE='^[[:space:]]*─{3,}'
 CLAUDE_TRANSCRIPT_BANNER='showing detailed transcript'
 CLAUDE_TRANSCRIPT_KEY_HINTS='ctrl\+o.*to toggle|ctrl\+e.*(show all|collapse)|↑↓ scroll|\? for shortcuts'
 
-# The model is generating or a tool is running.
+# The model is generating or a tool is running. Takes more lines than the other
+# checks: the spinner sits above the input box, sometimes with a tip under it.
 claude_turn_running() {
-  matches "$(last_line_of "$1")" "$CLAUDE_TURN_FOOTER"
+  matches "$(last_line_of "$1")" "$CLAUDE_TURN_FOOTER" || matches "$1" "$CLAUDE_TURN_SPINNER"
 }
 
 # A permission prompt, question form or menu is waiting for a choice.
@@ -149,13 +160,14 @@ claude_transcript_viewer_open() {
 # Claude titles the pane `<glyph> <session name>`. herdr treats a spinner glyph
 # as working, but 2.1.300 shows ✳ throughout, so it's reported, not relied on.
 read_claude_facts() {
-  local bottom
-  bottom=$(bottom_lines 6)
+  local tail bottom
+  tail=$(bottom_lines 12 | { grep -vE "$CLAUDE_STATUS_LINE" || true; })
+  bottom=$(tail -n 6 <<<"$tail")
 
   jq -nc \
     --arg title "$pane_title" \
     --arg last_line "$(last_line_of "$bottom")" \
-    --argjson turn_running "$(json_bool claude_turn_running "$bottom")" \
+    --argjson turn_running "$(json_bool claude_turn_running "$tail")" \
     --argjson awaiting_choice "$(json_bool claude_awaiting_choice "$bottom")" \
     --argjson input_box_visible "$(json_bool claude_input_box_visible "$bottom")" \
     --argjson transcript_viewer_open "$(json_bool claude_transcript_viewer_open "$bottom")" \
