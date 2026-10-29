@@ -96,6 +96,9 @@
           excludedCommands = ["gh *"];
         };
 
+        # https://github.com/NixOS/nixpkgs/issues/579204
+        env.CLAUDE_CODE_CERT_STORE = "bundled,system";
+
         promptSuggestionEnabled = false;
 
         statusLine = {
