@@ -11,6 +11,11 @@
       ".docker/cli-plugins/docker-buildx".source = "${pkgs.docker-buildx}/bin/docker-buildx";
     };
 
+    # (Re)start the launchd agent rather than running colima by hand.
+    programs.zsh.shellAliases = {
+      "start-colima" = "launchctl kickstart -k gui/$UID/org.nix-community.home.colima-default";
+    };
+
     services.colima = {
       enable = true;
       dockerPackage = pkgs.docker-client;
