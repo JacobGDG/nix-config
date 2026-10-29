@@ -18,6 +18,10 @@
       fi
 
       for file in $FILES; do
+        if [ "$file" = "modules/development/git.nix" ]; then
+          continue
+        fi
+
         if grep -q '!nocommit' "$file"; then
           echo -e "'!nocommit' found in $file"
           exit 1
@@ -95,6 +99,7 @@
           pr = "!gh pr view --web";
           alias = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /";
           claude = "!git commit --amend --no-edit --trailer 'Co-authored-by: Claude <noreply@anthropic.com>'";
+          pre-commit-install = "!GIT_CONFIG_GLOBAL=/dev/null pre-commit install";
         };
       };
     };
@@ -115,7 +120,7 @@
           set -eo pipefail
           ${no_commit}/bin/no-commit
 
-          LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/pre-commit"
+          LOCAL_HOOK="$(git rev-parse --path-format=absolute --git-common-dir)/hooks/pre-commit"
           if [ -x "$LOCAL_HOOK" ]; then
             exec "$LOCAL_HOOK" "$@"
           fi
@@ -128,7 +133,7 @@
           set -eo pipefail
           ${conventional_commit}/bin/conventional-commit "$1"
 
-          LOCAL_HOOK="$(git rev-parse --git-dir)/hooks/commit-msg"
+          LOCAL_HOOK="$(git rev-parse --path-format=absolute --git-common-dir)/hooks/commit-msg"
           if [ -x "$LOCAL_HOOK" ]; then
             exec "$LOCAL_HOOK" "$@"
           fi
