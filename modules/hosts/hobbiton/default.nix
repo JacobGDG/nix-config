@@ -37,8 +37,8 @@
       hypridle
       hyprlock
       hyprpaper
-      wlogout
       wofi
+      systemActions
       terminal
       clipboard
       battery
