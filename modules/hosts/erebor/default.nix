@@ -34,7 +34,7 @@
       hypridle
       hyprlock
       hyprpaper
-      wofi
+      walker
       systemActions
       terminal
       clipboard

@@ -39,7 +39,7 @@ end)
 -- App launchers
 hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd(launcher))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("wofi-bookmarks"))
+hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("walker -m bookmarks"))
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("quick-access-kitty"))
 hl.bind(mod .. " + S", hl.dsp.exec_cmd(app .. " steam"))
@@ -51,7 +51,7 @@ hl.bind(mod .. " + K", hl.dsp.exec_cmd(webapp .. "=https://remap-keys.app/config
 hl.bind(mod .. " + Q", hl.dsp.exec_cmd("hyprctl-conditional-quit"))
 
 -- Clipboard
-hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | " .. app .. " wofi --dmenu --cache-file /dev/null | cliphist decode | wl-copy"))
+hl.bind(mod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
 
 -- Move window
 hl.bind(window_mod .. " + H", hl.dsp.window.move({ direction = "left" }))
@@ -113,7 +113,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("media-control prev"), { locked = true 
 hl.window_rule({ match = { class = ".*" }, idle_inhibit = "fullscreen" })
 hl.window_rule({ match = { float = true }, center = true })
 
-hl.window_rule({ match = { class = "^(wofi)$" }, stay_focused = true })
+hl.window_rule({ match = { class = "^(dev\\.benz\\.walker)$" }, float = true, stay_focused = true })
 
 hl.window_rule({ match = { title = "^(Volume Control|Friends List|Steam Settings|Extension.*Mozilla Firefox)$" }, float = true })
 

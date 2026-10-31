@@ -205,7 +205,7 @@
           "custom/wireguard" = {
             format = " {icon} ";
             return-type = "json";
-            on-click = "wg-wofi";
+            on-click = "wg-menu";
             format-icons = {
               inactive = "󰦞";
               home = "󰚊";

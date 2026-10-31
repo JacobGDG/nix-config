@@ -103,8 +103,6 @@
     config,
     ...
   }: {
-    home.sessionVariables.FIREFOX_BOOKMARKS_PATH = "${config.programs.firefox.configPath}/${config.programs.firefox.profiles.default.path}/bookmarks.html";
-
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -126,7 +124,6 @@
           isDefault = true;
           settings = {
             "browser.aboutConfig.showWarning" = false;
-            "browser.bookmarks.autoExportHTML" = true;
             "browser.cache.disk.enable" = false;
             "browser.compactmode.show" = true;
             "browser.search.defaultenginename" = "ddg";

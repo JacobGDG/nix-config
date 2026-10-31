@@ -57,7 +57,6 @@
         "quick-access-kitty.sh"
         "random.sh"
         "show-keymaps.sh"
-        "wofi-bookmarks.sh"
       ];
   };
 }

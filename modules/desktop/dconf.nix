@@ -43,6 +43,16 @@
       };
     };
 
+    # GTK 4 apps (walker) only read dconf through the Settings portal, which
+    # xdg-desktop-portal-hyprland doesn't provide, so set it in settings.ini too
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Gruvbox-Plus-Dark";
+        package = pkgs.gruvbox-plus-icons;
+      };
+    };
+
     # Qt apps (dolphin) only read kdeglobals through the KDE platform theme
     qt = {
       enable = true;

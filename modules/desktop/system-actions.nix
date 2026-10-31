@@ -22,7 +22,7 @@
       system-lock = mkAction "Lock" "system-lock-screen" "loginctl lock-session";
 
       clipboard-clear = mkAction "Clear Clipboard" "edit-clear" ''
-        cliphist wipe
+        elephant activate "clipboard;;remove_all;;"
         wl-copy --clear
         notify-send -a 'Clipboard' 'Clipboard cleared'
       '';

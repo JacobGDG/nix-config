@@ -24,16 +24,16 @@
       runtimeInputs = [wg-manager pkgs.gawk];
       text = builtins.readFile ./wireguard/wg-waybar.sh;
     };
-    wg-wofi = pkgs.writeShellApplication {
-      name = "wg-wofi";
-      runtimeInputs = [wg-manager pkgs.wofi pkgs.gnugrep];
-      text = builtins.readFile ./wireguard/wg-wofi.sh;
+    wg-menu = pkgs.writeShellApplication {
+      name = "wg-menu";
+      runtimeInputs = [wg-manager pkgs.walker pkgs.gnugrep];
+      text = builtins.readFile ./wireguard/wg-menu.sh;
     };
-    wg-wofi-desktop = pkgs.makeDesktopItem {
-      name = "wg-wofi";
+    wg-menu-desktop = pkgs.makeDesktopItem {
+      name = "wg-menu";
       desktopName = "WireGuard - Select";
       comment = "Connect to a WireGuard interface";
-      exec = "${wg-wofi}/bin/wg-wofi";
+      exec = "${wg-menu}/bin/wg-menu";
       icon = "network-vpn";
       categories = ["Network"];
     };
@@ -62,7 +62,7 @@
       };
     };
 
-    environment.systemPackages = [wg-manager wg-waybar wg-wofi wg-wofi-desktop];
+    environment.systemPackages = [wg-manager wg-waybar wg-menu wg-menu-desktop];
 
     security.sudo.extraRules = [
       {
