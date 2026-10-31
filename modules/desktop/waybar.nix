@@ -75,7 +75,6 @@
 
         #battery,
         #cpu,
-        #custom-power,
         #date,
         #memory,
         #network,
@@ -88,11 +87,6 @@
         #clock {
           margin-right: 6px;
           margin-left: 6px;
-        }
-
-        #custom-power {
-          color: #${config.colorScheme.palette.base08};
-          padding: 0 0.5em;
         }
 
         #privacy {
@@ -148,7 +142,6 @@
             "cpu"
             "memory"
             "battery"
-            "custom/power"
           ];
           privacy = {
           };
@@ -199,11 +192,6 @@
             format-source = " ";
             format-source-muted = " ";
             on-click = "pavucontrol";
-          };
-          "custom/power" = {
-            format = "⏻";
-            tooltip = false;
-            on-click = "wlogout --protocol layer-shell";
           };
           "custom/gpu" = {
             format = " {}% {icon}";
