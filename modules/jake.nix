@@ -55,6 +55,7 @@
         ttyper
         watch
         yq
+        pureref
       ];
     };
 
