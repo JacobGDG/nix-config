@@ -27,6 +27,10 @@
     services.elephant = {
       enable = true;
 
+      # autodetection runs once at startup and falls back to a bare systemd-run
+      # (no WAYLAND_DISPLAY) if uwsm isn't active yet, so apps silently fail
+      settings.launch_prefix = "uwsm app --";
+
       # bookmarks provider imports from firefox via sqlite3, which isn't in the upstream wrapper
       package = pkgs.symlinkJoin {
         name = "elephant";
@@ -78,8 +82,17 @@
         lib.mapAttrsToList (_: f: "${f.source}")
         (lib.filterAttrs (n: _: lib.hasPrefix prefix n) config.xdg.configFile);
     in {
-      elephant.Unit.X-Restart-Triggers = ["${config.home.path}"] ++ sources "elephant/";
-      walker.Unit.X-Restart-Triggers = sources "walker/";
+      elephant.Unit = {
+        X-Restart-Triggers = ["${config.home.path}"] ++ sources "elephant/";
+        After = ["graphical-session.target"];
+        PartOf = ["graphical-session.target"];
+      };
+      # walker needs the wayland display, which uwsm exports before reaching this target
+      walker.Unit = {
+        X-Restart-Triggers = sources "walker/";
+        After = ["graphical-session.target"];
+        PartOf = ["graphical-session.target"];
+      };
     };
 
     # elephant only discovers firefox profiles under ~/.mozilla, ours lives in XDG config
@@ -93,7 +106,6 @@
       systemd.enable = true; # keep a warm service so opening is instant
 
       settings = {
-        app_launch_prefix = "uwsm app -- ";
         as_window = true; # layer-shell follows you across workspaces, a window stays put
         close_when_open = true;
         selection_wrap = true;
