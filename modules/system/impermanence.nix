@@ -82,6 +82,7 @@
               ".local/share/direnv"
               ".local/state/nix"
               ".local/state/wireplumber"
+              "Documents/"
               {
                 directory = ".ssh";
                 mode = "0700";

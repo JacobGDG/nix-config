@@ -1,5 +1,5 @@
 {
-  nixpkgs.allowedUnfreePackages = ["obsidian" "discord"];
+  nixpkgs.allowedUnfreePackages = ["obsidian" "discord" "pureref"];
 
   flake.modules.homeManager.jake = {
     pkgs,
@@ -55,7 +55,7 @@
         ttyper
         watch
         yq
-        pureref
+        unstable.pureref
       ];
     };
 
