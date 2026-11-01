@@ -1,4 +1,12 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".cache/pre-commit"
+      ];
+    };
+  };
+
   flake.modules.homeManager.git = {
     config,
     pkgs,
