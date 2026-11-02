@@ -51,6 +51,7 @@
         "hyprctl-conditional-quit.sh"
         "jira-id.sh"
         "k-cm-dependants.sh"
+        "k9s-ns-deployments.sh"
         "media-control.sh"
         "open-last-url.sh"
         "password_entropy.sh"

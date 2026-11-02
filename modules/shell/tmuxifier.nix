@@ -25,5 +25,15 @@
       run_cmd "cava"
       select_pane 1
     '';
+
+    # Usage: K9S_NAMESPACE=<namespace> tmuxifier load-window k9s-ns-deployments
+    xdg.configFile."tmux/layouts/k9s-ns-deployments.window.sh".text = ''
+      namespace="''${K9S_NAMESPACE:?set K9S_NAMESPACE to the namespace to watch}"
+      new_window "k9s $namespace"
+      run_cmd " k9s -n $namespace -c pods"
+      split_v 50
+      run_cmd " k9s -n $namespace -c deployments"
+      select_pane 1
+    '';
   };
 }
