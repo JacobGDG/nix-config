@@ -73,6 +73,21 @@
       };
 
       context = ''
+        # Worktrees
+
+        Repos live in `~/worktrees/<repo>/`, with the git dir at
+        `~/worktrees/<repo>/.git` and each branch checked out as a git worktree
+        alongside it, e.g. `~/worktrees/<repo>/main` (`master` for older repos)
+        or `~/worktrees/<repo>/<feature-branch>`. When I mention another repo,
+        look for it there before cloning or searching the web.
+
+        # git and gh
+
+        - Don't prefix commands with `cd <path> &&`; use `git -C <path>` and
+          `gh -R <owner>/<repo>` instead. `gh` only runs outside the sandbox
+          when it is the first word of the command, so run it on its own
+          rather than chained after other commands.
+
         # Skills
 
         - `clone-repo` - use this when investigating or reading the source of a
@@ -114,6 +129,7 @@
             "Bash(git log:*)"
             "Bash(git diff:*)"
             "Bash(git show:*)"
+            "Bash(git fetch *)"
             "Bash(mkdir -p ${config.xdg.cacheHome}/ref-repos/*)"
             "Bash(mkdir -p ~/.cache/ref-repos/*)"
           ];
@@ -126,7 +142,8 @@
           ];
           deny = [
             "Bash(git* push*)"
-            "Bash(git* merge*)"
+            "Bash(git* merge)"
+            "Bash(git* merge *)"
             "Bash(git* rebase*)"
             "Bash(git* reset*)"
             "Bash(sudo *)"
