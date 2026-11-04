@@ -32,6 +32,16 @@
         runtimeInputs = with final; [coreutils];
         text = builtins.readFile ./scripts/edit-local-env.sh;
       };
+      git-ref-clean = prev.writeShellApplication {
+        name = "git-ref-clean";
+        runtimeInputs = with final; [git coreutils findutils];
+        text = builtins.readFile ./scripts/git-ref-clean.sh;
+      };
+      git-ref-clone = prev.writeShellApplication {
+        name = "git-ref-clone";
+        runtimeInputs = with final; [git coreutils gawk final.git-ref-clean];
+        text = builtins.readFile ./scripts/git-ref-clone.sh;
+      };
     })
   ];
 
@@ -42,7 +52,7 @@
       pkgs.writeScriptBin name (builtins.readFile (./scripts/${file}));
   in {
     home.packages =
-      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents pkgs.edit-local-env]
+      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents pkgs.edit-local-env pkgs.git-ref-clean pkgs.git-ref-clone]
       ++ map mkScript [
         "aws-console.sh"
         "clean-pr.sh"

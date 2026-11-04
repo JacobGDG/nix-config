@@ -130,8 +130,8 @@
             "Bash(git diff:*)"
             "Bash(git show:*)"
             "Bash(git fetch *)"
-            "Bash(mkdir -p ${config.xdg.cacheHome}/ref-repos/*)"
-            "Bash(mkdir -p ~/.cache/ref-repos/*)"
+            "Bash(git-ref-clone:*)"
+            "Bash(git-ref-clean:*)"
           ];
           ask = [
             "Bash(rm *)"

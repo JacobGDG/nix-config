@@ -1,77 +1,53 @@
 ---
 name: clone-repo
 description:
-  Clone or update a reference repository to ~/.cache/ref-repos/<owner>/<repo>
-  for use as context. Use when the user provides a repo URL alongside a task and
+  Clone a reference repository to ~/.cache/ref-repos/<owner>/<repo>/<ref> for
+  use as context. Use when the user provides a repo URL alongside a task and
   appends /clone-repo.
 allowed-tools: Bash, Read
 ---
 
 # Clone Reference Repository
 
-Parse the repo reference from the user's message and ensure it is available
-locally at `~/.cache/ref-repos/<owner>/<repo>`.
+Make the repo available locally with `git-ref-clone`, then continue with the
+user's task using it as read-only context.
 
-## Step 1: Parse the repo reference
+## Step 1: Build the arguments
 
-The user will provide one of these formats:
+`git-ref-clone` only accepts a plain clone URL:
 
-- **Full HTTPS URL**: `https://github.com/owner/repo` or
-  `https://github.com/owner/repo/tree/<ref>`
-- **SSH URL**: `git@github.com:owner/repo.git`
-- **Shorthand**: `owner/repo` (assume GitHub; construct
-  `https://github.com/owner/repo`)
+- `https://<host>/<owner>/<repo>[.git]`
+- `git@<host>:<owner>/<repo>[.git]`
 
-Extract:
+Normalise what the user gave you:
 
-- `OWNER` — the repository owner/org
-- `REPO` — the repository name (strip any `.git` suffix)
-- `REF` — branch or tag if present in the URL (e.g. from `/tree/<ref>`),
-  otherwise empty (use the remote default branch)
-- `CLONE_URL` — normalised clone URL; use HTTPS unless SSH was explicitly given
+- **Shorthand** `owner/repo` → `https://github.com/owner/repo`
+- **Tree URL** `https://github.com/owner/repo/tree/<ref>` → URL
+  `https://github.com/owner/repo` and ref `<ref>`
+- Use HTTPS unless the user explicitly gave an SSH URL.
 
-## Step 2: Determine the target path
+The ref is a branch or tag; omit it to use the remote's default branch. Commit
+SHAs are not supported. Add `--deep` only when full history is needed (e.g.
+`git log` or blame across history); the default is a shallow clone.
+
+## Step 2: Run it
 
 ```
-TARGET=~/.cache/ref-repos/<OWNER>/<REPO>
+git-ref-clone [--deep] <url> [ref]
 ```
 
-## Step 3: Handle existing clone
+It first prunes clones older than 30 days, then clones or reuses
+`~/.cache/ref-repos/<owner>/<repo>/<ref>` (slashes in the ref become `-`).
+Progress goes to stderr; the last line of stdout is the clone path. If the clone
+already exists it is reused as-is and the age of its last commit is reported —
+mention that age to the user if it is old, since branch clones are not updated.
 
-Check whether `$TARGET` already exists with `[ -d "$TARGET" ]`.
+A non-zero exit means the URL was rejected or the ref does not exist; report the
+error rather than retrying with other tools.
 
-**Exists:**
+## Step 3: Report and continue
 
-- Read the current ref and hash:
-  `(cd "$TARGET" && git log -1 --pretty="format:%D %H")`
-- Tell the user what ref is currently checked out.
-- Ask: "The existing clone is at `<current-ref>`. Remove it and re-clone?" Wait
-  for confirmation before proceeding.
-- If confirmed, the user must approve the `rm -rf` permission prompt; then
-  re-clone (go to Step 4).
-- If declined, skip to Step 5 using the existing clone as-is.
-
-**Does not exist:**
-
-- `mkdir -p ~/.cache/ref-repos/<OWNER>` then proceed to Step 4.
-
-## Step 4: Clone
-
-Always use `--depth 1` (shallow).
-
-- **No ref**: `git clone --depth 1 <CLONE_URL> <TARGET>`
-- **With a tag or branch**:
-  `git clone --depth 1 --branch <REF> <CLONE_URL> <TARGET>`
-
-## Step 5: Report and continue
-
-Tell the user:
-
-- Local path: `~/.cache/ref-repos/<OWNER>/<REPO>`
-- Checked-out ref: from the output already read in Step 3 (or re-run
-  `(cd "$TARGET" && git log -1 --pretty="format:%D %H")` if freshly cloned)
-- Action taken: freshly cloned, re-cloned at new ref, or used existing
-
-Then continue with the original task the user asked you to perform, treating the
-cloned path as additional read-only context. Use `Read`, `Bash(find:*)`, and
-`Bash(grep:*)` to explore it.
+Tell the user the local path, the ref, whether it was freshly cloned or already
+present, and the last commit age. Then continue with the original task, treating
+the path as read-only context. Use `Read`, `Bash(find:*)`, and `Bash(grep:*)` to
+explore it.
