@@ -1,6 +1,9 @@
 {
-  flake.modules.nixos.hyprland = {
+  flake.modules.nixos.hyprland = {pkgs, ...}: {
     services.xserver.xkb.options = "caps:none";
+
+    # MTP (Android file transfer) device permissions
+    services.udev.packages = [pkgs.libmtp.out];
 
     security.pam.services.hyprlock.enable = true;
 
@@ -30,6 +33,7 @@
       pavucontrol
       pulseaudio
       kdePackages.dolphin
+      kdePackages.kio-extras
       hyprshutdown
       playerctl
       ungoogled-chromium
