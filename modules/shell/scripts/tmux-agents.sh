@@ -46,12 +46,24 @@ JQ_STATE_DEFS='
 
 # ── Listing ──────────────────────────────────────────────────────────────────
 
-# One tmux-status JSON object per pane, across all sessions.
+# One tmux-status JSON object per pane, across all sessions, in tmux's pane
+# order. Panes are described in parallel — each tmux-status run spends most of
+# its time spawning grep/awk/jq over the screen, so describing them one after
+# another grows slow with several agents open. Each writes to its own file so
+# the output order stays stable for the picker.
 describe_all_panes() {
-  tmux list-panes -a -F '#{pane_id}' | while read -r pane; do
+  local dir i=0 pane
+  dir=$(mktemp -d "${TMPDIR:-/tmp}/tmux-agents.XXXXXX") || return
+
+  while read -r pane; do
     # The pane may close between listing and describing it.
-    tmux-status "$pane" 2>/dev/null || true
-  done
+    tmux-status "$pane" >"$dir/$(printf '%04d' "$i")" 2>/dev/null &
+    i=$((i + 1))
+  done < <(tmux list-panes -a -F '#{pane_id}')
+  wait
+
+  cat "$dir"/* 2>/dev/null
+  rm -rf "$dir"
 }
 
 # Claude panes as tab-separated rows:
