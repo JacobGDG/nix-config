@@ -91,7 +91,7 @@
           co = "checkout";
           cm = "commit";
           rbm = "!git pull origin $(git default-branch) --rebase";
-          cm-temp = "commit -m 'temp commit'";
+          cm-temp = "commit -m 'temp commit' --no-verify";
           default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4";
           url = "config --get remote.origin.url";
           home = "!f(){ git checkout $(git default-branch) $@;}; f";
