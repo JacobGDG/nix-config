@@ -400,11 +400,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792674175,
-        "narHash": "sha256-UL97lF1/KB/kog7n2/KH1Yk+7WAJQhqFREB7nBTWHho=",
+        "lastModified": 1794396251,
+        "narHash": "sha256-/WNBkAdBCWsz7pdYjX7t4u2BpIPeLcgNiaqdmO2UC+k=",
         "owner": "JacobGDG",
         "repo": "nvim.nix",
-        "rev": "14aead82584f9519482d82627bc554810650c193",
+        "rev": "9c5af606d95fbf5b2f92cc59dca98a83b12c4cd0",
         "type": "github"
       },
       "original": {
