@@ -1,4 +1,10 @@
 {
+  persist = {
+    directories = [
+      "/var/lib/bluetooth"
+    ];
+  };
+
   flake.modules.nixos."nixosConfigurations/hobbiton" = {
     config,
     lib,

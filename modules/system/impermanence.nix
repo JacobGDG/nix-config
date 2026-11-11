@@ -59,7 +59,6 @@
           directories =
             [
               "/var/db/sudo/lectured"
-              "/var/lib/bluetooth"
               "/var/lib/nixos"
               "/var/lib/systemd/backlight"
               "/var/lib/systemd/coredump"
@@ -74,14 +73,9 @@
             ++ outerConfig.persist.files;
           users.jake = {
             directories = [
-              ".cache/tealdeer"
-              ".config/dconf"
               ".config/systemd"
-              ".local/share/PrismLauncher"
               ".local/share/applications"
-              ".local/share/direnv"
               ".local/state/nix"
-              ".local/state/wireplumber"
               "Documents/"
               {
                 directory = ".ssh";

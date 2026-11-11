@@ -12,6 +12,11 @@
       }
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
+    users = {
+      directories = [
+        ".local/state/wireplumber"
+      ];
+    };
   };
 
   flake.modules.nixos.core = {lib, ...}: {

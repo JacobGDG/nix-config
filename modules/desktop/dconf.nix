@@ -1,4 +1,12 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".config/dconf"
+      ];
+    };
+  };
+
   flake.modules.homeManager.dconf = {
     config,
     lib,

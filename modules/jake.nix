@@ -1,4 +1,13 @@
 {
+  persist = {
+    users = {
+      directories = [
+        ".cache/tealdeer"
+        ".local/share/PrismLauncher"
+      ];
+    };
+  };
+
   nixpkgs.allowedUnfreePackages = ["obsidian" "discord" "pureref"];
 
   flake.modules.homeManager.jake = {
