@@ -7,6 +7,7 @@
     home.packages = with pkgs; [
       aws-sso-util
       awscli2
+      checkov
       cmctl
       kind
       kubectl
