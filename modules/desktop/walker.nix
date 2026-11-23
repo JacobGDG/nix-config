@@ -67,6 +67,7 @@
 
       "elephant/desktopapplications.toml".source = toml.generate "elephant-desktopapplications" {
         history_when_empty = true;
+        window_integration = true;
       };
 
       "elephant/bookmarks.toml".source = toml.generate "elephant-bookmarks" {
