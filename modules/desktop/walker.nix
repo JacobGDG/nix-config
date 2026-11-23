@@ -65,6 +65,10 @@
         ];
       };
 
+      "elephant/desktopapplications.toml".source = toml.generate "elephant-desktopapplications" {
+        history_when_empty = true;
+      };
+
       "elephant/bookmarks.toml".source = toml.generate "elephant-bookmarks" {
         browsers = [
           {
@@ -113,6 +117,12 @@
         keybinds = {
           next = ["Down" "ctrl j"];
           previous = ["Up" "ctrl k"];
+        };
+
+        # menus (e.g. system actions) are searchable but kept off the empty list
+        providers = {
+          default = ["desktopapplications" "calc" "websearch" "menus"];
+          empty = ["desktopapplications"];
         };
 
         placeholders.default = {
