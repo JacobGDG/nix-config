@@ -66,6 +66,10 @@
         # picker knows which terminal to open on and jump with.
         bind-key a run-shell -b "${pkgs.tmux-agents}/bin/tmux-agents --open-popup '#{client_name}'"
 
+        # Popup to start work on a Jira ticket (or untracked work): picks the
+        # ticket, branch and repo, then `bark add` opens <repo>/<branch>.
+        bind-key b run-shell -b "${pkgs.start-work}/bin/start-work --open-popup '#{client_name}'"
+
         bind-key -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
         bind-key -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
         bind-key -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'

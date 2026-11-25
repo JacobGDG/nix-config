@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   # Exposed as an overlay package (not merely on PATH) so other derivations —
   # e.g. tmux's `chime` — can reference it by store path instead of assuming it
   # resolves at runtime.
@@ -27,6 +27,18 @@
         runtimeInputs = with final; [tmux jq fzf gawk coreutils final.tmux-status];
         text = builtins.readFile ./scripts/tmux-agents.sh;
       };
+      start-work = prev.writeShellApplication {
+        name = "start-work";
+        runtimeInputs = with final; [
+          tmux
+          jq
+          fzf
+          coreutils
+          jira-cli-go
+          inputs.bark.packages.${final.stdenv.hostPlatform.system}.default
+        ];
+        text = builtins.readFile ./scripts/start-work.sh;
+      };
       edit-local-env = prev.writeShellApplication {
         name = "edit-local-env";
         runtimeInputs = with final; [coreutils];
@@ -52,7 +64,7 @@
       pkgs.writeScriptBin name (builtins.readFile (./scripts/${file}));
   in {
     home.packages =
-      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents pkgs.edit-local-env pkgs.git-ref-clean pkgs.git-ref-clone]
+      [pkgs.pane-focused pkgs.notify-focused pkgs.play-sound pkgs.tmux-notify pkgs.tmux-status pkgs.tmux-agents pkgs.start-work pkgs.edit-local-env pkgs.git-ref-clean pkgs.git-ref-clone]
       ++ map mkScript [
         "aws-console.sh"
         "clean-pr.sh"
