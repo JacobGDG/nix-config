@@ -76,9 +76,7 @@
         # git and gh
 
         - Don't prefix commands with `cd <path> &&`; use `git -C <path>` and
-          `gh -R <owner>/<repo>` instead. `gh` only runs outside the sandbox
-          when it is the first word of the command, so run it on its own
-          rather than chained after other commands.
+          `gh -R <owner>/<repo>` instead.
 
         # Skills
 
@@ -89,19 +87,6 @@
 
       settings = {
         theme = "dark";
-        sandbox = {
-          enabled = true;
-          filesystem.allowWrite = [
-            "${config.xdg.cacheHome}/ref-repos"
-            "${config.xdg.cacheHome}/reading-recs"
-          ];
-          network.allowedDomains = ["github.com" "*.github.com"];
-          # gh (like other Go binaries on macOS) verifies TLS through
-          # com.apple.trustd.agent, which the sandbox blocks — inside it gh
-          # fails with "x509: OSStatus -26276". Run gh unsandboxed rather than
-          # opening trustd to every sandboxed command.
-          excludedCommands = ["gh *"];
-        };
 
         # https://github.com/NixOS/nixpkgs/issues/579204
         env.CLAUDE_CODE_CERT_STORE = "bundled,system";

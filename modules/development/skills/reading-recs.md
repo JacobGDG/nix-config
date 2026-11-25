@@ -135,5 +135,5 @@ collection. Don't save anything to Raindrop unless the user says yes.
 
 Write the profile back to `~/.cache/reading-recs/profile.md`. Set `updated` to
 today if the profile was rebuilt or merged, and append this run's picks to
-Recommended. If the write fails (e.g. the sandbox blocks it), tell the user in
-one line and carry on; the cache is an optimisation, not a requirement.
+Recommended. If the write fails, tell the user in one line and carry on; the
+cache is an optimisation, not a requirement.
