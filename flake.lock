@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793621486,
-        "narHash": "sha256-uIg+LelvQjqa4xjsjNF8xhOYjt9viqwBnQQWwd5bUOY=",
+        "lastModified": 1795621664,
+        "narHash": "sha256-kcpWhCtJ/HYeuZrpgxbpOofqZ2+XswekxkIdqbhxZcI=",
         "owner": "JacobGDG",
         "repo": "bark",
-        "rev": "01ea7554246c8056bb9dff7c14919601d656827b",
+        "rev": "ab4f742dec02f56f208a7feaf33d68eedd8fd66d",
         "type": "github"
       },
       "original": {
