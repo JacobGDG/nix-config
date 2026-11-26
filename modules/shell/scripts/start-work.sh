@@ -5,7 +5,7 @@
 #   1. Pick one of your To Do / Doing tickets, or type a title for work that
 #      has no ticket (enter with no match, or alt-enter, uses what you typed).
 #   2. Edit the suggested branch name, e.g. JIR-123-fix-the-bug.
-#   3. Pick a repo from `bark repos`.
+#   3. Pick a repo from `bark repos`, most used (per zoxide) first.
 #   4. If the branch already exists, see its state and choose to open it or
 #      start a fresh <branch>-N.
 #   5. `bark add` creates or opens the worktree and switches tmux to the
@@ -123,6 +123,26 @@ edit_branch() {
   [[ -n $branch ]] && printf '%s\n' "$branch"
 }
 
+# Repo names from `bark repos`, most used first: each repo scores the sum of
+# zoxide's frecency for every directory inside it (any worktree, any depth).
+# Repos zoxide has never seen, or all of them if zoxide fails, sort by name.
+recent_repos() {
+  awk -F'\t' '
+    NR == FNR { repo[$2] = $1; score[$1] = 0; next }
+    {
+      # zoxide lines are "<score> <path>", left-padded; paths may hold spaces.
+      sub(/^ +/, "")
+      s = $0; sub(/ .*/, "", s)
+      dir = $0; sub(/^[^ ]+ /, "", dir)
+      for (p in repo)
+        if (dir == p || index(dir, p "/") == 1) score[repo[p]] += s
+    }
+    END { for (r in score) printf "%s\t%s\n", score[r], r }
+  ' <(bark repos --json | jq -r '.[] | [.name, .path] | @tsv') \
+    <(zoxide query --list --score 2>/dev/null) |
+    sort -t$'\t' -k1,1gr -k2,2 | cut -f2
+}
+
 # One line per fact about an existing branch, from `bark status --json`.
 describe_status() {
   jq -r '
@@ -162,7 +182,7 @@ run() {
   pick_ticket || exit 0
   branch=$(edit_branch "$(branch_name "$ticket_key" "$title")") || exit 0
 
-  repo=$(bark repos | fzf --prompt='repo> ' --header="Branch: $branch") || exit 0
+  repo=$(recent_repos | fzf --prompt='repo> ' --header="Branch: $branch") || exit 0
 
   echo "Checking $repo/$branch..."
   status=$(bark status "$repo" "$branch" --fetch --json) || die "bark status failed"

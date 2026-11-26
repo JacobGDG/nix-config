@@ -35,6 +35,8 @@
           fzf
           coreutils
           jira-cli-go
+          zoxide
+          gawk
           inputs.bark.packages.${final.stdenv.hostPlatform.system}.default
         ];
         text = builtins.readFile ./scripts/start-work.sh;
