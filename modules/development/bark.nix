@@ -1,8 +1,5 @@
 {
-  flake-file.inputs.bark = {
-    url = "github:JacobGDG/bark";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  flake-file.inputs.bark.url = "github:JacobGDG/bark";
 
   persist = {
     users = {

@@ -1,4 +1,4 @@
-name: Bump flake.lock
+name: Bump tack pins
 
 on:
   schedule:
@@ -23,12 +23,14 @@ jobs:
 
       # secrets is private and only changes alongside a local rebuild, so bump
       # everything else; CI then never needs credentials
-      - run: jq -r '.nodes.root.inputs | keys - ["secrets"] | .[]' flake.lock | xargs nix flake update
+      - run: nix run .#write-lock -- --exclude secrets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       # skipping the checks also skips the commit, which needs them
       - id: diff
         run: |
-          if git diff --quiet flake.lock; then
+          if git diff --quiet .tack/pins.lock.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -37,8 +39,8 @@ jobs:
       - if: steps.diff.outputs.changed == 'true'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: flake-lock
-          path: flake.lock
+          name: pins-lock
+          path: .tack/pins.lock.json
 
   check-linux:
     name: Check (Linux)
@@ -51,14 +53,15 @@ jobs:
 
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          name: flake-lock
+          name: pins-lock
+          path: .tack
 
       # full desktop closures don't fit in the runner's default free space
       - run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache
 
       - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31
 
-      - run: nix flake check --override-input secrets path:./ci/stub-secrets --keep-going
+      - run: nix flake check ./ci --keep-going
 
   # Apple Silicon runner, so checks.nix picks up the aarch64-darwin home configs
   check-darwin:
@@ -72,11 +75,12 @@ jobs:
 
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          name: flake-lock
+          name: pins-lock
+          path: .tack
 
       - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31
 
-      - run: nix flake check --override-input secrets path:./ci/stub-secrets --keep-going
+      - run: nix flake check ./ci --keep-going
 
   commit:
     name: Commit
@@ -92,14 +96,15 @@ jobs:
 
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          name: flake-lock
+          name: pins-lock
+          path: .tack
 
       - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
         with:
-          commit_message: Bump flake.lock
+          commit_message: Bump tack pins
           branch: main
           commit_options: "--no-verify --signoff"
-          file_pattern: flake.lock
+          file_pattern: .tack/pins.lock.json
           commit_user_name: Flake Bot # defaults to "GitHub Actions"
           commit_author: Flake Bot <actions@github.com> # defaults to author of the commit that triggered the run
           skip_dirty_check: false

@@ -5,7 +5,7 @@ flake can be evaluated and built without access to it. agenix only decrypts at
 activation, so builds never read these.
 
 ```sh
-nix flake check --override-input secrets path:./ci/stub-secrets
+just check-stub   # nix flake check ./ci
 ```
 
 Add a placeholder here whenever a new secret is referenced.

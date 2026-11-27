@@ -1,8 +1,5 @@
 {
-  flake-file.inputs.disko = {
-    url = "github:nix-community/disko";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  flake-file.inputs.disko.url = "github:nix-community/disko";
 
   flake.modules.nixos."nixosConfigurations/hobbiton" = {inputs, ...}: {
     imports = [inputs.disko.nixosModules.disko];
