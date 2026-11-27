@@ -1,8 +1,11 @@
-write-flake:
-  nix run .#write-flake --show-trace
+update *pins:
+  nix run .#write-lock -- {{pins}}
 
 check:
   nix flake check --show-trace
+
+check-stub:
+  nix flake check ./ci --show-trace
 
 [linux]
 vm-clean host=`hostname`:

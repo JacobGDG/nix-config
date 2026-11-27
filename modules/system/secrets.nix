@@ -4,10 +4,7 @@
       url = "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1";
       flake = false;
     };
-    ragenix = {
-      url = "github:JacobGDG/ragenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    ragenix.url = "github:JacobGDG/ragenix";
   };
 
   flake.modules.nixos.secrets = {inputs, ...}: {

@@ -1,9 +1,5 @@
 {inputs, ...}: {
-  flake-file.inputs.neovim = {
-    url = "github:JacobGDG/nvim.nix";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.gen-luarc.inputs.git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
-  };
+  flake-file.inputs.neovim.url = "github:JacobGDG/nvim.nix";
 
   persist = {
     users = {

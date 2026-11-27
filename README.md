@@ -21,14 +21,14 @@ import.
 
 Secrets are encrypted with [ragenix](https://github.com/yaxitech/ragenix)
 and live in the private `nix-secrets` repo, which is pulled in as the `secrets`
-flake input. Modules reference them as `${inputs.secrets}/<name>.age`. Each
+tack pin. Modules reference them as `${inputs.secrets}/<name>.age`. Each
 host decrypts them at activation using its SSH host key.
 
 `ci/stub-secrets` has placeholder files with the same names, so the flake can
 be checked without access to the private repo:
 
 ```sh
-nix flake check --override-input secrets path:./ci/stub-secrets
+just check-stub   # nix flake check ./ci
 ```
 
 ## Usage
@@ -37,9 +37,14 @@ nix flake check --override-input secrets path:./ci/stub-secrets
 just os        # nixos-rebuild switch for this host
 just hm        # home-manager switch for this user@host
 just check     # nix flake check
+just update    # tack update, optionally naming pins
 ```
 
-`flake.nix` is generated; edit inputs in modules and run `just write-flake`.
+Inputs are declared with `flake-file.inputs` in the module that uses them and
+pinned with [tack](https://github.com/manic-systems/tack). `just update`
+renders them into `.tack/pins.toml` and locks `.tack/pins.lock.json`; don't
+edit `pins.toml` by hand. `flake.nix` has no inputs of its own; it imports
+`./.tack` and hands the pins to flake-parts.
 
 ## Principles
 

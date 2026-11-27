@@ -29,11 +29,7 @@
   config = let
     outerConfig = config;
   in {
-    flake-file.inputs.impermanance = {
-      url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "";
-      inputs.home-manager.follows = "";
-    };
+    flake-file.inputs.impermanance.url = "github:nix-community/impermanence";
 
     flake.modules.nixos.impermanance = {
       inputs,

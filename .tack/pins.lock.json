@@ -1,0 +1,124 @@
+{
+  "$declared": {
+    "bark": "github:JacobGDG/bark",
+    "disko": "github:nix-community/disko",
+    "flake-file": "github:vic/flake-file",
+    "flake-parts": "github:hercules-ci/flake-parts",
+    "home-manager": "github:nix-community/home-manager/release-26.05",
+    "impermanance": "github:nix-community/impermanence",
+    "import-tree": "github:denful/import-tree",
+    "neovim": "github:JacobGDG/nvim.nix",
+    "nixpkgs": "github:nixos/nixpkgs/nixos-26.05",
+    "nixpkgs-unstable": "github:nixos/nixpkgs/nixos-unstable",
+    "ragenix": "github:JacobGDG/ragenix",
+    "secrets": "git+ssh://git@github.com/JacobGDG/nix-secrets.git?shallow=1",
+    "tack": "github:manic-systems/tack"
+  },
+  "bark": {
+    "type": "github",
+    "owner": "JacobGDG",
+    "repo": "bark",
+    "rev": "0a18297d9e4be20d4a1832ba9a70c6fa4848e66a",
+    "narHash": "sha256-NAThC2Dp0b8ZKDvg13O+nnwf3MyKxyluk4Ce1/eY0BQ=",
+    "lastModified": 1795785773,
+    "public": true
+  },
+  "disko": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "disko",
+    "rev": "44761d4f745b95e037458a0e57133c5700c8e320",
+    "narHash": "sha256-D35n2Q2v1KrlF9LS/pFl8Z3EBMJW6qvPw5q4HMbXXLg=",
+    "lastModified": 1795168368
+  },
+  "flake-file": {
+    "type": "github",
+    "owner": "vic",
+    "repo": "flake-file",
+    "rev": "7b08dbc223bb1a758a515aad9653a6bf196bc772",
+    "narHash": "sha256-KdGEzlRQPHBbNPD+AChjry8eWEx0TCrGKy1Hkacj+bA=",
+    "lastModified": 1792905615,
+    "public": true
+  },
+  "flake-parts": {
+    "type": "github",
+    "owner": "hercules-ci",
+    "repo": "flake-parts",
+    "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
+    "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
+    "lastModified": 1793576659
+  },
+  "home-manager": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "home-manager",
+    "rev": "6480d7d8533b88c78cc6dcda395ab89cd546e450",
+    "narHash": "sha256-XYoMPsqRFZ6jOaYI1KAAu8fzqif4tkCX8mhEKrViDXQ=",
+    "lastModified": 1795325060
+  },
+  "impermanance": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "impermanence",
+    "rev": "fa627f4c8b8e92f58f58a73d99ee4e1304e64eb2",
+    "narHash": "sha256-s0TeXWG5Ci75Y/Hzon0Z7NrN/fG773Rc54/z6oPFszQ=",
+    "lastModified": 1792739756
+  },
+  "import-tree": {
+    "type": "github",
+    "owner": "denful",
+    "repo": "import-tree",
+    "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+    "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
+    "lastModified": 1788467110
+  },
+  "neovim": {
+    "type": "github",
+    "owner": "JacobGDG",
+    "repo": "nvim.nix",
+    "rev": "9c5af606d95fbf5b2f92cc59dca98a83b12c4cd0",
+    "narHash": "sha256-/WNBkAdBCWsz7pdYjX7t4u2BpIPeLcgNiaqdmO2UC+k=",
+    "lastModified": 1794396251
+  },
+  "nixpkgs": {
+    "type": "github",
+    "owner": "nixos",
+    "repo": "nixpkgs",
+    "rev": "0dc498bfe49baeb18b0f9891e800b53bb2603193",
+    "narHash": "sha256-s/0jq8usZtLVOolYBwmyUmd3JsfAu7w3FU+a0dgMqSY=",
+    "lastModified": 1795370043
+  },
+  "nixpkgs-unstable": {
+    "type": "github",
+    "owner": "nixos",
+    "repo": "nixpkgs",
+    "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+    "narHash": "sha256-f/VVvxf5RsQgWVhUtefoca5ktVg0DA2bnkMOcmSnozo=",
+    "lastModified": 1795234589
+  },
+  "ragenix": {
+    "type": "github",
+    "owner": "JacobGDG",
+    "repo": "ragenix",
+    "rev": "83bccfdea758241999f32869fb6b36f7ac72f1ac",
+    "narHash": "sha256-VCNVjjuRvrKPiYYwqhE3BAKIaReiKXGpxGp27lZ0MFM=",
+    "lastModified": 1761832913
+  },
+  "secrets": {
+    "type": "git",
+    "url": "ssh://git@github.com/JacobGDG/nix-secrets.git",
+    "ref": "HEAD",
+    "rev": "947f60dd3e08ff3ab157183e1594005d5995f95e",
+    "narHash": "sha256-6j1887YfPNOgGkF2ztwrz2j9bgSvCZINQJLWm8+15wk=",
+    "lastModified": 1792942282
+  },
+  "tack": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "673997981720feebb3870645932b6cfe6657db9f",
+    "narHash": "sha256-iRVnAKvQh5vC76QppovlxTklJf98EA+GYEY91loasy4=",
+    "lastModified": 1795748364,
+    "public": true
+  }
+}
