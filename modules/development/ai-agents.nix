@@ -78,6 +78,16 @@
         - Don't prefix commands with `cd <path> &&`; use `git -C <path>` and
           `gh -R <owner>/<repo>` instead.
 
+        # Code comments
+
+        - Comments are a smell. Only comment when the code is not
+          self-explanatory, and if a comment seems needed, first consider
+          refactoring so the code explains itself.
+        - Never write comments explaining past behaviour, what code used to
+          do, or why a change was made (e.g. "now uses X", "removed Y",
+          "changed to fix Z"). That belongs in the commit message. Comments
+          about things that no longer exist are confusing and bloat the code.
+
         # Skills
 
         - `clone-repo` - use this when investigating or reading the source of a
